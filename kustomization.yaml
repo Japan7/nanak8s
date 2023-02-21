@@ -6,4 +6,4 @@ secretGenerator:
       - .env
 
 resources:
-  - apps/edgedb.yaml
+  - apps/nanadb.yaml

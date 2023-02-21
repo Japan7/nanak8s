@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: edgedb-psql
+  name: nanadb-psql
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   instances: 3
@@ -11,53 +11,74 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: edgedb-service
+  name: nanadb-service
 spec:
   selector:
-    app: edgedb
+    app: nanadb
   ports:
     - port: 5656
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: edgedb-deployment
+  name: nanadb-deployment
   labels:
-    app: edgedb
+    app: nanadb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: edgedb
+      app: nanadb
   template:
     metadata:
       labels:
-        app: edgedb
+        app: nanadb
     spec:
       containers:
-        - name: edgedb
+        - name: nanadb
           image: edgedb/edgedb
           ports:
             - containerPort: 5656
-          envFrom:
-            - secretRef:
-                name: secrets
           env:
             - name: PSQL_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: edgedb-psql-superuser
+                  name: nanadb-psql-superuser
                   key: username
             - name: PSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: edgedb-psql-superuser
+                  name: nanadb-psql-superuser
                   key: password
             - name: EDGEDB_SERVER_SECURITY
               value: insecure_dev_mode
             - name: EDGEDB_SERVER_BACKEND_DSN
-              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@edgedb-psql-rw
+              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@nanadb-psql-rw
             - name: EDGEDB_SERVER_INSTANCE_NAME
               value: nanadb
+            - name: EDGEDB_SERVER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: NANADB_SERVER_USER
+            - name: EDGEDB_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: NANADB_SERVER_PASSWORD
             - name: EDGEDB_SERVER_ADMIN_UI
               value: enabled
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nanadb
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`nanadb.k8s.yuru.moe`)
+      services:
+        - name: nanadb-service
+          port: 5656
