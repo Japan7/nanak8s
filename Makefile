@@ -1,10 +1,9 @@
-.PHONY: setup apply
+.PHONY: setup apps
 
-all: setup apply
+all: setup apps
 
 setup:
-	kubectl apply -f setup/namespace.yaml
-	kubectl apply -f $(wildcard setup/cnpg-*.yaml)
+	kubectl apply -f setup/
 
-apply:
+apps:
 	kubectl apply -k .
