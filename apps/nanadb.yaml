@@ -11,7 +11,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nanadb-service
+  name: nanadb
 spec:
   selector:
     app: nanadb
@@ -80,5 +80,5 @@ spec:
     - kind: Rule
       match: Host(`nanadb.k8s.yuru.moe`)
       services:
-        - name: nanadb-service
+        - name: nanadb
           port: 5656

@@ -1,12 +1,12 @@
-.PHONY: setup dashboard apps
+.PHONY: setup apps dashboard
 
-all: setup dashboard apps
+all: setup apps
 
 setup:
 	kubectl apply -f setup/
 
-dashboard:
-	dashboard/deploy.sh
-
 apps:
 	kubectl apply -k .
+
+dashboard:
+	dashboard/deploy.sh
