@@ -7,7 +7,7 @@ spec:
   valuesContent: |-
     ports:
       web:
-        redirectTo: websecure
+        exposedPort: 8000
       websecure:
         exposedPort: 8443
         tls:
@@ -15,8 +15,13 @@ spec:
     certResolvers:
       letsencrypt:
         email: admin@yuru.moe
+        tlsChallenge: true
         httpChallenge:
           entryPoint: web
         storage: /data/acme.json
     additionalArguments:
       - --log.level=DEBUG
+      - --accesslog=true
+      # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+    persistence:
+      enabled: true
