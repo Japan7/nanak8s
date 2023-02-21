@@ -23,5 +23,6 @@ spec:
       - --log.level=DEBUG
       - --accesslog=true
       # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --serversTransport.insecureSkipVerify=true  # needed for k8s-dashboard
     persistence:
       enabled: true
