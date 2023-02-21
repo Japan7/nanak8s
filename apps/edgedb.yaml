@@ -1,0 +1,64 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: edgedb-psql
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:14
+  instances: 3
+  storage:
+    size: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: edgedb-service
+spec:
+  selector:
+    app: edgedb
+  ports:
+    - port: 5656
+      targetPort: 5656
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edgedb-deployment
+  labels:
+    app: edgedb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edgedb
+  template:
+    metadata:
+      labels:
+        app: edgedb
+    spec:
+      containers:
+        - name: edgedb
+          image: edgedb/edgedb
+          ports:
+            - containerPort: 5656
+          envFrom:
+            - secretRef:
+                name: secrets
+          env:
+            - name: PSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: edgedb-psql-superuser
+                  key: username
+            - name: PSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: edgedb-psql-superuser
+                  key: password
+            - name: EDGEDB_SERVER_SECURITY
+              value: insecure_dev_mode
+            - name: EDGEDB_SERVER_BACKEND_DSN
+              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@edgedb-psql-rw
+            - name: EDGEDB_SERVER_INSTANCE_NAME
+              value: nanadb
+            - name: EDGEDB_SERVER_ADMIN_UI
+              value: enabled

@@ -1,0 +1,9 @@
+namespace: japan7
+
+secretGenerator:
+  - name: secrets
+    envs:
+      - .env
+
+resources:
+  - apps/edgedb.yaml
