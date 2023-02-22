@@ -1,17 +1,16 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: setup apps dashboard
+.PHONY: helm system apps
 
-all: setup apps
+all: helm system apps
 
-setup:
+helm:
+	./helm.sh
+
+system:
 	set -a && source .env && \
-	for f in setup/*.yaml; do cat $$f | envsubst | kubectl apply -f -; done
+	kubectl kustomize system | envsubst | kubectl apply -f -
 
 apps:
 	set -a && source .env && \
-	kubectl kustomize | envsubst | kubectl apply -f -
-
-dashboard:
-	set -a && source .env && \
-	dashboard/deploy.sh
+	kubectl kustomize apps | envsubst | kubectl apply -f -

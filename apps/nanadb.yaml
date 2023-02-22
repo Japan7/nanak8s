@@ -57,15 +57,9 @@ spec:
             - name: EDGEDB_SERVER_INSTANCE_NAME
               value: nanadb
             - name: EDGEDB_SERVER_USER
-              valueFrom:
-                secretKeyRef:
-                  name: secrets
-                  key: NANADB_SERVER_USER
+              value: $NANADB_SERVER_USER
             - name: EDGEDB_SERVER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: secrets
-                  key: NANADB_SERVER_PASSWORD
+              value: $NANADB_SERVER_PASSWORD
             - name: EDGEDB_SERVER_ADMIN_UI
               value: enabled
 ---

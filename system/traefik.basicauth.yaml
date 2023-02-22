@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: japan7-basic-auth
-  namespace: japan7
+  namespace: kube-system
 type: kubernetes.io/basic-auth
 stringData:
   username: $JAPAN7_BASIC_AUTH_USERNAME
@@ -12,7 +12,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: japan7-basic-auth
-  namespace: japan7
+  namespace: kube-system
 spec:
   basicAuth:
     secret: japan7-basic-auth

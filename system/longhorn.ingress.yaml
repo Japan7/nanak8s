@@ -1,17 +1,17 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: traefik-dashboard
-  namespace: kube-system
+  name: longhorn-frontend
+  namespace: longhorn-system
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`traefik.$DOMAIN`)
+      match: Host(`longhorn.$DOMAIN`)
       services:
-        - kind: TraefikService
-          name: api@internal
+        - name: longhorn-frontend
+          port: 80
       middlewares:
         - name: japan7-basic-auth
-          namespace: japan7
+          namespace: kube-system

@@ -1,0 +1,4 @@
+namespace: japan7
+
+resources:
+  - nanadb.yaml
