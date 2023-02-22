@@ -12,3 +12,6 @@ spec:
       services:
         - kind: TraefikService
           name: api@internal
+      middlewares:
+        - name: japan7-basic-auth
+          namespace: japan7
