@@ -18,6 +18,15 @@ spec:
   ports:
     - port: 5656
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nanadb-user
+type: kubernetes.io/basic-auth
+stringData:
+  username: $NANADB_SERVER_USER
+  password: $NANADB_SERVER_PASSWORD
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -57,11 +66,37 @@ spec:
             - name: EDGEDB_SERVER_INSTANCE_NAME
               value: nanadb
             - name: EDGEDB_SERVER_USER
-              value: $NANADB_SERVER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: nanadb-user
+                  key: username
             - name: EDGEDB_SERVER_PASSWORD
-              value: $NANADB_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nanadb-user
+                  key: password
             - name: EDGEDB_SERVER_ADMIN_UI
               value: enabled
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: "0.5"
+            limits:
+              memory: 2Gi
+              cpu: "2"
+          startupProbe:
+            httpGet:
+              path: /server/status/alive
+              port: 5656
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: /server/status/alive
+              port: 5656
+          readinessProbe:
+            httpGet:
+              path: /server/status/ready
+              port: 5656
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
