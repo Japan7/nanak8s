@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`dashboard.k8s.yuru.moe`)
+      match: Host(`dashboard.$DOMAIN`)
       services:
         - name: kubernetes-dashboard
           port: 443

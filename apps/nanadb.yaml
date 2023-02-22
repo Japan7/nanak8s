@@ -78,7 +78,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`nanadb.k8s.yuru.moe`)
+      match: Host(`nanadb.$DOMAIN`)
       services:
         - name: nanadb
           port: 5656

@@ -9,7 +9,7 @@
 ## Join the cluster
 
 ```
-curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://camp-direct.yuru.moe:6443
+curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443
 ```
 
 ## Traefik passthrough
@@ -46,12 +46,12 @@ tcp:
     k8s-web:
       entryPoints:
         - "web"
-      rule: "HostSNIRegexp(`k8s.yuru.moe`, `{subdomain:[a-z.]+}.k8s.yuru.moe`)"
+      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z.]+}.<domain>`)"
       service: "k8s-web-file"
     k8s-websecure:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`k8s.yuru.moe`, `{subdomain:[a-z.]+}.k8s.yuru.moe`)"
+      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z.]+}.<domain>`)"
       service: "k8s-websecure-file"
       tls:
         passthrough: true
