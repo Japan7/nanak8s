@@ -2,8 +2,7 @@ resources:
   - namespace.yaml
   - traefik.config.yaml
   - traefik.basicauth.yaml
-  - traefik.ingress.yaml
-  - dashboard.admin-user.yml
-  - dashboard.admin-user-role.yml
   - dashboard.ingress.yaml
+  - dashboard.admin-user.yaml
+  - dashboard.admin-user-role.yaml
   - longhorn.ingress.yaml

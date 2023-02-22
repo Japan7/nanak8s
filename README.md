@@ -2,7 +2,7 @@
 
 ## Local development
 
-- Install [minikube](https://minikube.sigs.k8s.io/docs/)
+- Install [minikube](https://minikube.sigs.k8s.io/docs/) and [helm](https://helm.sh/)
 - Copy `.env.example` to `.env` and edit it accordingly
 - `make all`
 
