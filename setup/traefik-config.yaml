@@ -26,18 +26,3 @@ spec:
       # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
       enabled: true
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: traefik-dashboard
-  namespace: kube-system
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - kind: Rule
-      match: Host(`traefik.$DOMAIN`)
-      services:
-        - kind: TraefikService
-          name: api@internal
