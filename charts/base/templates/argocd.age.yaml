@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: age
+  namespace: argocd
+type: Opaque
+data:
+  key.txt: "{{ .Values.age.key | b64enc }}"

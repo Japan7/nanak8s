@@ -9,7 +9,7 @@
 ## Join the cluster
 
 ```sh
-curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443
+curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443 --disable local-storage
 ```
 
 ## Traefik passthrough

@@ -6,3 +6,6 @@ traefik:
 japan7BasicAuth:
   username: ""
   password: ""
+
+age:
+  key: ""
