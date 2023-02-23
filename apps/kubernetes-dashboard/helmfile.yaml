@@ -1,0 +1,23 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: kubernetes-dashboard
+    url: https://kubernetes.github.io/dashboard/
+
+releases:
+  - name: kubernetes-dashboard
+    chart: kubernetes-dashboard/kubernetes-dashboard
+    namespace: kubernetes-dashboard
+    values:
+      - metricsScraper:
+          enabled: true
+      - ingress:
+          enabled: true
+          hosts:
+            - dashboard.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: kubernetes-dashboard-extras
+    chart: ../../charts/kubernetes-dashboard-extras
+    namespace: kubernetes-dashboard

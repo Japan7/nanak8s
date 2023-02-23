@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: japan7-basic-auth
+  namespace: kube-system
 spec:
   basicAuth:
     secret: japan7-basic-auth

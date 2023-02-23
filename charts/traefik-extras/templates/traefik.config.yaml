@@ -34,7 +34,7 @@ spec:
           - websecure
         middlewares:
           - name: japan7-basic-auth
-            namespace: {{ .Release.Namespace }}
+            namespace: kube-system
     deployment:
       initContainers:
         # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543

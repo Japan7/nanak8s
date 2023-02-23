@@ -1,0 +1,49 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+
+releases:
+  - name: argo-cd
+    chart: argo/argo-cd
+    namespace: argocd
+    values:
+      - server:
+          ingress:
+            enabled: true
+            hosts:
+              - argocd.{{ .Values.domain }}
+            https: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      # https://github.com/lucj/argocd-helmfile-plugin
+      - repoServer:
+          volumes:
+            - name: age
+              secret:
+                secretName: age
+          extraContainers:
+            - name: cmp
+              command: ["/var/run/argocd/argocd-cmp-server"]
+              image: lucj/argocd-plugin-helmfile:v0.0.10
+              securityContext:
+                runAsNonRoot: true
+                runAsUser: 999
+              env:
+                - name: SOPS_AGE_KEY_FILE
+                  value: /app/config/age/key.txt
+              volumeMounts:
+                - mountPath: /app/config/age/
+                  name: age
+                - mountPath: /var/run/argocd
+                  name: var-files
+                - mountPath: /home/argocd/cmp-server/plugins
+                  name: plugins
+  - name: argo-cd-extras
+    chart: ../../charts/argo-cd-extras
+    namespace: argocd
+    values:
+      - age:
+          key: "{{ .Values.age.key }}"

@@ -1,0 +1,23 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: twuni
+    url: https://helm.twun.io
+
+releases:
+  - name: docker-registry
+    chart: twuni/docker-registry
+    namespace: docker-registry
+    values:
+      - persistence:
+          enabled: true
+      - secrets:
+          haSharedSecret: "{{ .Values.dockerRegistry.haSharedSecret }}"
+      - ingress:
+          enabled: true
+          hosts:
+            - registry.{{ .Values.domain }}
+          className:
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

@@ -1,6 +1,0 @@
-resources:
-  # traefik
-  - manifests/traefik.config.yaml
-  - manifests/traefik.basic-auth.yaml
-  # dashboard
-  - manifests/dashboard.admin-user.yaml

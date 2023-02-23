@@ -1,0 +1,14 @@
+bases:
+  - ../environments.yaml
+---
+releases:
+  - name: traefik-extras
+    chart: ../../charts/traefik-extras
+    namespace: kube-system
+    values:
+      - domain: "{{ .Values.domain }}"
+      - traefik:
+          letsencryptEmail: "{{ .Values.traefik.letsencryptEmail }}"
+      - japan7BasicAuth:
+          username: "{{ .Values.japan7BasicAuth.username }}"
+          password: "{{ .Values.japan7BasicAuth.password }}"
