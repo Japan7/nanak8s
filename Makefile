@@ -1,8 +1,8 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: helmfile system apps
+.PHONY: helmfile system japan7
 
-all: helmfile system apps
+all: helmfile system japan7
 
 helmfile:
 	set -a && source .env && \
@@ -12,6 +12,6 @@ system:
 	set -a && source .env && \
 	kubectl kustomize system | envsubst | kubectl apply -f -
 
-apps:
+japan7:
 	set -a && source .env && \
-	kubectl kustomize apps | envsubst | kubectl apply -f -
+	kubectl kustomize japan7 | envsubst | kubectl apply -f -
