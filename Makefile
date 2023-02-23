@@ -5,7 +5,7 @@ SHELL := /usr/bin/env bash
 all: helm system apps
 
 helm:
-	./helm.sh
+	helmfile apply
 
 system:
 	set -a && source .env && \
