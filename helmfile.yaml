@@ -12,6 +12,9 @@ releases:
   - name: kubernetes-dashboard
     chart: kubernetes-dashboard/kubernetes-dashboard
     namespace: kubernetes-dashboard
+    values:
+      - metricsScraper:
+          enabled: true
   - name: longhorn
     chart: longhorn/longhorn
     namespace: longhorn-system
