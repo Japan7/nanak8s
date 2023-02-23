@@ -1,20 +1,20 @@
 # nanak8s
 
-## Local development
+## Requirements
 
-- Install [minikube](https://minikube.sigs.k8s.io/docs/), [helm](https://helm.sh/) and [helmfile](https://helmfile.readthedocs.io/en/latest/) (`helmfile init` to install the required helm plugins).
-- Copy `.env.example` to `.env` and edit it accordingly
-- `make all`
+- [K3s](https://docs.k3s.io/) Lightweight Kubernetes
+- [helm](https://helm.sh/) and [helmfile](https://helmfile.readthedocs.io/en/latest/) for chart deployments
+- [sops](https://github.com/mozilla/sops) and [age](https://github.com/FiloSottile/age) for secrets
 
 ## Join the cluster
 
-```
+```sh
 curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443
 ```
 
 ## Traefik passthrough
 
-### docker-compose.yml
+### `docker-compose.yml`
 
 ```yaml
 services:
@@ -38,7 +38,7 @@ services:
       - "host.docker.internal:host-gateway"
 ```
 
-### ./traefik/dynconfig.yml
+### `./traefik/dynconfig.yml`
 
 ```yaml
 tcp:

@@ -1,3 +1,8 @@
+environments:
+  default:
+    secrets:
+      - secrets.yaml
+---
 repositories:
   - name: kubernetes-dashboard
     url: https://kubernetes.github.io/dashboard/
@@ -11,6 +16,16 @@ repositories:
     url: https://helm.twun.io
 
 releases:
+  - name: base
+    chart: charts/base
+    namespace: base
+    values:
+      - domain: "{{ .Values.domain }}"
+      - traefik:
+          letsencryptEmail: "{{ .Values.traefik.letsencryptEmail }}"
+      - japan7BasicAuth:
+          username: "{{ .Values.japan7BasicAuth.username }}"
+          password: "{{ .Values.japan7BasicAuth.password }}"
   - name: kubernetes-dashboard
     chart: kubernetes-dashboard/kubernetes-dashboard
     namespace: kubernetes-dashboard
@@ -20,7 +35,7 @@ releases:
       - ingress:
           enabled: true
           hosts:
-            - dashboard.$DOMAIN
+            - dashboard.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: longhorn
@@ -29,7 +44,7 @@ releases:
     values:
       - ingress:
           enabled: true
-          host: longhorn.$DOMAIN
+          host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: cnpg
@@ -43,10 +58,34 @@ releases:
           ingress:
             enabled: true
             hosts:
-              - argocd.$DOMAIN
+              - argocd.{{ .Values.domain }}
             https: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      # https://github.com/lucj/argocd-helmfile-plugin
+      - repoServer:
+          volumes:
+            # kubectl -n argocd create secret generic age --from-file=./key.txt
+            - name: age
+              secret:
+                secretName: age
+          extraContainers:
+            - name: cmp
+              command: ["/var/run/argocd/argocd-cmp-server"]
+              image: lucj/argocd-plugin-helmfile:v0.0.10
+              securityContext:
+                runAsNonRoot: true
+                runAsUser: 999
+              env:
+                - name: SOPS_AGE_KEY_FILE
+                  value: /app/config/age/key.txt
+              volumeMounts:
+                - mountPath: /app/config/age/
+                  name: age
+                - mountPath: /var/run/argocd
+                  name: var-files
+                - mountPath: /home/argocd/cmp-server/plugins
+                  name: plugins
   - name: docker-registry
     chart: twuni/docker-registry
     namespace: docker-registry
@@ -54,11 +93,11 @@ releases:
       - persistence:
           enabled: true
       - secrets:
-          haSharedSecret: $DOCKER_REGISTRY_SECRET
+          haSharedSecret: "{{ .Values.dockerRegistry.haSharedSecret }}"
       - ingress:
           enabled: true
           hosts:
-            - registry.$DOMAIN
+            - registry.{{ .Values.domain }}
           className:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
