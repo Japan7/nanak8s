@@ -6,3 +6,4 @@ resources:
   - dashboard.admin-user.yaml
   - dashboard.admin-user-role.yaml
   - longhorn.ingress.yaml
+  - argocd.ingress.yaml

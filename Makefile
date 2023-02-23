@@ -1,11 +1,12 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: helm system apps
+.PHONY: helmfile system apps
 
-all: helm system apps
+all: helmfile system apps
 
-helm:
-	helmfile apply
+helmfile:
+	set -a && source .env && \
+	cat helmfile.yaml | envsubst | helmfile apply -f -
 
 system:
 	set -a && source .env && \

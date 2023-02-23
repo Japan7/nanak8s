@@ -18,3 +18,6 @@ releases:
   - name: cnpg
     chart: cnpg/cloudnative-pg
     namespace: cnpg-system
+  - name: argo-cd
+    chart: argo/argo-cd
+    namespace: argocd
