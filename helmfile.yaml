@@ -7,6 +7,8 @@ repositories:
     url: https://cloudnative-pg.github.io/charts
   - name: argo
     url: https://argoproj.github.io/argo-helm
+  - name: twuni
+    url: https://helm.twun.io
 
 releases:
   - name: kubernetes-dashboard
@@ -15,12 +17,48 @@ releases:
     values:
       - metricsScraper:
           enabled: true
+      - ingress:
+          enabled: true
+          hosts:
+            - dashboard.$DOMAIN
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: longhorn
     chart: longhorn/longhorn
     namespace: longhorn-system
+    values:
+      - ingress:
+          enabled: true
+          host: longhorn.$DOMAIN
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: cnpg
     chart: cnpg/cloudnative-pg
     namespace: cnpg-system
   - name: argo-cd
     chart: argo/argo-cd
     namespace: argocd
+    values:
+      - server:
+          ingress:
+            enabled: true
+            hosts:
+              - argocd.$DOMAIN
+            https: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: docker-registry
+    chart: twuni/docker-registry
+    namespace: docker-registry
+    values:
+      - persistence:
+          enabled: true
+      - secrets:
+          haSharedSecret: $DOCKER_REGISTRY_SECRET
+      - ingress:
+          enabled: true
+          hosts:
+            - registry.$DOMAIN
+          className:
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
