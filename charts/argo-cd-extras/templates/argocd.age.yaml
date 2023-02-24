@@ -4,5 +4,5 @@ metadata:
   name: age
   namespace: argocd
 type: Opaque
-data:
-  key.txt: "{{ .Values.age.key | b64enc }}"
+stringData:
+  privKey: "{{ .Values.age.privKey }}"

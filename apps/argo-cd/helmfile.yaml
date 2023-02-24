@@ -20,10 +20,6 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
       # https://github.com/lucj/argocd-helmfile-plugin
       - repoServer:
-          volumes:
-            - name: age
-              secret:
-                secretName: age
           extraContainers:
             - name: cmp
               command: ["/var/run/argocd/argocd-cmp-server"]
@@ -32,11 +28,12 @@ releases:
                 runAsNonRoot: true
                 runAsUser: 999
               env:
-                - name: SOPS_AGE_KEY_FILE
-                  value: /app/config/age/key.txt
+                - name: SOPS_AGE_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: age
+                      key: privKey
               volumeMounts:
-                - mountPath: /app/config/age/
-                  name: age
                 - mountPath: /var/run/argocd
                   name: var-files
                 - mountPath: /home/argocd/cmp-server/plugins
@@ -46,4 +43,4 @@ releases:
     namespace: argocd
     values:
       - age:
-          key: "{{ .Values.age.key }}"
+          privKey: "{{ .Values.age.privKey }}"
