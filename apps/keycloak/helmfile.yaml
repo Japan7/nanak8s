@@ -1,0 +1,36 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+releases:
+  - name: keycloak
+    chart: bitnami/keycloak
+    namespace: keycloak
+    values:
+      - ingress:
+          enabled: true
+          hostname: keycloak.{{ .Values.domain }}
+          pathType: Prefix
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      - extraVolumes:
+          - name: keycloak-providers
+            emptyDir: {}
+      - extraVolumeMounts:
+          - name: keycloak-providers
+            mountPath: /opt/bitnami/keycloak/providers
+      - initContainers:
+          - name: add-keycloak-discord
+            image: alpine
+            command:
+              - sh
+              - -c
+              - |
+                wget -O /providers/keycloak-discord.jar \
+                https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
+            volumeMounts:
+              - name: keycloak-providers
+                mountPath: /providers

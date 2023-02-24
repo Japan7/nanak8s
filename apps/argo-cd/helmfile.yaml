@@ -34,10 +34,10 @@ releases:
                       name: age
                       key: privKey
               volumeMounts:
-                - mountPath: /var/run/argocd
-                  name: var-files
-                - mountPath: /home/argocd/cmp-server/plugins
-                  name: plugins
+                - name: var-files
+                  mountPath: /var/run/argocd
+                - name: plugins
+                  mountPath: /home/argocd/cmp-server/plugins
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
     namespace: argocd
