@@ -2,31 +2,11 @@ bases:
   - ../environments.yaml
 ---
 releases:
-  - name: forgejo-cnpg
-    chart: ../../charts/cnpg-cluster
-    namespace: forgejo
-    values:
-      - storage:
-          size: 5Gi
-      - superuser:
-          username: "{{ .Values.forgejo.cnpg.superuser.username }}"
-          password: "{{ .Values.forgejo.cnpg.superuser.password }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.3.1
     namespace: forgejo
     values:
-      - postgresql:
-          enabled: false
-      - gitea:
-          config:
-            database:
-              DB_TYPE: postgres
-              HOST: forgejo-cnpg-rw
-              NAME: gitea
-              USER: "{{ .Values.forgejo.cnpg.superuser.username }}"
-              PASSWD: "{{ .Values.forgejo.cnpg.superuser.password }}"
-              SCHEMA: gitea
       - ingress:
           enabled: true
           hosts:

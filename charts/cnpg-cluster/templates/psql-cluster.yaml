@@ -1,24 +1,9 @@
-{{ if .Values.superuser }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ .Release.Name }}-superuser
-type: kubernetes.io/basic-auth
-stringData:
-  username: {{ .Values.superuser.username }}
-  password: {{ .Values.superuser.password }}
-{{ end }}
----
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: "{{ .Release.Name }}"
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14
-  instances: 3
+  instances: {{ .Values.instances }}
   storage:
     size: {{ .Values.storage.size }}
-  {{ if .Values.superuser }}
-  superuserSecret:
-    name: {{ .Release.Name }}-superuser
-  {{ end }}
