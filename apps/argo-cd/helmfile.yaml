@@ -48,15 +48,4 @@ releases:
     chart: ../../charts/argo-cd-apps
     namespace: argocd
     values:
-      - apps:
-          - name: argo-cd
-            namespace: argocd
-          - name: cnpg
-            namespace: cnpg-system
-          - name: docker-registry
-          - name: gitlab-runner
-          - name: kubernetes-dashboard
-          - name: longhorn
-            namespace: longhorn-system
-          - name: traefik
-            namespace: kube-system
+      - ../apps.yaml
