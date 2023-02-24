@@ -18,26 +18,31 @@ releases:
             https: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      # https://github.com/lucj/argocd-helmfile-plugin
+      # https://github.com/travisghansen/argo-cd-helmfile
       - repoServer:
+          volumes:
+            - name: helmfile-cmp-tmp
+              emptyDir: {}
           extraContainers:
-            - name: cmp
-              command: ["/var/run/argocd/argocd-cmp-server"]
-              image: lucj/argocd-plugin-helmfile:v0.0.10
-              securityContext:
-                runAsNonRoot: true
-                runAsUser: 999
+            - name: helmfile-plugin
+              image: travisghansen/argo-cd-helmfile:latest
+              command: [/var/run/argocd/argocd-cmp-server]
               env:
                 - name: SOPS_AGE_KEY
                   valueFrom:
                     secretKeyRef:
                       name: age
                       key: privKey
+              securityContext:
+                runAsNonRoot: true
+                runAsUser: 999
               volumeMounts:
                 - name: var-files
                   mountPath: /var/run/argocd
                 - name: plugins
                   mountPath: /home/argocd/cmp-server/plugins
+                - name: helmfile-cmp-tmp
+                  mountPath: /tmp
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
     namespace: argocd
