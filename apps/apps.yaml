@@ -5,6 +5,7 @@ apps:
   - name: cnpg
     namespace: cnpg-system
   - name: docker-registry
+  - name: forgejo
   - name: gitlab-runner
   - name: kubernetes-dashboard
   - name: longhorn

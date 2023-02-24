@@ -12,8 +12,6 @@ releases:
     values:
       - persistence:
           enabled: true
-      - secrets:
-          haSharedSecret: "{{ .Values.dockerRegistry.haSharedSecret }}"
       - ingress:
           enabled: true
           hosts:
