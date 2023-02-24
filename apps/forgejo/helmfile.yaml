@@ -3,8 +3,7 @@ bases:
 ---
 releases:
   - name: forgejo
-    chart: oci://codeberg.org/forgejo-contrib/forgejo
-    version: 0.3.1
+    chart: ../../charts/forgejo-0.3.1.tgz
     namespace: forgejo
     values:
       - ingress:
