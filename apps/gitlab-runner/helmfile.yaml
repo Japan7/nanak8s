@@ -1,0 +1,14 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: gitlab
+    url: https://charts.gitlab.io
+
+releases:
+  - name: gitlab-runner
+    chart: gitlab/gitlab-runner
+    namespace: gitlab-runner
+    values:
+      - gitlabUrl: "{{ .Values.gitlab.url }}"
+      - runnerRegistrationToken: "{{ .Values.gitlab.runnerRegistrationToken }}"
