@@ -6,6 +6,8 @@ releases:
     chart: ../../charts/cnpg-cluster
     namespace: forgejo
     values:
+      - storage:
+          size: 5Gi
       - superuser:
           username: "{{ .Values.forgejo.cnpg.superuser.username }}"
           password: "{{ .Values.forgejo.cnpg.superuser.password }}"

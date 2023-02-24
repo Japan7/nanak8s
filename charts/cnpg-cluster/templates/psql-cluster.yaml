@@ -17,7 +17,7 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   instances: 3
   storage:
-    size: 1Gi
+    size: {{ .Values.storage.size }}
   {{ if .Values.superuser }}
   superuserSecret:
     name: {{ .Release.Name }}-superuser
