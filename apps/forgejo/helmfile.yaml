@@ -10,6 +10,7 @@ releases:
           config:
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
+              SSH_PORT: 8022
       - ingress:
           enabled: true
           apiVersion: networking.k8s.io/v1
@@ -20,3 +21,6 @@ releases:
                   pathType: Prefix
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: forgejo-extras
+    chart: ../../charts/forgejo-extras
+    namespace: forgejo

@@ -12,6 +12,10 @@ spec:
         exposedPort: 8443
         tls:
           certResolver: letsencrypt
+      forgejo-ssh:
+        port: 8022
+        expose: true
+        exposedPort: 8022
     certResolvers:
       letsencrypt:
         email: {{ .Values.traefik.letsencryptEmail }}
