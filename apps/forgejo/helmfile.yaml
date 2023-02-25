@@ -14,6 +14,11 @@ releases:
             i18n:
               LANGS: en-US
               NAMES: English
+          oauth:
+            - name: Keycloak
+              provider: "openidConnect"
+              autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
+              existingSecret: forgejo-oauth-secret
       - ingress:
           enabled: true
           apiVersion: networking.k8s.io/v1
@@ -27,3 +32,7 @@ releases:
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     namespace: forgejo
+    values:
+      - oauth:
+          key: "{{ .Values.keycloak.forgejo.clientId }}"
+          secret: "{{ .Values.keycloak.forgejo.clientSecret }}"
