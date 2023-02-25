@@ -21,6 +21,8 @@ releases:
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
               SSH_PORT: 8022
+            service:
+              ALLOW_ONLY_EXTERNAL_REGISTRATION: true
             database:
               HOST: forgejo-cnpg-rw
               NAME: forgejo
