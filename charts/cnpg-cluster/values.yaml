@@ -2,3 +2,9 @@ instances: 3
 
 storage:
   size: 1Gi
+
+database: app
+
+user:
+  username: app
+  password: ""

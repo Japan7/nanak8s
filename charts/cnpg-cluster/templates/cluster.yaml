@@ -1,9 +1,28 @@
+{{ if .Values.user.password }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.user.username }}-secret
+type: kubernetes.io/basic-auth
+stringData:
+  username: {{ .Values.user.username }}
+  password: {{ .Values.user.password }}
+---
+{{ end }}
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: "{{ .Release.Name }}"
+  name: {{ .Release.Name }}
 spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:14
   instances: {{ .Values.instances }}
   storage:
     size: {{ .Values.storage.size }}
+  bootstrap:
+    initdb:
+      database: {{ .Values.database }}
+      owner: {{ .Values.user.username }}
+      {{ if .Values.user.password }}
+      secret:
+        name: {{ .Values.user.username }}-secret
+      {{ end }}

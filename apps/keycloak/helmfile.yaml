@@ -6,10 +6,24 @@ repositories:
     url: https://charts.bitnami.com/bitnami
 
 releases:
+  - name: keycloak-cnpg
+    chart: ../../charts/cnpg-cluster
+    namespace: keycloak
+    values:
+      - storage:
+          size: 8Gi
   - name: keycloak
     chart: bitnami/keycloak
     namespace: keycloak
     values:
+      - postgresql:
+          enabled: false
+      - externalDatabase:
+          host: keycloak-cnpg-rw
+          database: app
+          user: app
+          existingSecret: keycloak-cnpg-app
+          existingSecretPasswordKey: password
       - ingress:
           enabled: true
           hostname: keycloak.{{ .Values.domain }}

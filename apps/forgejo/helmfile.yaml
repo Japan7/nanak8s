@@ -2,6 +2,16 @@ bases:
   - ../environments.yaml
 ---
 releases:
+  - name: forgejo-cnpg
+    chart: ../../charts/cnpg-cluster
+    namespace: forgejo
+    values:
+      - storage:
+          size: 10Gi
+      - database: forgejo
+      - user:
+          username: forgejo
+          password: forgejo
   - name: forgejo
     chart: ../../charts/forgejo-0.3.1.tgz
     namespace: forgejo
@@ -11,6 +21,11 @@ releases:
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
               SSH_PORT: 8022
+            database:
+              HOST: forgejo-cnpg-rw
+              NAME: forgejo
+              USER: forgejo
+              PASSWD: forgejo
             i18n:
               LANGS: en-US
               NAMES: English
@@ -19,6 +34,8 @@ releases:
               provider: "openidConnect"
               autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
               existingSecret: forgejo-oauth-secret
+      - postgresql:
+          enabled: false
       - ingress:
           enabled: true
           apiVersion: networking.k8s.io/v1
