@@ -16,6 +16,10 @@ releases:
     chart: bitnami/keycloak
     namespace: keycloak
     values:
+      - auth:
+          adminUser: "{{ .Values.keycloak.admin.username }}"
+          existingSecret: admin-secret
+          passwordSecretKey: password
       - postgresql:
           enabled: false
       - externalDatabase:
@@ -48,3 +52,10 @@ releases:
             volumeMounts:
               - name: keycloak-providers
                 mountPath: /providers
+  - name: keycloak-extras
+    chart: ../../charts/keycloak-extras
+    namespace: keycloak
+    values:
+      - admin:
+          username: "{{ .Values.keycloak.admin.username }}"
+          password: "{{ .Values.keycloak.admin.password }}"
