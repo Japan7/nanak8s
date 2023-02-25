@@ -30,7 +30,7 @@ releases:
               LANGS: en-US
               NAMES: English
           oauth:
-            - name: Keycloak
+            - name: keycloak
               provider: "openidConnect"
               autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
               existingSecret: forgejo-oauth-secret
