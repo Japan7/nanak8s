@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Japan7/nanak8s.git
     targetRevision: HEAD
-    path: apps/{{ .name }}
+    path: apps/{{ .subdir | default .name }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .namespace | default .name }}

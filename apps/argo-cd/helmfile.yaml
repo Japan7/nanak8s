@@ -49,8 +49,3 @@ releases:
     values:
       - age:
           privKey: "{{ .Values.age.privKey }}"
-  - name: argo-cd-apps
-    chart: ../../charts/argo-cd-apps
-    namespace: argocd
-    values:
-      - ../apps.yaml

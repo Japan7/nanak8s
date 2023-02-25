@@ -1,0 +1,22 @@
+releases:
+  - name: apps
+    chart: ../charts/argo-cd-apps
+    namespace: argocd
+    values:
+      - apps:
+          - name: argo-cd
+            namespace: argocd
+          - name: apps
+            namespace: argocd
+            subdir: .
+          - name: cnpg
+            namespace: cnpg-system
+          - name: docker-registry
+          - name: forgejo
+          - name: gitlab-runner
+          - name: keycloak
+          - name: kubernetes-dashboard
+          - name: longhorn
+            namespace: longhorn-system
+          - name: traefik
+            namespace: kube-system
