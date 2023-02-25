@@ -1,0 +1,9 @@
+releases:
+  - name: apps-bootstrap
+    chart: ../../charts/argo-cd-apps
+    namespace: argocd
+    values:
+      - apps:
+          - name: apps
+            namespace: argocd
+            subdir: .
