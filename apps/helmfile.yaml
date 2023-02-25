@@ -6,9 +6,6 @@ releases:
       - apps:
           - name: argo-cd
             namespace: argocd
-          - name: apps
-            namespace: argocd
-            subdir: .
           - name: cnpg
             namespace: cnpg-system
           - name: docker-registry
