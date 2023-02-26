@@ -1,0 +1,19 @@
+# https://github.com/woodpecker-ci/helm/pull/7
+apiVersion: v2
+name: woodpecker-server
+description: A Helm chart for the Woodpecker server
+type: application
+# version: <version>
+# appVersion: "v<version>"
+version: 0.1.0
+keywords:
+- continuous-delivery
+- continuous-deployment
+- continuous-integration
+- docker
+- go
+sources:
+- https://github.com/woodpecker-ci/woodpecker
+maintainers:
+- name: Woodpecker Maintainers
+  email: owner@woodpecker-ci.org

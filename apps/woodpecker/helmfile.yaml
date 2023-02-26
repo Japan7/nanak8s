@@ -4,13 +4,14 @@ environments:
       - ../shared.sops.yaml
       - default.sops.yaml
 ---
-repositories:
-  - name: woodpecker
-    url: https://woodpecker-ci.org/
+# repositories:
+#   - name: woodpecker
+#     url: https://woodpecker-ci.org/
 
 releases:
   - name: woodpecker-server
-    chart: woodpecker/woodpecker-server
+    # chart: woodpecker/woodpecker-server
+    chart: ../../charts/woodpecker-server-babykart
     namespace: woodpecker
     values:
       - image:
@@ -41,14 +42,14 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: woodpecker-agent
-    chart: woodpecker/woodpecker-agent
+    # chart: woodpecker/woodpecker-agent
+    chart: ../../charts/woodpecker-agent-git
     namespace: woodpecker
     values:
       - image:
           tag: next
       - env:
           WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
-          WOODPECKER_BACKEND: kubernetes
       - extraSecretNamesForEnvFrom:
           - agent-secret
   - name: woodpecker-extras
