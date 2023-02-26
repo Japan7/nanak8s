@@ -20,7 +20,7 @@ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/en
 ### Edit secrets
 
 ```sh
-SOPS_AGE_KEY=<priv_key> helm secrets edit apps/secrets.yaml
+SOPS_AGE_KEY=<priv_key> helm secrets edit <something.sops.yaml>
 ```
 
 ### Setup Argo CD
