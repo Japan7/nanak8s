@@ -11,9 +11,13 @@ releases:
     namespace: woodpecker
     values:
       - env:
+          WOODPECKER_GITHUB: true
+          WOODPECKER_GITLAB: true
           WOODPECKER_GITEA: true
       - extraSecretNamesForEnvFrom:
           - agent-secret
+          - github-secret
+          - gitlab-secret
           - gitea-secret
       - persistentVolume:
           storageClass: longhorn
@@ -39,6 +43,13 @@ releases:
     namespace: woodpecker
     values:
       - agentSecret: "{{ .Values.woodpecker.agentSecret }}"
+      - github:
+          client: "{{ .Values.woodpecker.github.client }}"
+          secret: "{{ .Values.woodpecker.github.secret }}"
+      - gitlab:
+          url: "{{ .Values.woodpecker.gitlab.url }}"
+          client: "{{ .Values.woodpecker.gitlab.client }}"
+          secret: "{{ .Values.woodpecker.gitlab.secret }}"
       - gitea:
           url: https://git.{{ .Values.domain }}
           client: "{{ .Values.woodpecker.gitea.client }}"
