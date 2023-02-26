@@ -1,0 +1,25 @@
+keycloak:
+    realm: ENC[AES256_GCM,data:kQQsExbj,iv:3QUaBaThUZd0bbagBdis3KV8BmFVKc6Rmy3rIWeAyik=,tag:mK99Jq0NKsTZVf9VRpNJmA==,type:str]
+    forgejo:
+        clientId: ENC[AES256_GCM,data:sjQ2rve7bg==,iv:tNEG41yz9e/jIVfYh8dzIcJZop616lZ7kmlQkHhhkK8=,tag:FNmS7BYa4qCRIOq+ub9qkA==,type:str]
+        clientSecret: ENC[AES256_GCM,data:zBPY35OgCYLArAvp5A8L549Prvl/3Q/P+6lH3hqr56E=,iv:4Ft4OEx+1SDPEX6FxyCzlPfMUAufIu6W+u3ipLEVUO4=,tag:Nbux3O1VcbiG5m0eBnfHwg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSArQXBVRUJyQjM1WVVvNjUw
+            VmZVcFZqbE41Y3pGNmNzNE0wT1Z0QWpKMkVvCjNlck9WbEd3RHM4SWd4NlBoVEV1
+            MWlNcEg2L3R4L2hZTURCbW5sNzR6VEUKLS0tIDFsQTVNcWhDUTF2T05JMXJibExZ
+            WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
+            e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-02-26T03:57:48Z"
+    mac: ENC[AES256_GCM,data:hhZjJgGUn9yPkRJcVbmuKAW4cgbxFHy3lUapPmINtRAvhy91MDTpfn6jci8/GdeQosU2oGAUPKoqjEHEi+LpaZMvkvc2ytGq2SbE9dQl6hHYTkiLXAl0HY7IXEu4yHoJny+mzAKDIYLwywzw4Xv3mZwqp5My5I53fSbXHGmR9AY=,iv:7MMr23HC2QhILIP/ishv6t3BPcOWm2XB7KlBtchRyN8=,tag:Z6yC8KldjMGLcvqIqYw4NQ==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3

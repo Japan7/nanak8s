@@ -1,0 +1,22 @@
+dockerRegistry:
+    haSharedSecret: ENC[AES256_GCM,data:dCQxz1n6RbYdDeGzdr0=,iv:/2h8VkupgWKspTgHlQ0pX2+Y1p9JcGtkK0T2p40LJwE=,tag:1T1C6K5lIWKzd520FNfDIg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSb0NNNkRDYUZOL1dzMWFF
+            MnNVcyt6NnpSUFJUa081Tk9DanVKN2kvclJjCkxmYWZUa2tRbWlheWlaUEpneTFS
+            amEzb2FZTWN1M2ZtTjcwZDRDRXQ3dTgKLS0tIFFwRENTVUJQamlKcTdhZXp1bFRU
+            UlhNWlZaOTE0dG9vZmU3cVZDQzN3K1EKKioLiodufTRuA60BBsN481L/sFIGdu/t
+            uEA2/0cG/XSbCOIb+ltc90artgNe8fGzVQ1OlA8a/mnG055XwQrPDw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-02-26T03:57:33Z"
+    mac: ENC[AES256_GCM,data:qJWfxDH5lUA/gKvtmdGNET4/6Uq6bsdOD2pK2g2FvJrOlg1YuggtKxDeDRUVKsEFjdbU77DTc8DVk689ebrSOVfalsC583EXFusVTizSGACHP9vtdMe+MF5EnfmoIgzv2Gw35NcaYwsMS4qWg+SrGYICCGpgXi2bNOKBm/dhcjw=,iv:W5jij4Pgrwzl0eSleGwqfP4Yket87WG+Sq1J34hCSxE=,tag:3LpYDDpPuoiJVgbRThWL9w==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3

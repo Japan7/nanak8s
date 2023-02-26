@@ -1,5 +1,8 @@
-bases:
-  - ../environments.yaml
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
 ---
 repositories:
   - name: gitlab

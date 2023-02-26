@@ -1,5 +1,7 @@
-bases:
-  - ../environments.yaml
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
 ---
 repositories:
   - name: kubernetes-dashboard
