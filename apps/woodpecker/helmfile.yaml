@@ -19,6 +19,7 @@ releases:
           WOODPECKER_GITHUB: false
           WOODPECKER_GITLAB: false
           WOODPECKER_GITEA: true
+          WOODPECKER_AUTHENTICATE_PUBLIC_REPOS: true
       - extraSecretNamesForEnvFrom:
           - agent-secret
           - github-secret
