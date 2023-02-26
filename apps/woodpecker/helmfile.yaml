@@ -41,6 +41,8 @@ releases:
     chart: woodpecker/woodpecker-agent
     namespace: woodpecker
     values:
+      - env:
+          WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
       - extraSecretNamesForEnvFrom:
           - agent-secret
   - name: woodpecker-extras

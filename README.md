@@ -17,6 +17,8 @@ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/en
 - [helm](https://helm.sh/) and [helmfile](https://helmfile.readthedocs.io/en/latest/) for chart deployments
 - [sops](https://github.com/mozilla/sops) and [age](https://github.com/FiloSottile/age) for secrets management
 
+Run `helmfile init` to install the required helm plugins.
+
 ### Edit secrets
 
 ```sh
