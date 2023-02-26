@@ -12,6 +12,7 @@ releases:
     values:
       - env:
           WOODPECKER_HOST: https://woodpecker.{{ .Values.domain }}
+          WOODPECKER_OPEN: true
           WOODPECKER_GITHUB: true
           WOODPECKER_GITLAB: true
           WOODPECKER_GITEA: true
