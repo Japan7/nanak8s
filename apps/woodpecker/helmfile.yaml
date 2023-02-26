@@ -13,6 +13,8 @@ releases:
     chart: woodpecker/woodpecker-server
     namespace: woodpecker
     values:
+      - image:
+          tag: next
       - env:
           WOODPECKER_HOST: https://woodpecker.{{ .Values.domain }}
           WOODPECKER_OPEN: true
@@ -42,8 +44,11 @@ releases:
     chart: woodpecker/woodpecker-agent
     namespace: woodpecker
     values:
+      - image:
+          tag: next
       - env:
           WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
+          WOODPECKER_BACKEND: kubernetes
       - extraSecretNamesForEnvFrom:
           - agent-secret
   - name: woodpecker-extras
