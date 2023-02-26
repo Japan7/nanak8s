@@ -1,3 +1,6 @@
+cnpg:
+    username: ENC[AES256_GCM,data:uAIvB3GeMw==,iv:nA3yzMWLeXaqKA87+QFnJA/H52ETEiDUNu7GrTQlg8g=,tag:Iup0aGD4HGPVs2mjPjvDBA==,type:str]
+    password: ENC[AES256_GCM,data:xMoKwZ8cnw==,iv:uTjDhEPLOXDuf5ze6YTneQyaV01JCz3swJ6kG4T2NZw=,tag:EprV6qJRysraLddfs+xn9Q==,type:str]
 keycloak:
     realm: ENC[AES256_GCM,data:kQQsExbj,iv:3QUaBaThUZd0bbagBdis3KV8BmFVKc6Rmy3rIWeAyik=,tag:mK99Jq0NKsTZVf9VRpNJmA==,type:str]
     forgejo:
@@ -18,8 +21,8 @@ sops:
             WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
             e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-26T03:57:48Z"
-    mac: ENC[AES256_GCM,data:hhZjJgGUn9yPkRJcVbmuKAW4cgbxFHy3lUapPmINtRAvhy91MDTpfn6jci8/GdeQosU2oGAUPKoqjEHEi+LpaZMvkvc2ytGq2SbE9dQl6hHYTkiLXAl0HY7IXEu4yHoJny+mzAKDIYLwywzw4Xv3mZwqp5My5I53fSbXHGmR9AY=,iv:7MMr23HC2QhILIP/ishv6t3BPcOWm2XB7KlBtchRyN8=,tag:Z6yC8KldjMGLcvqIqYw4NQ==,type:str]
+    lastmodified: "2023-02-26T17:50:34Z"
+    mac: ENC[AES256_GCM,data:cNetCQmVWVE0MrSJQXHy/S8Ij+axBkC9K/i8K+8pjyQl/FEHwJTiLudIFtps1a1k3uOwHjB9SJ40ilQ2Dhlh6MjQNHjQ0Q+eCg0ci5ckO2OKQ8qe+S2cBmMWtaGpkk157csXE6TEXzcPvFSl0VkBl90wY4breYxM+wn+CbTBnes=,iv:xdHfAPEyJcoET9uZaj+cs9q7wsbr4vehYQx890ZWJOM=,tag:XfLu+YllSMabIK/2mPT+WQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

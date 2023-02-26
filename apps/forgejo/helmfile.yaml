@@ -13,8 +13,8 @@ releases:
           size: 10Gi
       - database: forgejo
       - user:
-          username: forgejo
-          password: forgejo
+          username: "{{ .Values.cnpg.username }}"
+          password: "{{ .Values.cnpg.password }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.3.1
@@ -32,8 +32,8 @@ releases:
               DB_TYPE: postgres
               HOST: forgejo-cnpg-rw
               NAME: forgejo
-              USER: forgejo
-              PASSWD: forgejo
+              USER: "{{ .Values.cnpg.username }}"
+              PASSWD: "{{ .Values.cnpg.password }}"
             i18n:
               LANGS: en-US
               NAMES: English
