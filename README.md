@@ -23,13 +23,11 @@ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/en
 SOPS_AGE_KEY=<priv_key> helm secrets edit apps/secrets.yaml
 ```
 
-### Install Argo CD
+### Setup Argo CD
 
 ```sh
-cd apps/argo-cd/
-SOPS_AGE_KEY=<priv_key> helmfile apply
-cd ../apps-bootstrap/
-SOPS_AGE_KEY=<priv_key> helmfile apply
+SOPS_AGE_KEY=<priv_key> helmfile apply -f apps/argo-cd/helmfile.yaml
+kubectl apply -f apps/bootstrap.yaml
 ```
 
 This will install Argo CD on the cluster and configure it so it will automatically add and sync the other apps with this repository.
