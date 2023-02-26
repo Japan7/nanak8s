@@ -13,7 +13,8 @@ releases:
           username: forgejo
           password: forgejo
   - name: forgejo
-    chart: ../../charts/forgejo-0.3.1.tgz
+    chart: oci://codeberg.org/forgejo-contrib/forgejo
+    version: 0.3.1
     namespace: forgejo
     values:
       - gitea:
