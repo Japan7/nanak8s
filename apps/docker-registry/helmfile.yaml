@@ -17,6 +17,8 @@ releases:
           enabled: true
       - secrets:
           haSharedSecret: "{{ .Values.dockerRegistry.haSharedSecret }}"
+      - garbageCollect:
+          enabled: true
       - ingress:
           enabled: true
           hosts:
