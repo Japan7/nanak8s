@@ -1,0 +1,45 @@
+bases:
+  - ../environments.yaml
+---
+repositories:
+  - name: woodpecker
+    url: https://woodpecker-ci.org/
+
+releases:
+  - name: woodpecker-server
+    chart: woodpecker/woodpecker-server
+    namespace: woodpecker
+    values:
+      - env:
+          WOODPECKER_GITEA: true
+      - extraSecretNamesForEnvFrom:
+          - agent-secret
+          - gitea-secret
+      - persistentVolume:
+          storageClass: longhorn
+      - ingress:
+          enabled: true
+          hosts:
+            - host: woodpecker.{{ .Values.domain }}
+              paths:
+                - path: /
+                  backend:
+                    serviceName: woodpecker-server
+                    servicePort: 8000
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: woodpecker-agent
+    chart: woodpecker/woodpecker-agent
+    namespace: woodpecker
+    values:
+      - extraSecretNamesForEnvFrom:
+          - agent-secret
+  - name: woodpecker-extras
+    chart: ../../charts/woodpecker-extras
+    namespace: woodpecker
+    values:
+      - agentSecret: "{{ .Values.woodpecker.agentSecret }}"
+      - gitea:
+          url: https://git.{{ .Values.domain }}
+          client: "{{ .Values.woodpecker.gitea.client }}"
+          secret: "{{ .Values.woodpecker.gitea.secret }}"

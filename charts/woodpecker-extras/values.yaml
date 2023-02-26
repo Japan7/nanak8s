@@ -1,0 +1,6 @@
+agentSecret: ""
+
+gitea:
+  url: ""
+  client: ""
+  secret: ""
