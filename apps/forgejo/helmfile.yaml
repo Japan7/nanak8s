@@ -24,6 +24,7 @@ releases:
             service:
               ALLOW_ONLY_EXTERNAL_REGISTRATION: true
             database:
+              DB_TYPE: postgres
               HOST: forgejo-cnpg-rw
               NAME: forgejo
               USER: forgejo
