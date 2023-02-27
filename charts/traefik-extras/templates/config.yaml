@@ -31,6 +31,7 @@ spec:
       # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
       enabled: true
+      accessMode: ReadWriteMany
     autoscaling:
       enabled: true
       minReplicas: 2
