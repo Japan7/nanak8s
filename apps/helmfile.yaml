@@ -12,8 +12,7 @@ releases:
           - name: gitlab-runner
           - name: keycloak
           - name: kubernetes-dashboard
-          - name: longhorn
-            namespace: longhorn-system
+          - name: rook-ceph
           - name: traefik
             namespace: kube-system
           - name: woodpecker

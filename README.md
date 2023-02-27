@@ -3,10 +3,7 @@
 ## Join the cluster
 
 ```sh
-# Install K3s
 curl -sfL https://get.k3s.io | K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443 --disable local-storage
-# Check Longhorn requirements
-curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
 ```
 
 ## Bootstrapping
