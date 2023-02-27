@@ -17,7 +17,7 @@ releases:
       - ingress:
           enabled: true
           hosts:
-            - dashboard.{{ .Values.domain }}
+            - dash.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: kubernetes-dashboard-extras
