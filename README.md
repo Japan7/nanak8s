@@ -26,6 +26,7 @@ SOPS_AGE_KEY=<priv_key> helm secrets edit <something.sops.yaml>
 
 ```sh
 SOPS_AGE_KEY=<priv_key> helmfile apply -f apps/argo-cd/helmfile.yaml
+kubectl apply -f apps/bootstrap.yaml
 ```
 
 This will install Argo CD on the cluster and configure it so it will automatically add and sync the other apps with this repository.
