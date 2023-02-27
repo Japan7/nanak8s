@@ -46,6 +46,11 @@ releases:
                   mountPath: /home/argocd/cmp-server/plugins
                 - name: helmfile-cmp-tmp
                   mountPath: /tmp
+    hooks:
+      - events: ["postsync"]
+        showlogs: true
+        command: "kubectl"
+        args: ["apply", "-f", "bootstrap.yaml"]
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
     namespace: argocd
