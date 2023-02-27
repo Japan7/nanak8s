@@ -29,6 +29,7 @@ releases:
           - gitlab-secret
           - gitea-secret
       - persistentVolume:
+          size: 1Gi
           storageClass: longhorn
       - ingress:
           enabled: true

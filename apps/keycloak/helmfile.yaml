@@ -14,7 +14,7 @@ releases:
     namespace: keycloak
     values:
       - storage:
-          size: 8Gi
+          size: 2Gi
   - name: keycloak
     chart: bitnami/keycloak
     namespace: keycloak

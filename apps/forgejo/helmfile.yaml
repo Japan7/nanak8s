@@ -10,7 +10,7 @@ releases:
     namespace: forgejo
     values:
       - storage:
-          size: 10Gi
+          size: 2Gi
       - database: forgejo
       - user:
           username: "{{ .Values.cnpg.username }}"
