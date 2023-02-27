@@ -12,9 +12,6 @@ releases:
   - name: keycloak-cnpg
     chart: ../../charts/cnpg-cluster
     namespace: keycloak
-    values:
-      - storage:
-          size: 2Gi
   - name: keycloak
     chart: bitnami/keycloak
     namespace: keycloak

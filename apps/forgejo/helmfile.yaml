@@ -9,8 +9,6 @@ releases:
     chart: ../../charts/cnpg-cluster
     namespace: forgejo
     values:
-      - storage:
-          size: 2Gi
       - database: forgejo
       - user:
           username: "{{ .Values.cnpg.username }}"
