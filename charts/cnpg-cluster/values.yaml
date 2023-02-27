@@ -1,7 +1,7 @@
-instances: 3
+instances: 2
 
 storage:
-  size: 1Gi
+  size: 5Gi
 
 database: app
 
