@@ -4,7 +4,7 @@
 
 ```sh
 # Install K3s
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443 --disable local-storage
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443 --flannel-backend wireguard-native --disable local-storage
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
 ```
