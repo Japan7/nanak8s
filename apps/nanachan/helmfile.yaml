@@ -13,7 +13,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: master
+      - tag: 8545fc43458ce804f084b5714b4520eede3d85b0
     secrets:
       - ../shared.sops.yaml
       - dev.sops.yaml
@@ -27,3 +27,6 @@ releases:
       - tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
+environments:
+  dev:
+    values: []
