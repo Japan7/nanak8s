@@ -1,10 +1,10 @@
 environments:
-  default:
+  prod:
     values:
       - tag: master
     secrets:
       - ../shared.sops.yaml
-      - default.sops.yaml
+      - prod.sops.yaml
   staging:
     values:
       - tag: master

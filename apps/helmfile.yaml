@@ -16,6 +16,7 @@ releases:
           - name: nanachan-prod
             namespace: nanachan
             subdir: nanachan
+            environment: prod
           - name: nanachan-staging
             namespace: nanachan
             subdir: nanachan
