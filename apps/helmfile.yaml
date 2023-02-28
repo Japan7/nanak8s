@@ -9,7 +9,6 @@ releases:
           - name: cnpg
             namespace: cnpg-system
           - name: forgejo
-          - name: gitlab-runner
           - name: keycloak
           - name: kubernetes-dashboard
           - name: longhorn
