@@ -13,6 +13,17 @@ releases:
           - name: kubernetes-dashboard
           - name: longhorn
             namespace: longhorn-system
+          - name: nanachan-prod
+            namespace: nanachan
+            subdir: nanachan
+          - name: nanachan-staging
+            namespace: nanachan
+            subdir: nanachan
+            environment: staging
+          - name: nanachan-dev
+            namespace: nanachan
+            subdir: nanachan
+            environment: dev
           - name: traefik
             namespace: kube-system
           - name: woodpecker

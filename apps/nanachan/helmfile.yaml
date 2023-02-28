@@ -1,0 +1,29 @@
+environments:
+  default:
+    values:
+      - tag: master
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+  staging:
+    values:
+      - tag: master
+    secrets:
+      - ../shared.sops.yaml
+      - staging.sops.yaml
+  dev:
+    values:
+      - tag: master
+    secrets:
+      - ../shared.sops.yaml
+      - dev.sops.yaml
+---
+releases:
+  - name: nanachan-{{ .Environment.Name }}
+    chart: ../../charts/nanachan
+    namespace: nanachan
+    values:
+      - image: git.{{ .Values.domain }}/japan7/nanachan
+      - tag: "{{ .Values.tag }}"
+      - localSettings: |
+          "{{ .Values.localSettings | nindent 10 }}"
