@@ -4,7 +4,7 @@
 
 ```sh
 # Install K3s
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_TOKEN=<shared_secret> sh -s - server --server https://<domain>:6443 --flannel-backend wireguard-native --disable local-storage
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_TOKEN=<shared_secret> sh -s - server --server https://<host>:6443 --disable local-storage --flannel-backend wireguard-native --cluster-cidr=10.42.0.0/16,2001:cafe:42:0::/56 --service-cidr=10.43.0.0/16,2001:cafe:42:1::/112
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
 ```
@@ -23,6 +23,12 @@ Run `helmfile init` to install the required helm plugins.
 
 ```sh
 SOPS_AGE_KEY=<priv_key> helm secrets edit <something.sops.yaml>
+```
+
+### Start the cluster
+
+```sh
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_TOKEN=<shared_secret> sh -s - server --cluster-init --disable local-storage --flannel-backend wireguard-native --cluster-cidr=10.42.0.0/16,2001:cafe:42:0::/56 --service-cidr=10.43.0.0/16,2001:cafe:42:1::/112
 ```
 
 ### Setup Argo CD
