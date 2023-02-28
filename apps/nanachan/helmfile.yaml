@@ -1,13 +1,13 @@
 environments:
   nana:
     values:
-      - tag: c40b8d077b3a454286fd144368cf482340706273
+      - tag: ffcd5353069880c60fe5f21080055c0dacb55a9e
     secrets:
       - ../shared.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
-      - tag: c40b8d077b3a454286fd144368cf482340706273
+      - tag: ffcd5353069880c60fe5f21080055c0dacb55a9e
     secrets:
       - ../shared.sops.yaml
       - hachi.sops.yaml
