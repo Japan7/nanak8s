@@ -26,4 +26,4 @@ releases:
       - image: git.{{ .Values.domain }}/japan7/nanachan
       - tag: "{{ .Values.tag }}"
       - localSettings: |
-          "{{ .Values.localSettings | nindent 10 }}"
+          {{ .Values.localSettings | nindent 10 }}
