@@ -26,7 +26,7 @@ spec:
         image: "{{ .Values.image }}:{{ .Values.tag }}"
         volumeMounts:
           - name: localsettings
-            mountPath: /home/circleci/project/nanachan/local_settings.py
+            mountPath: /app/nanachan/local_settings.py
             subPath: local_settings.py
             readOnly: true
       volumes:

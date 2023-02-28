@@ -1,19 +1,19 @@
 environments:
   nana:
     values:
-      - tag: master
+      - tag: c40b8d077b3a454286fd144368cf482340706273
     secrets:
       - ../shared.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
-      - tag: master
+      - tag: c40b8d077b3a454286fd144368cf482340706273
     secrets:
       - ../shared.sops.yaml
       - hachi.sops.yaml
   snow:
     values:
-      - tag: 8545fc43458ce804f084b5714b4520eede3d85b0
+      - tag: c40b8d077b3a454286fd144368cf482340706273
     secrets:
       - ../shared.sops.yaml
       - snow.sops.yaml
