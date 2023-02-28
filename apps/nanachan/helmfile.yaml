@@ -27,6 +27,3 @@ releases:
       - tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
-environments:
-  dev:
-    values: []
