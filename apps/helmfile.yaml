@@ -4,27 +4,34 @@ releases:
     namespace: argocd
     values:
       - apps:
-          - name: argo-cd
-            namespace: argocd
-          - name: cnpg
-            namespace: cnpg-system
-          - name: forgejo
-          - name: keycloak
+          # System
+          - name: traefik
+            namespace: kube-system
           - name: kubernetes-dashboard
           - name: longhorn
             namespace: longhorn-system
-          - name: nanachan-prod
-            namespace: nanachan
-            subdir: nanachan
-            environment: prod
-          - name: nanachan-staging
-            namespace: nanachan
-            subdir: nanachan
-            environment: staging
-          - name: nanachan-dev
-            namespace: nanachan
-            subdir: nanachan
-            environment: dev
-          - name: traefik
-            namespace: kube-system
+          - name: cnpg
+            namespace: cnpg-system
+
+          # CI/CD
+          - name: argo-cd
+            namespace: argocd
+          - name: forgejo
           - name: woodpecker
+
+          # Others
+          - name: keycloak
+
+          # Nana-chan
+          - name: nanachan
+            namespace: nanachan
+            subdir: nanachan
+            environment: nana
+          - name: hachichan
+            namespace: nanachan
+            subdir: nanachan
+            environment: hachi
+          - name: snowflake
+            namespace: nanachan
+            subdir: nanachan
+            environment: snow

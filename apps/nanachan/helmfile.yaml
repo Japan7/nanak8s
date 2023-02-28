@@ -1,22 +1,22 @@
 environments:
-  prod:
+  nana:
     values:
       - tag: master
     secrets:
       - ../shared.sops.yaml
-      - prod.sops.yaml
-  staging:
+      - nana.sops.yaml
+  hachi:
     values:
       - tag: master
     secrets:
       - ../shared.sops.yaml
-      - staging.sops.yaml
-  dev:
+      - hachi.sops.yaml
+  snow:
     values:
       - tag: 8545fc43458ce804f084b5714b4520eede3d85b0
     secrets:
       - ../shared.sops.yaml
-      - dev.sops.yaml
+      - snow.sops.yaml
 ---
 releases:
   - name: nanachan-{{ .Environment.Name }}
