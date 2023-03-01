@@ -49,7 +49,8 @@ releases:
       - image:
           tag: next
       - env:
-          WOODPECKER_SERVER: woodpecker-server.woodpecker.svc.cluster.local:9000
+          WOODPECKER_SERVER: woodpecker-server:9000
+          WOODPECKER_BACKEND_K8S_VOLUME_SIZE: 1Gi
       - extraSecretNamesForEnvFrom:
           - agent-secret
   - name: woodpecker-extras
