@@ -13,7 +13,7 @@ environments:
       - hachi.sops.yaml
   snow:
     values:
-      - tag: c13b0404228121a9667e21236a1db6efbcd02854
+      - tag: master
     secrets:
       - ../shared.sops.yaml
       - snow.sops.yaml
