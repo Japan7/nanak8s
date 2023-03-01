@@ -1,2 +1,7 @@
 age:
   privKey: ""
+
+argocdUrl: ""
+
+github:
+  token: ""

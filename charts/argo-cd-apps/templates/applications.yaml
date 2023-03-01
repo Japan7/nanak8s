@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: {{ .name }}
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.sync-operation-change.github: ""
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:

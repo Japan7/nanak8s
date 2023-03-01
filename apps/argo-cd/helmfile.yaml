@@ -52,3 +52,6 @@ releases:
     values:
       - age:
           privKey: "{{ .Values.age.privKey }}"
+      - argocdUrl: "https://argocd.{{ .Values.domain }}"
+      - github:
+          token: "{{ .Values.github.token }}"
