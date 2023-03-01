@@ -18,9 +18,13 @@ data:
     - sync-operation-change
 
   trigger.sync-operation-change: |
-    - when: app.status.operationState.phase in ["Running", "Succeeded"]
+    - when: app.status.operationState.phase in ['Running']
+      oncePer: app.status.sync.revision
       send: [github-commit-status]
-    - when: app.status.operationState.phase in ["Error", "Failed"]
+    - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
+      oncePer: app.status.sync.revision
+      send: [github-commit-status]
+    - when: app.status.operationState.phase in ['Error', 'Failed']
       send: [github-commit-status, discord-webhook]
 
   service.webhook.github: |
