@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: ffcd5353069880c60fe5f21080055c0dacb55a9e
+      - tag: 7f71cba1
     secrets:
       - ../shared.sops.yaml
       - nana.sops.yaml
