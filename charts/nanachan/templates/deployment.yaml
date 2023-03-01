@@ -21,15 +21,26 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
-      containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image }}:{{ .Values.tag }}"
-        volumeMounts:
-          - name: localsettings
-            mountPath: /app/nanachan/local_settings.py
-            subPath: local_settings.py
-            readOnly: true
       volumes:
-      - name: localsettings
-        secret:
-          secretName: {{ .Release.Name }}-localsettings
+        - name: localsettings
+          secret:
+            secretName: {{ .Release.Name }}-localsettings
+        - name: http
+          emptyDir: {}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          volumeMounts:
+            - name: localsettings
+              mountPath: /app/nanachan/local_settings.py
+              subPath: local_settings.py
+              readOnly: true
+            - name: http
+              mountPath: /http/
+        - name: {{ .Chart.Name }}-nginx
+          image: nginx
+          volumeMounts:
+            - name: http
+              mountPath: /usr/share/nginx/html/
+          ports:
+            - containerPort: 80

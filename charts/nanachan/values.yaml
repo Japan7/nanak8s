@@ -2,3 +2,9 @@ image: ""
 tag: latest
 
 localSettings: ""
+
+ingress:
+  entryPoints:
+    - websecure
+  host: ""
+  pathPrefix: "/"

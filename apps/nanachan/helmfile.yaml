@@ -40,3 +40,6 @@ releases:
       - tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
+      - ingress:
+          host: nanachan.{{ .Values.domain }}
+          pathPrefix: "/{{ .Environment.Name }}"
