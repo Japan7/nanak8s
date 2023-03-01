@@ -6,7 +6,7 @@ metadata:
 spec:
   stripPrefix:
     prefixes:
-      - "/{{ .Values.ingress.pathPrefix }}"
+      - "{{ .Values.ingress.pathPrefix }}"
 ---
 {{ end }}
 apiVersion: traefik.containo.us/v1alpha1
@@ -14,7 +14,10 @@ kind: IngressRoute
 metadata:
   name: "{{ .Release.Name }}"
 spec:
-  entryPoints: "{{ .Values.ingress.entryPoints | toYaml | nindent 4 }}"
+  entryPoints:
+    {{- range .Values.ingress.entryPoints }}
+    - {{ . }}
+    {{- end }}
 routes:
   - kind: Rule
     match: Host(`{{ .Values.ingress.host }}`) && PathPrefix(`{{ .Values.ingress.pathPrefix }}`)
