@@ -19,7 +19,7 @@ spec:
       name: helmfile
       env:
         - name: HELMFILE_GLOBAL_OPTIONS
-          value: "-e {{ .environment | default "default" }}"
+          value: "--environment {{ .environment | default "default" }}"
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .namespace | default .name }}
