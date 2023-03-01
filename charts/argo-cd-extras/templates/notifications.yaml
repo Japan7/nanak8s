@@ -14,6 +14,9 @@ data:
   context: |
     argocdUrl: {{ .Values.argocdUrl }}
 
+  defaultTriggers: |
+    - sync-operation-change
+
   trigger.sync-operation-change: |
     - when: app.status.operationState.phase in ["Running", "Succeeded"]
       send: [github-commit-status]

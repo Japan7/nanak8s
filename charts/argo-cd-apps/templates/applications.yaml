@@ -5,8 +5,8 @@ metadata:
   name: {{ .name }}
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.sync-operation-change.github: ""
-    notifications.argoproj.io/subscribe.sync-operation-change.discord: ""
+    notifications.argoproj.io/subscribe.github: ""
+    notifications.argoproj.io/subscribe.discord: ""
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
