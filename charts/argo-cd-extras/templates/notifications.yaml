@@ -4,6 +4,7 @@ metadata:
   name: argocd-notifications-secret
 stringData:
   github-token: "{{ .Values.github.token }}"
+  discord-webhook: "{{ .Values.discord.webhook }}"
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -14,12 +15,10 @@ data:
     argocdUrl: {{ .Values.argocdUrl }}
 
   trigger.sync-operation-change: |
-    - when: app.status.operationState.phase in ['Succeeded']
+    - when: app.status.operationState.phase in ["Running", "Succeeded"]
       send: [github-commit-status]
-    - when: app.status.operationState.phase in ['Running']
-      send: [github-commit-status]
-    - when: app.status.operationState.phase in ['Error', 'Failed']
-      send: [github-commit-status]
+    - when: app.status.operationState.phase in ["Error", "Failed"]
+      send: [github-commit-status, discord-webhook]
 
   service.webhook.github: |
     url: https://api.github.com
@@ -39,8 +38,63 @@ data:
             {{if eq .app.status.operationState.phase "Succeeded"}} "state": "success"{{end}}
             {{if eq .app.status.operationState.phase "Error"}} "state": "error"{{end}}
             {{if eq .app.status.operationState.phase "Failed"}} "state": "error"{{end}},
-            "description": "ArgoCD",
+            "description": "Argo CD",
             "target_url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
             "context": "continuous-delivery/{{.app.metadata.name}}"
+          }
+    `}}
+
+  service.webhook.discord: |
+    url: $discord-webhook
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  template.discord-webhook: |
+    {{`
+    webhook:
+      discord:
+        method: POST
+        body: |
+          {
+            "username": "Argo CD",
+            "avatar_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
+            "embeds": [
+              {
+                "title": "{{.app.metadata.name}} deployment {{.app.status.operationState.phase}}",
+                "url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+                "color": {{if eq .app.status.operationState.phase "Running"}} 16776960 {{end}}
+                {{if eq .app.status.operationState.phase "Succeeded"}} 65280 {{end}}
+                {{if eq .app.status.operationState.phase "Error"}} 16711680 {{end}}
+                {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}},
+                "fields": [
+                  {
+                    "name": "Application",
+                    "value": "{{.app.metadata.name}}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Project",
+                    "value": "{{.app.spec.project}}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Health Status",
+                    "value": "{{.app.status.health.status}}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Sync Status",
+                    "value": "{{.app.status.sync.status}}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Sync Revision",
+                    "value": "{{.app.status.sync.revision}}",
+                    "inline": true
+                  }
+                ]
+              }
+            ]
           }
     `}}

@@ -5,3 +5,6 @@ argocdUrl: ""
 
 github:
   token: ""
+
+discord:
+  webhook: ""
