@@ -1,0 +1,49 @@
+environments:
+  prod:
+    values:
+      - tag: main
+    secrets:
+      - ../shared.sops.yaml
+      - prod.sops.yaml
+  staging:
+    values:
+      - tag: main
+    secrets:
+      - ../shared.sops.yaml
+      - staging.sops.yaml
+  dev:
+    values:
+      - tag: main
+    secrets:
+      - ../shared.sops.yaml
+      - dev.sops.yaml
+---
+repositories:
+  - name: meilisearch
+    url: git+https://github.com/meilisearch/meilisearch-kubernetes.git@charts?ref=main
+
+releases:
+  - name: nanapi-{{ .Environment.Name }}-meilisearch
+    chart: meilisearch/meilisearch
+    namespace: nanapi
+    values:
+      - persistence:
+          enabled: true
+          size: 512Mi
+  - name: nanapi-{{ .Environment.Name }}
+    chart: ../../charts/nanapi
+    namespace: nanapi
+    values:
+      - image: git.{{ .Values.domain }}/japan7/nanapi
+      - tag: "{{ .Values.tag }}"
+      - edgedb:
+          service: nanapi-edgedb
+          userSecret: nanapi-edgedb-user
+      - localSettings: |
+          {{ .Values.localSettings | nindent 10 }}
+      - ingress:
+          host: nanapi.{{ .Values.domain }}
+          pathPrefix: "/{{ .Environment.Name }}"
+          middlewares:
+            - name: japan7-basic-auth
+              namespace: kube-system

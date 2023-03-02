@@ -1,0 +1,19 @@
+image: ""
+tag: latest
+
+edgedb:
+  service: ""
+  userSecret: ""
+
+localSettings: ""
+
+replicas: 3
+
+ingress:
+  entryPoints:
+    - websecure
+  host: ""
+  pathPrefix: "/"
+  middlewares: []
+  # - name: ""
+  #   namespace: ""

@@ -19,10 +19,10 @@ releases:
           - name: forgejo
           - name: woodpecker
 
-          # Others
+          # Apps
           - name: keycloak
 
-          # Nana-chan
+          # nanachan
           - name: nanachan
             namespace: nanachan
             subdir: nanachan
@@ -35,3 +35,19 @@ releases:
             namespace: nanachan
             subdir: nanachan
             environment: snow
+
+          # nanapi
+          - name: nanapi-edgedb
+            namespace: nanapi
+          - name: nanapi-prod
+            namespace: nanapi
+            subdir: nanapi
+            environment: prod
+          - name: nanapi-staging
+            namespace: nanapi
+            subdir: nanapi
+            environment: staging
+          - name: nanapi-dev
+            namespace: nanapi
+            subdir: nanapi
+            environment: dev

@@ -1,0 +1,25 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: nanapi-edgedb-cnpg
+    chart: ../../charts/cnpg-cluster
+    namespace: nanapi
+    values:
+      - storage:
+          size: 5Gi
+  - name: nanapi-edgedb
+    chart: ../../charts/edgedb
+    namespace: nanapi
+    values:
+      - cnpg:
+          name: nanapi-edgedb-cnpg
+      - user:
+          username: "{{ .Values.user.username }}"
+          password: "{{ .Values.user.password }}"
+      - ingress:
+          host: nanapi.{{ .Values.domain }}
+          pathPrefix: "/edgedb"

@@ -1,0 +1,34 @@
+{{ if ne .Values.ingress.pathPrefix "/" }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{ .Release.Name }}-stripprefix"
+spec:
+  stripPrefix:
+    prefixes:
+      - "{{ .Values.ingress.pathPrefix }}"
+---
+{{ end }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  entryPoints:
+    {{- range .Values.ingress.entryPoints }}
+    - {{ . }}
+    {{- end }}
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.ingress.host }}`) && PathPrefix(`{{ .Values.ingress.pathPrefix }}`)
+      services:
+        - name: "{{ .Release.Name }}"
+          port: 8000
+      middlewares:
+        {{- range .Values.ingress.middlewares }}
+        - name: {{ .name }}
+          namespace: {{ .namespace }}
+        {{- end }}
+        {{ if ne .Values.ingress.pathPrefix "/" }}
+        - name: "{{ .Release.Name }}-stripprefix"
+        {{ end }}

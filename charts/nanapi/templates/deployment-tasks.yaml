@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-tasks"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-tasks"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-tasks"
+    spec:
+      volumes:
+        - name: localsettings
+          secret:
+            secretName: {{ .Release.Name }}-localsettings
+      containers:
+        - name: "{{ .Chart.Name }}-tasks"
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          args: ["nanapi.tasks"]
+          env:
+            - name: EDGEDB_SERVER_USER
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.edgedb.userSecret }}"
+                  key: username
+            - name: EDGEDB_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.edgedb.userSecret }}"
+                  key: password
+            - name: EDGEDB_DSN
+              value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Values.edgedb.service }}/{{ .Values.edgedb.database }}
+            - name: EDGEDB_CLIENT_SECURITY
+              value: insecure_dev_mode
+          volumeMounts:
+            - name: localsettings
+              mountPath: /app/nanapi/local_settings.py
+              subPath: local_settings.py
+              readOnly: true

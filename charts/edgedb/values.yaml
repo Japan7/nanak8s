@@ -1,0 +1,15 @@
+image: edgedb/edgedb
+tag: latest
+
+cnpg:
+  name: ""
+
+user:
+  username: edgedb
+  password: edgedb
+
+ingress:
+  entryPoints:
+    - websecure
+  host: ""
+  pathPrefix: "/"
