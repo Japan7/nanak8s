@@ -2,6 +2,10 @@
 
 ## Join the cluster
 
+**Inbound Rules:** 2379-2380/TCP (etcd), 6443/TCP (K8s), 10250/TCP (metrics), 51820/UDP (Flannel Wireguard)
+
+[**Wireguard**](https://www.wireguard.com/install/) support on the node is required.
+
 ```sh
 # Install K3s
 curl -sfL https://get.k3s.io |
@@ -14,6 +18,7 @@ sh -s - server \
 --node-external-ip <NODE_EXTERNAL_IP> \
 --flannel-external-ip \
 --flannel-backend wireguard-native
+
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
 ```
