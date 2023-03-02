@@ -4,18 +4,21 @@ environments:
       - tag: main
     secrets:
       - ../shared.sops.yaml
+      - ../nanadb/default.sops.yaml
       - prod.sops.yaml
   staging:
     values:
       - tag: main
     secrets:
       - ../shared.sops.yaml
+      - ../nanadb/default.sops.yaml
       - staging.sops.yaml
   dev:
     values:
       - tag: main
     secrets:
       - ../shared.sops.yaml
+      - ../nanadb/default.sops.yaml
       - dev.sops.yaml
 ---
 repositories:
@@ -37,8 +40,10 @@ releases:
       - image: git.{{ .Values.domain }}/japan7/nanapi
       - tag: "{{ .Values.tag }}"
       - edgedb:
-          service: nanapi-edgedb
-          userSecret: nanapi-edgedb-user
+          service: nanadb.nanadb
+          username: "{{ .Values.edgedb.username }}"
+          password: "{{ .Values.edgedb.password }}"
+          database: nanapi-{{ .Environment.Name }}
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - ingress:

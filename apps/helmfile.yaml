@@ -37,8 +37,6 @@ releases:
             environment: snow
 
           # nanapi
-          - name: nanapi-edgedb
-            namespace: nanapi
           - name: nanapi-prod
             namespace: nanapi
             subdir: nanapi
@@ -51,3 +49,6 @@ releases:
             namespace: nanapi
             subdir: nanapi
             environment: dev
+
+          # nanadb
+          - name: nanadb

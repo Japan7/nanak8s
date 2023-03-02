@@ -3,7 +3,9 @@ tag: latest
 
 edgedb:
   service: ""
-  userSecret: ""
+  username: ""
+  password: ""
+  database: ""
 
 localSettings: ""
 

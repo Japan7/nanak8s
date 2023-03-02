@@ -1,0 +1,24 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: nanadb-cnpg
+    chart: ../../charts/cnpg-cluster
+    namespace: nanadb
+    values:
+      - storage:
+          size: 5Gi
+  - name: nanadb
+    chart: ../../charts/edgedb
+    namespace: nanadb
+    values:
+      - cnpg:
+          name: nanadb-cnpg
+      - user:
+          username: "{{ .Values.edgedb.username }}"
+          password: "{{ .Values.edgedb.password }}"
+      - ingress:
+          host: edgedb.{{ .Values.domain }}
