@@ -2,6 +2,8 @@ apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
   name: traefik
+  annotations:
+    link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
 spec:
   valuesContent: |-
     ports:
@@ -37,8 +39,6 @@ spec:
       maxReplicas: 5
     ingressRoute:
       dashboard:
-        annotations:
-          link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
         matchRule: Host(`traefik.{{ .Values.domain }}`)
         entryPoints:
           - websecure
