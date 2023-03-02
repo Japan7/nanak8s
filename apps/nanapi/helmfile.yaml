@@ -20,11 +20,12 @@ environments:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
       - dev.sops.yaml
+  snow:
+    values: []
 ---
 repositories:
   - name: meilisearch
     url: git+https://github.com/meilisearch/meilisearch-kubernetes.git@charts?ref=main
-
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
