@@ -6,12 +6,14 @@
 # Install K3s
 curl -sfL https://get.k3s.io |
 INSTALL_K3S_CHANNEL=latest \
-K3S_TOKEN=<shared_secret> \
+K3S_TOKEN=<SHARED_SECRET> \
 sh -s - server \
---server https://<host>:6443 \
+--server https://<HOST>:6443 \
+--secrets-encryption \
 --disable local-storage \
---flannel-backend wireguard-native \
---secrets-encryption
+--node-external-ip <NODE_EXTERNAL_IP> \
+--flannel-external-ip \
+--flannel-backend wireguard-native
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
 ```
@@ -37,12 +39,14 @@ SOPS_AGE_KEY=<priv_key> helm secrets edit <something.sops.yaml>
 ```sh
 curl -sfL https://get.k3s.io |
 INSTALL_K3S_CHANNEL=latest \
-K3S_TOKEN=<shared_secret> \
+K3S_TOKEN=<SHARED_SECRET> \
 sh -s - server \
 --cluster-init \
+--secrets-encryption \
 --disable local-storage \
---flannel-backend wireguard-native \
---secrets-encryption
+--node-external-ip <NODE_EXTERNAL_IP> \
+--flannel-external-ip \
+--flannel-backend wireguard-native
 ```
 
 ### Setup Argo CD
