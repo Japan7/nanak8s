@@ -21,4 +21,4 @@ releases:
           username: "{{ .Values.edgedb.username }}"
           password: "{{ .Values.edgedb.password }}"
       - ingress:
-          host: edgedb.{{ .Values.domain }}
+          host: nanadb.{{ .Values.domain }}

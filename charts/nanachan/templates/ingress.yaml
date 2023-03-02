@@ -13,6 +13,8 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: "{{ .Release.Name }}"
+  annotations:
+    link.argocd.argoproj.io/external-link: "http://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}"
 spec:
   entryPoints:
     {{- range .Values.ingress.entryPoints }}

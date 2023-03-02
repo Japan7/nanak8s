@@ -37,6 +37,8 @@ spec:
       maxReplicas: 5
     ingressRoute:
       dashboard:
+        annotations:
+          link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
         matchRule: Host(`traefik.{{ .Values.domain }}`)
         entryPoints:
           - websecure
