@@ -9,28 +9,26 @@ spec:
       - "{{ .Values.ingress.pathPrefix }}"
 ---
 {{ end }}
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: "{{ .Release.Name }}"
   annotations:
-    link.argocd.argoproj.io/external-link: "http://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}"
+    {{ range .Values.ingress.entryPoints }}
+    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
+    {{ end }}
+    {{ if ne .Values.ingress.pathPrefix "/" }}
+    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Name }}-stripprefix"
+    {{ end }}
 spec:
-  entryPoints:
-    {{- range .Values.ingress.entryPoints }}
-    - {{ . }}
-    {{- end }}
-  routes:
-    - kind: Rule
-      match: Host(`{{ .Values.ingress.host }}`) && PathPrefix(`{{ .Values.ingress.pathPrefix }}`)
-      services:
-        - name: "{{ .Release.Name }}"
-          port: 8000
-      middlewares:
-        {{- range .Values.ingress.middlewares }}
-        - name: {{ .name }}
-          namespace: {{ .namespace }}
-        {{- end }}
-        {{ if ne .Values.ingress.pathPrefix "/" }}
-        - name: "{{ .Release.Name }}-stripprefix"
-        {{ end }}
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "{{ .Values.ingress.pathPrefix }}"
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 8000
