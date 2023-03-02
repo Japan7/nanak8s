@@ -1,21 +1,21 @@
 environments:
   prod:
     values:
-      - tag: main
+      - tag: 539d816a
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
       - prod.sops.yaml
   staging:
     values:
-      - tag: main
+      - tag: 539d816a
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
       - staging.sops.yaml
   dev:
     values:
-      - tag: main
+      - tag: 539d816a
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
