@@ -10,7 +10,7 @@ releases:
     namespace: nanadb
     values:
       - storage:
-          size: 5Gi
+          size: 10Gi
   - name: nanadb
     chart: ../../charts/edgedb
     namespace: nanadb
