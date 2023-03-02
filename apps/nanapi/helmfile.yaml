@@ -43,7 +43,7 @@ releases:
           service: nanadb.nanadb
           username: "{{ .Values.edgedb.username }}"
           password: "{{ .Values.edgedb.password }}"
-          database: nanapi-{{ .Environment.Name }}-tmp
+          database: nanapi_{{ .Environment.Name }}_tmp
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - ingress:
