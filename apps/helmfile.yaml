@@ -23,15 +23,15 @@ releases:
           - name: keycloak
 
           # nanachan
-          - name: nanachan
+          - name: nanachan-nana
             namespace: nanachan
             subdir: nanachan
             environment: nana
-          - name: hachichan
+          - name: nanachan-hachi
             namespace: nanachan
             subdir: nanachan
             environment: hachi
-          - name: snowflake
+          - name: nanachan-snow
             namespace: nanachan
             subdir: nanachan
             environment: snow

@@ -2,7 +2,7 @@ environments:
   prod:
     values:
       - tag: 539d816a
-      - replicas: 2
+      - replicas: 1
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
