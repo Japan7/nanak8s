@@ -24,12 +24,12 @@ spec:
             - name: EDGEDB_SERVER_USER
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Values.edgedb.userSecret }}"
+                  name: {{ .Release.Name }}-edgedb
                   key: username
             - name: EDGEDB_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Values.edgedb.userSecret }}"
+                  name: {{ .Release.Name }}-edgedb
                   key: password
             - name: EDGEDB_DSN
               value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Values.edgedb.service }}/{{ .Values.edgedb.database }}
