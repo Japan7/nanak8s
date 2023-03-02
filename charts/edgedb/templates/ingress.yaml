@@ -24,7 +24,7 @@ spec:
     - kind: Rule
       match: Host(`{{ .Values.ingress.host }}`)
       services:
-        - name: "{{ .Release.Name }}-ui"
+        - name: "{{ .Release.Name }}"
           port: 5656
       {{ if ne .Values.ingress.pathPrefix "/" }}
       middlewares:
