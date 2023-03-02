@@ -15,7 +15,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: 539d816a
+      - tag: 7ac9a4cb
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -24,7 +24,6 @@ environments:
 repositories:
   - name: meilisearch
     url: git+https://github.com/meilisearch/meilisearch-kubernetes.git@charts?ref=main
-
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
