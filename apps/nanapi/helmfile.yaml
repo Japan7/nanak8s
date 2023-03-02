@@ -2,6 +2,7 @@ environments:
   prod:
     values:
       - tag: 539d816a
+      - replicas: 2
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -9,6 +10,7 @@ environments:
   staging:
     values:
       - tag: 539d816a
+      - replicas: 1
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -16,6 +18,7 @@ environments:
   dev:
     values:
       - tag: 7ac9a4cb
+      - replicas: 1
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -38,6 +41,7 @@ releases:
     values:
       - image: git.{{ .Values.domain }}/japan7/nanapi
       - tag: "{{ .Values.tag }}"
+      - replicas: "{{ .Values.replicas }}"
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.edgedb.username }}"
