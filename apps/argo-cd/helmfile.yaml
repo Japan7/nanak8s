@@ -1,5 +1,8 @@
 environments:
   default:
+    values:
+      - notifications:
+          enabled: true
     secrets:
       - ../shared.sops.yaml
       - default.sops.yaml
@@ -57,3 +60,5 @@ releases:
           token: "{{ .Values.github.token }}"
       - discord:
           webhook: "{{ .Values.discord.webhook }}"
+      - notifications:
+          enabled: "{{ .Values.notifications.enabled }}"

@@ -8,3 +8,6 @@ github:
 
 discord:
   webhook: ""
+
+notifications:
+  enabled: true

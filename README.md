@@ -57,7 +57,7 @@ sh -s - server \
 ### Setup Argo CD
 
 ```sh
-SOPS_AGE_KEY=<priv_key> helmfile apply -f apps/argo-cd/helmfile.yaml
+SOPS_AGE_KEY=<priv_key> helmfile apply -f apps/argo-cd/helmfile.yaml --set notifications.enabled=false
 kubectl apply -f apps/bootstrap.yaml
 ```
 
