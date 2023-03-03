@@ -8,7 +8,8 @@ releases:
           - name: traefik
             namespace: kube-system
           - name: kubernetes-dashboard
-          - name: rook-ceph
+          - name: longhorn
+            namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
 
