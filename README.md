@@ -15,9 +15,7 @@ sh -s - server \
 --server https://<HOST>:6443 \
 --secrets-encryption \
 --disable local-storage \
---node-external-ip <WIREGUARD_IP> \
 --flannel-iface <WIREGUARD_IF> \
---flannel-external-ip
 
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
@@ -49,9 +47,7 @@ sh -s - server \
 --cluster-init \
 --secrets-encryption \
 --disable local-storage \
---node-external-ip <WIREGUARD_IP> \
 --flannel-iface <WIREGUARD_IF> \
---flannel-external-ip
 ```
 
 ### Setup Argo CD
