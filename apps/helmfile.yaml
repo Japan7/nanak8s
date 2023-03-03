@@ -14,13 +14,13 @@ releases:
             namespace: cnpg-system
 
           # CI/CD
-          # - name: argo-cd
-          #   namespace: argocd
-          # - name: forgejo
-          # - name: woodpecker
+          - name: argo-cd
+            namespace: argocd
+          - name: forgejo
+          - name: woodpecker
 
           # Apps
-          # - name: keycloak
+          - name: keycloak
 
           # nanachan
           # - name: nanachan-nana
