@@ -4,7 +4,7 @@
 
 **Inbound Rules:** 2379-2380/TCP (etcd), 6443/TCP (K8s), 10250/TCP (metrics), 51820/UDP (Flannel Wireguard)
 
-[**Wireguard**](https://www.wireguard.com/install/) support on the node is required.
+[**Wireguard**](https://www.wireguard.com/install/) support on the node is required. You must setup the cluster mesh network with the [provided configuration](nanak8s-wg.sops.conf).
 
 ```sh
 # Install K3s
@@ -15,9 +15,9 @@ sh -s - server \
 --server https://<HOST>:6443 \
 --secrets-encryption \
 --disable local-storage \
---node-external-ip <NODE_EXTERNAL_IP> \
---flannel-external-ip \
---flannel-backend wireguard-native
+--node-external-ip <WIREGUARD_IP> \
+--flannel-iface <WIREGUARD_IF> \
+--flannel-external-ip
 
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
@@ -49,9 +49,9 @@ sh -s - server \
 --cluster-init \
 --secrets-encryption \
 --disable local-storage \
---node-external-ip <NODE_EXTERNAL_IP> \
---flannel-external-ip \
---flannel-backend wireguard-native
+--node-external-ip <WIREGUARD_IP> \
+--flannel-iface <WIREGUARD_IF> \
+--flannel-external-ip
 ```
 
 ### Setup Argo CD
