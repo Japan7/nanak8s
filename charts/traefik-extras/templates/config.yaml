@@ -29,13 +29,13 @@ spec:
       - --accesslog=true
       - --providers.kubernetescrd.allowCrossNamespace=true
       - --serversTransport.insecureSkipVerify=true  # required for k8s-dashboard
-      # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
-      enabled: true
+      enabled: false
       accessMode: ReadWriteMany
       storageClass: ceph-filesystem
     autoscaling:
-      enabled: true
+      enabled: false
       minReplicas: 1
       maxReplicas: 5
     ingressRoute:
