@@ -3,5 +3,5 @@ kind: StorageClass
 metadata:
   name: longhorn-cnpg
 parameters:
-  numberOfReplicas: 1
+  numberOfReplicas: "1"
 provisioner: driver.longhorn.io
