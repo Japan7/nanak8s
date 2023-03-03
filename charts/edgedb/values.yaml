@@ -1,7 +1,7 @@
 image: edgedb/edgedb
 tag: latest
 
-replicas: 3
+replicas: 1
 
 cnpg:
   name: ""
