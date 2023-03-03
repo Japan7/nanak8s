@@ -1,13 +1,13 @@
 environments:
   nana:
     values:
-      - tag: 7f71cba1
+      - tag: master
     secrets:
       - ../shared.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
-      - tag: 54df036a
+      - tag: master
     secrets:
       - ../shared.sops.yaml
       - hachi.sops.yaml
