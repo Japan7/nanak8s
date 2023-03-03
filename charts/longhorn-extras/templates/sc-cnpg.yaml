@@ -3,5 +3,12 @@ kind: StorageClass
 metadata:
   name: longhorn-cnpg
 parameters:
+  dataLocality: disabled
+  fromBackup: ""
+  fsType: ext4
   numberOfReplicas: "1"
+  staleReplicaTimeout: "30"
 provisioner: driver.longhorn.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
