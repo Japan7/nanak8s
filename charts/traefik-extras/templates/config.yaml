@@ -33,7 +33,6 @@ spec:
     persistence:
       enabled: false
       accessMode: ReadWriteMany
-      storageClass: ceph-filesystem
     autoscaling:
       enabled: false
       minReplicas: 1
