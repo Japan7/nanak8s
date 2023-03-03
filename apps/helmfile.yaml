@@ -51,4 +51,4 @@ releases:
           #   environment: dev
 
           # nanadb
-          # - name: nanadb
+          - name: nanadb
