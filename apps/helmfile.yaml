@@ -37,18 +37,18 @@ releases:
           #   environment: snow
 
           # nanapi
-          - name: nanapi-prod
-            namespace: nanapi
-            subdir: nanapi
-            environment: prod
-          - name: nanapi-staging
-            namespace: nanapi
-            subdir: nanapi
-            environment: staging
-          - name: nanapi-dev
-            namespace: nanapi
-            subdir: nanapi
-            environment: dev
+          # - name: nanapi-prod
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: prod
+          # - name: nanapi-staging
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: staging
+          # - name: nanapi-dev
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: dev
 
           # nanadb
-          - name: nanadb
+          # - name: nanadb
