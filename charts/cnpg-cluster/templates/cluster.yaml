@@ -18,6 +18,7 @@ spec:
   instances: {{ .Values.instances }}
   storage:
     size: {{ .Values.storage.size }}
+    storageClass: longhorn-cnpg
   bootstrap:
     initdb:
       database: {{ .Values.database }}
