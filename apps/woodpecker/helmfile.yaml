@@ -53,6 +53,8 @@ releases:
           WOODPECKER_BACKEND_K8S_VOLUME_SIZE: 1Gi
       - extraSecretNamesForEnvFrom:
           - agent-secret
+      - nodeSelector:
+          kubernetes.io/arch: amd64
   - name: woodpecker-extras
     chart: ../../charts/woodpecker-extras
     namespace: woodpecker
