@@ -17,7 +17,7 @@ releases:
           - name: argo-cd
             namespace: argocd
           - name: forgejo
-          # - name: woodpecker
+          - name: woodpecker
 
           # Apps
           - name: keycloak
