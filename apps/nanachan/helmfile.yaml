@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: master
+      - tag: ff46ecf1
     secrets:
       - ../shared.sops.yaml
       - nana.sops.yaml
