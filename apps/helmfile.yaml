@@ -16,7 +16,7 @@ releases:
           # CI/CD
           - name: argo-cd
             namespace: argocd
-          # - name: forgejo
+          - name: forgejo
           # - name: woodpecker
 
           # Apps
