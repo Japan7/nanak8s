@@ -23,18 +23,18 @@ releases:
           - name: keycloak
 
           # nanachan
-          # - name: nanachan-nana
-          #   namespace: nanachan
-          #   subdir: nanachan
-          #   environment: nana
-          # - name: nanachan-hachi
-          #   namespace: nanachan
-          #   subdir: nanachan
-          #   environment: hachi
-          # - name: nanachan-snow
-          #   namespace: nanachan
-          #   subdir: nanachan
-          #   environment: snow
+          - name: nanachan-nana
+            namespace: nanachan
+            subdir: nanachan
+            environment: nana
+          - name: nanachan-hachi
+            namespace: nanachan
+            subdir: nanachan
+            environment: hachi
+          - name: nanachan-snow
+            namespace: nanachan
+            subdir: nanachan
+            environment: snow
 
           # nanapi
           - name: nanapi-prod
