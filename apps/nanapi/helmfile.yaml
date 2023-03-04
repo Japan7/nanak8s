@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: main
+      - tag: 81d61ef3
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
