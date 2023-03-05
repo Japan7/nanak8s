@@ -33,7 +33,6 @@ spec:
     persistence:
       enabled: true
       accessMode: ReadWriteMany
-      volumeName: traefik-data
     autoscaling:
       enabled: true
       minReplicas: 1
