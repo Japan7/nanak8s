@@ -37,6 +37,7 @@ spec:
     autoscaling:
       enabled: true
       minReplicas: 1
+      maxReplicas: 5
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.{{ .Values.domain }}`)
