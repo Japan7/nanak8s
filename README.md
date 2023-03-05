@@ -2,9 +2,9 @@
 
 ## Join the cluster
 
-**Inbound Rules:** 2379-2380/TCP (etcd), 6443/TCP (K8s), 10250/TCP (metrics), 51820/UDP (Flannel Wireguard)
+[**Wireguard**](https://www.wireguard.com/install/) support on the node is required. You need to join the cluster [innernet](https://github.com/tonarino/innernet).
 
-[**Wireguard**](https://www.wireguard.com/install/) support on the node is required. You must setup the cluster mesh network with the [provided configuration](nanak8s-wg.sops.conf).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s)
 
 ```sh
 # Install K3s
@@ -12,10 +12,10 @@ curl -sfL https://get.k3s.io |
 INSTALL_K3S_CHANNEL=latest \
 K3S_TOKEN=<SHARED_SECRET> \
 sh -s - server \
---server https://<HOST>:6443 \
+--server https://<SERVER_HOST>:6443 \
 --secrets-encryption \
 --disable local-storage \
---flannel-iface <WIREGUARD_IF> \
+--flannel-iface <WIREGUARD_INTERFACE> \
 
 # Check Longhorn requirements
 curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
@@ -34,7 +34,7 @@ Run `helmfile init` to install the required helm plugins.
 ### Edit secrets
 
 ```sh
-SOPS_AGE_KEY=<priv_key> helm secrets edit <something.sops.yaml>
+SOPS_AGE_KEY=<PRIVATE_KEY> helm secrets edit <something.sops.yaml>
 ```
 
 ### Start the cluster
@@ -47,13 +47,13 @@ sh -s - server \
 --cluster-init \
 --secrets-encryption \
 --disable local-storage \
---flannel-iface <WIREGUARD_IF> \
+--flannel-iface <WIREGUARD_INTERFACE> \
 ```
 
 ### Setup Argo CD
 
 ```sh
-SOPS_AGE_KEY=<priv_key> helmfile apply -f apps/argo-cd/helmfile.yaml --set notifications.enabled=false
+SOPS_AGE_KEY=<PRIVATE_KEY> helmfile apply -f apps/argo-cd/helmfile.yaml --set notifications.enabled=false
 kubectl apply -f apps/bootstrap.yaml
 ```
 
@@ -95,12 +95,12 @@ tcp:
     k8s-web:
       entryPoints:
         - "web"
-      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z.]+}.<domain>`)"
+      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z.]+}.<DOMAIN>`)"
       service: "k8s-web-file"
     k8s-websecure:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z.]+}.<domain>`)"
+      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z.]+}.<DOMAIN>`)"
       service: "k8s-websecure-file"
       tls:
         passthrough: true
