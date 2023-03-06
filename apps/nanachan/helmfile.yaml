@@ -7,7 +7,7 @@ environments:
       - nana.sops.yaml
   hachi:
     values:
-      - tag: ff46ecf1
+      - tag: 086e28ff
     secrets:
       - ../shared.sops.yaml
       - hachi.sops.yaml
