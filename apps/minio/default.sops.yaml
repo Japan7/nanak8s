@@ -1,0 +1,23 @@
+minio:
+    username: ENC[AES256_GCM,data:4RE8dRE=,iv:UVEj/DleH7r/LfKpdOPvuEB0bxho2xlSG1dXjpzBZmE=,tag:PVUrqi2l49ahVXPGtKYK0A==,type:str]
+    password: ENC[AES256_GCM,data:Ubr7K5IomSoxpV6KjTM=,iv:W7lVUlX55IiJksvgDbDq3Mlau/XTLP1Z9iBkIolkHuo=,tag:aMGmHrlTMaPALaVC0Lk5Dw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBoejFyZWpnZ0hCOFA4dU8x
+            b1Jpa1Byd001M3llWU9oVEhhZnRxSVYwYjB3CnY5V1NBL2xBV1RMa3VQNlNxL0h3
+            cVJUbVJuak1teUx5b21WUEZDcHBTUWMKLS0tIHNrUG4vRitlVzdFdmoya3FGZHlw
+            bGZ2ZG53dzAxZEFZcVlxTjkrMWRoN2sKCdJ6bYXX6Ix51r/2vlNATcdMF7S9tGFE
+            31zEg17D2KOj7BJRdsOXCvdOy5XLkB1LR1ZdgJnrt/Tu2kz666belw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-06T23:55:28Z"
+    mac: ENC[AES256_GCM,data:p+ZHHpM3XgSID3jeILemDdwLl5pWUH1WLyBsqlTT3lppZsnmfLtPmFaPoZMvoFUBAp4QqxaX8kpWUaSd+tshoFt8HSZbA4EySet3LWipuXdZwmrZKX9qksOEvLjB0skjFPrGxHgMRetU/UK4tqq0JbGOEJAnTaXC0V2lB07xhsg=,iv:WKgvRylDEkd15QWWZHEUGa5ajX8LCfP76Jnz5jusuUQ=,tag:gCeluZC0OwtZST+sT1Aasg==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3

@@ -13,7 +13,7 @@ releases:
           - name: cnpg
             namespace: cnpg-system
 
-          # CI/CD
+          # Dev
           - name: argo-cd
             namespace: argocd
           - name: forgejo
@@ -23,8 +23,9 @@ releases:
           - name: keycloak
           - name: syncplay
 
-          # nanadb
+          # Data
           - name: nanadb
+          - name: minio
 
           # nanapi
           - name: nanapi-prod
