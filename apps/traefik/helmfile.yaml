@@ -16,7 +16,7 @@ releases:
             - name: forgejo-ssh
               port: 8022
             - name: syncplay
-              port: 8999
+              port: 8777
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"
