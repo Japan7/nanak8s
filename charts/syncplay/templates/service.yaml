@@ -6,5 +6,7 @@ spec:
   selector:
     app: "{{ .Release.Name }}"
   ports:
-    - port: 8999
-    - port: 80
+    - name: syncplay
+      port: 8999
+    - name: http-stub
+      port: 80
