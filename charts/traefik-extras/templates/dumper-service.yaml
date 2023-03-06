@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Release.Name }}-dumper"
+  name: "traefik-dumper"
 spec:
   selector:
-    app: "{{ .Release.Name }}-dumper"
+    app: "traefik-dumper"
   ports:
     - port: 4507

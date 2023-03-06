@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ .Release.Name }}-dumper"
+  name: "traefik-dumper"
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}-dumper"
+      app: "traefik-dumper"
   replicas: 1
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}-dumper"
+        app: "traefik-dumper"
     spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: "{{ .Release.Name }}"
+            claimName: "traefik"
       containers:
         - name: certs-dumper
           image: ldez/traefik-certs-dumper
