@@ -12,5 +12,3 @@ spec:
       services:
         - name: "{{ .Release.Name }}"
           port: 8999
-  tls:
-    certResolver: "{{ .Values.ingress.certResolver }}"
