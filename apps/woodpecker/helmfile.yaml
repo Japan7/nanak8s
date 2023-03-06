@@ -48,6 +48,7 @@ releases:
     values:
       - image:
           tag: next
+      - replicaCount: 3
       - env:
           WOODPECKER_SERVER: woodpecker-server:9000
           WOODPECKER_BACKEND_K8S_STORAGE_CLASS: longhorn-woodpecker
