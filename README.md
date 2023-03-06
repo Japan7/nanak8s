@@ -4,7 +4,7 @@
 
 **[Wireguard](https://www.wireguard.com/install/) support** on the node is required to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API) and 8022/TCP (Forgejo SSH).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8777/TCP (Syncplay).
 
 ### Steps
 
