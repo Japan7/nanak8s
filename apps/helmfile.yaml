@@ -21,6 +21,7 @@ releases:
 
           # Apps
           - name: keycloak
+          - name: syncplay
 
           # nanachan
           - name: nanachan-nana
