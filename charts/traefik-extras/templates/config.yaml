@@ -13,7 +13,7 @@ spec:
         exposedPort: 8443
         tls:
           certResolver: letsencrypt
-      {{ range .Values.traefik.ports }}
+      {{ range .Values.traefik.extraPorts }}
       {{ .name }}:
         port: {{ .port }}
         expose: true
