@@ -6,6 +6,6 @@ provisioner: driver.longhorn.io
 allowVolumeExpansion: true
 parameters:
   numberOfReplicas: "1"
-  dataLocality: "best-effort"
+  dataLocality: "strict-local"
   staleReplicaTimeout: "30"
   fromBackup: ""
