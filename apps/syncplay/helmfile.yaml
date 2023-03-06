@@ -1,0 +1,14 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: syncplay
+    chart: ../../charts/syncplay
+    namespace: syncplay
+    values:
+      - password: "{{ .Values.password }}"
+      - ingress:
+          host: syncplay.{{ .Values.domain }}

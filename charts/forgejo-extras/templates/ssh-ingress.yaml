@@ -4,7 +4,7 @@ metadata:
   name: forgejo-ssh
 spec:
   entryPoints:
-    - forgejo-ssh
+    - "{{ .Values.traefik.sshEntrypoint }}"
   routes:
     - match: HostSNI(`*`)
       services:

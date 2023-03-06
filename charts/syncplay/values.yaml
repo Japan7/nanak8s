@@ -1,0 +1,14 @@
+image: ghcr.io/japan7/syncplay:master
+
+password: ""
+
+traefik:
+  pvc: traefik
+  namespace: kube-system
+
+ingress:
+  host: ""
+  entrypoints:
+    - syncplay
+  stubEntryPoints:
+    - websecure

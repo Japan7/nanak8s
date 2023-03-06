@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "{{ .Release.Name }}-password"
+type: Opaque
+stringData:
+  password: "{{ .Values.password }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      volumes:
+        - name: traefik
+          persistentVolumeClaim:
+            claimName: "{{ .Values.traefik.pvc }}"
+            namespace: "{{ .Values.traefik.namespace }}"
+        - name: syncplay-certs
+          emptyDir: {}
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image }}"
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-password"
+                  key: password
+          args: ["--password", "$(PASSWORD)", "--tls", "/certs"]
+          volumeMounts:
+            - name: syncplay-certs
+              mountPath: /certs
+          ports:
+            - containerPort: 8999
+        - name: certs-dumper
+          image: ldez/traefik-certs-dumper
+          command:
+            - "sh"
+            - "-c"
+            - "traefik-certs-dumper file --version v2 \
+              --watch --source /traefik/acme.json --dest /dump \
+              --domain-subdir --crt-name=fullchain --crt-ext .pem --key-name=privkey --key-ext .pem \
+              --post-hook 'cp /dump/{{ .Values.ingress.host }}/* /certs/'"
+          volumeMounts:
+            - name: traefik
+              mountPath: /traefik
+            - name: syncplay-certs
+              mountPath: /certs

@@ -12,6 +12,11 @@ releases:
       - domain: "{{ .Values.domain }}"
       - traefik:
           letsencryptEmail: "{{ .Values.traefik.letsencryptEmail }}"
+          extraPorts:
+            - name: forgejo-ssh
+              port: 8022
+            - name: syncplay
+              port: 8999
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"

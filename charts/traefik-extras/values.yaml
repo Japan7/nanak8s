@@ -2,6 +2,9 @@ domain: ""
 
 traefik:
   letsencryptEmail: ""
+  extraPorts: []
+  # - name:
+  #   port:
 
 japan7BasicAuth:
   username: ""
