@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  entryPoints:
+    {{ range .Values.ingress.entryPoints }}
+    - "{{ . }}"
+    {{ end }}
+  routes:
+    - match: HostSNI(`{{ .Values.ingress.host }}`)
+      services:
+        - name: "{{ .Release.Name }}"
+          port: 8999

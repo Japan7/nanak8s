@@ -18,6 +18,10 @@ spec:
         port: {{ .port }}
         expose: true
         exposedPort: {{ .port }}
+        {{ if .tls }}
+        tls:
+          certResolver: letsencrypt
+        {{ end }}
       {{ end }}
     certResolvers:
       letsencrypt:
