@@ -32,7 +32,7 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-password"
                   key: password
-          args: ["--password", "$(PASSWORD)", "--certs", "/certs"]
+          args: ["--password", "$(PASSWORD)", "--tls", "/certs"]
           volumeMounts:
             - name: certs
               mountPath: /certs
