@@ -7,5 +7,10 @@ traefik:
   namespace: kube-system
 
 ingress:
+  host: ""
   entryPoints:
     - syncplay
+  httpEntryPoints:
+    - websecure
+
+certsDumperService: traefik-dumper.kube-system:4507

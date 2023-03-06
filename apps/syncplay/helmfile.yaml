@@ -10,3 +10,5 @@ releases:
     namespace: syncplay
     values:
       - password: "{{ .Values.password }}"
+      - ingress:
+          host: syncplay.{{ .Values.domain }}

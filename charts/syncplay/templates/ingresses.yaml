@@ -1,0 +1,35 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  entryPoints:
+    {{ range .Values.ingress.entryPoints }}
+    - "{{ . }}"
+    {{ end }}
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: "{{ .Release.Name }}"
+          port: 8999
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}-http"
+  annotations:
+    {{ range .Values.ingress.httpEntryPoints }}
+    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
+    {{ end }}
+spec:
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 80

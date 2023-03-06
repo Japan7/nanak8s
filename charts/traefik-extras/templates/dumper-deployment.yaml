@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-dumper"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-dumper"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-dumper"
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}"
+      containers:
+        - name: certs-dumper
+          image: ldez/traefik-certs-dumper
+          command:
+            - "sh"
+            - "-c"
+            - "traefik-certs-dumper file --version v2 \
+              --watch --source /data/acme.json --dest /data/dump \
+              --domain-subdir --crt-name=fullchain --crt-ext .pem --key-name=privkey --key-ext .pem"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+        - name: http
+          image: denoland/deno:alpine
+          args:
+            - "run"
+            - "--allow-net"
+            - "--allow-read"
+            - "https://deno.land/std/http/file_server.ts"
+            - "/html"
+          volumeMounts:
+            - name: data
+              subPath: dump
+              mountPath: /html

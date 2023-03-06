@@ -20,6 +20,9 @@ spec:
       labels:
         app: "{{ .Release.Name }}"
     spec:
+      volumes:
+        - name: certs
+          emptyDir: {}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image }}"
@@ -29,6 +32,19 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-password"
                   key: password
-          args: ["--password", "$(PASSWORD)"]
+          args: ["--password", "$(PASSWORD)", "--certs", "/certs"]
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
           ports:
             - containerPort: 8999
+      initContainers:
+        - name: init-certs
+          image: alpine
+          command:
+            - sh
+            - -c
+            - cd /certs && rm *.pem && wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/fullchain.pem && wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/privkey.pem
+          volumeMounts:
+            - name: certs
+              mountPath: /certs

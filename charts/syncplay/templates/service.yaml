@@ -7,3 +7,6 @@ spec:
     app: "{{ .Release.Name }}"
   ports:
     - port: 8999
+      name: syncplay
+    - port: 80
+      name: http
