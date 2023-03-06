@@ -3,4 +3,4 @@ oauth:
   secret: ""
 
 traefik:
-  sshEntrypoint: "forgejo-ssh"
+  sshEntryPoint: "forgejo-ssh"
