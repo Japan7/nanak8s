@@ -1,6 +1,8 @@
 image: ghcr.io/japan7/syncplay:master
 
-password: ""
+syncplay:
+  password: ""
+  salt: ""
 
 traefik:
   pvc: traefik

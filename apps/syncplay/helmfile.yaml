@@ -9,6 +9,8 @@ releases:
     chart: ../../charts/syncplay
     namespace: syncplay
     values:
-      - password: "{{ .Values.password }}"
+      - syncplay:
+          password: "{{ .Values.password }}"
+          sale: "{{ .Values.salt }}"
       - ingress:
           host: syncplay.{{ .Values.domain }}

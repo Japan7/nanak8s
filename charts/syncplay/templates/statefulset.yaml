@@ -1,20 +1,12 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: "{{ .Release.Name }}-password"
-type: Opaque
-stringData:
-  password: "{{ .Values.password }}"
----
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
 spec:
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
-  replicas: 1
+  serviceName: "{{ .Release.Name }}"
   template:
     metadata:
       labels:
@@ -27,15 +19,28 @@ spec:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image }}"
           env:
-            - name: PASSWORD
+            - name: SYNCPLAY_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}-password"
+                  name: "{{ .Release.Name }}-secret"
                   key: password
-          args: ["--password", "$(PASSWORD)", "--tls", "/certs"]
+            - name: SYNCPLAY_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: salt
+          args:
+            - --tls
+            - /certs
+            - --rooms-db-file
+            - /rooms/rooms
+            - --permanent-rooms-file
+            - /rooms/permanent_rooms
           volumeMounts:
             - name: certs
               mountPath: /certs
+            - name: rooms
+              mountPath: /rooms
           ports:
             - containerPort: 8999
       initContainers:
@@ -48,3 +53,12 @@ spec:
           volumeMounts:
             - name: certs
               mountPath: /certs
+  volumeClaimTemplates:
+    - metadata:
+        name: rooms
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 64Mi
