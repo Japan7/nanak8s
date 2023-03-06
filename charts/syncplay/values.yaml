@@ -10,3 +10,4 @@ ingress:
   host: ""
   entryPoints:
     - syncplay
+  certResolver: letsencrypt
