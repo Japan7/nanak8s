@@ -14,7 +14,7 @@ kind: Cluster
 metadata:
   name: {{ .Release.Name }}
 spec:
-  imageName: ghcr.io/cloudnative-pg/postgresql:14
+  imageName: "{{ .Values.imageName }}:{{ .Values.release }}"
   instances: {{ .Values.instances }}
   storage:
     size: {{ .Values.storage.size }}

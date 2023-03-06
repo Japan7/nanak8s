@@ -1,3 +1,6 @@
+imageName: ghcr.io/cloudnative-pg/postgresql
+release: 15
+
 instances: 3
 
 storage:
