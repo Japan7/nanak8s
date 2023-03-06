@@ -8,7 +8,7 @@ spec:
     - "{{ . }}"
     {{ end }}
   routes:
-    - match: HostSNI(`{{ .Values.ingress.host }}`)
+    - match: HostSNI(`*`)
       services:
         - name: "{{ .Release.Name }}"
           port: 8999

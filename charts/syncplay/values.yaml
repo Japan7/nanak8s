@@ -7,7 +7,5 @@ traefik:
   namespace: kube-system
 
 ingress:
-  host: ""
   entryPoints:
     - syncplay
-  certResolver: letsencrypt
