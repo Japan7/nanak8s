@@ -11,6 +11,6 @@ releases:
     values:
       - syncplay:
           password: "{{ .Values.password }}"
-          sale: "{{ .Values.salt }}"
+          salt: "{{ .Values.salt }}"
       - ingress:
           host: syncplay.{{ .Values.domain }}
