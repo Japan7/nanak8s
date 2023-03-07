@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-env
 type: Opaque
 stringData:
-  {{ .Values.env | nindent 2 }}
+  {{ .Values.env | toYaml | nindent 2 }}
 ---
 apiVersion: apps/v1
 kind: Deployment
