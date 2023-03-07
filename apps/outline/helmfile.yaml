@@ -2,7 +2,7 @@ environments:
   default:
     secrets:
       - ../shared.sops.yaml
-      # - default.sops.yaml
+      - default.sops.yaml
 ---
 releases:
   - name: outline-cnpg
@@ -10,3 +10,23 @@ releases:
     namespace: outline
     values:
       - release: 15
+  - name: outline-redis
+    chart: bitnami/redis
+    namespace: outline
+    values:
+      - architecture: standalone
+      - auth:
+          enabled: false
+      - master:
+          persistence:
+            size: 1Gi
+  - name: outline
+    chart: ../../charts/outline
+    namespace: outline
+    values:
+      - cnpg:
+          name: outline-cnpg
+      - env: |
+          {{ .Values.env | nindent 10 }}
+      - ingress:
+          host: docs.{{ .Values.domain }}

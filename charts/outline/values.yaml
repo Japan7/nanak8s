@@ -1,0 +1,14 @@
+image: outlinewiki/outline
+tag: latest
+
+cnpg:
+  name: ""
+  user: app
+  database: app
+
+env: ""
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure
