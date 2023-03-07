@@ -71,12 +71,12 @@ tcp:
     k8s-web:
       entryPoints:
         - "web"
-      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z.]+}.<DOMAIN>`)"
+      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z0-9.-]+}.<DOMAIN>`)"
       service: "k8s-web-file"
     k8s-websecure:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z.]+}.<DOMAIN>`)"
+      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z0-9.-]+}.<DOMAIN>`)"
       service: "k8s-websecure-file"
       tls:
         passthrough: true
