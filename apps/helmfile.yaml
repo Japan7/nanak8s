@@ -23,6 +23,7 @@ releases:
           - name: keycloak
           - name: syncplay
           - name: outline
+          - name: filestash
 
           # Data
           - name: nanadb

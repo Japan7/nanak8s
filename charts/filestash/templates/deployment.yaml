@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  replicas: "{{ .Values.replicas }}"
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      volumes:
+        - name: state
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-state"
+        - name: cache
+          emptyDir: {}
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          env:
+            - name: APPLICATION_URL
+              value: "{{ .Values.ingress.host }}"
+          volumeMounts:
+            - name: state
+              mountPath: "{{ .Values.persistence.mountPath }}"
+            - name: cache
+              mountPath: "{{ .Values.cache.mountPath }}"
+          ports:
+            - containerPort: 8334

@@ -1,0 +1,16 @@
+image: ghcr.io/japan7/filestash
+tag: subs
+
+replicas: 1
+
+cache:
+  mountPath: /filestash/data/cache
+
+persistance:
+  accessMode: ReadWriteOnce # ReadWriteMany required if replicas > 1
+  mountPath: /filestash/data/state
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure
