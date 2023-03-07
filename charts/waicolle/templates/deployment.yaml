@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: "{{ .Release.Name }}-nanapi"
+type: kubernetes.io/basic-auth
+stringData:
+  username: "{{ .Values.nanapi.username }}"
+  password: "{{ .Values.nanapi.password }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          env:
+            - name: NANAPI_URL
+              value: "{{ .Values.nanapi.url }}"
+            - name: NANAPI_CLIENT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-nanapi"
+                  key: username
+            - name: NANAPI_CLIENT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-nanapi"
+                  key: password
+          ports:
+            - containerPort: 3000

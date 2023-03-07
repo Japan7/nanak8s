@@ -1,0 +1,14 @@
+image: ghcr.io/japan7/waicolle-web
+tag: main
+
+replicas: 1
+
+nanapi:
+  url: ""
+  username: ""
+  password: ""
+
+ingress:
+  host: ""
+  entryPoints:
+    - syncplay

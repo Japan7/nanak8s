@@ -24,6 +24,7 @@ releases:
           - name: syncplay
           - name: outline
           - name: filestash
+          - name: waicolle
 
           # Data
           - name: nanadb
