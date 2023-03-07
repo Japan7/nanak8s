@@ -4,8 +4,7 @@ metadata:
   name: {{ .Release.Name }}-env
 type: Opaque
 stringData:
-  env: |
-    {{ .Values.env | nindent 4 }}
+  {{ .Values.env | toYaml | nindent 2 }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -20,13 +19,12 @@ spec:
       labels:
         app: "{{ .Release.Name }}"
     spec:
-      volumes:
-      - name: env
-        secret:
-          secretName: {{ .Release.Name }}-env
       containers:
         - name: outline
           image: "{{ .Values.image }}:{{ .Values.tag }}"
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-env
           env:
             - name: PSQL_USERNAME
               valueFrom:
@@ -40,10 +38,6 @@ spec:
                   key: password
             - name: DATABASE_URL
               value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw/{{ .Values.cnpg.database }}
-          command: ["sh", "-c", ". /env && yarn db:migrate --env=production-ssl-disabled && yarn start"]
-          volumeMounts:
-            - name: env
-              subPath: env
-              mountPath: /env
+          command: ["sh", "-c", yarn db:migrate --env=production-ssl-disabled && yarn start"]
           ports:
             - containerPort: 3000
