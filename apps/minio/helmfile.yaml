@@ -13,12 +13,14 @@ releases:
     chart: minio/minio
     namespace: minio
     values:
-      - replicas: 2
+      - replicas: 3
       - rootUser: "{{ .Values.minio.username }}"
       - rootPassword: "{{ .Values.minio.password }}"
       - environments:
+          MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console
       - persistence:
+          storageClass: longhorn-minio
           size: 10Gi
       - ingress:
           enabled: true
