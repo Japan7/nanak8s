@@ -32,6 +32,10 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "minio-minio-console-stripprefix@kubernetescrd"
           hosts:
             - minio.{{ .Values.domain }}
           path: /console
+  - name: minio-extras
+    chart: ../../charts/minio-extras
+    namespace: minio
