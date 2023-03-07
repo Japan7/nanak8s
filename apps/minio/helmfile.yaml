@@ -30,7 +30,7 @@ releases:
             whenUnsatisfiable: ScheduleAnyway
             labelSelector:
               matchLabels:
-                app: minio
+                app.kubernetes.io/name: minio
       - ingress:
           enabled: true
           annotations:
