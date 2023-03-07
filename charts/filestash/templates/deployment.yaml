@@ -31,3 +31,9 @@ spec:
               mountPath: "{{ .Values.cache.mountPath }}"
           ports:
             - containerPort: 8334
+        - name: "{{ .Chart.Name }}-cache-cleaner"
+          image: alpine
+          command: ["sh", "-c", "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done"]
+          volumeMounts:
+            - name: cache
+              mountPath: "/cache"
