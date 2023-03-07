@@ -1,0 +1,29 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: open-8gears
+    url: https://8gears.container-registry.com/chartrepo/library/
+
+releases:
+  - name: n8s
+    chart: open-8gears/n8n
+    namespace: n8n
+    values:
+      - config:
+          host: n8n.{{ .Values.domain }}
+      - persistence:
+          enabled: true
+          type: dynamic
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-admin-basic-auth@kubernetescrd
+          hosts:
+            - host: n8n.{{ .Values.domain }}
+              paths:
+                - /

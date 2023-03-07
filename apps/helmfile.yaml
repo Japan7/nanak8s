@@ -25,6 +25,7 @@ releases:
           - name: outline
           - name: filestash
           - name: waicolle
+          - name: n8n
 
           # Data
           - name: nanadb
