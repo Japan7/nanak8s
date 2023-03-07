@@ -2,7 +2,6 @@ environments:
   default:
     secrets:
       - ../shared.sops.yaml
-      - default.sops.yaml
 ---
 repositories:
   - name: open-8gears
