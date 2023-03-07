@@ -11,4 +11,4 @@ nanapi:
 ingress:
   host: ""
   entryPoints:
-    - syncplay
+    - websecure
