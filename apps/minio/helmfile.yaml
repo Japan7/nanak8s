@@ -22,6 +22,8 @@ releases:
       - persistence:
           storageClass: longhorn-minio
           size: 10Gi
+      - nodeSelector:
+          kubernetes.io/arch: amd64
       - ingress:
           enabled: true
           annotations:
