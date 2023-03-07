@@ -19,6 +19,9 @@ releases:
       - environment:
           MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console/
+      - resources:
+          requests:
+            memory: 1Gi
       - persistence:
           storageClass: longhorn-minio
           size: 10Gi
