@@ -16,7 +16,7 @@ releases:
       - replicas: 3
       - rootUser: "{{ .Values.minio.username }}"
       - rootPassword: "{{ .Values.minio.password }}"
-      - environments:
+      - environment:
           MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console
       - persistence:
