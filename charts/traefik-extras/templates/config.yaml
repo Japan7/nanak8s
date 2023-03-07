@@ -45,7 +45,7 @@ spec:
         entryPoints:
           - websecure
         middlewares:
-          - name: japan7-basic-auth
+          - name: admin-basic-auth
     deployment:
       initContainers:
         # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543

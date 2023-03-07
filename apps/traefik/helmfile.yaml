@@ -20,3 +20,6 @@ releases:
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"
+      - adminBasicAuth:
+          username: "{{ .Values.adminBasicAuth.username }}"
+          password: "{{ .Values.adminBasicAuth.password }}"

@@ -3,6 +3,9 @@ traefik:
 japan7BasicAuth:
     username: ENC[AES256_GCM,data:OF9r8veM,iv:pNSBigY3fyCmpGhtFY6O3qdgulA6anPCI2yoMtKL7yo=,tag:Ay7tF8k9vJLAoy+TpUJ3jg==,type:str]
     password: ENC[AES256_GCM,data:HqLfhv8jBg==,iv:NBZ2wayxG5E9Aee1DV6xzJshRXPIIThdJRFJKmkgYII=,tag:VShszrmcH6BHP7KeAHMDkg==,type:str]
+adminBasicAuth:
+    username: ENC[AES256_GCM,data:fdYG1jK6,iv:Vz/FzciOqT0Yk/xU9xVGVNaIk9MqW4O+LNZ0aqlcVm4=,tag:H1eoyqmvP7AeSvjZyNpWvw==,type:str]
+    password: ENC[AES256_GCM,data:m8Bckby9kaI=,iv:1p+Z8gtnbXltNWP2spHslwM8gsyeVQD6S5/T2qWf8h4=,tag:lQX/5NB5eUNa7lIREykmaQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -18,8 +21,8 @@ sops:
             TzUyREJtNnBwTCtMTkRabENOdzQ3cG8KP77v8Br6NWNfEEkgPFCtB39ShRUzA5QX
             t2YpvYOnlgrjNE2svB8m3LBmDrvnbQ15CgdqA375QyR4XxfER7SVRQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-06T02:34:09Z"
-    mac: ENC[AES256_GCM,data:S/FB/nzSQGSDnipGK+hW38/Vw3uVxuILtY1d9zWHn3Ep3XvqP6jH/H0IsyH6eUr6pYEFdkwZynfRphMTu3aZoWqABpYBvdL5ApkR4DQMIkj5evz0zDPc9oJYICmI/VzcSFFkFCbAIqly4zYRNMD/co5EyVX+OIqbYPTFd4BOw70=,iv:Xl2oauKs0aYZsQewdlDYpUs216y6xpLAzqUhg/CxExw=,tag:du1sXtPSh2W/gY92D6xEXQ==,type:str]
+    lastmodified: "2023-03-07T18:48:18Z"
+    mac: ENC[AES256_GCM,data:LRXbPz0KNb+Y/oHP9KnNDg59OJ2dlXSDQQ/mhGzIMgJno4maCwvjG+iHeXHPmw3aW0A9sFX/zkSZjknCxkKrLZPMK5sZwKuElCwJwxtr9Iz3L+Dc1kBP4Bd8eZoMQ9IUE8nxbUlY0PKQqmnIi8Gt0YwwFgbm8J1PDf4spRHRLt4=,iv:5hc/VRo6k9uaN76rGIJsZNL+DEQebx8NygsxcAzqehk=,tag:gZ/PnaiPuyxla94GtV4d5Q==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

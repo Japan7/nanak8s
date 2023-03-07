@@ -17,7 +17,7 @@ releases:
           host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: kube-system-japan7-basic-auth@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-admin-basic-auth@kubernetescrd
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
     namespace: longhorn-system
