@@ -2,16 +2,19 @@ environments:
   default:
     secrets:
       - ../shared.sops.yaml
+      - default.sops.yaml
 ---
 repositories:
   - name: open-8gears
     url: https://8gears.container-registry.com/chartrepo/library/
 
 releases:
-  - name: n8s
+  - name: n8n
     chart: open-8gears/n8n
     namespace: n8n
     values:
+      - n8n:
+          encryption_key: "{{ .Values.encryptionKey }}"
       - config:
           host: n8n.{{ .Values.domain }}
       - persistence:
