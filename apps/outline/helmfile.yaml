@@ -1,0 +1,12 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      # - default.sops.yaml
+---
+releases:
+  - name: outline-cnpg
+    chart: ../../charts/cnpg-cluster
+    namespace: outline
+    values:
+      - release: 15

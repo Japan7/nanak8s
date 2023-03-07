@@ -22,6 +22,7 @@ releases:
           # Apps
           - name: keycloak
           - name: syncplay
+          - name: outline
 
           # Data
           - name: nanadb
