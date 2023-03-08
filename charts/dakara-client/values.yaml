@@ -1,0 +1,7 @@
+image: ghcr.io/japan7/dakara-client
+tag: master
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure

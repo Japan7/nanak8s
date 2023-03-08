@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  serviceName: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: dakara_server.settings.production
+            - name: HOST_URL
+              value: "{{ .Values.ingress.host }}"
+            - name: DATABASE_URL
+              value: "sqlite:///db/db.sqlite3"
+            - name: LOG_FILE_PATH
+              value: "/dev/stdout"
+            - name: LOG_FILE_MAX_SIZE
+              value: "8388608"
+            - name: LOG_FILE_BACKUP_COUNT
+              value: "0"
+            - name: ALLOWED_HOSTS
+              value: "*"
+            - name: STATIC_ROOT
+              value: "/"
+            - name: SECRET_KEY
+              value: "{{ .Values.secretKey }}"
+            - name: EMAIL_ENABLE
+              value: "{{ .Values.email.enable }}"
+            - name: SENDER_EMAIL
+              value: "{{ .Values.email.sender }}"
+            - name: EMAIL_HOST
+              value: "{{ .Values.email.host }}"
+            - name: EMAIL_PORT
+              value: "{{ .Values.email.port }}"
+            - name: EMAIL_USE_SSL
+              value: "{{ .Values.email.ssl }}"
+            {{ if .Values.email.enabled }}
+            - name: EMAIL_HOST_USER
+              secretKeyRef:
+                name: "{{ .Release.Name }}-smtp"
+                key: username
+            - name: EMAIL_HOST_PASSWORD
+              secretKeyRef:
+                name: "{{ .Release.Name }}-smtp"
+                key: password
+            {{ end }}
+          volumeMounts:
+            - name: database
+              mountPath: /db
+          ports:
+            - containerPort: 22222
+  volumeClaimTemplates:
+    - metadata:
+        name: database
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 128Mi

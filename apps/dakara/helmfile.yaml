@@ -1,0 +1,27 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: dakara-server
+    chart: ../../charts/dakara-server
+    namespace: dakara
+    values:
+      - image: git.{{ .Values.domain }}/japan7/dakaraneko
+      - tag: master
+      - secretKey: "{{ .Values.server.secretKey }}"
+      - email:
+          sender: "{{ .Values.server.email.sender }}"
+          host: "{{ .Values.server.email.host }}"
+          user: "{{ .Values.server.email.user }}"
+          password: "{{ .Values.server.email.password }}"
+      - ingress:
+          host: dakara.{{ .Values.domain }}
+  - name: dakara-client
+    chart: ../../charts/dakara-client
+    namespace: dakara
+    values:
+      - ingress:
+          host: dakara.{{ .Values.domain }}

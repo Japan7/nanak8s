@@ -1,0 +1,18 @@
+image: ghcr.io/japan7/dakara-server
+tag: master
+
+secretKey: ""
+
+email:
+  enabled: true
+  sender: ""
+  host: ""
+  port: 465
+  ssl: "True"
+  user: ""
+  password: ""
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure

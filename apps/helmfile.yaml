@@ -27,6 +27,7 @@ releases:
           - name: filestash
           - name: waicolle
           - name: n8n
+          - name: dakara
 
           # Data
           - name: nanadb
