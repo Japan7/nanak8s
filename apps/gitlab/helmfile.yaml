@@ -13,6 +13,7 @@ releases:
     chart: gitlab/gitlab-runner
     namespace: gitlab
     values:
+      - name: nanak8s
       - gitlabUrl: "{{ .Values.website.url }}"
       - runnerRegistrationToken: "{{ .Values.website.runnerRegistrationToken }}"
       - runners:
@@ -31,6 +32,7 @@ releases:
     chart: gitlab/gitlab-runner
     namespace: gitlab
     values:
+      - name: nanak8s
       - gitlabUrl: "{{ .Values.websiteDeploy.url }}"
       - runnerRegistrationToken: "{{ .Values.websiteDeploy.runnerRegistrationToken }}"
       - runners:
