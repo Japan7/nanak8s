@@ -36,8 +36,9 @@ spec:
               value: "/"
             - name: SECRET_KEY
               value: "{{ .Values.secretKey }}"
+            {{ if .Values.smtp.enabled }}
             - name: EMAIL_ENABLE
-              value: "{{ .Values.smtp.enabled }}"
+              value: "True"
             - name: SENDER_EMAIL
               value: "{{ .Values.smtp.sender }}"
             - name: EMAIL_HOST
@@ -46,15 +47,16 @@ spec:
               value: "{{ .Values.smtp.port }}"
             - name: EMAIL_USE_SSL
               value: "{{ .Values.smtp.ssl }}"
-            {{ if .Values.smtp.enabled }}
             - name: EMAIL_HOST_USER
-              secretKeyRef:
-                name: "{{ .Release.Name }}-smtp"
-                key: username
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-smtp"
+                  key: username
             - name: EMAIL_HOST_PASSWORD
-              secretKeyRef:
-                name: "{{ .Release.Name }}-smtp"
-                key: password
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-smtp"
+                  key: password
             {{ end }}
           volumeMounts:
             - name: database
