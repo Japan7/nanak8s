@@ -22,18 +22,18 @@ releases:
           EXECUTIONS_DATA_PRUNE: true
       - config:
           host: n8n.{{ .Values.domain }}
+      - secrets:
           security:
             excludeEndpoints: webhook,webhookTest
             basicAuth:
               active: true
-      - secrets:
-          security:
-            basicAuth:
               user: "{{ .Values.basicAuth.username }}"
               password: "{{ .Values.basicAuth.password }}"
       - persistence:
           enabled: true
           type: dynamic
+      - deploymentStrategy:
+          type: "RollingUpdate"
       - ingress:
           enabled: true
           annotations:
