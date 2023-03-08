@@ -9,7 +9,6 @@ releases:
     chart: ../../charts/dakara-server
     namespace: dakara
     values:
-      - image: git.{{ .Values.domain }}/japan7/dakaraneko
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"

@@ -42,6 +42,7 @@ releases:
               autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
               existingSecret: forgejo-oauth-secret
       - memcached:
+          # bitnami arm64 image is broken
           nodeSelector:
             kubernetes.io/arch: amd64
       - postgresql:
