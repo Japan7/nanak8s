@@ -20,6 +20,8 @@ spec:
               value: dakara_server.settings.production
             - name: HOST_URL
               value: "{{ .Values.ingress.host }}"
+            - name: DATABASE_URL
+              value: "sqlite:///db/db.sqlite3"
             - name: LOG_FILE_PATH
               value: "/dev/stdout"
             - name: LOG_FILE_MAX_SIZE
