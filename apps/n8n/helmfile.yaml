@@ -29,7 +29,6 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: kube-system-admin-basic-auth@kubernetescrd
           hosts:
             - host: n8n.{{ .Values.domain }}
               paths:
