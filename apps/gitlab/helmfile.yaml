@@ -9,6 +9,21 @@ repositories:
     url: https://charts.gitlab.io
 
 releases:
+  - name: inpt-runner
+    chart: gitlab/gitlab-runner
+    namespace: gitlab
+    values:
+      - gitlabUrl: "{{ .Values.inpt.url }}"
+      - runnerRegistrationToken: "{{ .Values.inpt.runnerRegistrationToken }}"
+      - runners:
+          name: nanak8s
+          config: |
+            [[runners]]
+              [runners.kubernetes]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
+      - rbac:
+          create: true
   - name: website-runner
     chart: gitlab/gitlab-runner
     namespace: gitlab
@@ -16,7 +31,7 @@ releases:
       - gitlabUrl: "{{ .Values.website.url }}"
       - runnerRegistrationToken: "{{ .Values.website.runnerRegistrationToken }}"
       - runners:
-          name: nanak8s
+          name: nanak8s-website
           config: |
             [[runners]]
               [runners.kubernetes]
@@ -35,7 +50,7 @@ releases:
       - gitlabUrl: "{{ .Values.websiteDeploy.url }}"
       - runnerRegistrationToken: "{{ .Values.websiteDeploy.runnerRegistrationToken }}"
       - runners:
-          name: nanak8s
+          name: nanak8s-website-deploy
           config: |
             [[runners]]
               [runners.kubernetes]
