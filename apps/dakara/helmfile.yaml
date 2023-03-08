@@ -10,7 +10,6 @@ releases:
     namespace: dakara
     values:
       - image: git.{{ .Values.domain }}/japan7/dakaraneko
-      - tag: master
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
