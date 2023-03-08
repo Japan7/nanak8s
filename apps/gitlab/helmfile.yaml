@@ -24,3 +24,5 @@ releases:
                   mount_path = "/outputs"
                   medium = "Memory"
           tags: "hugo"
+      - rbac:
+          create: true
