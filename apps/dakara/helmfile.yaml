@@ -12,11 +12,11 @@ releases:
       - image: git.{{ .Values.domain }}/japan7/dakaraneko
       - tag: master
       - secretKey: "{{ .Values.server.secretKey }}"
-      - email:
-          sender: "{{ .Values.server.email.sender }}"
-          host: "{{ .Values.server.email.host }}"
-          user: "{{ .Values.server.email.user }}"
-          password: "{{ .Values.server.email.password }}"
+      - smtp:
+          sender: "{{ .Values.server.smtp.sender }}"
+          host: "{{ .Values.server.smtp.host }}"
+          user: "{{ .Values.server.smtp.user }}"
+          password: "{{ .Values.server.smtp.password }}"
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: dakara-client

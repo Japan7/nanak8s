@@ -3,7 +3,7 @@ tag: master
 
 secretKey: ""
 
-email:
+smtp:
   enabled: true
   sender: ""
   host: ""

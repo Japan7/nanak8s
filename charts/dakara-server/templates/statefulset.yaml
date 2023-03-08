@@ -35,16 +35,16 @@ spec:
             - name: SECRET_KEY
               value: "{{ .Values.secretKey }}"
             - name: EMAIL_ENABLE
-              value: "{{ .Values.email.enable }}"
+              value: "{{ .Values.smtp.enable }}"
             - name: SENDER_EMAIL
-              value: "{{ .Values.email.sender }}"
+              value: "{{ .Values.smtp.sender }}"
             - name: EMAIL_HOST
-              value: "{{ .Values.email.host }}"
+              value: "{{ .Values.smtp.host }}"
             - name: EMAIL_PORT
-              value: "{{ .Values.email.port }}"
+              value: "{{ .Values.smtp.port }}"
             - name: EMAIL_USE_SSL
-              value: "{{ .Values.email.ssl }}"
-            {{ if .Values.email.enabled }}
+              value: "{{ .Values.smtp.ssl }}"
+            {{ if .Values.smtp.enabled }}
             - name: EMAIL_HOST_USER
               secretKeyRef:
                 name: "{{ .Release.Name }}-smtp"
