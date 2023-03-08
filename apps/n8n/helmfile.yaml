@@ -16,7 +16,7 @@ releases:
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
       - extraEnv:
-          WEBHOOK_TUNNEL_URL: "https://n8n.{{ .Values.domain }}"
+          WEBHOOK_URL: "https://n8n.{{ .Values.domain }}"
       - config:
           host: n8n.{{ .Values.domain }}
       - persistence:
