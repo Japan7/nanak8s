@@ -19,10 +19,12 @@ releases:
           config: |
             [[runners]]
               [runners.kubernetes]
-                [[runners.kubernetes.volumes.empty_dir]]
-                  name = "outputs"
+                [[runners.kubernetes.volumes.pvc]]
+                  name = "website-runner"
                   mount_path = "/outputs"
-                  medium = "Memory"
           tags: "hugo"
       - rbac:
           create: true
+  - name: gitlab-extras
+    chart: ../../charts/gitlab-extras
+    namespace: gitlab
