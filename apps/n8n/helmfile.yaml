@@ -16,7 +16,10 @@ releases:
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
       - extraEnv:
-          WEBHOOK_URL: "https://n8n.{{ .Values.domain }}/"
+          NODE_ENV: production
+          N8N_PROTOCOL: https
+          WEBHOOK_URL: "https://n8n.{{ .Values.domain }}"
+          EXECUTIONS_DATA_PRUNE: true
       - config:
           host: n8n.{{ .Values.domain }}
       - persistence:
