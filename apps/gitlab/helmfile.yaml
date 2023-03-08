@@ -1,0 +1,26 @@
+environments:
+  default:
+    secrets:
+      - ../shared.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: gitlab
+    url: https://charts.gitlab.io
+
+releases:
+  - name: website-runner
+    chart: gitlab/gitlab-runner
+    namespace: gitlab
+    values:
+      - gitlabUrl: "{{ .Values.website.url }}"
+      - runnerRegistrationToken: "{{ .Values.website.runnerRegistrationToken }}"
+      - runners:
+          config: |
+            [[runners]]
+              [runners.kubernetes]
+                [[runners.kubernetes.volumes.empty_dir]]
+                  name = "outputs"
+                  mount_path = "/outputs"
+                  medium = "Memory"
+          tags: "hugo"

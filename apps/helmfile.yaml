@@ -18,6 +18,7 @@ releases:
             namespace: argocd
           - name: forgejo
           - name: woodpecker
+          - name: gitlab
 
           # Apps
           - name: keycloak
