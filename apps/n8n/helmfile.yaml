@@ -13,6 +13,9 @@ releases:
     chart: open-8gears/n8n
     namespace: n8n
     values:
+      - image:
+          tag: latest
+          imagePullPolicy: Always
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
       - extraEnv:
