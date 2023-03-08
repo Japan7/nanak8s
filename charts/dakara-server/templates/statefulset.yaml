@@ -37,7 +37,7 @@ spec:
             - name: SECRET_KEY
               value: "{{ .Values.secretKey }}"
             - name: EMAIL_ENABLE
-              value: "{{ .Values.smtp.enable }}"
+              value: "{{ .Values.smtp.enabled }}"
             - name: SENDER_EMAIL
               value: "{{ .Values.smtp.sender }}"
             - name: EMAIL_HOST
