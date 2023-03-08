@@ -19,6 +19,26 @@ releases:
           config: |
             [[runners]]
               [runners.kubernetes]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "arm64"
+                [[runners.kubernetes.volumes.pvc]]
+                  name = "website-runner"
+                  mount_path = "/outputs"
+          tags: "hugo"
+      - rbac:
+          create: true
+  - name: website-deploy-runner
+    chart: gitlab/gitlab-runner
+    namespace: gitlab
+    values:
+      - gitlabUrl: "{{ .Values.websiteDeploy.url }}"
+      - runnerRegistrationToken: "{{ .Values.websiteDeploy.runnerRegistrationToken }}"
+      - runners:
+          config: |
+            [[runners]]
+              [runners.kubernetes]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "arm64"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
