@@ -7,6 +7,10 @@ spec:
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
+  {{ if eq .Values.persistence.accessMode "ReadWriteOnce" }}
+  strategy:
+    type: Recreate
+  {{ end }}
   template:
     metadata:
       labels:
@@ -15,10 +19,6 @@ spec:
       nodeSelector:
         # can't build arm64 images
         kubernetes.io/arch: amd64
-      {{ if eq .Values.persistence.accessMode "ReadWriteOnce" }}
-      strategy:
-        type: Recreate
-      {{ end }}
       volumes:
         - name: state
           persistentVolumeClaim:
