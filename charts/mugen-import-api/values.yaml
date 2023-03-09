@@ -1,0 +1,7 @@
+image: ""
+tag: master
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure

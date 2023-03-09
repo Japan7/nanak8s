@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      nodeSelector:
+        # no arm64 image available
+        kubernetes.io/arch: amd64
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          ports:
+            - containerPort: 8000
