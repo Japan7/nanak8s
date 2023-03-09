@@ -1,13 +1,3 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: "{{ .Release.Name }}-stripprefix"
-spec:
-  stripPrefix:
-    prefixes:
-      - /api
-      - /ws
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -16,7 +6,6 @@ metadata:
     {{ range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{ end }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"
