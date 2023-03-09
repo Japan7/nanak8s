@@ -3,12 +3,11 @@ tag: subs
 
 replicas: 1
 
+persistence:
+  mountPath: /filestash/data/state
+
 cache:
   mountPath: /filestash/data/cache
-
-persistence:
-  accessMode: ReadWriteOnce # ReadWriteMany required if replicas > 1
-  mountPath: /filestash/data/state
 
 ingress:
   host: ""

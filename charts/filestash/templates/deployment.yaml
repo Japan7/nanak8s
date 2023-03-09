@@ -7,10 +7,6 @@ spec:
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
-  {{ if eq .Values.persistence.accessMode "ReadWriteOnce" }}
-  strategy:
-    type: Recreate
-  {{ end }}
   template:
     metadata:
       labels:
