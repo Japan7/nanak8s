@@ -29,6 +29,9 @@ spec:
         - name: localsettings
           secret:
             secretName: {{ .Release.Name }}-localsettings
+        - name: dumps
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dumps
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image }}:{{ .Values.tag }}"
@@ -53,5 +56,7 @@ spec:
               mountPath: /app/nanapi/local_settings.py
               subPath: local_settings.py
               readOnly: true
+            - name: dumps
+              mountPath: /app/dumps
           ports:
             - containerPort: 8000
