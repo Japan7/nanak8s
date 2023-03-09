@@ -15,7 +15,7 @@ releases:
     namespace: woodpecker
     values:
       - image:
-          tag: next
+          tag: next-0148151f3d
       - env:
           WOODPECKER_HOST: https://woodpecker.{{ .Values.domain }}
           WOODPECKER_OPEN: true
