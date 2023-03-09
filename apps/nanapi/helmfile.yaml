@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 81d61ef3
+      - tag: 2023.03.09
       - replicas: 3
     secrets:
       - ../shared.sops.yaml
