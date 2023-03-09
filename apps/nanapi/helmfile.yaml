@@ -4,7 +4,7 @@ environments:
       - tag: 2023.03.09
       - replicas: 2
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
       - prod.sops.yaml
   staging:
@@ -12,7 +12,7 @@ environments:
       - tag: ff4a059a
       - replicas: 1
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
       - staging.sops.yaml
   dev:
@@ -20,7 +20,7 @@ environments:
       - tag: main
       - replicas: 1
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
       - dev.sops.yaml
 ---

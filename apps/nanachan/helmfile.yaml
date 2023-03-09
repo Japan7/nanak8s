@@ -3,19 +3,19 @@ environments:
     values:
       - tag: 2023.03.07
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
       - tag: 3df527c5
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - hachi.sops.yaml
   snow:
     values:
       - tag: master
     secrets:
-      - ../shared.sops.yaml
+      - ../globals.sops.yaml
       - snow.sops.yaml
 ---
 repositories:
