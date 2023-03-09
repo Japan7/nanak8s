@@ -1,17 +1,20 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
 spec:
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
-  serviceName: "{{ .Release.Name }}"
   template:
     metadata:
       labels:
         app: "{{ .Release.Name }}"
     spec:
+      volumes:
+        - name: database
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-db"
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image }}:{{ .Values.tag }}"
@@ -62,12 +65,3 @@ spec:
               mountPath: /db
           ports:
             - containerPort: 22222
-  volumeClaimTemplates:
-    - metadata:
-        name: database
-      spec:
-        accessModes:
-          - "ReadWriteOnce"
-        resources:
-          requests:
-            storage: 128Mi

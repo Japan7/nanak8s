@@ -14,8 +14,21 @@ spec:
       nodeSelector:
         # no arm64 image available
         kubernetes.io/arch: amd64
+      volumes:
+        - name: config
+          configMap:
+            name: "{{ .Release.Name }}"
+        - name: database
+          persistentVolumeClaim:
+            claimName: "{{ .Values.databasePVC }}"
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image }}:{{ .Values.tag }}"
+          volumeMounts:
+            - name: config
+              subPath: config.py
+              mountPath: /config.py
+            - name: database
+              mountPath: /db
           ports:
             - containerPort: 8000

@@ -1,6 +1,8 @@
 image: ""
 tag: master
 
+databasePVC: ""
+
 ingress:
   host: ""
   entryPoints:
