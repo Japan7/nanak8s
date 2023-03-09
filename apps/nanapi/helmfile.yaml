@@ -8,7 +8,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: 81d61ef3
+      - tag: e018bf8d
     secrets:
       - ../shared.sops.yaml
       - ../nanadb/default.sops.yaml
