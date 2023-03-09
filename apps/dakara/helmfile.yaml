@@ -27,6 +27,6 @@ releases:
     chart: ../../charts/mugen-import-api
     namespace: dakara
     values:
-      - image: git.{{ .Values.domain }}/Japan7/mugen-import-api
+      - image: git.{{ .Values.domain }}/japan7/mugen-import-api
       - ingress:
           host: dakara.{{ .Values.domain }}
