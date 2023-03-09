@@ -21,7 +21,7 @@ spec:
             - name: HOST_URL
               value: "{{ .Values.ingress.host }}"
             - name: DATABASE_URL
-              value: "sqlite:///db/db.sqlite3"
+              value: "sqlite:////db/db.sqlite3"
             - name: LOG_FILE_PATH
               value: "/dev/stdout"
             - name: LOG_FILE_MAX_SIZE
@@ -56,7 +56,7 @@ spec:
                   name: "{{ .Release.Name }}-smtp"
                   key: password
             {{ end }}
-          command: ["sh", "-xc", "touch /db/db.sqlite3 && chown $(id -u):$(id -g) /db/db.sqlite3 && ln -sf /db/db.sqlite3 dakara_server/db.sqlite3 && dakara_server/manage.py migrate && dakara_server/manage.py runserver"]
+          command: ["sh", "-xc", "touch /db/db.sqlite3 && ln -sf /db/db.sqlite3 dakara_server/db.sqlite3 && dakara_server/manage.py migrate && dakara_server/manage.py runserver"]
           volumeMounts:
             - name: database
               mountPath: /db
