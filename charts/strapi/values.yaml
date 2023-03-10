@@ -1,0 +1,20 @@
+image: ""
+tag: ""
+
+replicas: 1
+
+cnpg:
+  name: ""
+
+secret:
+  appKeys: ""
+  apiTokenSalt: ""
+  adminJwtSecret: ""
+  jwtSecret: ""
+  transferTokenSalt: ""
+
+ingress:
+  host: ""
+  pathPrefix: "/"
+  entryPoints:
+    - websecure

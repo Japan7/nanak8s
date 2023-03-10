@@ -1,5 +1,5 @@
 imageName: ghcr.io/cloudnative-pg/postgresql
-release: 15
+release: ""
 
 instances: 3
 

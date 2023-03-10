@@ -1,0 +1,45 @@
+environments:
+  prod:
+    values:
+      - tag: main
+      - cnpgInstances: 3
+    secrets:
+      - ../globals.sops.yaml
+      - prod.sops.yaml
+  staging:
+    values:
+      - tag: main
+      - cnpgInstances: 1
+    secrets:
+      - ../globals.sops.yaml
+      - staging.sops.yaml
+  dev:
+    values:
+      - tag: main
+      - cnpgInstances: 1
+    secrets:
+      - ../globals.sops.yaml
+      - dev.sops.yaml
+---
+releases:
+  - name: strapi-{{ .Environment.Name }}-cnpg
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 15
+      - instances: "{{ .Values.cnpgInstances }}"
+  - name: strapi-{{ .Environment.Name }}
+    chart: ../../charts/strapi
+    values:
+      - image: git.{{ .Values.domain }}/japan7/strapi
+      - tag: "{{ .Values.tag }}"
+      - cnpg:
+          name: strapi-{{ .Environment.Name }}-cnpg
+      - secret:
+          appKeys: "{{ .Values.appKeys }}"
+          apiTokenSalt: "{{ .Values.apiTokenSalt }}"
+          adminJwtSecret: "{{ .Values.adminJwtSecret }}"
+          jwtSecret: "{{ .Values.jwtSecret }}"
+          transferTokenSalt: "{{ .Values.transferTokenSalt }}"
+      - ingress:
+          host: strapi.{{ .Values.domain }}
+          pathPrefix: "/{{ .Environment.Name }}"

@@ -1,0 +1,34 @@
+{{ if ne .Values.ingress.pathPrefix "/" }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{ .Release.Name }}-stripprefix"
+spec:
+  stripPrefix:
+    prefixes:
+      - "{{ .Values.ingress.pathPrefix }}"
+---
+{{ end }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}"
+  annotations:
+    {{ range .Values.ingress.entryPoints }}
+    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
+    {{ end }}
+    {{ if ne .Values.ingress.pathPrefix "/" }}
+    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
+    {{ end }}
+spec:
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "{{ .Values.ingress.pathPrefix }}"
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 1337

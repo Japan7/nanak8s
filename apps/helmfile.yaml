@@ -59,3 +59,17 @@ releases:
             namespace: nanachan
             subdir: nanachan
             environment: snow
+
+          # strapi
+          - name: strapi-prod
+            namespace: strapi
+            subdir: strapi
+            environment: prod
+          - name: strapi-staging
+            namespace: strapi
+            subdir: strapi
+            environment: staging
+          - name: strapi-dev
+            namespace: strapi
+            subdir: strapi
+            environment: dev
