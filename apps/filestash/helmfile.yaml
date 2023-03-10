@@ -6,7 +6,6 @@ environments:
 releases:
   - name: filestash
     chart: ../../charts/filestash
-    namespace: filestash
     values:
       - ingress:
           host: filestash.{{ .Values.domain }}

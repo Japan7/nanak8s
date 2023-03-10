@@ -10,4 +10,3 @@ repositories:
 releases:
   - name: cnpg
     chart: cnpg/cloudnative-pg
-    namespace: cnpg-system

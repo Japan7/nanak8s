@@ -7,7 +7,6 @@ environments:
 releases:
   - name: syncplay
     chart: ../../charts/syncplay
-    namespace: syncplay
     values:
       - syncplay:
           password: "{{ .Values.password }}"

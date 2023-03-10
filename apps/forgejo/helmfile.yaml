@@ -7,7 +7,6 @@ environments:
 releases:
   - name: forgejo-cnpg
     chart: ../../charts/cnpg-cluster
-    namespace: forgejo
     values:
       - release: 14
       - database: forgejo
@@ -17,7 +16,6 @@ releases:
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.3.1
-    namespace: forgejo
     values:
       - gitea:
           config:
@@ -59,7 +57,6 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
-    namespace: forgejo
     values:
       - oauth:
           key: "{{ .Values.keycloak.forgejo.clientId }}"

@@ -30,14 +30,12 @@ repositories:
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
-    namespace: nanapi
     values:
       - persistence:
           enabled: true
           size: 512Mi
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi
-    namespace: nanapi
     values:
       - image: git.{{ .Values.domain }}/japan7/nanapi
       - tag: "{{ .Values.tag }}"

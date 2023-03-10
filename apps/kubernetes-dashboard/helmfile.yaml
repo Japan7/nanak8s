@@ -10,7 +10,6 @@ repositories:
 releases:
   - name: kubernetes-dashboard
     chart: kubernetes-dashboard/kubernetes-dashboard
-    namespace: kubernetes-dashboard
     values:
       - metricsScraper:
           enabled: true
@@ -22,4 +21,3 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: kubernetes-dashboard-extras
     chart: ../../charts/kubernetes-dashboard-extras
-    namespace: kubernetes-dashboard

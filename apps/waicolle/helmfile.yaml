@@ -7,7 +7,6 @@ environments:
 releases:
   - name: waicolle
     chart: ../../charts/waicolle
-    namespace: waicolle
     values:
       - nanapi:
           url: http://nanapi-prod.nanapi:8000

@@ -1,7 +1,6 @@
 releases:
   - name: apps
     chart: ../charts/argo-cd-apps
-    namespace: argocd
     values:
       - apps:
           # System

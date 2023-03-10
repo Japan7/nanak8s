@@ -14,7 +14,6 @@ repositories:
 releases:
   - name: argo-cd
     chart: argo/argo-cd
-    namespace: argocd
     values:
       - server:
           ingress:
@@ -51,7 +50,6 @@ releases:
                   mountPath: /tmp
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
-    namespace: argocd
     values:
       - age:
           privKey: "{{ .Values.age.privKey }}"

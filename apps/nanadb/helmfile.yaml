@@ -7,14 +7,12 @@ environments:
 releases:
   - name: nanadb-cnpg
     chart: ../../charts/cnpg-cluster
-    namespace: nanadb
     values:
       - release: 14
       - storage:
           size: 10Gi
   - name: nanadb
     chart: ../../charts/edgedb
-    namespace: nanadb
     values:
       - cnpg:
           name: nanadb-cnpg

@@ -11,7 +11,6 @@ repositories:
 releases:
   - name: n8n
     chart: open-8gears/n8n
-    namespace: n8n
     values:
       - image:
           tag: latest

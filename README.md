@@ -2,7 +2,7 @@
 
 ## Join the Japan7 cluster
 
-**[Wireguard](https://www.wireguard.com/install/) support** on the node is required to join the private cluster [innernet](https://github.com/tonarino/innernet).
+**[Wireguard](https://www.wireguard.com/install/) support** is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
 **Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8777/TCP (Syncplay).
 
@@ -123,8 +123,9 @@ sh -s - server \
 ### Launch Argo CD
 
 ```sh
-SOPS_AGE_KEY=<PRIVATE_KEY> helmfile apply -f apps/argo-cd/helmfile.yaml --set notifications.enabled=false
-kubectl apply -f apps/bootstrap.yaml
+export SOPS_AGE_KEY=<PRIVATE_KEY>
+helmfile apply -f apps/argo-cd/helmfile.yaml -n argocd --set notifications.enabled=false
+kubectl apply -f apps/bootstrap.yaml -n argocd
 ```
 
 This will install Argo CD on the cluster and configure it so it will automatically add and sync the other apps with this repository.

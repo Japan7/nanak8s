@@ -11,12 +11,10 @@ repositories:
 releases:
   - name: keycloak-cnpg
     chart: ../../charts/cnpg-cluster
-    namespace: keycloak
     values:
       - release: 14
   - name: keycloak
     chart: bitnami/keycloak
-    namespace: keycloak
     values:
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
@@ -56,7 +54,6 @@ releases:
                 mountPath: /providers
   - name: keycloak-extras
     chart: ../../charts/keycloak-extras
-    namespace: keycloak
     values:
       - admin:
           username: "{{ .Values.keycloak.admin.username }}"

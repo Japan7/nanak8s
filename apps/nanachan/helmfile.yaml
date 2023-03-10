@@ -24,7 +24,6 @@ repositories:
 releases:
   - name: nanachan-{{ .Environment.Name }}-redis
     chart: bitnami/redis
-    namespace: nanachan
     values:
       - architecture: standalone
       - auth:
@@ -34,7 +33,6 @@ releases:
             size: 1Gi
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
-    namespace: nanachan
     values:
       - image: git.{{ .Values.domain }}/japan7/nanachan
       - tag: "{{ .Values.tag }}"

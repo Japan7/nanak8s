@@ -10,7 +10,6 @@ repositories:
 releases:
   - name: longhorn
     chart: longhorn/longhorn
-    namespace: longhorn-system
     values:
       - ingress:
           enabled: true
@@ -20,4 +19,3 @@ releases:
             traefik.ingress.kubernetes.io/router.middlewares: kube-system-admin-basic-auth@kubernetescrd
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
-    namespace: longhorn-system

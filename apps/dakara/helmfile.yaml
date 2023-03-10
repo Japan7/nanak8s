@@ -7,7 +7,6 @@ environments:
 releases:
   - name: dakara-server
     chart: ../../charts/dakara-server
-    namespace: dakara
     values:
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
@@ -19,13 +18,11 @@ releases:
           host: dakara.{{ .Values.domain }}
   - name: dakara-client
     chart: ../../charts/dakara-client
-    namespace: dakara
     values:
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: mugen-import-api
     chart: ../../charts/mugen-import-api
-    namespace: dakara
     values:
       - image: git.{{ .Values.domain }}/japan7/mugen-import-api
       - databasePVC: dakara-server-db

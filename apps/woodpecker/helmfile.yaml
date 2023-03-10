@@ -12,7 +12,6 @@ releases:
   - name: woodpecker-server
     # chart: woodpecker/woodpecker-server
     chart: ../../charts/woodpecker-server-babykart
-    namespace: woodpecker
     values:
       - image:
           tag: next
@@ -44,7 +43,6 @@ releases:
   - name: woodpecker-agent
     # chart: woodpecker/woodpecker-agent
     chart: ../../charts/woodpecker-agent-git
-    namespace: woodpecker
     values:
       - image:
           tag: next
@@ -60,7 +58,6 @@ releases:
           kubernetes.io/arch: amd64
   - name: woodpecker-extras
     chart: ../../charts/woodpecker-extras
-    namespace: woodpecker
     values:
       - agentSecret: "{{ .Values.woodpecker.agentSecret }}"
       - github:

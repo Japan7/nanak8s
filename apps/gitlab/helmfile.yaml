@@ -11,7 +11,6 @@ repositories:
 releases:
   - name: inpt-runner
     chart: gitlab/gitlab-runner
-    namespace: gitlab
     values:
       - gitlabUrl: "{{ .Values.inpt.url }}"
       - runnerRegistrationToken: "{{ .Values.inpt.runnerRegistrationToken }}"
@@ -26,7 +25,6 @@ releases:
           create: true
   - name: website-runner
     chart: gitlab/gitlab-runner
-    namespace: gitlab
     values:
       - gitlabUrl: "{{ .Values.website.url }}"
       - runnerRegistrationToken: "{{ .Values.website.runnerRegistrationToken }}"
@@ -45,7 +43,6 @@ releases:
           create: true
   - name: website-deploy-runner
     chart: gitlab/gitlab-runner
-    namespace: gitlab
     values:
       - gitlabUrl: "{{ .Values.websiteDeploy.url }}"
       - runnerRegistrationToken: "{{ .Values.websiteDeploy.runnerRegistrationToken }}"
@@ -64,4 +61,3 @@ releases:
           create: true
   - name: gitlab-extras
     chart: ../../charts/gitlab-extras
-    namespace: gitlab

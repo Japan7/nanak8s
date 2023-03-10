@@ -11,12 +11,10 @@ repositories:
 releases:
   - name: outline-cnpg
     chart: ../../charts/cnpg-cluster
-    namespace: outline
     values:
       - release: 15
   - name: outline-redis
     chart: bitnami/redis
-    namespace: outline
     values:
       - architecture: standalone
       - auth:
@@ -26,7 +24,6 @@ releases:
             size: 1Gi
   - name: outline
     chart: ../../charts/outline
-    namespace: outline
     values:
       - cnpg:
           name: outline-cnpg
