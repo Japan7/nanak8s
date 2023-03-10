@@ -15,7 +15,7 @@ releases:
           password: "{{ .Values.cnpg.password }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
-    version: 0.3.1
+    version: '*'
     values:
       - gitea:
           config:
@@ -39,10 +39,6 @@ releases:
               provider: "openidConnect"
               autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
               existingSecret: forgejo-oauth-secret
-      - memcached:
-          nodeSelector:
-            # bitnami arm64 image is broken
-            kubernetes.io/arch: amd64
       - postgresql:
           enabled: false
       - ingress:
