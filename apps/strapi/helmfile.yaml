@@ -31,7 +31,7 @@ releases:
     chart: ../../charts/strapi
     values:
       - image:
-          repository: git.{{ .Values.domain }}/japan7/strapi
+          repository: git.{{ .Values.domain }}/japan7/strapi-japan7
           tag: "{{ .Values.tag }}"
       - cnpg:
           name: strapi-{{ .Environment.Name }}-cnpg
