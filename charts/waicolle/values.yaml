@@ -1,5 +1,6 @@
-image: ghcr.io/japan7/waicolle-web
-tag: main
+image:
+  repository: ghcr.io/japan7/waicolle-web
+  tag: main
 
 replicas: 1
 

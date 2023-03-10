@@ -21,7 +21,7 @@ spec:
             secretName: {{ .Release.Name }}-localsettings
       containers:
         - name: "{{ .Chart.Name }}-tasks"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           args: ["nanapi.tasks"]
           env:
             - name: EDGEDB_SERVER_USER

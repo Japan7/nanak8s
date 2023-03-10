@@ -1,5 +1,6 @@
-image: ""
-tag: master
+image:
+  repository: ""
+  tag: master
 
 databasePVC: ""
 

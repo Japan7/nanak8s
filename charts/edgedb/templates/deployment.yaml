@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: "{{ .Chart.Name }}"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
             - name: PSQL_USERNAME
               valueFrom:

@@ -34,8 +34,9 @@ releases:
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:
-      - image: git.{{ .Values.domain }}/japan7/nanachan
-      - tag: "{{ .Values.tag }}"
+      - image:
+          repository: git.{{ .Values.domain }}/japan7/nanachan
+          tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - ingress:

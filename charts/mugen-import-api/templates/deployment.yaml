@@ -23,7 +23,7 @@ spec:
             claimName: "{{ .Values.databasePVC }}"
       containers:
         - name: "{{ .Chart.Name }}"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           volumeMounts:
             - name: config
               subPath: config.py

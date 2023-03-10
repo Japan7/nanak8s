@@ -12,13 +12,16 @@ spec:
       labels:
         app: "{{ .Release.Name }}"
     spec:
+      nodeSelector:
+        # no arm64 image available
+        kubernetes.io/arch: amd64
       volumes:
         - name: uploads
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-uploads
       containers:
         - name: "{{ .Chart.Name }}"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           envFrom:
             - configMapRef:
                 name: {{ .Release.Name }}-config

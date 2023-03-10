@@ -1,5 +1,6 @@
-image: ghcr.io/japan7/dakara-server
-tag: master
+image:
+  repository: ghcr.io/japan7/dakara-server
+  tag: master
 
 secretKey: ""
 

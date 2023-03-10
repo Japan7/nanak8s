@@ -1,5 +1,6 @@
-image: ghcr.io/japan7/dakara-client-web
-tag: master
+image:
+  repository: ghcr.io/japan7/dakara-client-web
+  tag: master
 
 ingress:
   host: ""

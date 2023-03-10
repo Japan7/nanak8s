@@ -32,7 +32,7 @@ spec:
           emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           volumeMounts:
             - name: localsettings
               mountPath: /app/nanachan/local_settings.py

@@ -17,7 +17,7 @@ spec:
             claimName: "{{ .Release.Name }}-db"
       containers:
         - name: "{{ .Chart.Name }}"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: dakara_server.settings.production

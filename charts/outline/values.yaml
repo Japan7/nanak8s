@@ -1,5 +1,6 @@
-image: outlinewiki/outline
-tag: latest
+image:
+  repository: outlinewiki/outline
+  tag: latest
 
 cnpg:
   name: ""

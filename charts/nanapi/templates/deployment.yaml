@@ -35,7 +35,7 @@ spec:
             claimName: {{ .Release.Name }}-dumps
       containers:
         - name: "{{ .Chart.Name }}"
-          image: "{{ .Values.image }}:{{ .Values.tag }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           args: ["nanapi"]
           env:
             - name: EDGEDB_SERVER_USER

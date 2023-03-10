@@ -37,8 +37,9 @@ releases:
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi
     values:
-      - image: git.{{ .Values.domain }}/japan7/nanapi
-      - tag: "{{ .Values.tag }}"
+      - image:
+          repository: git.{{ .Values.domain }}/japan7/nanapi
+          tag: "{{ .Values.tag }}"
       - replicas: "{{ .Values.replicas }}"
       - edgedb:
           service: nanadb.nanadb

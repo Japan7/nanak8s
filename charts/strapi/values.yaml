@@ -1,5 +1,6 @@
-image: ""
-tag: ""
+image:
+  repository: ""
+  tag: ""
 
 replicas: 1
 

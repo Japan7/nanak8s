@@ -1,5 +1,6 @@
-image: ""
-tag: latest
+image:
+  repository: ""
+  tag: latest
 
 edgedb:
   service: ""

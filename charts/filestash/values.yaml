@@ -1,5 +1,6 @@
-image: ghcr.io/japan7/filestash
-tag: subs
+image:
+  repository: ghcr.io/japan7/filestash
+  tag: subs
 
 replicas: 1
 

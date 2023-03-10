@@ -1,5 +1,6 @@
-image: edgedb/edgedb
-tag: latest
+image:
+  repository: edgedb/edgedb
+  tag: latest
 
 replicas: 1
 

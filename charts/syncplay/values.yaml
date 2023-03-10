@@ -1,4 +1,6 @@
-image: ghcr.io/japan7/syncplay:master
+image:
+  repository: ghcr.io/japan7/syncplay
+  tag: master
 
 syncplay:
   password: ""
