@@ -7,7 +7,6 @@ environments:
 releases:
   - name: traefik-extras
     chart: ../../charts/traefik-extras
-    namespace: kube-system
     values:
       - domain: "{{ .Values.domain }}"
       - traefik:
