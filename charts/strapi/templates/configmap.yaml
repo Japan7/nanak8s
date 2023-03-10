@@ -6,5 +6,5 @@ data:
   NODE_ENV: production
   DATABASE_CLIENT: postgres
   DATABASE_HOST: {{ .Values.cnpg.name }}-rw
-  DATABASE_PORT: 5432
+  DATABASE_PORT: "5432"
   DATABASE_NAME: strapi
