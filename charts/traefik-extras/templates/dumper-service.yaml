@@ -6,4 +6,4 @@ spec:
   selector:
     app: "traefik-dumper"
   ports:
-    - port: 4507
+    - port: 8080
