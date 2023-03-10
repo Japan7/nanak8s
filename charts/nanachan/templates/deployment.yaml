@@ -28,7 +28,7 @@ spec:
         - name: localsettings
           secret:
             secretName: {{ .Release.Name }}-localsettings
-        - name: http
+        - name: html
           emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
@@ -38,12 +38,13 @@ spec:
               mountPath: /app/nanachan/local_settings.py
               subPath: local_settings.py
               readOnly: true
-            - name: http
-              mountPath: /http/
-        - name: {{ .Chart.Name }}-nginx
-          image: nginx
+            - name: html
+              mountPath: /html
+        - name: http
+          image: svenstaro/miniserve:alpine
+          args: ["/html"]
           volumeMounts:
-            - name: http
-              mountPath: /usr/share/nginx/html/
+            - name: html
+              mountPath: /html
           ports:
-            - containerPort: 80
+            - containerPort: 8080

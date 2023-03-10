@@ -35,3 +35,5 @@ spec:
             - name: data
               subPath: dump
               mountPath: /html
+          ports:
+            - containerPort: 8080
