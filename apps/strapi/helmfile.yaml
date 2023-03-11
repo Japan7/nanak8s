@@ -9,7 +9,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: facffe8b
+      - tag: 22c68e79
       - cnpgInstances: 2
       - pvcSize: 1Gi
     secrets:
