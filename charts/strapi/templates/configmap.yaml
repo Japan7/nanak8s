@@ -4,7 +4,6 @@ metadata:
   name: {{ .Release.Name }}-config
 data:
   NODE_ENV: production
-  URL: http://{{ .Values.ingress.host }}{{ .Values.ingress.pathPrefix }}
   DATABASE_CLIENT: postgres
   DATABASE_HOST: {{ .Values.cnpg.name }}-rw
   DATABASE_PORT: "5432"
