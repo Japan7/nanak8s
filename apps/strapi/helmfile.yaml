@@ -1,43 +1,24 @@
 environments:
-  prod:
+  default:
     values:
       - tag: main
-      - cnpgInstances: 3
-      - pvcSize: 5Gi
     secrets:
       - ../globals.sops.yaml
-      - prod.sops.yaml
-  staging:
-    values:
-      - tag: 22c68e79
-      - cnpgInstances: 2
-      - pvcSize: 1Gi
-    secrets:
-      - ../globals.sops.yaml
-      - staging.sops.yaml
-  dev:
-    values:
-      - tag: main
-      - cnpgInstances: 2
-      - pvcSize: 1Gi
-    secrets:
-      - ../globals.sops.yaml
-      - dev.sops.yaml
+      - default.sops.yaml
 ---
 releases:
-  - name: strapi-{{ .Environment.Name }}-cnpg
+  - name: strapi-cnpg
     chart: ../../charts/cnpg-cluster
     values:
       - release: 15
-      - instances: "{{ .Values.cnpgInstances }}"
-  - name: strapi-{{ .Environment.Name }}
+  - name: strapi
     chart: ../../charts/strapi
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/strapi-japan7
           tag: "{{ .Values.tag }}"
       - cnpg:
-          name: strapi-{{ .Environment.Name }}-cnpg
+          name: strapi-cnpg
       - secret:
           appKeys: "{{ .Values.appKeys }}"
           apiTokenSalt: "{{ .Values.apiTokenSalt }}"
@@ -48,4 +29,3 @@ releases:
           pvcSize: "{{ .Values.pvcSize }}"
       - ingress:
           host: strapi.{{ .Values.domain }}
-          pathPrefix: "/{{ .Environment.Name }}"
