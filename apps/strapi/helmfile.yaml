@@ -25,7 +25,5 @@ releases:
           adminJwtSecret: "{{ .Values.adminJwtSecret }}"
           jwtSecret: "{{ .Values.jwtSecret }}"
           transferTokenSalt: "{{ .Values.transferTokenSalt }}"
-      - uploads:
-          pvcSize: "{{ .Values.pvcSize }}"
       - ingress:
           host: strapi.{{ .Values.domain }}
