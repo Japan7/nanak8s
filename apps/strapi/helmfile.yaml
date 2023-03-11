@@ -1,7 +1,7 @@
 environments:
   default:
     values:
-      - tag: f303b862
+      - tag: 1d1d0dd1
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
