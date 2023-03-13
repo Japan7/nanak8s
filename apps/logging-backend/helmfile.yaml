@@ -20,6 +20,8 @@ releases:
           resources:
             requests:
               storage: 5Gi
+      - sysctlInitContainer:
+          enabled: false
   - name: fluentd
     chart: fluent/fluentd
     values:
