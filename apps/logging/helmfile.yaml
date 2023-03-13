@@ -13,8 +13,6 @@ releases:
   - name: elasticsearch
     chart: bitnami/elasticsearch
     values:
-      - global:
-          kibanaEnabled: true
       - master:
           replicaCount: 3
           persistence:
@@ -26,23 +24,32 @@ releases:
           replicaCount: 0
       - ingest:
           enabled: false
-      - kibana:
-          persistence:
-            size: 1Gi
-          ingress:
-            enabled: true
-            hostname: kibana.{{ .Values.domain }}
-            pathType: Prefix
-            path: /
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: fluentd
     chart: fluent/fluentd
     values:
       - env:
           - name: FLUENT_ELASTICSEARCH_HOST
-            value: "elasticsearch-master-hl"
+            value: elasticsearch-master-hl
           - name: FLUENT_ELASTICSEARCH_PORT
-            value: "9200"
+            value: 9200
       - podSecurityPolicy:
           enabled: false
+  - name: kibana
+    chart: bitnami/kibana
+    values:
+      - elasticsearch:
+          hosts:
+            - elasticsearch-master-hl
+          port: 9200
+      - extraConfiguration:
+          server:
+            publicBaseUrl: http://kibana.{{ .Values.domain }}
+      - persistence:
+          size: 1Gi
+      - ingress:
+          enabled: true
+          hostname: kibana.{{ .Values.domain }}
+          pathType: Prefix
+          path: /
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
