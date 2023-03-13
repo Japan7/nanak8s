@@ -29,9 +29,9 @@ releases:
     values:
       - env:
           - name: FLUENT_ELASTICSEARCH_HOST
-            value: elasticsearch-master-hl
+            value: "elasticsearch-master-hl"
           - name: FLUENT_ELASTICSEARCH_PORT
-            value: 9200
+            value: "9200"
       - podSecurityPolicy:
           enabled: false
   - name: kibana
