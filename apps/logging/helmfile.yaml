@@ -45,6 +45,8 @@ releases:
           server:
             publicBaseUrl: http://kibana.{{ .Values.domain }}
       - persistence:
+          accessModes:
+            - ReadWriteMany
           size: 1Gi
       - ingress:
           enabled: true
