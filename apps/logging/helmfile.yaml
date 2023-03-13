@@ -27,3 +27,5 @@ releases:
             - host: kibana.{{ .Values.domain }}
               paths:
                 - path: /
+    needs:
+      - elasticsearch
