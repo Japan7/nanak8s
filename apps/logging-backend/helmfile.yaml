@@ -12,6 +12,14 @@ repositories:
 releases:
   - name: elasticsearch
     chart: elastic/elasticsearch
+    values:
+      - volumeClaimTemplate:
+          storageClassName: longhorn-elasticsearch
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5Gi
   - name: fluentd
     chart: fluent/fluentd
     values:
