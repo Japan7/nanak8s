@@ -13,13 +13,18 @@ releases:
   - name: elasticsearch
     chart: bitnami/elasticsearch
     values:
+      - global:
+          kibanaEnabled: true
       - master:
-          replicaCount: 3
+          replicaCount: 1
           persistence:
             storageClass: longhorn-elasticsearch
             size: 2Gi
       - data:
-          replicaCount: 0
+          replicaCount: 2
+          persistence:
+            storageClass: longhorn-elasticsearch
+            size: 2Gi
       - kibana:
           persistence:
             size: 1Gi
@@ -34,6 +39,7 @@ releases:
     chart: fluent/fluentd
     values:
       - env:
-          FLUENT_ELASTICSEARCH_HOST: elasticsearch
+          - name: FLUENT_ELASTICSEARCH_HOST
+            value: elasticsearch
       - podSecurityPolicy:
           enabled: false
