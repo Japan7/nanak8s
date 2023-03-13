@@ -12,8 +12,6 @@ repositories:
 releases:
   - name: elasticsearch
     chart: elastic/elasticsearch
-    values:
-      - createCert: false
   - name: fluentd
     chart: fluent/fluentd
     values:
