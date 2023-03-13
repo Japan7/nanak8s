@@ -16,15 +16,14 @@ releases:
       - global:
           kibanaEnabled: true
       - master:
-          replicaCount: 1
+          replicaCount: 3
           persistence:
             storageClass: longhorn-elasticsearch
             size: 2Gi
       - data:
-          replicaCount: 2
-          persistence:
-            storageClass: longhorn-elasticsearch
-            size: 2Gi
+          replicaCount: 0
+      - coordinating:
+          replicaCount: 0
       - kibana:
           persistence:
             size: 1Gi
