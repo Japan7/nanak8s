@@ -16,7 +16,7 @@ releases:
     chart: fluent/fluentd
     values:
       - podSecurityPolicy:
-          create: false
+          enabled: false
   - name: kibana
     chart: elastic/kibana
     values:
