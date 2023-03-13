@@ -1,0 +1,26 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: elastic
+    url: https://helm.elastic.co
+  - name: fluent
+    url: https://fluent.github.io/helm-charts
+
+releases:
+  - name: elasticsearch
+    chart: elastic/elasticsearch
+  - name: fluentd
+    chart: fluent/fluentd
+  - name: kibana
+    chart: elastic/kibana
+    values:
+      - ingress:
+          enabled: true
+          className: ""
+          hosts:
+            - host: kibana.{{ .Values.domain }}
+              paths:
+                - path: /
