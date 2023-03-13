@@ -24,6 +24,8 @@ releases:
           replicaCount: 0
       - coordinating:
           replicaCount: 0
+      - ingest:
+          enabled: false
       - kibana:
           persistence:
             size: 1Gi
