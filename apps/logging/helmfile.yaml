@@ -1,0 +1,37 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: fluent
+    url: https://fluent.github.io/helm-charts
+
+releases:
+  - name: elasticsearch
+    chart: bitnami/elasticsearch
+    values:
+      - master:
+          replicaCount: 3
+          persistence:
+            storageClass: longhorn-elasticsearch
+            size: 2Gi
+      - data:
+          replicaCount: 0
+      - kibana:
+          persistence:
+            size: 1Gi
+          ingress:
+            enabled: true
+            host: kibana.{{ .Values.domain }}
+            pathType: Prefix
+            path: /
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: fluentd
+    chart: fluent/fluentd
+    values:
+      - env:
+          FLUENT_ELASTICSEARCH_HOST: elasticsearch
