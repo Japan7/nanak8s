@@ -35,3 +35,5 @@ releases:
     values:
       - env:
           FLUENT_ELASTICSEARCH_HOST: elasticsearch
+      - podSecurityPolicy:
+          enabled: false
