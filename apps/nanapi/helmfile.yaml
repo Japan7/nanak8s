@@ -34,9 +34,6 @@ releases:
       - persistence:
           enabled: true
           size: 512Mi
-      - nodeSelector:
-          # arm64 image seems broken
-          kubernetes.io/arch: amd64
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi
     values:
