@@ -6,17 +6,8 @@ environments:
 repositories:
   - name: elastic
     url: https://helm.elastic.co
-  - name: fluent
-    url: https://fluent.github.io/helm-charts
 
 releases:
-  - name: elasticsearch
-    chart: elastic/elasticsearch
-  - name: fluentd
-    chart: fluent/fluentd
-    values:
-      - podSecurityPolicy:
-          enabled: false
   - name: kibana
     chart: elastic/kibana
     values:

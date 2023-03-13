@@ -11,7 +11,10 @@ releases:
             namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
-          - name: logging
+          - name: logging-backend
+            namespace: logging
+          - name: logging-frontend
+            namespace: logging
 
           # Dev
           - name: argo-cd
