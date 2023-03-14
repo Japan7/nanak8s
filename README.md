@@ -4,7 +4,7 @@
 
 **[Wireguard](https://www.wireguard.com/install/) support** is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8777/TCP (Syncplay).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
 
 ### Steps
 
@@ -27,12 +27,12 @@ sh -s - server \
 
 3. **Check Longhorn requirements**
 
-[Some system tools](https://longhorn.io/docs/1.4.0/deploy/install/#installation-requirements) need to be installed on the node so Longhorn, the used block storage system, can work properly.
+[Some system tools](https://longhorn.io/docs/1.4.1/deploy/install/#installation-requirements) need to be installed on the node so Longhorn, the used block storage system, can work properly.
 
 You can use the following script to check your environment:
 
 ```sh
-curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.0/scripts/environment_check.sh | bash
+curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.1/scripts/environment_check.sh | bash
 ```
 
 4. **[Optional] Setup Traefik passthrough**
