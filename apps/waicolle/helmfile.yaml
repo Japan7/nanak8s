@@ -10,6 +10,7 @@ releases:
     values:
       - image:
           tag: main
+          pullPolicy: Always
       - nanapi:
           url: http://nanapi-prod.nanapi:8000
           username: "{{ .Values.nanapi.username }}"

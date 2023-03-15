@@ -7,5 +7,8 @@ releases:
   - name: filestash
     chart: ../../charts/filestash
     values:
+      - image:
+          tag: subs
+          pullPolicy: Always
       - ingress:
           host: filestash.{{ .Values.domain }}

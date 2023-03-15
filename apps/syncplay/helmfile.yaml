@@ -10,6 +10,7 @@ releases:
     values:
       - image:
           tag: master
+          pullPolicy: Always
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"
