@@ -9,7 +9,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: ff4a059a
+      - tag: 421e4a35
       - replicas: 1
     secrets:
       - ../globals.sops.yaml
