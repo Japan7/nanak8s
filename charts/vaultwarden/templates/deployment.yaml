@@ -57,7 +57,7 @@ spec:
                   name: "{{ .Release.Name }}-smtp"
                   key: password
             - name: SMTP_PORT
-              value: {{ .Values.smtp.port }}
+              value: "{{ .Values.smtp.port }}"
             - name: SMTP_SECURITY
               value: {{ .Values.smtp.security }}
             {{ end }}
