@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: 2023.03.15
+      - tag: 2023.03.15-1
     secrets:
       - ../globals.sops.yaml
       - nana.sops.yaml
