@@ -19,6 +19,7 @@ releases:
           adminToken: "{{ .Values.adminToken }}"
       - smtp:
           from: "{{ .Values.smtp.from }}"
+          fromName: Vaultwarden Japan7
           host: "{{ .Values.smtp.host }}"
           username: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"

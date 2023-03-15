@@ -44,6 +44,8 @@ spec:
             {{ if .Values.smtp.enabled }}
             - name: SMTP_FROM
               value: {{ .Values.smtp.from }}
+            - name: SMTP_FROM_NAME
+              value: {{ .Values.smtp.fromName }}
             - name: SMTP_HOST
               value: {{ .Values.smtp.host }}
             - name: SMTP_USERNAME
