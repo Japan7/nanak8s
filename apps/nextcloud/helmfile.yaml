@@ -42,14 +42,6 @@ releases:
             secretName: nextcloud-cnpg-app
             usernameKey: username
             passwordKey: password
-      - redis:
-          enabled: true
-          image:
-            tag: latest # arm64 is broken on default tag
-          architecture: standalone
-          master:
-            persistence:
-              size: 1Gi
       - persistence:
           enabled: true
           accessMode: ReadWriteMany
