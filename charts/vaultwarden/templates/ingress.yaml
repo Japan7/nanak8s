@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}"
+  annotations:
+    {{ range .Values.ingress.entryPoints }}
+    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
+    {{ end }}
+spec:
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 80
+          {{ if .Values.config.websocketEnabled }}
+          - pathType: Exact
+            path: "/notifications/hub"
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 3012
+          {{ end }}

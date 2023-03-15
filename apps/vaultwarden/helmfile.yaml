@@ -1,0 +1,26 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: vaultwarden-cnpg
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 15
+  - name: vaultwarden
+    chart: ../../charts/vaultwarden
+    values:
+      - cnpg:
+          name: vaultwarden-cnpg
+      - config:
+          signupsAllowed: false
+          adminToken: "{{ .Values.adminToken }}"
+      - smtp:
+          from: "{{ .Values.smtp.from }}"
+          host: "{{ .Values.smtp.host }}"
+          username: "{{ .Values.smtp.username }}"
+          password: "{{ .Values.smtp.password }}"
+      - ingress:
+          host: vaultwarden.{{ .Values.domain }}

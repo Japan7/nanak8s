@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}"
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}"
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-data"
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          envFrom:
+            - configMapRef:
+                name: "{{ .Release.Name }}-config"
+          env:
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-admin"
+                  key: token
+            - name: PSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
+                  key: username
+            - name: PSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
+                  key: password
+            - name: DATABASE_URL
+              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw/{{ .Values.cnpg.database }}
+            {{ if .Values.smtp.enabled }}
+            - name: SMTP_FROM
+              value: {{ .Values.smtp.from }}
+            - name: SMTP_HOST
+              value: {{ .Values.smtp.host }}
+            - name: SMTP_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-smtp"
+                  key: username
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-smtp"
+                  key: password
+            - name: SMTP_PORT
+              value: {{ .Values.smtp.port }}
+            - name: SMTP_SECURITY
+              value: {{ .Values.smtp.security }}
+            {{ end }}
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          ports:
+            - name: http
+              containerPort: 80
+            {{ if .Values.config.websocketEnabled }}
+            - name: ws
+              containerPort: 3012
+            {{ end }}

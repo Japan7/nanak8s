@@ -27,6 +27,7 @@ releases:
           - name: waicolle
           - name: n8n
           - name: dakara
+          - name: vaultwarden
 
           # Data
           - name: nanadb

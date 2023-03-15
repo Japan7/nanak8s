@@ -1,0 +1,34 @@
+image:
+  repository: vaultwarden/server
+  tag: latest
+  pullPolicy: ""
+
+replicaCount: 1
+
+cnpg:
+  name: ""
+  user: app
+  database: app
+
+persistence:
+  accessMode: ReadWriteMany
+  size: 1Gi
+
+config:
+  websocketEnabled: true
+  signupsAllowed: true
+  adminToken: ""
+
+smtp:
+  enabled: true
+  from: ""
+  host: ""
+  username: ""
+  password: ""
+  port: 587
+  security: starttls
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure
