@@ -12,7 +12,7 @@ kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"

@@ -2,7 +2,7 @@ environments:
   prod:
     values:
       - tag: 2023.03.15
-      - replicas: 2
+      - replicaCount: 2
     secrets:
       - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -10,15 +10,15 @@ environments:
   staging:
     values:
       - tag: 75a582ef
-      - replicas: 1
+      - replicaCount: 1
     secrets:
       - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
       - staging.sops.yaml
   dev:
     values:
-      - tag: main
-      - replicas: 1
+      - tag: latest
+      - replicaCount: 1
     secrets:
       - ../globals.sops.yaml
       - ../nanadb/default.sops.yaml
@@ -40,7 +40,7 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
-      - replicas: "{{ .Values.replicas }}"
+      - replicaCount: "{{ .Values.replicaCount }}"
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.edgedb.username }}"

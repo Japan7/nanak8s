@@ -3,7 +3,7 @@ image:
   tag: latest
   pullPolicy: ""
 
-replicas: 1
+replicaCount: 1
 
 persistence:
   mountPath: /filestash/data/state

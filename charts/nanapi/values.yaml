@@ -11,7 +11,7 @@ edgedb:
 
 localSettings: ""
 
-replicas: 1
+replicaCount: 1
 
 ingress:
   entryPoints:
