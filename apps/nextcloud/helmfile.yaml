@@ -35,7 +35,7 @@ releases:
       - externalDatabase:
           enabled: true
           type: postgresql
-          host: nextcloud-cnpg
+          host: nextcloud-cnpg-rw
           database: app
           existingSecret:
             enabled: true
