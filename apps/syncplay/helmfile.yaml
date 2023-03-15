@@ -8,6 +8,8 @@ releases:
   - name: syncplay
     chart: ../../charts/syncplay
     values:
+      - image:
+          tag: master
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"

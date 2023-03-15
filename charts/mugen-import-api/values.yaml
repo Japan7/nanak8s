@@ -1,6 +1,6 @@
 image:
   repository: ""
-  tag: master
+  tag: latest
 
 databasePVC: ""
 

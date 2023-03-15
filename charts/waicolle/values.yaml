@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/waicolle-web
-  tag: main
+  tag: latest
 
 replicas: 1
 

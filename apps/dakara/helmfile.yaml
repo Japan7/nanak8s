@@ -8,6 +8,8 @@ releases:
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
+      - image:
+          tag: master
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
@@ -19,6 +21,8 @@ releases:
   - name: dakara-client
     chart: ../../charts/dakara-client
     values:
+      - image:
+          tag: master
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: mugen-import-api
