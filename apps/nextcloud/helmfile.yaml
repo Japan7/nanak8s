@@ -1,0 +1,60 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: nextcloud
+    url: https://nextcloud.github.io/helm/
+
+releases:
+  - name: nextcloud-cnpg
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 15
+      - storage:
+          size: 2Gi
+  - name: nextcloud
+    chart: nextcloud/nextcloud
+    values:
+      - nextcloud:
+          host: nextcloud.{{ .Values.domain }}
+          username: "{{ .Values.nextcloud.username }}"
+          password: "{{ .Values.nextcloud.password }}"
+          mail:
+            enabled: true
+            fromAddress: "{{ .Values.nextcloud.mail.fromAddress }}"
+            domain: "{{ .Values.nextcloud.mail.domain }}"
+            smtp:
+              host: "{{ .Values.nextcloud.mail.smtp.host }}"
+              name: "{{ .Values.nextcloud.mail.smtp.name }}"
+              password: "{{ .Values.nextcloud.mail.smtp.password }}"
+      - internalDatabase:
+          enabled: false
+      - externalDatabase:
+          enabled: true
+          type: postgresql
+          host: nextcloud-cnpg
+          database: app
+          existingSecret:
+            enabled: true
+            secretName: nextcloud-cnpg-app
+            usernameKey: username
+            passwordKey: password
+      - redis:
+          enabled: true
+          architecture: standalone
+          master:
+            persistence:
+              size: 1Gi
+      - persistence:
+          enabled: true
+          accessMode: ReadWriteMany
+          size: 10Gi
+      - hpa:
+          enabled: true
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
