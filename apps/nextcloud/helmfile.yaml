@@ -56,8 +56,12 @@ releases:
           size: 10Gi
       - hpa:
           enabled: true
+      - livenessProbe:
+          enabled: false
+      - readinessProbe:
+          enabled: false
       - startupProbe:
-          enabled: true
+          enabled: false
       - ingress:
           enabled: true
           annotations:
