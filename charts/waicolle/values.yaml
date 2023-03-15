@@ -1,6 +1,7 @@
 image:
   repository: ghcr.io/japan7/waicolle-web
   tag: latest
+  pullPolicy: ""
 
 replicas: 1
 

@@ -1,6 +1,7 @@
 image:
   repository: edgedb/edgedb
   tag: latest
+  pullPolicy: ""
 
 replicas: 1
 

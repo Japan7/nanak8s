@@ -36,6 +36,7 @@ spec:
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           args: ["nanapi"]
           env:
             - name: EDGEDB_SERVER_USER
