@@ -8,6 +8,7 @@ spec:
   valuesContent: |-
     ports:
       web:
+        expose: false
         exposedPort: 8000
       websecure:
         exposedPort: 8443
@@ -23,8 +24,6 @@ spec:
       letsencrypt:
         email: {{ .Values.traefik.letsencryptEmail }}
         tlsChallenge: true
-        httpChallenge:
-          entryPoint: web
         storage: /data/acme.json
     additionalArguments:
       - --log.level=DEBUG

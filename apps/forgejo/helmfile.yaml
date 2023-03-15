@@ -31,9 +31,6 @@ releases:
               NAME: forgejo
               USER: "{{ .Values.cnpg.username }}"
               PASSWD: "{{ .Values.cnpg.password }}"
-            i18n:
-              LANGS: en-US
-              NAMES: English
           oauth:
             - name: keycloak
               provider: "openidConnect"

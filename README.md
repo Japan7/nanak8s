@@ -37,7 +37,7 @@ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.1/scripts/en
 
 4. **[Optional] Setup Traefik passthrough**
 
-K3s internal Traefik will serve web apps on ports 8000 and 8443. You may setup another Traefik outside the K8s cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443 to K8s.
+K3s internal Traefik serves web apps on port 8443 (websecure). You may setup another Traefik outside the K8s cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443 to K8s.
 
 - `docker-compose.yml`
 
@@ -68,24 +68,15 @@ services:
 ```yaml
 tcp:
   routers:
-    k8s-web:
-      entryPoints:
-        - "web"
-      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z0-9.-]+}.<DOMAIN>`)"
-      service: "k8s-web-file"
-    k8s-websecure:
+    k8s:
       entryPoints:
         - "websecure"
       rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z0-9.-]+}.<DOMAIN>`)"
-      service: "k8s-websecure-file"
+      service: "k8s-file"
       tls:
         passthrough: true
   services:
-    k8s-web-file:
-      loadBalancer:
-        servers:
-          - address: "host.docker.internal:8000"
-    k8s-websecure-file:
+    k8s-file:
       loadBalancer:
         servers:
           - address: "host.docker.internal:8443"
