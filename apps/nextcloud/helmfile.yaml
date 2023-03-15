@@ -44,6 +44,8 @@ releases:
             passwordKey: password
       - redis:
           enabled: true
+          image:
+            tag: latest # arm64 is broken on default tag
           architecture: standalone
           master:
             persistence:

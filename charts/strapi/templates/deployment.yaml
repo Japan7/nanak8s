@@ -13,8 +13,7 @@ spec:
         app: "{{ .Release.Name }}"
     spec:
       nodeSelector:
-        # no arm64 image available
-        kubernetes.io/arch: amd64
+        kubernetes.io/arch: amd64 # no arm64 image available
       volumes:
         - name: uploads
           persistentVolumeClaim:

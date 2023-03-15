@@ -25,8 +25,7 @@ releases:
           storageClass: longhorn-minio
           size: 10Gi
       - nodeSelector:
-          # it doesn't like being rescheduled between different arch
-          kubernetes.io/arch: amd64
+          kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
       - affinity:
           podAntiAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:

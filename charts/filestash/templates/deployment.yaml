@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: { { .Values.replicaCount } }
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
@@ -13,8 +13,7 @@ spec:
         app: "{{ .Release.Name }}"
     spec:
       nodeSelector:
-        # no arm64 image available
-        kubernetes.io/arch: amd64
+        kubernetes.io/arch: amd64 # no arm64 image available
       volumes:
         - name: state
           persistentVolumeClaim:
@@ -24,7 +23,7 @@ spec:
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: { { .Values.image.pullPolicy } }
           env:
             - name: APPLICATION_URL
               value: "{{ .Values.ingress.host }}"
@@ -37,7 +36,12 @@ spec:
             - containerPort: 8334
         - name: "{{ .Chart.Name }}-cache-cleaner"
           image: alpine
-          command: ["sh", "-xc", "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done"]
+          command:
+            [
+              "sh",
+              "-xc",
+              "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done",
+            ]
           volumeMounts:
             - name: cache
               mountPath: "/cache"
