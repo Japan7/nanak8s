@@ -21,7 +21,7 @@ releases:
           from: "{{ .Values.smtp.from }}"
           fromName: Vaultwarden Japan7
           host: "{{ .Values.smtp.host }}"
-          username: "{{ .Values.smtp.username }}"
+          user: "{{ .Values.smtp.user }}"
           password: "{{ .Values.smtp.password }}"
       - ingress:
           host: vaultwarden.{{ .Values.domain }}
