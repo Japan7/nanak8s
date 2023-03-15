@@ -4,5 +4,5 @@ metadata:
   name: {{ .Release.Name }}-config
 data:
   DOMAIN: http://{{ .Values.ingress.host }}
-  WEBSOCKET_ENABLED: {{ .Values.config.websocketEnabled }}
-  SIGNUPS_ALLOWED: {{ .Values.config.signupsAllowed }}
+  WEBSOCKET_ENABLED: "{{ .Values.config.websocketEnabled }}"
+  SIGNUPS_ALLOWED: "{{ .Values.config.signupsAllowed }}"
