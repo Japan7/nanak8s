@@ -62,6 +62,8 @@ releases:
           enabled: true
       - startupProbe:
           enabled: true
+      - phpClientHttpsFix:
+          enabled: true
       - ingress:
           enabled: true
           annotations:
