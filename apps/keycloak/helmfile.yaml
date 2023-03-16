@@ -16,7 +16,7 @@ releases:
   - name: keycloak
     chart: bitnami/keycloak
     values:
-      - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=/tmp/ldap.json -Dkeycloak.migration.realmName=ldap
+      - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
           existingSecret: admin-secret
