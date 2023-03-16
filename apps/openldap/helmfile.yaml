@@ -12,6 +12,8 @@ releases:
   - name: openldap
     chart: helm-openldap/openldap-stack-ha
     values:
+      - image:
+          tag: 2.6.4 # arm64 image available on >= 2.6.4
       - global:
           ldapDomain: "{{ .Values.ldapDomain }}"
           adminPassword: "{{ .Values.adminPassword }}"
