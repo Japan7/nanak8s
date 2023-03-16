@@ -28,7 +28,6 @@ releases:
           - name: n8n
           - name: dakara
           - name: vaultwarden
-          - name: nextcloud
 
           # Data
           - name: nanadb
