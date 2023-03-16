@@ -18,6 +18,8 @@ releases:
   - name: nextcloud
     chart: nextcloud/nextcloud
     values:
+      - image:
+          flavor: fpm
       - nextcloud:
           host: nextcloud.{{ .Values.domain }}
           username: "{{ .Values.nextcloud.username }}"
@@ -30,6 +32,8 @@ releases:
               host: "{{ .Values.nextcloud.mail.smtp.host }}"
               name: "{{ .Values.nextcloud.mail.smtp.name }}"
               password: "{{ .Values.nextcloud.mail.smtp.password }}"
+      - nginx:
+          enabled: true
       - internalDatabase:
           enabled: false
       - externalDatabase:
