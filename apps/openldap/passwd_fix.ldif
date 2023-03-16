@@ -1,0 +1,34 @@
+# ldapadd -H ldap://openldap -x -D "cn=admin,cn=config" -f passwd_fix.ldif -W
+
+dn: cn=module,cn=config
+objectClass: olcModuleList
+cn: module
+olcModuleLoad: refint
+olcModuleLoad: memberof
+olcModuleLoad: ppolicy
+
+dn: olcOverlay=refint,olcDatabase={2}mdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcRefintConfig
+olcOverlay: refint
+olcRefintAttribute: owner
+olcRefintAttribute: manager
+olcRefintAttribute: uniqueMember
+olcRefintAttribute: member
+olcRefintAttribute: memberOf
+
+dn: olcOverlay=memberof,olcDatabase={2}mdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcMemberOf
+olcOverlay: memberof
+olcMemberOfDangling: ignore
+olcMemberOfRefInt: TRUE
+olcMemberOfGroupOC: groupOfNames
+olcMemberOfMemberAD: member
+olcMemberOfMemberOfAD: memberOf
+
+dn: olcOverlay=ppolicy,olcDatabase={2}mdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcPPolicyConfig
+olcOverlay: ppolicy
+olcPPolicyHashCleartext: TRUE
