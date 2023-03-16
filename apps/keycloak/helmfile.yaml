@@ -18,7 +18,7 @@ releases:
     values:
       - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
-          adminUser: "{{ .Values.keycloak.admin.username }}-2"
+          adminUser: "{{ .Values.keycloak.admin.username }}"
           existingSecret: admin-secret
           passwordSecretKey: password
       - postgresql:
