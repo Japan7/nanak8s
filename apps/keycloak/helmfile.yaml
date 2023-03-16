@@ -16,6 +16,7 @@ releases:
   - name: keycloak
     chart: bitnami/keycloak
     values:
+      - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
           existingSecret: admin-secret
