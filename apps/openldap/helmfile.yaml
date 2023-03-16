@@ -1,0 +1,30 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: helm-openldap
+    url: https://jp-gouin.github.io/helm-openldap/
+
+releases:
+  - name: openldap
+    chart: helm-openldap/openldap-stack-ha
+    values:
+      - global:
+          ldapDomain: "{{ .Values.ldapDomain }}"
+          adminPassword: "{{ .Values.adminPassword }}"
+          configPassword: "{{ .Values.configPassword }}"
+      - phpldapadmin:
+          ingress:
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            hosts:
+              - ldap.{{ .Values.domain }}
+      - ltb-passwd:
+          enabled: false
+      - persistence:
+          enabled: true
+          storageClass: longhorn-openldap
+          size: 1Gi

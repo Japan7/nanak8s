@@ -28,6 +28,7 @@ releases:
           - name: n8n
           - name: dakara
           - name: vaultwarden
+          - name: openldap
 
           # Data
           - name: nanadb

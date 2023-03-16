@@ -1,0 +1,23 @@
+ldapDomain: ENC[AES256_GCM,data:yWR645dVt6Oq0A==,iv:r8fGrnKvi7/5V4tcUfAqzoooWl6oIvxCPh4HbMfksLA=,tag:UzDjVhVwgUIJUPSKP462Iw==,type:str]
+adminPassword: ENC[AES256_GCM,data:p6lGP5YkAwGQBgOVu44=,iv:9sPUkY6HlOe0OMD5/1rUj8uyDQ1B9HqDeO+vyHlT4mU=,tag:ItkC3dYadjwiO0sAlNfajQ==,type:str]
+configPassword: ENC[AES256_GCM,data:8qlc4jvvtwghxQ15zVY=,iv:jZjqq0dC2V50rnhTgYE/lYseiDYUbYV/ireE4Bw0W8s=,tag:2/qNLJ7OV/Cyk0NU+O+n0Q==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBhaDR6SS9zNHhBcHVyTGl3
+            dkt2Nm1qU3hwVlNlOXRQRWRhOUI4bVpLVGxBCno5bzI5eE43ZnozYkNqZnFseWZQ
+            bnMwNUxhby9vNmhjTC9NNXRvM1NCY2cKLS0tIGZGRW02bUpHZXVRZnVROXdYTmlR
+            UGZYMmpMSThYakZkR08xcjI0NXNaNGcK5qevZpVd8DzfYUiSVEDeBmFS9Gn2KXCi
+            4F7h6kSU7AK+FLHUhwNCYezG9/ZBtnSfY/+yvaF7xbZtlFveNS6h1Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-16T14:08:14Z"
+    mac: ENC[AES256_GCM,data:amQ06EDSXWRcERx7xc0Zn+78l4FKjvAXi7L31OEbH4AEVUVwQcQV95oN8JNEOJ5rjcphFYax9g2ujstWx9glCxkE89UhzVpl9fIazr/ObqXFK39GTHH9HTM4komrsYmQqRnJcmYmKcqoaLU7SW9v3UBZ65aGeCYf06OhUIJ8qPo=,iv:ikjI38iIE91gFmcF4kozz/wAmH9PPO+sLFKJSA7KnHA=,tag:nQpwfKhDALuXscYKz73QJA==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3
