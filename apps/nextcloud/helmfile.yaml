@@ -30,11 +30,6 @@ releases:
               host: "{{ .Values.nextcloud.mail.smtp.host }}"
               name: "{{ .Values.nextcloud.mail.smtp.name }}"
               password: "{{ .Values.nextcloud.mail.smtp.password }}"
-          extraEnv:
-            - name: OVERWRITEPROTOCOL
-              value: https
-            - name: OVERWRITEHOST
-              value: nextcloud.{{ .Values.domain }}
       - internalDatabase:
           enabled: false
       - externalDatabase:
