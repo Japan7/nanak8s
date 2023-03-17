@@ -33,5 +33,7 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}"
                   key: clientToken
+            - name: SCOPE
+              value: openid profile email
           ports:
             - containerPort: 4181
