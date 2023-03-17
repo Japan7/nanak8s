@@ -25,6 +25,7 @@ releases:
       - image:
           tag: master
           pullPolicy: Always
+      - replicaCount: 2
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: mugen-import-api
