@@ -3,6 +3,7 @@ traefik:
 japan7BasicAuth:
     username: ENC[AES256_GCM,data:OF9r8veM,iv:pNSBigY3fyCmpGhtFY6O3qdgulA6anPCI2yoMtKL7yo=,tag:Ay7tF8k9vJLAoy+TpUJ3jg==,type:str]
     password: ENC[AES256_GCM,data:HqLfhv8jBg==,iv:NBZ2wayxG5E9Aee1DV6xzJshRXPIIThdJRFJKmkgYII=,tag:VShszrmcH6BHP7KeAHMDkg==,type:str]
+forwardAuthSecret: ENC[AES256_GCM,data:N8Z5YmYvRnfXHzJK3UxCfeBiSef7PHQsuQMOEcgUjFg=,iv:pl29Ng8AWwg4QiqoK0bszCYXAzdUre+tj7yvkqrG7Cs=,tag:uHi2QdeMEHmeG3E8iPR45A==,type:str]
 keycloak:
     japan7:
         id: ENC[AES256_GCM,data:cwH2yUOFFTud4Ur0pESquDgXqeA=,iv:jY1nb5JlzKKjT3zFpC3nEUGnh2yvxp/XWUeLFtZ6CPo=,tag:1nvUiL6duaxCmTUieJkZyg==,type:str]
@@ -25,8 +26,8 @@ sops:
             TzUyREJtNnBwTCtMTkRabENOdzQ3cG8KP77v8Br6NWNfEEkgPFCtB39ShRUzA5QX
             t2YpvYOnlgrjNE2svB8m3LBmDrvnbQ15CgdqA375QyR4XxfER7SVRQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-17T01:43:19Z"
-    mac: ENC[AES256_GCM,data:SGFE9TMmlwnoiYljhixIhigl9tpogKRCMCCjCEm5W/tQOwRK5QO2Gv1kmOkoY0TZ88HSO1kSMf8n3h5FKyAnxTd2Pc+2I2p/Pu4Yx2s7z9RnQ89Yhcg0cJ4aWYyFOFLvxAdKoK6Lt8fbKRw4OUh4rRnvyKi2EvI+scuJuPI495k=,iv:Tezxll7ioZyECus/QwxFFqyV1MjyrYXdziAt96tRv5g=,tag:XCStS1Ir5QmHzKJ0OXFYJA==,type:str]
+    lastmodified: "2023-03-17T01:51:55Z"
+    mac: ENC[AES256_GCM,data:h9fs9am9CVwim/tqLLC++3aEb9eMvGowJAfjJ+i69mvgmxBrIEomyyfHoAuYxlEoAR/2CsS34YAPFro+szaXPFycGr63SafmYMpzE/ggJwD4BwL/Ko66Euj+fHvAljORdUH3jcmYrfALStypv1zwcn4KU5FHBnugugmBEnWMmEw=,iv:lGHDGmFF7dC/MlG8gk+GpxRgO+jL9stH0ECw9nRc1nA=,tag:wKO21joCPnV+0oMWUIIpOA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
