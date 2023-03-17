@@ -23,7 +23,7 @@ releases:
             memory: 1Gi
       - persistence:
           storageClass: longhorn-minio
-          size: 10Gi
+          size: 50Gi
       - nodeSelector:
           kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
       - topologySpreadConstraints:
