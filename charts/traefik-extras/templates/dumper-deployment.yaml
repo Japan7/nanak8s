@@ -21,8 +21,9 @@ spec:
           image: ldez/traefik-certs-dumper
           command:
             - sh
-            - -c
-            - traefik-certs-dumper file --version v2 \
+            - -xc
+            - |
+              traefik-certs-dumper file --version v2 \
               --watch --source /data/acme.json --dest /data/dump \
               --domain-subdir --crt-name=fullchain --crt-ext .pem --key-name=privkey --key-ext .pem
           volumeMounts:

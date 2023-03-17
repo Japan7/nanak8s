@@ -47,7 +47,8 @@ releases:
             command:
               - sh
               - -xc
-              - wget -O /providers/keycloak-discord.jar \
+              - |
+                wget -O /providers/keycloak-discord.jar \
                 https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
             volumeMounts:
               - name: keycloak-providers

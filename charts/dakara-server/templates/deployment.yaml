@@ -63,7 +63,8 @@ spec:
           command:
             - sh
             - -xc
-            - touch /db/db.sqlite3 && \
+            - |
+              touch /db/db.sqlite3 && \
               ln -sf /db/db.sqlite3 dakara_server/db.sqlite3 && \
               dakara_server/manage.py migrate && \
               dakara_server/manage.py runserver 0.0.0.0:22222
