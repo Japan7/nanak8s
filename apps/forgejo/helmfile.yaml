@@ -15,9 +15,11 @@ releases:
           password: "{{ .Values.cnpg.password }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
-    version: '*'
+    version: "*"
     values:
       - gitea:
+          admin:
+            password: "{{ .Values.gitea.adminPassword }}"
           config:
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
