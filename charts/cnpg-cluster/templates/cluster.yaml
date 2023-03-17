@@ -1,14 +1,3 @@
-{{ if .Values.user.password }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ .Values.user.username }}-secret
-type: kubernetes.io/basic-auth
-stringData:
-  username: {{ .Values.user.username }}
-  password: {{ .Values.user.password }}
----
-{{ end }}
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:

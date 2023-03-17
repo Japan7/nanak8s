@@ -1,18 +1,3 @@
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: "{{ .Release.Name }}"
-spec:
-  entryPoints:
-    {{ range .Values.ingress.entryPoints }}
-    - "{{ . }}"
-    {{ end }}
-  routes:
-    - match: HostSNI(`*`)
-      services:
-        - name: "{{ .Release.Name }}"
-          port: 8999
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

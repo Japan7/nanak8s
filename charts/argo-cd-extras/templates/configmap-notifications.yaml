@@ -1,13 +1,5 @@
 {{ if .Values.notifications.enabled }}
 apiVersion: v1
-kind: Secret
-metadata:
-  name: argocd-notifications-secret
-stringData:
-  github-token: "{{ .Values.github.token }}"
-  discord-webhook: "{{ .Values.discord.webhook }}"
----
-apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm

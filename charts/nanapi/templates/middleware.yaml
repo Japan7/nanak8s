@@ -1,0 +1,10 @@
+{{ if ne .Values.ingress.pathPrefix "/" }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{ .Release.Name }}-stripprefix"
+spec:
+  stripPrefix:
+    prefixes:
+      - "{{ .Values.ingress.pathPrefix }}"
+{{ end }}

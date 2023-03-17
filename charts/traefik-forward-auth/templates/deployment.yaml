@@ -19,19 +19,19 @@ spec:
             - name: SECRET
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}"
+                  name: "{{ .Release.Name }}-secret"
                   key: secret
             - name: PROVIDER_URI
               value: https://{{ .Values.keycloak.host }}/realms/{{ .Values.keycloak.realm }}
             - name: CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}"
+                  name: "{{ .Release.Name }}-secret"
                   key: clientId
             - name: CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: "{{ .Release.Name }}"
+                  name: "{{ .Release.Name }}-secret"
                   key: clientToken
             - name: SCOPE
               value: openid profile email
