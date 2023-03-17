@@ -19,6 +19,21 @@ releases:
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"
-      - adminBasicAuth:
-          username: "{{ .Values.adminBasicAuth.username }}"
-          password: "{{ .Values.adminBasicAuth.password }}"
+  - name: traefik-forward-auth-japan7
+    chart: ../../charts/traefik-forward-auth
+    values:
+      - keycloak:
+          host: keycloak.{{ .Values.domain }}
+          realm: japan7
+          client:
+            id: "{{ .Values.keycloak.japan7.id }}"
+            secret: "{{ .Values.keycloak.japan7.token }}"
+  - name: traefik-forward-auth-nanak8s
+    chart: ../../charts/traefik-forward-auth
+    values:
+      - keycloak:
+          host: keycloak.{{ .Values.domain }}
+          realm: nanak8s
+          client:
+            id: "{{ .Values.keycloak.nanak8s.id }}"
+            secret: "{{ .Values.keycloak.nanak8s.token }}"

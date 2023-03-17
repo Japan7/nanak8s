@@ -1,0 +1,11 @@
+image:
+  repository: mesosphere/traefik-forward-auth
+  tag: latest
+  pullPolicy: ""
+
+keycloak:
+  host: ""
+  realm: ""
+  client:
+    id: ""
+    secret: ""

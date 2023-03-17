@@ -9,7 +9,3 @@ traefik:
 japan7BasicAuth:
   username: ""
   password: ""
-
-adminBasicAuth:
-  username: ""
-  password: ""

@@ -44,7 +44,7 @@ spec:
         entryPoints:
           - websecure
         middlewares:
-          - name: admin-basic-auth
+          - name: traefik-forward-auth-nanak8s
     deployment:
       initContainers:
         # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543
