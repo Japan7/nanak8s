@@ -33,6 +33,5 @@ releases:
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
-      - databasePVC: dakara-server-db
       - ingress:
           host: dakara.{{ .Values.domain }}
