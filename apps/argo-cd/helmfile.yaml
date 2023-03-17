@@ -41,7 +41,7 @@ releases:
           extraContainers:
             - name: helmfile-plugin
               image: travisghansen/argo-cd-helmfile:latest
-              command: [/var/run/argocd/argocd-cmp-server]
+              command: ["/var/run/argocd/argocd-cmp-server"]
               env:
                 - name: SOPS_AGE_KEY
                   valueFrom:

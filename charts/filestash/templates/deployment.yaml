@@ -14,6 +14,13 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # no arm64 image available
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: "{{ .Release.Name }}"
       volumes:
         - name: state
           persistentVolumeClaim:
@@ -36,12 +43,7 @@ spec:
             - containerPort: 8334
         - name: "{{ .Chart.Name }}-cache-cleaner"
           image: alpine
-          command:
-            [
-              "sh",
-              "-xc",
-              "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done",
-            ]
+          command: ["sh", "-xc", "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done"]
           volumeMounts:
             - name: cache
               mountPath: "/cache"

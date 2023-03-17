@@ -46,9 +46,8 @@ releases:
             image: alpine
             command:
               - sh
-              - -c
-              - |
-                wget -O /providers/keycloak-discord.jar \
+              - -xc
+              - wget -O /providers/keycloak-discord.jar \
                 https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
             volumeMounts:
               - name: keycloak-providers

@@ -50,7 +50,10 @@ spec:
           command:
             - sh
             - -c
-            - cd /certs && rm -f *.pem && wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/fullchain.pem && wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/privkey.pem
+            - cd /certs && \
+              rm -f *.pem && \
+              wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/fullchain.pem && \
+              wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/privkey.pem
           volumeMounts:
             - name: certs
               mountPath: /certs
