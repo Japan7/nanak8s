@@ -26,18 +26,13 @@ releases:
           size: 10Gi
       - nodeSelector:
           kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
-      - affinity:
-          podAntiAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: app
-                        operator: In
-                        values:
-                          - minio
-                  topologyKey: kubernetes.io/hostname
+      - topologySpreadConstraints:
+          - maxSkew: 1
+            topologyKey: kubernetes.io/hostname
+            whenUnsatisfiable: DoNotSchedule
+            labelSelector:
+              matchLabels:
+                app: minio
       - ingress:
           enabled: true
           annotations:
