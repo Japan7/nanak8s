@@ -1,0 +1,13 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: kyverno
+    url: https://kyverno.github.io/kyverno
+
+releases:
+  # NixOS support
+  - name: kyverno
+    chart: kyverno/kyverno

@@ -25,11 +25,7 @@ releases:
     chart: ../../charts/longhorn-extras
 
   # NixOS support
-  - name: kyverno
-    namespace: kyverno
-    chart: kyverno/kyverno
   - name: longhorn-admission-hooks
-    namespace: longhorn-system
     chart: incubator/raw
     values:
       - resources:
