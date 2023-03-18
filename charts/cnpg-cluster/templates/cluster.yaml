@@ -16,3 +16,16 @@ spec:
       secret:
         name: {{ .Values.user.username }}-secret
       {{ end }}
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://{{ .Values.minio.bucket }}/{{ .Release.Name }}
+      endpointURL: {{ .Values.minio.endpoint }}
+      s3Credentials:
+        accessKeyId:
+          name: {{ .Release.Name }}-minio
+          key: MINIO_ACCESS_KEY
+        secretAccessKey:
+          name: {{ .Release.Name }}-minio
+          key: MINIO_SECRET_KEY
+    retentionPolicy: "7d"
+    target: "prefer-standby"

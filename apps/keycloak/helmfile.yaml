@@ -13,6 +13,9 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 14
+      - minio:
+          accessKey: "{{ .Values.minio.cnpg.accessKey }}"
+          secretKey: "{{ .Values.minio.cnpg.secretKey }}"
   - name: keycloak
     chart: bitnami/keycloak
     values:

@@ -11,3 +11,9 @@ database: app
 user:
   username: app
   password: ""
+
+minio:
+  endpoint: minio.minio:9000
+  bucket: cnpg
+  accessKey: ""
+  secretKey: ""

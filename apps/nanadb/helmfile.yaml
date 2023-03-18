@@ -11,6 +11,9 @@ releases:
       - release: 14
       - storage:
           size: 10Gi
+      - minio:
+          accessKey: "{{ .Values.minio.cnpg.accessKey }}"
+          secretKey: "{{ .Values.minio.cnpg.secretKey }}"
   - name: nanadb
     chart: ../../charts/edgedb
     values:
