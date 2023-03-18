@@ -18,7 +18,7 @@ spec:
       {{ end }}
   backup:
     barmanObjectStore:
-      destinationPath: s3://{{ .Values.minio.bucket }}/{{ .Release.Name }}
+      destinationPath: s3://{{ .Values.minio.bucket }}
       endpointURL: {{ .Values.minio.endpoint }}
       s3Credentials:
         accessKeyId:
