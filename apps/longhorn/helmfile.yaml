@@ -6,6 +6,10 @@ environments:
 repositories:
   - name: longhorn
     url: https://charts.longhorn.io
+  - name: kyverno
+    url: https://kyverno.github.io/kyverno
+  - name: incubator
+    url: https://charts.helm.sh/incubator
 
 releases:
   - name: longhorn
@@ -19,3 +23,55 @@ releases:
             traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
+
+  # NixOS support
+  - name: kyverno
+    namespace: kyverno
+    chart: kyverno/kyverno
+  - name: longhorn-admission-hooks
+    namespace: longhorn-system
+    chart: incubator/raw
+    values:
+      - resources:
+          - apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: longhorn-custom-path
+              namespace: longhorn-system
+            data:
+              PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/run/current-system/sw/bin
+          - apiVersion: kyverno.io/v1
+            kind: ClusterPolicy
+            metadata:
+              name: add-host-path-to-longhorn
+              annotations:
+                policies.kyverno.io/title: Add Environment Variables from ConfigMap
+                policies.kyverno.io/subject: Pod
+                policies.kyverno.io/category: Other
+                policies.kyverno.io/description: >-
+                  Longhorn invokes executables on the host system, and needs
+                  to be aware of the host systems PATH. This modifies all
+                  deployments such that the PATH is explicitly set to support
+                  NixOS based systems.
+            spec:
+              rules:
+                - name: add-env-vars
+                  match:
+                    resources:
+                      kinds:
+                        - Pod
+                      namespaces:
+                        - longhorn-system
+                  mutate:
+                    patchStrategicMerge:
+                      spec:
+                        initContainers:
+                          - (name): "*"
+                            envFrom:
+                              - configMapRef:
+                                  name: longhorn-custom-path
+                        containers:
+                          - (name): "*"
+                            envFrom:
+                              - configMapRef:
+                                  name: longhorn-custom-path
