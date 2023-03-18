@@ -27,5 +27,9 @@ spec:
         secretAccessKey:
           name: {{ .Release.Name }}-minio
           key: MINIO_SECRET_KEY
+      wal:
+        compression: bzip2
+      data:
+        compression: bzip2
     retentionPolicy: "7d"
     target: "prefer-standby"
