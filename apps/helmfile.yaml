@@ -12,7 +12,7 @@ releases:
           - name: cnpg
             namespace: cnpg-system
           - name: kyverno
-            syncOptions:
+            extraSyncOptions:
               - Replace=true
 
           # Dev

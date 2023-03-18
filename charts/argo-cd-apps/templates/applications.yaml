@@ -28,7 +28,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      {{ range .syncOptions }}
+      {{ range .extraSyncOptions }}
       - {{ . }}
       {{ end }}
 ---
