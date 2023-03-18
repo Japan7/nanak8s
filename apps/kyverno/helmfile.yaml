@@ -9,5 +9,6 @@ repositories:
 
 releases:
   # NixOS support
+  # https://github.com/longhorn/longhorn/issues/2166#issuecomment-1293268590
   - name: kyverno
     chart: kyverno/kyverno
