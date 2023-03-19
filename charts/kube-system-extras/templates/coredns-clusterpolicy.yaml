@@ -9,11 +9,10 @@ spec:
         resources:
           kinds:
             - ConfigMap
+          names:
+            - coredns
           namespaces:
-            values:
-              - "{{ .Release.Namespace }}"
-          name:
-            pattern: coredns
+            - "{{ .Release.Namespace }}"
       mutate:
         patchStrategicMerge:
           data:
