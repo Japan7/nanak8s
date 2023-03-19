@@ -4,8 +4,6 @@ releases:
     values:
       - apps:
           # System
-          - name: kube-system-extras
-            namespace: kube-system
           - name: traefik
             namespace: kube-system
           - name: kubernetes-dashboard
