@@ -1,0 +1,8 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+releases:
+  - name: kube-system-extras
+    chart: ../../charts/kube-system-extras

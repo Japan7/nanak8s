@@ -4,6 +4,8 @@ releases:
     values:
       - apps:
           # System
+          - name: kube-system-extras
+            namespace: kube-system
           - name: traefik
             namespace: kube-system
           - name: kubernetes-dashboard
@@ -23,15 +25,15 @@ releases:
           - name: gitlab
 
           # Apps
-          - name: keycloak
-          - name: syncplay
-          - name: outline
-          - name: filestash
-          - name: waicolle
-          - name: n8n
-          - name: dakara
-          - name: vaultwarden
           - name: openldap
+          - name: keycloak
+          - name: vaultwarden
+          - name: waicolle
+          - name: dakara
+          - name: filestash
+          - name: n8n
+          - name: outline
+          - name: syncplay
 
           # Data
           - name: nanadb
