@@ -27,6 +27,7 @@ repositories:
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
+    version: 0
     values:
       - persistence:
           enabled: true

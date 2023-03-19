@@ -10,3 +10,4 @@ repositories:
 releases:
   - name: kyverno
     chart: kyverno/kyverno
+    version: 2
