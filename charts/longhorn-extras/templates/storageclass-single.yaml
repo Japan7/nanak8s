@@ -1,11 +1,14 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: longhorn-minio
+  name: longhorn-single
 provisioner: driver.longhorn.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
 allowVolumeExpansion: true
 parameters:
-  numberOfReplicas: "1"
-  dataLocality: "best-effort"
-  staleReplicaTimeout: "30"
+  dataLocality: best-effort
   fromBackup: ""
+  fsType: ext4
+  numberOfReplicas: "1"
+  staleReplicaTimeout: "30"

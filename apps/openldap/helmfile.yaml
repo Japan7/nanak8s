@@ -28,5 +28,5 @@ releases:
           enabled: false
       - persistence:
           enabled: true
-          storageClass: longhorn-openldap
+          storageClass: longhorn-single
           size: 1Gi
