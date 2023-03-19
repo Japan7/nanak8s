@@ -16,7 +16,7 @@ Follow the [install instructions](https://github.com/tonarino/innernet#installat
 
 ```sh
 curl -sfL https://get.k3s.io |
-INSTALL_K3S_CHANNEL=latest \
+INSTALL_K3S_CHANNEL=v1.26 \
 K3S_TOKEN=<SHARED_SECRET> \
 sh -s - server \
 --server https://<EXISTING_NODE_IP>:6443 \
