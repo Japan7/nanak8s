@@ -36,6 +36,7 @@ ldap:
   password: ""
   searchBaseDn: ""
   searchFilter: (&(objectClass=inetOrgPerson)(mail=*))
+  syncIntervalSeconds: 300
 
 ingress:
   host: ""
