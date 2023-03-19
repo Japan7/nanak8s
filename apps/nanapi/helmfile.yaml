@@ -5,7 +5,6 @@ environments:
       - replicaCount: 2
     secrets:
       - ../globals.sops.yaml
-      - ../nanadb/default.sops.yaml
       - prod.sops.yaml
   staging:
     values:
@@ -13,7 +12,6 @@ environments:
       - replicaCount: 1
     secrets:
       - ../globals.sops.yaml
-      - ../nanadb/default.sops.yaml
       - staging.sops.yaml
   dev:
     values:
@@ -21,7 +19,6 @@ environments:
       - replicaCount: 1
     secrets:
       - ../globals.sops.yaml
-      - ../nanadb/default.sops.yaml
       - dev.sops.yaml
 ---
 repositories:
@@ -43,8 +40,8 @@ releases:
       - replicaCount: "{{ .Values.replicaCount }}"
       - edgedb:
           service: nanadb.nanadb
-          username: "{{ .Values.edgedb.username }}"
-          password: "{{ .Values.edgedb.password }}"
+          username: "{{ .Values.nanadb.username }}"
+          password: "{{ .Values.nanadb.password }}"
           database: nanapi_{{ .Environment.Name }}
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}

@@ -2,7 +2,6 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
-      - default.sops.yaml
 ---
 releases:
   - name: nanadb-cnpg
@@ -20,7 +19,7 @@ releases:
       - cnpg:
           name: nanadb-cnpg
       - user:
-          username: "{{ .Values.edgedb.username }}"
-          password: "{{ .Values.edgedb.password }}"
+          username: "{{ .Values.nanadb.username }}"
+          password: "{{ .Values.nanadb.password }}"
       - ingress:
           host: nanadb.{{ .Values.domain }}
