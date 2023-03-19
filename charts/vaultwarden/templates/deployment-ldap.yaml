@@ -1,0 +1,39 @@
+{{ if .Values.ldap.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-ldap"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-ldap"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-ldap"
+    spec:
+      containers:
+        - name: vaultwarden-ldap
+          image: vividboarder/vaultwarden_ldap
+          env:
+            - name: APP_VAULTWARDEN_URL
+              value: http://{{ .Release.Name }}
+            - name: APP_VAULTWARDEN_ADMIN_TOKEN
+              value: "{{ .Values.config.adminToken }}"
+            - name: APP_LDAP_HOST
+              value: "{{ .Values.ldap.host }}"
+            - name: APP_LDAP_BIND_DN
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-ldap"
+                  key: dn
+            - name: APP_LDAP_BIND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-ldap"
+                  key: password
+            - name: APP_LDAP_SEARCH_BASE_DN
+              value: "{{ .Values.ldap.searchBaseDn }}"
+            - name: APP_LDAP_SEARCH_FILTER
+              value: "{{ .Values.ldap.searchFilter }}"
+{{ end }}

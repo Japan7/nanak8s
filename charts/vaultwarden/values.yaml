@@ -20,7 +20,7 @@ config:
   adminToken: ""
 
 smtp:
-  enabled: true
+  enabled: false
   from: ""
   fromName: Vaultwarden
   host: ""
@@ -28,6 +28,14 @@ smtp:
   password: ""
   port: 587
   security: starttls
+
+ldap:
+  enabled: false
+  host: ""
+  dn: ""
+  password: ""
+  searchBaseDn: ""
+  searchFilter: (&(objectClass=inetOrgPerson)(mail=*))
 
 ingress:
   host: ""

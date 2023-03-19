@@ -1,5 +1,3 @@
-ldapDomain: ENC[AES256_GCM,data:yWR645dVt6Oq0A==,iv:r8fGrnKvi7/5V4tcUfAqzoooWl6oIvxCPh4HbMfksLA=,tag:UzDjVhVwgUIJUPSKP462Iw==,type:str]
-adminPassword: ENC[AES256_GCM,data:p6lGP5YkAwGQBgOVu44=,iv:9sPUkY6HlOe0OMD5/1rUj8uyDQ1B9HqDeO+vyHlT4mU=,tag:ItkC3dYadjwiO0sAlNfajQ==,type:str]
 configPassword: ENC[AES256_GCM,data:8qlc4jvvtwghxQ15zVY=,iv:jZjqq0dC2V50rnhTgYE/lYseiDYUbYV/ireE4Bw0W8s=,tag:2/qNLJ7OV/Cyk0NU+O+n0Q==,type:str]
 sops:
     kms: []
@@ -16,8 +14,8 @@ sops:
             UGZYMmpMSThYakZkR08xcjI0NXNaNGcK5qevZpVd8DzfYUiSVEDeBmFS9Gn2KXCi
             4F7h6kSU7AK+FLHUhwNCYezG9/ZBtnSfY/+yvaF7xbZtlFveNS6h1Q==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-16T14:08:14Z"
-    mac: ENC[AES256_GCM,data:amQ06EDSXWRcERx7xc0Zn+78l4FKjvAXi7L31OEbH4AEVUVwQcQV95oN8JNEOJ5rjcphFYax9g2ujstWx9glCxkE89UhzVpl9fIazr/ObqXFK39GTHH9HTM4komrsYmQqRnJcmYmKcqoaLU7SW9v3UBZ65aGeCYf06OhUIJ8qPo=,iv:ikjI38iIE91gFmcF4kozz/wAmH9PPO+sLFKJSA7KnHA=,tag:nQpwfKhDALuXscYKz73QJA==,type:str]
+    lastmodified: "2023-03-19T04:00:40Z"
+    mac: ENC[AES256_GCM,data:uBV5YDquWOk5EAWWv6WlGVDOFGTu/CKZMkmSMy0ik6RByn3EKUoG19Z3ue0KK19/fEGv5jUy+8smXVpLXL4Lr28CSmEAhbB+1g7ezKBYecaSTux1LvDy/EhAxtUL0qUf8zz9gBf2LTQScM6cj4s0Wt3Chk/u26R5sslWW91+YQo=,iv:+Rw4xGXU1ZGpiYLlRxpdex6DvInM1iDTegzevMSu85w=,tag:8s4VoaHq2ntt8jj5xy0a6w==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

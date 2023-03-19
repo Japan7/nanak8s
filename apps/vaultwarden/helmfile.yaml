@@ -21,10 +21,17 @@ releases:
           signupsAllowed: false
           adminToken: "{{ .Values.adminToken }}"
       - smtp:
+          enabled: true
           from: "{{ .Values.smtp.from }}"
           fromName: Vaultwarden Japan7
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.user }}"
           password: "{{ .Values.smtp.password }}"
+      - ldap:
+          enabled: true
+          host: openldap.openldap
+          dn: "{{ .Values.ldap.admin.dn }}"
+          password: "{{ .Values.ldap.admin.password }}"
+          searchBaseDn: ou=users,{{ .Values.ldap.domain }}
       - ingress:
           host: vaultwarden.{{ .Values.domain }}

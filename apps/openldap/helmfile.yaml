@@ -13,8 +13,8 @@ releases:
     chart: helm-openldap/openldap-stack-ha
     values:
       - global:
-          ldapDomain: "{{ .Values.ldapDomain }}"
-          adminPassword: "{{ .Values.adminPassword }}"
+          ldapDomain: "{{ .Values.ldap.domain }}"
+          adminPassword: "{{ .Values.ldap.admin.password }}"
           configPassword: "{{ .Values.configPassword }}"
       - nodeSelector:
           kubernetes.io/arch: amd64 # arm64 images are broken
