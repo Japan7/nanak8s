@@ -1,7 +1,7 @@
 # NixOS support
 # https://github.com/longhorn/longhorn/issues/2166#issuecomment-1293268590
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: add-host-path-to-longhorn
   annotations:
@@ -20,8 +20,6 @@ spec:
         resources:
           kinds:
             - Pod
-          namespaces:
-            - "{{ .Release.Namespace }}"
       mutate:
         patchStrategicMerge:
           spec:
