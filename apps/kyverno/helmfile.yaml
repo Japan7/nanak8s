@@ -11,37 +11,5 @@ releases:
   - name: kyverno
     chart: kyverno/kyverno
     values:
-      # https://github.com/kyverno/kyverno/blob/main/charts/kyverno/values.yaml#LL62C3-L94
-      - resourceFilters:
-          - "[Event,*,*]"
-          # - "[*,kube-system,*]"
-          - "[*,kube-public,*]"
-          - "[*,kube-node-lease,*]"
-          - "[Node,*,*]"
-          - "[APIService,*,*]"
-          - "[TokenReview,*,*]"
-          - "[SubjectAccessReview,*,*]"
-          - "[SelfSubjectAccessReview,*,*]"
-          - "[Binding,*,*]"
-          - "[ReplicaSet,*,*]"
-          - "[AdmissionReport,*,*]"
-          - "[ClusterAdmissionReport,*,*]"
-          - "[BackgroundScanReport,*,*]"
-          - "[ClusterBackgroundScanReport,*,*]"
-          # exclude resources from the chart
-          - '[ClusterRole,*,{{ template "kyverno.fullname" . }}:*]'
-          - '[ClusterRoleBinding,*,{{ template "kyverno.fullname" . }}:*]'
-          - '[ServiceAccount,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceAccountName" . }}]'
-          - '[ConfigMap,{{ include "kyverno.namespace" . }},{{ template "kyverno.config.configMapName" . }}]'
-          - '[ConfigMap,{{ include "kyverno.namespace" . }},{{ template "kyverno.config.metricsConfigMapName" . }}]'
-          - '[Deployment,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}]'
-          - '[Job,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}-hook-pre-delete]'
-          - '[NetworkPolicy,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}]'
-          - '[PodDisruptionBudget,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}]'
-          - '[Role,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}:*]'
-          - '[RoleBinding,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}:*]'
-          - '[Secret,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceName" . }}.{{ template "kyverno.namespace" . }}.svc.*]'
-          - '[Service,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceName" . }}]'
-          - '[Service,{{ include "kyverno.namespace" . }},{{ template "kyverno.admission-controller.serviceName" . }}-metrics]'
-          - '[ServiceMonitor,{{ if .Values.admissionController.serviceMonitor.namespace }}{{ .Values.admissionController.serviceMonitor.namespace }}{{ else }}{{ template "kyverno.namespace" . }}{{ end }},{{ template "kyverno.admission-controller.serviceName" . }}-service-monitor]'
-          - '[Pod,{{ include "kyverno.namespace" . }},{{ template "kyverno.fullname" . }}-*]'
+      - resourceFiltersExcludeNamespaces:
+          - kube-system
