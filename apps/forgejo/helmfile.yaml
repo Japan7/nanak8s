@@ -14,8 +14,8 @@ releases:
           username: "{{ .Values.cnpg.username }}"
           password: "{{ .Values.cnpg.password }}"
       - minio:
-          accessKey: "{{ .Values.minio.cnpg.accessKey }}"
-          secretKey: "{{ .Values.minio.cnpg.secretKey }}"
+          accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+          secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: "*"

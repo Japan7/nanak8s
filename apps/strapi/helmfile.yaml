@@ -12,8 +12,8 @@ releases:
     values:
       - release: 15
       - minio:
-          accessKey: "{{ .Values.minio.cnpg.accessKey }}"
-          secretKey: "{{ .Values.minio.cnpg.secretKey }}"
+          accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+          secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: strapi
     chart: ../../charts/strapi
     values:
