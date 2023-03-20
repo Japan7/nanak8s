@@ -13,7 +13,7 @@ releases:
     chart: minio/minio
     version: 5
     values:
-      - replicas: 3
+      - replicas: 2
       - rootUser: "{{ .Values.minio.username }}"
       - rootPassword: "{{ .Values.minio.password }}"
       - environment:
@@ -21,10 +21,10 @@ releases:
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console/
       - resources:
           requests:
-            memory: 1Gi
+            memory: 512Mi
       - persistence:
           storageClass: longhorn-single
-          size: 50Gi
+          size: 300Gi
       - nodeSelector:
           kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
       - topologySpreadConstraints:
