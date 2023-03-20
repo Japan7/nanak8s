@@ -2,24 +2,18 @@ environments:
   nana:
     values:
       - tag: 2023.03.20
-      - redis:
-          architecture: replication
     secrets:
       - ../globals.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
       - tag: 02ec3bd2
-      - redis:
-          architecture: standalone
     secrets:
       - ../globals.sops.yaml
       - hachi.sops.yaml
   snow:
     values:
       - tag: latest
-      - redis:
-          architecture: standalone
     secrets:
       - ../globals.sops.yaml
       - snow.sops.yaml
@@ -32,17 +26,11 @@ releases:
     chart: bitnami/redis
     version: 17
     values:
-      - architecture: "{{ .Values.redis.architecture }}"
+      - architecture: standalone
       - auth:
           enabled: false
       - master:
           persistence:
-            storageClass: longhorn-single
-            size: 1Gi
-      - replica:
-          replicaCount: 2
-          persistence:
-            storageClass: longhorn-single
             size: 1Gi
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan

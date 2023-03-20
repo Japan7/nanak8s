@@ -20,16 +20,11 @@ releases:
     chart: bitnami/redis
     version: 17
     values:
+      - architecture: standalone
       - auth:
           enabled: false
       - master:
           persistence:
-            storageClass: longhorn-single
-            size: 1Gi
-      - replica:
-          replicaCount: 2
-          persistence:
-            storageClass: longhorn-single
             size: 1Gi
   - name: outline
     chart: ../../charts/outline
