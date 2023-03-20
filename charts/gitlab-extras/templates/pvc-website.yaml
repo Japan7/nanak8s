@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: website-runner
 spec:
-  storageClassName: "{{ .Values.storageClassName }}"
+  storageClassName: longhorn-single
   accessModes:
     - ReadWriteMany
   resources:
