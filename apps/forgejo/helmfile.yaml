@@ -16,10 +16,26 @@ releases:
       - minio:
           accessKey: "{{ .Values.cnpg.minio.accessKey }}"
           secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+  - name: forgejo-redis
+    chart: bitnami/redis
+    version: 17
+    values:
+      - auth:
+          enabled: false
+      - master:
+          persistence:
+            storageClass: longhorn-single
+            size: 1Gi
+      - replica:
+          replicaCount: 2
+          persistence:
+            storageClass: longhorn-single
+            size: 1Gi
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.*
     values:
+      - replicaCount: 1
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
@@ -36,6 +52,18 @@ releases:
               NAME: forgejo
               USER: "{{ .Values.cnpg.username }}"
               PASSWD: "{{ .Values.cnpg.password }}"
+            # https://gitea.com/gitea/helm-chart/src/branch/gitea-ha#gitea-ha
+            cache:
+              ADAPTER: redis
+              HOST: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
+            session:
+              PROVIDER: redis
+              PROVIDER_CONFIG: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
+            queue:
+              TYPE: redis
+              HOST: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
+            queue.issue_indexer:
+              TYPE: redis
           oauth:
             - name: keycloak
               provider: "openidConnect"
@@ -43,6 +71,10 @@ releases:
               existingSecret: forgejo-oauth-secret
       - postgresql:
           enabled: false
+      - memcached:
+          enabled: false
+      - persistence:
+          existingClaim: forgejo-data
       - ingress:
           enabled: true
           apiVersion: networking.k8s.io/v1
