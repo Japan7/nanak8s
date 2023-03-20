@@ -39,7 +39,7 @@ releases:
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.*
     values:
-      - replicaCount: 1
+      - replicaCount: 2
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
