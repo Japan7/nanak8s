@@ -66,8 +66,9 @@ releases:
             queue:
               TYPE: redis
               CONN_STR: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
-            queue.issue_indexer:
-              TYPE: redis
+            # https://github.com/go-gitea/gitea/issues/17563
+            indexer:
+              ISSUE_INDEXER_TYPE: db
           oauth:
             - name: keycloak
               provider: "openidConnect"
