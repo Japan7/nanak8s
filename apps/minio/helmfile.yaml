@@ -13,7 +13,7 @@ releases:
     chart: minio/minio
     version: 5
     values:
-      - replicas: 2
+      - replicas: 3
       - rootUser: "{{ .Values.minio.username }}"
       - rootPassword: "{{ .Values.minio.password }}"
       - environment:
