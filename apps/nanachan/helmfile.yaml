@@ -9,7 +9,7 @@ environments:
       - nana.sops.yaml
   hachi:
     values:
-      - tag: 98f6f756
+      - tag: 02ec3bd2
       - redis:
           architecture: standalone
     secrets:
