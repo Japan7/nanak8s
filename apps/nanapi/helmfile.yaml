@@ -8,7 +8,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: 75a582ef
+      - tag: ca08232a
       - replicaCount: 1
     secrets:
       - ../globals.sops.yaml
