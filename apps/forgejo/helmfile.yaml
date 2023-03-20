@@ -65,7 +65,7 @@ releases:
               PROVIDER_CONFIG: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
             queue:
               TYPE: redis
-              HOST: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
+              CONN_STR: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
             queue.issue_indexer:
               TYPE: redis
           oauth:
