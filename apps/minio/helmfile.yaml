@@ -19,6 +19,10 @@ releases:
       - environment:
           MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console/
+          MINIO_IDENTITY_OPENID_CONFIG_URL: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
+          MINIO_IDENTITY_OPENID_CLIENT_ID: "{{ .Values.keycloak.clientId }}"
+          MINIO_IDENTITY_OPENID_CLIENT_SECRET: "{{ .Values.keycloak.clientSecret }}"
+          MINIO_IDENTITY_OPENID_CLAIM_NAME: minio_policy
       - resources:
           requests:
             memory: 512Mi
