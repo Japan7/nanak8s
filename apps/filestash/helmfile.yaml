@@ -2,6 +2,7 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 releases:
   - name: filestash
@@ -10,5 +11,20 @@ releases:
       - image:
           tag: subs
           pullPolicy: Always
+      - ingress:
+          host: filestash.{{ .Values.domain }}
+  - name: filestash-minio-oidc-auth
+    chart: ../../charts/filestash-minio-oidc-auth
+    values:
+      - filestash:
+          host: https://filestash.{{ .Values.domain }}
+          apiKey: "{{ .Values.filestash.apiKey }}"
+      - keycloak:
+          host: https://keycloak.{{ .Values.domain }}
+          realm: japan7
+          clientId: "{{ .Values.keycloak.clientId }}"
+          clientSecret: "{{ .Values.keycloak.clientSecret }}"
+      - minio:
+          host: http://minio.minio:9000
       - ingress:
           host: filestash.{{ .Values.domain }}

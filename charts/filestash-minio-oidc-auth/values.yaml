@@ -1,0 +1,24 @@
+image:
+  repository: ghcr.io/japan7/filestash-minio-oidc-auth
+  tag: main
+  pullPolicy: Always
+
+filestash:
+  host: ""
+  apiKey: ""
+
+apiPrefix: /api/minio
+
+keycloak:
+  host: ""
+  realm: ""
+  clientId: ""
+  clientSecret: ""
+
+minio:
+  host: ""
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure
