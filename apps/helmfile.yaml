@@ -32,7 +32,7 @@ releases:
 
           # Data
           - name: nanadb
-          - name: minio
+          # - name: minio
           - name: strapi
 
           # nanapi
