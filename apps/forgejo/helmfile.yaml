@@ -64,11 +64,6 @@ releases:
             # https://github.com/go-gitea/gitea/issues/17563
             indexer:
               ISSUE_INDEXER_TYPE: db
-          oauth:
-            - name: keycloak
-              provider: "openidConnect"
-              autoDiscoverUrl: https://keycloak.{{ .Values.domain }}/realms/{{ .Values.keycloak.realm }}/.well-known/openid-configuration
-              existingSecret: forgejo-oauth-secret
       - postgresql:
           enabled: false
       - memcached:
@@ -87,7 +82,3 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
-    values:
-      - oauth:
-          key: "{{ .Values.keycloak.forgejo.clientId }}"
-          secret: "{{ .Values.keycloak.forgejo.clientSecret }}"

@@ -1,6 +1,2 @@
-oauth:
-  key: ""
-  secret: ""
-
 traefik:
   sshEntryPoint: "forgejo-ssh"

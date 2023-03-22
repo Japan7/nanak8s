@@ -14,9 +14,9 @@ releases:
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
-          host: "{{ .Values.server.smtp.host }}"
-          user: "{{ .Values.server.smtp.user }}"
-          password: "{{ .Values.server.smtp.password }}"
+          host: "{{ .Values.smtp.host }}"
+          user: "{{ .Values.smtp.username }}"
+          password: "{{ .Values.smtp.password }}"
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: dakara-client

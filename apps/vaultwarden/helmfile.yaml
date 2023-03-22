@@ -25,7 +25,7 @@ releases:
           from: "{{ .Values.smtp.from }}"
           fromName: Vaultwarden Japan7
           host: "{{ .Values.smtp.host }}"
-          user: "{{ .Values.smtp.user }}"
+          user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
       - ldap:
           enabled: true
