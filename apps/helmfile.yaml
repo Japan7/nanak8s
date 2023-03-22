@@ -22,7 +22,7 @@ releases:
           # # Apps
           # - name: openldap
           # - name: keycloak
-          # - name: vaultwarden
+          - name: vaultwarden
           # - name: waicolle
           # - name: dakara
           # - name: filestash
