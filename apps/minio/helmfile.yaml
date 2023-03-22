@@ -20,9 +20,7 @@ releases:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.middlewares: "minio-minio-operator-console-stripprefix@kubernetescrd"
-            host: minio.{{ .Values.domain }}
-            path: /operator
+            host: minio-operator.{{ .Values.domain }}
   - name: minio
     chart: minio-prev/minio
     version: 5
