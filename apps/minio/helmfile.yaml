@@ -27,13 +27,6 @@ releases:
           size: 300Gi
       - nodeSelector:
           kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
-      - topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: DoNotSchedule
-            labelSelector:
-              matchLabels:
-                app: minio
       - ingress:
           enabled: true
           annotations:
