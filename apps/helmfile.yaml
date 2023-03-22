@@ -11,9 +11,6 @@ releases:
             namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
-          - name: kyverno
-            extraSyncOptions:
-              - Replace=true
 
           # Dev
           - name: argo-cd
