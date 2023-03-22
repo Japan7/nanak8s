@@ -12,53 +12,53 @@ releases:
           - name: cnpg
             namespace: cnpg-system
 
-          # Dev
-          - name: argo-cd
-            namespace: argocd
-          - name: forgejo
-          - name: woodpecker
-          - name: gitlab
+          # # Dev
+          # - name: argo-cd
+          #   namespace: argocd
+          # - name: forgejo
+          # - name: woodpecker
+          # - name: gitlab
 
-          # Apps
-          - name: openldap
-          - name: keycloak
-          - name: vaultwarden
-          - name: waicolle
-          - name: dakara
-          - name: filestash
-          - name: n8n
-          - name: outline
-          - name: syncplay
+          # # Apps
+          # - name: openldap
+          # - name: keycloak
+          # - name: vaultwarden
+          # - name: waicolle
+          # - name: dakara
+          # - name: filestash
+          # - name: n8n
+          # - name: outline
+          # - name: syncplay
 
-          # Data
-          - name: nanadb
-          - name: minio
-          - name: strapi
+          # # Data
+          # - name: nanadb
+          # - name: minio
+          # - name: strapi
 
-          # nanapi
-          - name: nanapi-prod
-            namespace: nanapi
-            subdir: nanapi
-            environment: prod
-          - name: nanapi-staging
-            namespace: nanapi
-            subdir: nanapi
-            environment: staging
-          - name: nanapi-dev
-            namespace: nanapi
-            subdir: nanapi
-            environment: dev
+          # # nanapi
+          # - name: nanapi-prod
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: prod
+          # - name: nanapi-staging
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: staging
+          # - name: nanapi-dev
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: dev
 
-          # nanachan
-          - name: nanachan-nana
-            namespace: nanachan
-            subdir: nanachan
-            environment: nana
-          - name: nanachan-hachi
-            namespace: nanachan
-            subdir: nanachan
-            environment: hachi
-          - name: nanachan-snow
-            namespace: nanachan
-            subdir: nanachan
-            environment: snow
+          # # nanachan
+          # - name: nanachan-nana
+          #   namespace: nanachan
+          #   subdir: nanachan
+          #   environment: nana
+          # - name: nanachan-hachi
+          #   namespace: nanachan
+          #   subdir: nanachan
+          #   environment: hachi
+          # - name: nanachan-snow
+          #   namespace: nanachan
+          #   subdir: nanachan
+          #   environment: snow
