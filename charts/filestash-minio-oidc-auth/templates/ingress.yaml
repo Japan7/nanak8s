@@ -6,6 +6,7 @@ metadata:
     {{ range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{ end }}
+    traefik.ingress.kubernetes.io/router.priority: "42"
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"
