@@ -1,0 +1,8 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "minio-operator-console-stripprefix"
+spec:
+  stripPrefix:
+    prefixes:
+      - "/operator"

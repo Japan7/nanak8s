@@ -6,11 +6,25 @@ environments:
 ---
 repositories:
   - name: minio
+    url: https://operator.min.io/
+  - name: minio-prev
     url: https://charts.min.io/
 
 releases:
+  - name: minio-operator
+    chart: minio/operator
+    version: 4
+    values:
+      - console:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "minio-minio-operator-console-stripprefix@kubernetescrd"
+          hosts:
+            - minio.{{ .Values.domain }}
+          path: /operator
   - name: minio
-    chart: minio/minio
+    chart: minio-prev/minio
     version: 5
     values:
       - replicas: 3
