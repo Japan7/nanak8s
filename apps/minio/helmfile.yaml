@@ -17,8 +17,10 @@ releases:
           rootUser: "{{ .Values.minio.username }}"
           rootPassword: "{{ .Values.minio.password }}"
       - extraEnvVars:
-          MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
-          MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console/
+          - name: MINIO_SERVER_URL
+            value: https://minio.{{ .Values.domain }}
+          - name: MINIO_BROWSER_REDIRECT_URL
+            value: https://minio.{{ .Values.domain }}/console/
       - persistence:
           size: 300Gi
       - ingress:
