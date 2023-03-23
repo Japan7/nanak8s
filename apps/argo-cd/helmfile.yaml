@@ -16,14 +16,7 @@ releases:
     chart: argo/argo-cd
     version: 5
     values:
-      - redis-ha:
-          enabled: true
-      - controller:
-          replicas: 1
       - server:
-          autoscaling:
-            enabled: true
-            minReplicas: 2
           ingress:
             enabled: true
             hosts:
@@ -33,9 +26,6 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
       # https://github.com/travisghansen/argo-cd-helmfile
       - repoServer:
-          autoscaling:
-            enabled: true
-            minReplicas: 2
           volumes:
             - name: helmfile-cmp-tmp
               emptyDir: {}
@@ -59,8 +49,6 @@ releases:
                   mountPath: /home/argocd/cmp-server/plugins
                 - name: helmfile-cmp-tmp
                   mountPath: /tmp
-      - applicationSet:
-          replicaCount: 2
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
     values:
