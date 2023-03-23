@@ -5,41 +5,33 @@ environments:
       - default.sops.yaml
 ---
 repositories:
-  - name: minio
-    url: https://charts.min.io/
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
 
 releases:
   - name: minio
-    chart: minio/minio
-    version: 5
+    chart: bitnami/minio
+    version: 12
     values:
-      - replicas: 3
-      - rootUser: "{{ .Values.minio.username }}"
-      - rootPassword: "{{ .Values.minio.password }}"
-      - environment:
+      - auth:
+          rootUser: "{{ .Values.minio.username }}"
+          rootPassword: "{{ .Values.minio.password }}"
+      - extraEnvVars:
           MINIO_SERVER_URL: https://minio.{{ .Values.domain }}
           MINIO_BROWSER_REDIRECT_URL: https://minio.{{ .Values.domain }}/console/
-      - resources:
-          requests:
-            memory: 512Mi
       - persistence:
-          storageClass: longhorn-single
           size: 300Gi
-      - nodeSelector:
-          kubernetes.io/arch: amd64 # it doesn't like being rescheduled between different arch
       - ingress:
           enabled: true
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          hosts:
-            - minio.{{ .Values.domain }}
-      - consoleIngress:
-          enabled: true
+          hostname: minio.{{ .Values.domain }}
+          path: /console
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "minio-minio-console-stripprefix@kubernetescrd"
-          hosts:
-            - minio.{{ .Values.domain }}
-          path: /console
+      - apiIngress:
+          enabled: true
+          hostname: minio.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: minio-extras
     chart: ../../charts/minio-extras
