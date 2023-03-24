@@ -1,0 +1,28 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+
+releases:
+  - name: kube-prometheus-stack
+    chart: prometheus-community/kube-prometheus-stack
+    version: 45
+    values:
+      - grafana:
+          adminPassword: "{{ .Values.grafana.password }}"
+          ingress:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            hosts:
+              - grafana.{{ .Values.domain }}
+  - name: loki-stack
+    chart: grafana/loki-stack
+    version: 2

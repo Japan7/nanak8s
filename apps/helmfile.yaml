@@ -11,6 +11,7 @@ releases:
             namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
+          - name: monitoring
 
           # Dev
           - name: argo-cd
