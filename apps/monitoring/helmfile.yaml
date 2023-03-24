@@ -21,6 +21,14 @@ releases:
     chart: prometheus-community/kube-prometheus-stack
     version: 45
     values:
+      - alertmanager:
+          ingress:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
+            hosts:
+              - alertmanager.{{ .Values.domain }}
       - grafana:
           adminPassword: "{{ .Values.grafana.password }}"
           ingress:
@@ -29,6 +37,14 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
             hosts:
               - grafana.{{ .Values.domain }}
+      - prometheus:
+          ingress:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
+            hosts:
+              - prometheus.{{ .Values.domain }}
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
