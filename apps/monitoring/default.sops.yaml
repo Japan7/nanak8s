@@ -1,5 +1,6 @@
 grafana:
     password: ENC[AES256_GCM,data:DLhGXgT0q3dj3QhAke0=,iv:GJLKUEUC+nSeAU6GDWBLUbfF2ZlEyioNR7KYVQGCBZU=,tag:RXtL3F1bgzE1B8/XkjmjTA==,type:str]
+webhook: ENC[AES256_GCM,data:WxfZM7zrnayDIG28aN62a5aAQru0aRVEolWpfQTCtHEMGEmD5dHXfQxDEMTvzxQpRRYtXvxrgS9vz+uUkicwgR498tnyUQDJLuG0PBhBc7HWNbxLP26aWFaA31lZPCuMh0OwBUsZdXYZlmPuk54dyMqpo5mM/yZjgg==,iv:dUf083fH8SDK64S+7usxv8WkVN2AqcQD8yNapCY46w4=,tag:P4NYm1XkGdbOh0xkjNP/YQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -15,8 +16,8 @@ sops:
             b1JyTEMyTkVGMVhyd01Xc3BrRjVGNlkKxs4zJvdHfOv/khrmbBukt3pSyZ8pPPp3
             e/eRXWvzSVSw8re0n5D1diJ1Rirknpjso92ozwgf0I9cBcia5wEAOA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-24T14:57:24Z"
-    mac: ENC[AES256_GCM,data:wy4mCgqGRALGn4GSyjZBeARo4sgInOIRGGv8Je1LiVQR/2T0Y3mhY4TwgskDTHuXh9p05qFhq0P8+OFm+Atcfop2J+pNV3/fE3ZnSeu2jfmf1JRSKQEVL6OtV+5Mn7bBn4nlC1wRRXNmhFxLtWN9ujTf66QI3hUZt40nymOfJeA=,iv:4cmgGzF8tduFR7Y4oyFExxEGxS1Z3UMkV6s5YzOJ8Vk=,tag:4VDwvtyy7P7qJAsUogh9IQ==,type:str]
+    lastmodified: "2023-03-24T22:48:13Z"
+    mac: ENC[AES256_GCM,data:C6PrxoyNp5Xwoy3EYGTLEyNJnAOCkXCEqB9Bzv/h0uLFgxzXPIezQWElIcqejFQjNeDLA9EBATQ00VlB6hHbsBkY4Gopi7bDQwBgpkwP3trxMzxZT89GcRcqoVj+L6zNX7ma2zclJ1+Hcv8WesOF7ZdSwNAh2cWjlBHl9KWzU6k=,iv:XJPdPcif//zkUfhmnVTwBESfVfI2qAOxpa/aolLU2rk=,tag:wjLkmpat8rtDWBm5o8ihvQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

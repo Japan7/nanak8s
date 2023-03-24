@@ -22,6 +22,11 @@ releases:
     version: 45
     values:
       - alertmanager:
+          config:
+            receivers:
+              - name: discord
+                discord_configs:
+                  - webhook_url: "{{ .Values.webhook }}"
           alertmanagerSpec:
             storage:
               volumeClaimTemplate:
@@ -70,8 +75,7 @@ releases:
             hosts:
               - prometheus.{{ .Values.domain }}
       - kubeEtcd:
-          endpoints:
-            {{ .Values.nodes | toYaml | nindent 12 }}
+          endpoints: { { .Values.nodes | toYaml | nindent 12 } }
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
