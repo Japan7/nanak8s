@@ -42,7 +42,7 @@ releases:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
       - replicaCount: "{{ .Values.replicaCount }}"
-      - dumpsPersistence: "{{ .Values.dumpsPersistence }}"
+      - dumpsPersistence: {{ .Values.dumpsPersistence }}
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"
