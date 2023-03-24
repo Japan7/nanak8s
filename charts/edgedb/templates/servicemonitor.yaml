@@ -1,14 +1,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ .Release.Name }}-servicemonitor
+  name: "{{ .Release.Name }}"
   namespace: monitoring
 spec:
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: "{{ .Release.Name }}"
   namespaceSelector:
     matchNames:
-      - {{ .Release.Namespace }}
+      - "{{ .Release.Namespace }}"
   endpoints:
     - port: edgedb
