@@ -1,4 +1,9 @@
 domain: ENC[AES256_GCM,data:/bTaAhkYuaufqpgCorNcZUcWMQApqQ==,iv:lv60+w0ydmSS9SptcpRLK8o/kGLaQLufO0DQVJ4WlhA=,tag:XhSTV8zGpG8LoUsc3TyMpQ==,type:str]
+nodes:
+    - ENC[AES256_GCM,data:xdTVrtuzerLKkw==,iv:Ll24Q3AhLstOLGN3+eFt3UMyiahaDVwckkN2Y9uTvWs=,tag:9LAZMdcugJF40GTLcQeSUQ==,type:str]
+    - ENC[AES256_GCM,data:/nMjKrqFcVqtMg==,iv:+hSm+8hTUhABXxWxCFJkwckq068dvZ0hyt7sSvQhqRs=,tag:/tHdbzy9IM+/IzIAeC4j1A==,type:str]
+    - ENC[AES256_GCM,data:AWmGF3ZQDg9kXA==,iv:bfoIDh9XnK80r7Z/gIo9vnhvzGwH9MidJ9LtnCB32SY=,tag:iQsjw27juPnkPmFPR2CZsA==,type:str]
+    - ENC[AES256_GCM,data:gDa2QgOqjMBWaQ==,iv:u24lVmwUiMn2MJm9QF1+vSrYOsZ+QMa7BQvQHtj+Kl8=,tag:ivxKpeh0M4Oin3hfcNi7GQ==,type:str]
 cnpg:
     minio:
         accessKey: ENC[AES256_GCM,data:BkUZLhOUVbRO8zseQBArCQ==,iv:id/9BVuunMYx7WNtDMJ1uFBzED3ptBjayj4FJUyz4jE=,tag:8RBRiBOry36FhhtMIlzGlA==,type:str]
@@ -30,8 +35,8 @@ sops:
             azBpUTd0VlhxUGtma21YYmdCWGdIVWcKZwtx4ePA6UE85T84HrBwPRRu7Z0oFqew
             98HkEmcMG8LQhDwQ7uBzCA8FzMk8Rv/y4aJO/YBeeUO1H1WXiZMfwg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-23T00:37:22Z"
-    mac: ENC[AES256_GCM,data:yaXZ++vCI87EPhUt6syZ0bHLwgsfb0EkB/FQ5oaQzLK4QRArp3pQg+ueFsoqFuPIVmvMwn82twla1d+ZI72A0pi3E++G0f0W8s7f/tVIWcSq6yWbj4KQoSJXdW7gctaKspAuYsk1K7Z7tlNrbCwcVMKKjMZnJ0qtT4HkCvIsP+s=,iv:X4zV75S0V+4YWbp0AwUpj36gorYxuSnH2HLqP5dKIOY=,tag:htyyP5e25W1/0KgfyHc3ew==,type:str]
+    lastmodified: "2023-03-24T19:34:19Z"
+    mac: ENC[AES256_GCM,data:SKuIIIDfz0ukyr4zZMxnS4Zu1qicGBjqK0VN9rAKVdwZliavKljabNcXgLXKCoer772c+2l7tzSKstADrk1Dc7C8xgS9M37RJwdeg7BJLLBDC3ROe0UcXET26ykwGT2JajHWYmWiYa+CcgqxX29456QJywIlcg8LHQuywnot8gs=,iv:+J9NKwF/4o6gWJxD6IDQhLiDFPltbzThsfqXfGPPXbQ=,tag:CqIGDXdJZox5AnhZfbg10Q==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

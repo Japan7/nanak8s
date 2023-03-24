@@ -22,7 +22,10 @@ sh -s - server \
 --server https://<EXISTING_NODE_IP>:6443 \
 --secrets-encryption \
 --disable local-storage \
---flannel-iface <INNERNET_INTERFACE>
+--flannel-iface <INNERNET_INTERFACE> \
+--etcd-arg heartbeat-interval=200 \
+--etcd-arg election-timeout=1000 \
+--etcd-expose-metrics
 ```
 
 3. **Check Longhorn requirements**

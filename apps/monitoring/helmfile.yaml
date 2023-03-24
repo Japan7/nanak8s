@@ -65,6 +65,9 @@ releases:
               traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
             hosts:
               - prometheus.{{ .Values.domain }}
+      - kubeEtcd:
+          endpoints:
+            {{ .Values.nodes | toYaml | nindent 12 }}
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
