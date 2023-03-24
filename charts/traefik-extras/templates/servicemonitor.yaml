@@ -1,0 +1,17 @@
+# https://github.com/cablespaghetti/k3s-monitoring/blob/c8406c836d8b6d4808e4e888aedd33ce5e3760f9/traefik-servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: traefik
+    release: prometheus
+  name: traefik
+spec:
+  endpoints:
+    - port: metrics
+  namespaceSelector:
+    matchNames:
+      - kube-system
+  selector:
+    matchLabels:
+      app: traefik
