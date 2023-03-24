@@ -11,6 +11,9 @@ repositories:
     url: https://grafana.github.io/helm-charts
 
 releases:
+  - name: prometheus-operator-crds
+    chart: prometheus-community/prometheus-operator-crds
+    version: 2
   - name: kube-prometheus-stack
     chart: prometheus-community/kube-prometheus-stack
     version: 45
