@@ -33,5 +33,3 @@ spec:
         compression: bzip2
     retentionPolicy: "7d"
     target: "prefer-standby"
-  monitoring:
-    enablePodMonitor: true

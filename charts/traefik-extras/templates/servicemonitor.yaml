@@ -6,6 +6,7 @@ metadata:
     app: traefik
     release: prometheus
   name: traefik
+  namespace: monitoring
 spec:
   endpoints:
     - port: metrics

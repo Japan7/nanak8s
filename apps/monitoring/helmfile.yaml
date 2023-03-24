@@ -51,6 +51,10 @@ releases:
               - grafana.{{ .Values.domain }}
       - prometheus:
           prometheusSpec:
+            ruleSelectorNilUsesHelmValues: false
+            serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
+            probeSelectorNilUsesHelmValues: false
             storageSpec:
               volumeClaimTemplate:
                 spec:
@@ -74,3 +78,5 @@ releases:
     values:
       - loki:
           isDefault: false
+  - name: monitoring-extras
+    chart: ../../charts/monitoring-extras
