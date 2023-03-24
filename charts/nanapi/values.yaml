@@ -3,6 +3,8 @@ image:
   tag: latest
   pullPolicy: ""
 
+dumpsPersistence: false
+
 edgedb:
   service: ""
   username: ""
