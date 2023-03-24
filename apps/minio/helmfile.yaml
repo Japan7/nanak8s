@@ -35,5 +35,9 @@ releases:
           hostname: minio.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      - metrics:
+          serviceMonitor:
+            enabled: true
+            namespace: monitoring
   - name: minio-extras
     chart: ../../charts/minio-extras
