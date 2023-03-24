@@ -11,4 +11,4 @@ spec:
     matchNames:
       - {{ .Release.Namespace }}
   endpoints:
-    - port: 5656
+    - port: edgedb
