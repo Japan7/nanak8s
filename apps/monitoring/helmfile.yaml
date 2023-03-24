@@ -78,5 +78,3 @@ releases:
     values:
       - loki:
           isDefault: false
-  - name: monitoring-extras
-    chart: ../../charts/monitoring-extras
