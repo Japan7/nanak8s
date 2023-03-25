@@ -26,6 +26,7 @@ releases:
             route:
               receiver: discord
             receivers:
+              - name: null
               - name: discord
                 discord_configs:
                   - webhook_url: "{{ .Values.webhook }}"
