@@ -75,7 +75,8 @@ releases:
             hosts:
               - prometheus.{{ .Values.domain }}
       - kubeEtcd:
-          endpoints: { { .Values.nodes | toYaml | nindent 12 } }
+          endpoints:
+            {{ .Values.nodes | toYaml | nindent 12 }}
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
