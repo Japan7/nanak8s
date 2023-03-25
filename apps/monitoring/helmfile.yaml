@@ -23,6 +23,8 @@ releases:
     values:
       - alertmanager:
           config:
+            route:
+              receiver: discord
             receivers:
               - name: discord
                 discord_configs:
@@ -76,7 +78,7 @@ releases:
               - prometheus.{{ .Values.domain }}
       - kubeEtcd:
           endpoints:
-            {{ .Values.nodes | toYaml | nindent 12 }}
+          {{ .Values.nodes | toYaml | nindent 12 }}
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
