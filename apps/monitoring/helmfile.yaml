@@ -24,12 +24,12 @@ releases:
       - alertmanager:
           config:
             route:
-              receiver: discord
               routes:
                 - receiver: discord
                   matchers:
                     - alertname =~ "InfoInhibitor|Watchdog"
             receivers:
+              - name: "null"
               - name: discord
                 discord_configs:
                   - webhook_url: "{{ .Values.webhook }}"
