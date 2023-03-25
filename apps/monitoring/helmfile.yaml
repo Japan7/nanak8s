@@ -24,8 +24,8 @@ releases:
       - alertmanager:
           config:
             route:
+              group_by: ['...']
               receiver: discord
-              group_interval: 0s
             receivers:
               - name: "null"
               - name: discord
