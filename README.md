@@ -23,8 +23,6 @@ sh -s - server \
 --secrets-encryption \
 --disable local-storage \
 --flannel-iface <INNERNET_INTERFACE> \
---etcd-arg heartbeat-interval=200 \
---etcd-arg election-timeout=1000 \
 --etcd-expose-metrics
 ```
 
@@ -111,7 +109,8 @@ sh -s - server \
 --cluster-init \
 --secrets-encryption \
 --disable local-storage \
---flannel-iface <INNERNET_INTERFACE>
+--flannel-iface <INNERNET_INTERFACE> \
+--etcd-expose-metrics
 ```
 
 ### Launch Argo CD
