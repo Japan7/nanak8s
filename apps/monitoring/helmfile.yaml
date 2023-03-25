@@ -25,6 +25,7 @@ releases:
           config:
             route:
               receiver: discord
+              group_interval: 0s
             receivers:
               - name: "null"
               - name: discord
