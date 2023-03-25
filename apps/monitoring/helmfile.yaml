@@ -24,10 +24,7 @@ releases:
       - alertmanager:
           config:
             route:
-              routes:
-                - receiver: discord
-                  matchers:
-                    - alertname =~ "InfoInhibitor|Watchdog"
+              receiver: discord
             receivers:
               - name: "null"
               - name: discord
@@ -81,8 +78,7 @@ releases:
             hosts:
               - prometheus.{{ .Values.domain }}
       - kubeEtcd:
-          endpoints:
-            {{ .Values.nodes | toYaml | nindent 12 }}
+          endpoints: { { .Values.nodes | toYaml | nindent 12 } }
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2
