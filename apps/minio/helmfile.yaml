@@ -54,7 +54,7 @@ releases:
       - secret:
           accessKey: "{{ .Values.csi.accessKey }}"
           secretKey: "{{ .Values.csi.secretKey }}"
-          endpoint: http://minio.minio.svc.cluster.local:9000
+          endpoint: http://minio.minio:9000
     strategicMergePatches:
       - apiVersion: apps/v1
         kind: DaemonSet
@@ -66,5 +66,6 @@ releases:
             spec:
               nodeSelector:
                 kubernetes.io/arch: amd64 # no arm64 image available
+              dnsPolicy: ClusterFirstWithHostNet
   - name: minio-extras
     chart: ../../charts/minio-extras
