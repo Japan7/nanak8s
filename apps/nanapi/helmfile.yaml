@@ -53,3 +53,28 @@ releases:
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
+      # FIXME: ugly hack to avoid nanapi scheduling on camp
+      # (Illegal instruction (core dumped) crashloop)
+      - patch: &patch
+          template:
+            spec:
+              affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: NotIn
+                            values:
+                              - camp
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanapi-{{ .Environment.Name }}
+        spec: *patch
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanapi-{{ .Environment.Name }}-tasks
+        spec: *patch
