@@ -24,7 +24,7 @@ releases:
           - name: MINIO_PROMETHEUS_URL
             value: http://kube-prometheus-stack-prometheus.monitoring:9090
           - name: MINIO_PROMETHEUS_JOB_ID
-            value: serviceMonitor/monitoring/minio/0
+            value: minio
       - persistence:
           size: 300Gi
       - ingress:
