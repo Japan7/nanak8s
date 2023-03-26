@@ -53,6 +53,3 @@ releases:
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
-          middlewares:
-            - name: japan7-basic-auth
-              namespace: kube-system

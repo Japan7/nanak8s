@@ -41,3 +41,5 @@ releases:
           pvc: mugen-pvc
       - ingress:
           host: dakara.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-japan7-basic-auth@kubernetescrd

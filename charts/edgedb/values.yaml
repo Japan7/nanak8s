@@ -13,7 +13,6 @@ user:
   password: edgedb
 
 ingress:
+  host: ""
   entryPoints:
     - websecure
-  host: ""
-  pathPrefix: "/"

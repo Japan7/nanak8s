@@ -20,6 +20,3 @@ ingress:
     - websecure
   host: ""
   pathPrefix: "/"
-  middlewares: []
-  # - name: ""
-  #   namespace: ""

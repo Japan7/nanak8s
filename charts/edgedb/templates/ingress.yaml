@@ -6,16 +6,13 @@ metadata:
     {{ range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{ end }}
-    {{ if ne .Values.ingress.pathPrefix "/" }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
-    {{ end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"
       http:
         paths:
           - pathType: Prefix
-            path: "{{ .Values.ingress.pathPrefix }}"
+            path: /
             backend:
               service:
                 name: "{{ .Release.Name }}"
