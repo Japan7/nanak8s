@@ -27,11 +27,5 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
-      - ldap:
-          enabled: true
-          host: openldap.openldap
-          dn: "{{ .Values.ldap.admin.dn }}"
-          password: "{{ .Values.ldap.admin.password }}"
-          searchBaseDn: ou=users,{{ .Values.ldap.domain }}
       - ingress:
           host: vaultwarden.{{ .Values.domain }}
