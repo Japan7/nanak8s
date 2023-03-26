@@ -24,6 +24,6 @@ spec:
       name: "{{ .Values.csi.secret }}"
       namespace: "{{ .Values.csi.namespace }}"
     volumeAttributes:
-      capacity: "{{ .Values.s3.size }}"
+      capacity: "{{ .Values.size }}"
       mounter: geesefs
-    volumeHandle: "{{ .Values.s3.path }}"
+    volumeHandle: "{{ .Values.path }}"
