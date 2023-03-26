@@ -23,7 +23,7 @@ spec:
             claimName: "{{ .Release.Name }}-db"
         - name: download
           persistentVolumeClaim:
-            claimName: "{{ .Values.base.pvc }}"
+            claimName: "{{ .Values.mugen.pvc }}"
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

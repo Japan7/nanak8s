@@ -3,4 +3,4 @@ csi:
   namespace: minio
 
 path: ""
-size: 300Gi
+size: 1Ti

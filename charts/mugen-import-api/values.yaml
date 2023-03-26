@@ -5,7 +5,7 @@ image:
 
 replicaCount: 1
 
-base:
+mugen:
   pvc: ""
 
 ingress:
