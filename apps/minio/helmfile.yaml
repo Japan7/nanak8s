@@ -47,12 +47,8 @@ releases:
             namespace: monitoring
   - name: csi-s3
     chart: k8s-csi-s3/csi-s3
+    version: 0
     values:
-      - images:
-          attacher: quay.io/k8scsi/csi-attacher:v3.0.1
-          registrar: quay.io/k8scsi/csi-node-driver-registrar:v1.2.0
-          provisioner: quay.io/k8scsi/csi-provisioner:v2.1.0
-          csi: cr.yandex/crp9ftr22d26age3hulg/yandex-cloud/csi-s3/csi-s3-driver:0.34.7 # welp
       - storageClass:
           create: false
       - secret:
