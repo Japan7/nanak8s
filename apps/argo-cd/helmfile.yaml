@@ -16,12 +16,6 @@ releases:
     chart: argo/argo-cd
     version: 5
     values:
-      - controller:
-          metrics:
-            enabled: true
-            serviceMonitor:
-              enabled: true
-              namespace: monitoring
       - server:
           ingress:
             enabled: true
@@ -30,11 +24,6 @@ releases:
             https: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          metrics:
-            enabled: true
-            serviceMonitor:
-              enabled: true
-              namespace: monitoring
       # https://github.com/travisghansen/argo-cd-helmfile
       - repoServer:
           volumes:
@@ -60,17 +49,6 @@ releases:
                   mountPath: /home/argocd/cmp-server/plugins
                 - name: helmfile-cmp-tmp
                   mountPath: /tmp
-          metrics:
-            enabled: true
-            serviceMonitor:
-              enabled: true
-              namespace: monitoring
-      - applicationSet:
-          metrics:
-            enabled: true
-            serviceMonitor:
-              enabled: true
-              namespace: monitoring
   - name: argo-cd-extras
     chart: ../../charts/argo-cd-extras
     values:
