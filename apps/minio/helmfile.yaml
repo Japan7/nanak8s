@@ -54,7 +54,7 @@ releases:
       - secret:
           accessKey: "{{ .Values.csi.accessKey }}"
           secretKey: "{{ .Values.csi.secretKey }}"
-          endpoint: http://minio:9000
+          endpoint: http://minio.{{ .Namespace }}:9000
     strategicMergePatches:
       - apiVersion: apps/v1
         kind: DaemonSet
