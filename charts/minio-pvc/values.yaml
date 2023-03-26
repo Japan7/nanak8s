@@ -1,0 +1,6 @@
+csi:
+  secret: csi-s3-secret
+  namespace: minio
+
+path: ""
+size: 300Gi

@@ -3,6 +3,11 @@ image:
   tag: latest
   pullPolicy: ""
 
+replicaCount: 1
+
+base:
+  pvc: ""
+
 ingress:
   host: ""
   entryPoints:

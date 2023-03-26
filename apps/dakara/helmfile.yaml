@@ -28,10 +28,16 @@ releases:
       - replicaCount: 2
       - ingress:
           host: dakara.{{ .Values.domain }}
+  - name: kara-pvc
+    chart: ../../charts/minio-pvc
+    values:
+      - path: kara
   - name: mugen-import-api
     chart: ../../charts/mugen-import-api
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
+      - base:
+          pvc: kara-pvc
       - ingress:
           host: dakara.{{ .Values.domain }}
