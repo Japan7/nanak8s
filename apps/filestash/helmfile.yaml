@@ -27,5 +27,5 @@ releases:
       - minio:
           host: http://minio.minio:9000
       - ingress:
-          loginRedirect: false
+          loginRedirect: true
           host: filestash.{{ .Values.domain }}

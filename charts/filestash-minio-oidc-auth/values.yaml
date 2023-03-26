@@ -19,7 +19,7 @@ minio:
   host: ""
 
 ingress:
-  loginRedirect: true
+  loginRedirect: false
   host: ""
   entryPoints:
     - websecure
