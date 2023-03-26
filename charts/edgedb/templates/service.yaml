@@ -7,4 +7,3 @@ spec:
     app: "{{ .Release.Name }}"
   ports:
     - port: 5656
-      name: edgedb
