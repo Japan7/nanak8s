@@ -40,7 +40,6 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
       - metrics:
-          prometheusAuthType: jwt
           serviceMonitor:
             enabled: true
             namespace: monitoring
