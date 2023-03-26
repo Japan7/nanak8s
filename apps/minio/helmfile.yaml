@@ -7,6 +7,8 @@ environments:
 repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
+  - name: k8s-csi-s3
+    url: git+https://github.com/yandex-cloud/k8s-csi-s3@deploy/helm
 
 releases:
   - name: minio
@@ -43,5 +45,14 @@ releases:
           serviceMonitor:
             enabled: true
             namespace: monitoring
+  - name: csi-s3
+    chart: k8s-csi-s3/csi-s3
+    values:
+      - storageClass:
+          create: false
+      - secret:
+          accessKey: "{{ .Values.csi.accessKey }}"
+          secretKey: "{{ .Values.csi.secretKey }}"
+          endpoint: http://minio:9000
   - name: minio-extras
     chart: ../../charts/minio-extras
