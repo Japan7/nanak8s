@@ -51,7 +51,7 @@ releases:
     values:
       - images:
           attacher: registry.k8s.io/sig-storage/csi-attacher:v3.5.1
-          registrar: quay.io/k8scsi/csi-node-driver-registrar:v1.2.0
+          registrar: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.7.0
           provisioner: registry.k8s.io/sig-storage/csi-provisioner:v2.2.2
           csi: ghcr.io/japan7/k8s-csi-s3:master
       - storageClass:
