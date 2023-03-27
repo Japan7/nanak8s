@@ -66,6 +66,15 @@ releases:
             spec:
               nodeSelector:
                 kubernetes.io/arch: amd64 # registrar: no arm64 image available
+              # FIXME: openrc'd?
+              nodeAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  nodeSelectorTerms:
+                    - matchExpressions:
+                        - key: kubernetes.io/hostname
+                          operator: NotIn
+                          values:
+                            - gungnir
               dnsPolicy: ClusterFirstWithHostNet
   - name: minio-extras
     chart: ../../charts/minio-extras

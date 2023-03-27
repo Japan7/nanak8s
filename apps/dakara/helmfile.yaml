@@ -43,3 +43,21 @@ releases:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.middlewares: kube-system-japan7-basic-auth@kubernetescrd
+    # FIXME: csi-s3: openrc'd?
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: mugen-import-api
+        spec:
+          template:
+            spec:
+              affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: NotIn
+                            values:
+                              - gungnir
