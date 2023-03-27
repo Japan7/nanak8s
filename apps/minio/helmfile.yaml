@@ -53,7 +53,7 @@ releases:
           attacher: quay.io/k8scsi/csi-attacher:v3.0.1
           registrar: quay.io/k8scsi/csi-node-driver-registrar:v1.2.0
           provisioner: quay.io/k8scsi/csi-provisioner:v2.1.0
-          csi: ghcr.io/japan7/k8s-csi-s3:master
+          csi: cr.yandex/crp9ftr22d26age3hulg/yandex-cloud/csi-s3/csi-s3-driver:0.34.7
       - storageClass:
           create: false
       - secret:
@@ -72,19 +72,5 @@ releases:
               nodeSelector:
                 kubernetes.io/arch: amd64 # registrar: no arm64 image available
               dnsPolicy: ClusterFirstWithHostNet
-              containers:
-                - name: csi-s3
-                  imagePullPolicy: Always
-      - apiVersion: apps/v1
-        kind: StatefulSet
-        metadata:
-          name: csi-provisioner-s3
-          namespace: "{{ .Namespace }}"
-        spec:
-          template:
-            spec:
-              containers:
-                - name: csi-s3
-                  imagePullPolicy: Always
   - name: minio-extras
     chart: ../../charts/minio-extras
