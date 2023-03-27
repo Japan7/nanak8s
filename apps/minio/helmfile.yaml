@@ -63,27 +63,6 @@ releases:
           namespace: "{{ .Namespace }}"
         spec:
           template:
-            metadata:
-              annotations:
-                # FIXME: openrc'd?
-                scheduler.alpha.kubernetes.io/affinity: >
-                  {
-                    "nodeAffinity": {
-                      "requiredDuringSchedulingIgnoredDuringExecution": {
-                        "nodeSelectorTerms": [
-                          {
-                            "matchExpressions": [
-                              {
-                                "key": "kubernetes.io/hostname",
-                                "operator": "NotIn",
-                                "values": ["gungnir"]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    }
-                  }
             spec:
               nodeSelector:
                 kubernetes.io/arch: amd64 # registrar: no arm64 image available
