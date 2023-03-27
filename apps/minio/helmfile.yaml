@@ -67,22 +67,5 @@ releases:
               nodeSelector:
                 kubernetes.io/arch: amd64 # registrar: no arm64 image available
               dnsPolicy: ClusterFirstWithHostNet
-              containers:
-                - name: csi-s3
-                  volumeMounts:
-                    - name: stage-dir
-                      mountPath: /var/lib/kubelet/plugins/kubernetes.io/csi
-                      mountPropagation: "Bidirectional"
-                    - name: systemd-control
-                      mountPath: /run/systemd
-              volumes:
-                - name: stage-dir
-                  hostPath:
-                    path: /var/lib/kubelet/plugins/kubernetes.io/csi
-                    type: DirectoryOrCreate
-                - name: systemd-control
-                  hostPath:
-                    path: /run/systemd
-                    type: DirectoryOrCreate
   - name: minio-extras
     chart: ../../charts/minio-extras
