@@ -52,4 +52,4 @@ releases:
           template:
             spec:
               nodeSelector:
-                csi-s3: true
+                csi-s3: "true"

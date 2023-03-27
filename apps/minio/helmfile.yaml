@@ -65,7 +65,7 @@ releases:
           template:
             spec:
               nodeSelector:
-                csi-s3: true # only support amd64 and systemd
+                csi-s3: "true" # only support amd64 and systemd
               dnsPolicy: ClusterFirstWithHostNet
   - name: minio-extras
     chart: ../../charts/minio-extras
