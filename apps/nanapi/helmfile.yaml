@@ -53,9 +53,14 @@ releases:
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
-      # FIXME: ugly hack to avoid nanapi scheduling on camp
-      # (Illegal instruction (core dumped) crashloop)
-      - patch: &patch
+    # FIXME: ugly hack to avoid nanapi scheduling on camp
+    # (Illegal instruction (core dumped) crashloop)
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanapi-{{ .Environment.Name }}
+        spec: &patch
           template:
             spec:
               affinity:
@@ -67,12 +72,6 @@ releases:
                             operator: NotIn
                             values:
                               - camp
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: nanapi-{{ .Environment.Name }}
-        spec: *patch
       - apiVersion: apps/v1
         kind: Deployment
         metadata:
