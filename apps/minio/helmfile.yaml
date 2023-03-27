@@ -69,6 +69,8 @@ releases:
         spec:
           template:
             spec:
+              nodeSelector:
+                kubernetes.io/arch: amd64 # registrar: no arm64 image available
               dnsPolicy: ClusterFirstWithHostNet
               containers:
                 - name: csi-s3
