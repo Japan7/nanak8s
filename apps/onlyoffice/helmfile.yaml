@@ -34,6 +34,7 @@ releases:
     values:
       - auth:
           password: "{{ .Values.rabbitmq.password }}"
+          erlangCookie: "{{ .Values.rabbitmq.erlangCookie }}"
       - persistence:
           size: 1Gi
       # FIXME: ulimit: open files: cannot modify limit: Operation not permitted
