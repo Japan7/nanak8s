@@ -7,7 +7,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{ end }}
     {{ if .Values.onlyoffice.enabled }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Name }}-onlyoffice"
+    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-onlyoffice@kubernetescrd"
     {{ end }}
 spec:
   rules:
