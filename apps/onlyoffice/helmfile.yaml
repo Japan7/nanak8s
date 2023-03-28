@@ -80,7 +80,7 @@ releases:
       # https://github.com/ONLYOFFICE/Kubernetes-Docs/issues/171#issuecomment-1191447111
       - install:
           job:
-            enabled: false
+            enabled: true
       - upgrade:
           job:
-            enabled: true
+            enabled: false
