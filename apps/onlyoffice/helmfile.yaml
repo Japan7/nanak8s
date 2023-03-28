@@ -78,6 +78,7 @@ releases:
       - ingress:
           enabled: true
           annotations:
+            kubernetes.io/ingress.class: ""
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
           host: onlyoffice.{{ .Values.domain }}
       # https://github.com/ONLYOFFICE/Kubernetes-Docs/issues/171#issuecomment-1191447111
