@@ -59,10 +59,6 @@ releases:
           redisNoPass: true
           amqpHost: documentserver-rabbitmq
           amqpExistingSecret: documentserver-rabbitmq
-      - webProxy:
-          enabled: true
-          http: "http://onlyoffice.{{ .Values.domain }}"
-          https: "https://onlyoffice.{{ .Values.domain }}"
       - persistence:
           storageClass: longhorn
           size: 1Gi
@@ -75,12 +71,9 @@ releases:
       - converter:
           image:
             repository: onlyoffice/docs-converter
-      - ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: ""
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-          host: onlyoffice.{{ .Values.domain }}
+      # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
+      - jwt:
+          enabled: false
       # https://github.com/ONLYOFFICE/Kubernetes-Docs/issues/171#issuecomment-1191447111
       - install:
           job:
