@@ -11,6 +11,9 @@ persistence:
 cache:
   mountPath: /filestash/data/cache
 
+onlyoffice:
+  enabled: false
+
 ingress:
   host: ""
   entryPoints:

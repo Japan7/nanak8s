@@ -1,0 +1,14 @@
+{{ if .Values.onlyoffice.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Release.Name }}-onlyoffice"
+spec:
+  selector:
+    app: "{{ .Release.Name }}-onlyoffice"
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 80
+{{ end }}

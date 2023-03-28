@@ -27,6 +27,10 @@ spec:
           env:
             - name: APPLICATION_URL
               value: "{{ .Values.ingress.host }}"
+            {{ if .Values.onlyoffice.enabled }}
+            - name: ONLYOFFICE_URL
+              value: "https://{{ .Release.Name }}-onlyoffice"
+            {{ end }}
           volumeMounts:
             - name: state
               mountPath: "{{ .Values.persistence.mountPath }}"

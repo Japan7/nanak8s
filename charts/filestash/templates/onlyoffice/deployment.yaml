@@ -1,0 +1,27 @@
+{{ if .Values.onlyoffice.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-onlyoffice"
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-onlyoffice"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-onlyoffice"
+    spec:
+      containers:
+        - name: docserver
+          image: onlyoffice/documentserver:latest
+          env:
+            # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
+            - name: JWT_ENABLED
+              value: "false"
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
+{{ end }}

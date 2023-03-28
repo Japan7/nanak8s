@@ -11,6 +11,8 @@ releases:
       - image:
           tag: subs
           pullPolicy: Always
+      - onlyoffice:
+          enabled: true
       - ingress:
           host: filestash.{{ .Values.domain }}
   - name: filestash-minio-oidc-auth
