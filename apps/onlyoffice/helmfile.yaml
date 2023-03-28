@@ -37,7 +37,7 @@ releases:
     chart: onlyoffice/docs
     version: 3
     values:
-      - connexions:
+      - connections:
           dbHost: documentserver-cnpg-rw
           dbExistingSecret: documentserver-cnpg-app
           dbSecretKeyName: password
