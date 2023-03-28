@@ -1,0 +1,66 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: onlyoffice
+    url: https://download.onlyoffice.com/charts/stable
+
+releases:
+  - name: documentserver-cnpg
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 15
+      - minio:
+          accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+          secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+  - name: documentserver-redis
+    chart: bitnami/redis
+    version: 17
+    values:
+      - architecture: standalone
+      - auth:
+          enabled: false
+      - master:
+          persistence:
+            size: 1Gi
+  - name: documentserver-rabbitmq
+    chart: bitnami/rabbitmq
+    version: 11
+    values:
+      - persistence:
+          size: 1Gi
+  - name: documentserver
+    chart: onlyoffice/docs
+    version: 3
+    values:
+      - connexions:
+          dbHost: documentserver-cnpg-rw
+          dbExistingSecret: documentserver-cnpg-app
+          dbSecretKeyName: password
+          redisHost: documentserver-redis-master
+          redisNoPass: true
+          amqpHost: documentserver-rabbitmq
+          amqpExistingSecret: documentserver-rabbitmq
+      - webProxy:
+          enabled: true
+          http: "http://onlyoffice.{{ .Values.domain }}"
+          https: "https://onlyoffice.{{ .Values.domain }}"
+      - persistence:
+          storageClass: null
+          size: 1Gi
+      - docservice:
+          image:
+            repository: onlyoffice/docs-docservice
+      - proxy:
+          image:
+            repository: onlyoffice/docs-proxy
+      - converter:
+          image:
+            repository: onlyoffice/docs-converter
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          host: onlyoffice.{{ .Values.domain }}

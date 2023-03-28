@@ -30,6 +30,7 @@ releases:
           - name: n8n
           - name: outline
           - name: syncplay
+          - name: onlyoffice
 
           # Data
           - name: nanadb

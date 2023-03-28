@@ -49,6 +49,8 @@ releases:
         metadata:
           name: mugen-import-api
         spec:
+          updateStrategy:
+            type: Replace
           template:
             spec:
               nodeSelector:
