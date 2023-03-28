@@ -53,6 +53,7 @@ releases:
     values:
       - connections:
           dbHost: documentserver-cnpg-rw
+          dbUser: app
           dbExistingSecret: documentserver-cnpg-app
           dbSecretKeyName: password
           redisHost: documentserver-redis-master
