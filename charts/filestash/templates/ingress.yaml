@@ -6,6 +6,9 @@ metadata:
     {{ range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{ end }}
+    {{ if .Values.onlyoffice.enabled }}
+    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Name }}-onlyoffice"
+    {{ end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

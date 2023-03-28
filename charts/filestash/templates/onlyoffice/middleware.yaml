@@ -1,0 +1,12 @@
+{{ if .Values.onlyoffice.enabled }}
+# https://github.com/mickael-kerjean/filestash/issues/459#issuecomment-1086731925
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ .Release.Name }}-onlyoffice
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: https
+    accessControlAllowOriginList: "*"
+{{ end }}
