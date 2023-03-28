@@ -32,6 +32,10 @@ releases:
       - master:
           persistence:
             size: 1Gi
+  - name: kara-japan7-pvc-{{ .Environment.Name }}
+    chart: ../../charts/minio-pvc
+    values:
+      - path: kara/Japan7
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:
@@ -40,6 +44,20 @@ releases:
           tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
+      - kara:
+          existingClaim: kara-japan7-pvc-{{ .Environment.Name }}
       - ingress:
           host: nanachan.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanachan-{{ .Environment.Name }}
+        spec:
+          strategy:
+            type: Recreate
+          template:
+            spec:
+              nodeSelector:
+                csi-s3: "true"

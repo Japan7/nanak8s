@@ -38,7 +38,7 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
       - mugen:
-          pvc: mugen-pvc
+          existingClaim: mugen-pvc
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:

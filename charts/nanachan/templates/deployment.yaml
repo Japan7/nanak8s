@@ -1,27 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: "{{ .Release.Name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: "{{ .Release.Name }}"
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: "{{ .Release.Name }}"
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # no arm64 image available
       volumes:
         - name: localsettings
           secret:
-            secretName: {{ .Release.Name }}-localsettings
+            secretName: "{{ .Release.Name }}-localsettings"
         - name: html
           emptyDir: {}
+        - name: kara
+          persistentVolumeClaim:
+            claimName: "{{ .Values.kara.existingClaim }}"
       containers:
-        - name: {{ .Chart.Name }}
+        - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           volumeMounts:
@@ -31,6 +34,9 @@ spec:
               readOnly: true
             - name: html
               mountPath: /html
+            - name: kara
+              mountPath: "{{ .Values.kara.mountPath }}"
+              readOnly: true
         - name: http
           image: svenstaro/miniserve:alpine
           args: ["/html"]

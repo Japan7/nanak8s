@@ -6,7 +6,7 @@ image:
 replicaCount: 1
 
 mugen:
-  pvc: ""
+  existingClaim: ""
 
 ingress:
   host: ""

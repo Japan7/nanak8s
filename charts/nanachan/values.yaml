@@ -5,6 +5,10 @@ image:
 
 localSettings: ""
 
+kara:
+  existingClaim: ""
+  mountPath: /dakara
+
 ingress:
   entryPoints:
     - websecure
