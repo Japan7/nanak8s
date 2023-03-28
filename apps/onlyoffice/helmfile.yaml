@@ -75,3 +75,10 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
           host: onlyoffice.{{ .Values.domain }}
+      # https://github.com/ONLYOFFICE/Kubernetes-Docs/issues/171#issuecomment-1191447111
+      - install:
+          job:
+            enabled: true
+      - upgrade:
+          job:
+            enabled: false
