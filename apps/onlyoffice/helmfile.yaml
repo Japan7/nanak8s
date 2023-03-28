@@ -33,6 +33,16 @@ releases:
     values:
       - persistence:
           size: 1Gi
+      # FIXME: ulimit: open files: cannot modify limit: Operation not permitted
+      - affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: NotIn
+                      values:
+                        - gugnir
   - name: documentserver
     chart: onlyoffice/docs
     version: 3
