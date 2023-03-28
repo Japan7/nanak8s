@@ -7,7 +7,7 @@ localSettings: ""
 
 kara:
   existingClaim: ""
-  mountPath: /dakara
+  mountPath: /kara
 
 ingress:
   entryPoints:
