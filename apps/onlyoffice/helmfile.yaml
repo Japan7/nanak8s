@@ -6,6 +6,8 @@ environments:
 repositories:
   - name: onlyoffice
     url: https://download.onlyoffice.com/charts/stable
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
 
 releases:
   - name: documentserver-cnpg
