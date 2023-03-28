@@ -37,6 +37,16 @@ releases:
           erlangCookie: "{{ .Values.rabbitmq.erlangCookie }}"
       - persistence:
           size: 1Gi
+      # FIXME: ulimit: open files: cannot modify limit: Operation not permitted
+      - affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: NotIn
+                      values:
+                        - gungnir
   - name: documentserver
     chart: onlyoffice/docs
     version: 3
