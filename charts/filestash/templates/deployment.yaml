@@ -29,7 +29,7 @@ spec:
               value: "{{ .Values.ingress.host }}"
             {{ if .Values.onlyoffice.enabled }}
             - name: ONLYOFFICE_URL
-              value: "https://{{ .Release.Name }}-onlyoffice"
+              value: "http://{{ .Release.Name }}-onlyoffice"
             {{ end }}
           volumeMounts:
             - name: state
