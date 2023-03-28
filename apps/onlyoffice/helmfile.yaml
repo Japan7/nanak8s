@@ -42,7 +42,7 @@ releases:
                     - key: kubernetes.io/hostname
                       operator: NotIn
                       values:
-                        - gugnir
+                        - gungnir
   - name: documentserver
     chart: onlyoffice/docs
     version: 3
