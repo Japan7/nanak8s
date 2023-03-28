@@ -49,7 +49,7 @@ releases:
         metadata:
           name: mugen-import-api
         spec:
-          updateStrategy:
+          strategy:
             type: Replace
           template:
             spec:
