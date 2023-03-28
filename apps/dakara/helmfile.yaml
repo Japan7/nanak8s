@@ -50,7 +50,7 @@ releases:
           name: mugen-import-api
         spec:
           strategy:
-            type: Replace
+            type: Recreate
           template:
             spec:
               nodeSelector:
