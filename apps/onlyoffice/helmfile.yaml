@@ -45,10 +45,6 @@ releases:
           redisNoPass: true
           amqpHost: documentserver-rabbitmq
           amqpExistingSecret: documentserver-rabbitmq
-      - webProxy:
-          enabled: true
-          http: "http://onlyoffice.{{ .Values.domain }}"
-          https: "https://onlyoffice.{{ .Values.domain }}"
       - persistence:
           storageClass: longhorn
           size: 1Gi
