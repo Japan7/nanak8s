@@ -50,7 +50,7 @@ releases:
           http: "http://onlyoffice.{{ .Values.domain }}"
           https: "https://onlyoffice.{{ .Values.domain }}"
       - persistence:
-          storageClass: null
+          storageClass: longhorn
           size: 1Gi
       - docservice:
           image:
