@@ -21,6 +21,7 @@ releases:
     chart: prometheus-community/kube-prometheus-stack
     version: 45
     values:
+      - fullnameOverride: kps
       - alertmanager:
           config:
             route:
