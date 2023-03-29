@@ -29,6 +29,9 @@ releases:
             value: minio
       - persistence:
           size: 300Gi
+      - podSecurityContext:
+          # https://longhorn.io/kb/troubleshooting-volume-take-long-time-to-mount/
+          fsGroupChangePolicy: OnRootMismatch
       - ingress:
           enabled: true
           hostname: minio.{{ .Values.domain }}
