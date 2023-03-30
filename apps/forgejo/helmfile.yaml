@@ -35,6 +35,10 @@ releases:
     version: 0.*
     values:
       - replicaCount: 2
+      - statefulset:
+          env:
+            - name: FORGEJO__actions__ENABLED
+              value: "true"
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
