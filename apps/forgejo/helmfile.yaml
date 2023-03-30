@@ -52,9 +52,6 @@ releases:
               USER: "{{ .Values.cnpg.username }}"
               PASSWD: "{{ .Values.cnpg.password }}"
             # https://gitea.com/gitea/helm-chart/src/branch/gitea-ha#gitea-ha
-            cache:
-              ADAPTER: redis
-              HOST: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
             session:
               PROVIDER: redis
               PROVIDER_CONFIG: redis://forgejo-redis-master:6379/0?pool_size=100&idle_timeout=180s
