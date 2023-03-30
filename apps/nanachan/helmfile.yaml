@@ -61,3 +61,12 @@ releases:
             spec:
               nodeSelector:
                 csi-s3: "true"
+              containers:
+                - name: nanachan
+                  # check that kara-japan7-pvc is well mounted
+                  livenessProbe:
+                    exec:
+                      command:
+                        - sh
+                        - -c
+                        - test -d /kara/Nouveau

@@ -55,3 +55,12 @@ releases:
             spec:
               nodeSelector:
                 csi-s3: "true"
+              containers:
+                - name: mugen-import-api
+                  # check that kara-mugen-pvc is well mounted
+                  livenessProbe:
+                    exec:
+                      command:
+                        - sh
+                        - -c
+                        - test -d /download/Anime
