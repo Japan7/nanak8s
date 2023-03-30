@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: "{{ .Release.Name }}"
-  serviceName: "{{ .Release.Name }}"
+  serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
