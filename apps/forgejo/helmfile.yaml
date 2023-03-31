@@ -97,5 +97,7 @@ releases:
       - nodeSelector:
           topology.kubernetes.io/region: eu-west
           kubernetes.io/arch: amd64
+      - dind:
+          mtu: 1230
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras

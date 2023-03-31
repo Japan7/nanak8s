@@ -32,10 +32,14 @@ spec:
             - name: sock-dir
               mountPath: /var/run
         - name: dind
-          image: docker:dind
+          image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
+          imagePullPolicy: "{{ .Values.dind.image.pullPolicy }}"
           # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25380#note_393553417
+          # https://blog.zespre.com/dind-mtu-size-matters.html
           args:
-            - --mtu=1410
+            {{ with .Values.dind.mtu }}
+            - --mtu={{ . }}
+            {{ end }}
           securityContext:
             privileged: true
           volumeMounts:

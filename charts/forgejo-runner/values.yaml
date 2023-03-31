@@ -8,3 +8,10 @@ secret:
   key: .runner
 
 nodeSelector: {}
+
+dind:
+  image:
+    repository: docker
+    tag: dind
+    pullPolicy: ""
+  mtu: null
