@@ -21,8 +21,9 @@ spec:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
           whenUnsatisfiable: ScheduleAnyway
-          matchLabelKeys:
-            - app.kubernetes.io/name
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: {{ include "common.names.name" . }}
       volumes:
         - name: runner-config
           secret:
