@@ -6,6 +6,6 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   selector:
-    {{- include "common.labels.standard" . | nindent 4 }}
+    {{- include "common.labels.matchLabels" . | nindent 4 }}
   ports:
     - port: 4181

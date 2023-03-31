@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/component: api
 spec:
   selector:
-    {{- include "common.labels.standard" . | nindent 4 }}
+    {{- include "common.labels.matchLabels" . | nindent 4 }}
     app.kubernetes.io/component: api
   ports:
     - port: 8000
