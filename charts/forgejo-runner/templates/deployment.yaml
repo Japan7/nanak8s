@@ -33,8 +33,9 @@ spec:
               mountPath: /var/run
         - name: dind
           image: docker:dind
+          # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25380#note_393553417
           args:
-            - --mtu=1450
+            - --mtu=1410
           securityContext:
             privileged: true
           volumeMounts:
