@@ -29,8 +29,9 @@ spec:
       selfHeal: {{ $.Values.syncPolicy.automated.selfHeal }}
     syncOptions:
       - CreateNamespace=true
-      {{ range .extraSyncOptions }}
+      {{- range .extraSyncOptions }}
       - {{ . }}
+      {{- end }}
   {{- end }}
 ---
 {{ end -}}
