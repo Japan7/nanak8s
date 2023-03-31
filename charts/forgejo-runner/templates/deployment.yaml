@@ -33,6 +33,8 @@ spec:
               mountPath: /var/run
         - name: dind
           image: docker:dind
+          args:
+            - --mtu=1450
           securityContext:
             privileged: true
           volumeMounts:
