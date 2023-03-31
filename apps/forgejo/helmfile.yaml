@@ -37,10 +37,6 @@ releases:
       - replicaCount: 2
       - nodeSelector:
           topology.kubernetes.io/region: eu-west
-      - statefulset:
-          env:
-            - name: FORGEJO__actions__ENABLED
-              value: "true"
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
@@ -70,6 +66,10 @@ releases:
             # https://github.com/go-gitea/gitea/issues/17563
             indexer:
               ISSUE_INDEXER_TYPE: db
+            # https://forgejo.org/2023-02-27-forgejo-actions/
+            actions:
+              ENABLED: true
+              DEFAULT_ACTIONS_URL: https://github.com
       - postgresql:
           enabled: false
       - memcached:
