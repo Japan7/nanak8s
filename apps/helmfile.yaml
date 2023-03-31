@@ -2,9 +2,6 @@ releases:
   - name: apps
     chart: ../charts/argo-cd-apps
     values:
-      - syncPolicy:
-          enabled: false
-
       - apps:
           # System
           - name: traefik
