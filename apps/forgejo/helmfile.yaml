@@ -36,7 +36,7 @@ releases:
     values:
       - replicaCount: 2
       - nodeSelector:
-          forgejo: "true"
+          topology.kubernetes.io/region: eu-west
       - statefulset:
           env:
             - name: FORGEJO__actions__ENABLED
@@ -95,6 +95,7 @@ releases:
       - secret:
           name: forgejo-runner-0
       - nodeSelector:
-          forgejo: "true"
+          topology.kubernetes.io/region: eu-west
+          kubernetes.io/arch: amd64
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
