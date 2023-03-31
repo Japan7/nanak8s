@@ -35,6 +35,8 @@ releases:
     version: 0.*
     values:
       - replicaCount: 2
+      - nodeSelector:
+          forgejo: "true"
       - statefulset:
           env:
             - name: FORGEJO__actions__ENABLED
@@ -93,6 +95,6 @@ releases:
       - secret:
           name: forgejo-runner-0
       - nodeSelector:
-          forgejo-runner: "true"
+          forgejo: "true"
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
