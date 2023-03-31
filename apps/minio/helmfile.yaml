@@ -70,5 +70,15 @@ releases:
               nodeSelector:
                 csi-s3: "true" # only support amd64 and systemd
               dnsPolicy: ClusterFirstWithHostNet
+      - apiVersion: apps/v1
+        kind: StatefulSet
+        metadata:
+          name: csi-attacher-s3
+          namespace: "{{ .Namespace }}"
+        spec:
+          template:
+            spec:
+              nodeSelector:
+                kubernetes.io/arch: amd64 # no arm64 image
   - name: minio-extras
     chart: ../../charts/minio-extras
