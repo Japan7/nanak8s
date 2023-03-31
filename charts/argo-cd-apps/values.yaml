@@ -1,6 +1,8 @@
-automated:
-  prune: true
-  selfHeal: true
+syncPolicy:
+  enabled: true
+  automated:
+    prune: true
+    selfHeal: true
 
 apps: []
 # - name: ""
