@@ -6,7 +6,7 @@ metadata:
   labels:
     name: longhorn-prometheus-servicemonitor
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: extras/monitoring
+    app.kubernetes.io/component: extras.monitoring
     app.kubernetes.io/part-of: longhorn
   namespace: monitoring
 spec:

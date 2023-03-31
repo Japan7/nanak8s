@@ -6,7 +6,7 @@ metadata:
     app: kube-prometheus-stack
     release: prometheus
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: extras/monitoring
+    app.kubernetes.io/component: extras.monitoring
     app.kubernetes.io/part-of: traefik
   name: traefik
   namespace: monitoring
