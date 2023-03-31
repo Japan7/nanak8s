@@ -84,5 +84,15 @@ releases:
                   pathType: Prefix
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  - name: forgejo-runner-0
+    chart: ../../charts/forgejo-runner
+    values:
+      - image:
+          tag: main
+          pullPolicy: Always
+      - secret:
+          name: forgejo-runner-0
+      - nodeSelector:
+          forgejo-runner: "true"
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras

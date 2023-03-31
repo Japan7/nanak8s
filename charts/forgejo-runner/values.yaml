@@ -1,0 +1,10 @@
+image:
+  repository: ghcr.io/japan7/forgejo-runner
+  tag: latest
+  pullPolicy: ""
+
+secret:
+  name: ""
+  key: .runner
+
+nodeSelector: {}
