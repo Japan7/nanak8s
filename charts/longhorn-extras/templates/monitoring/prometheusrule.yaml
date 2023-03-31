@@ -5,6 +5,9 @@ metadata:
   labels:
     prometheus: longhorn
     role: alert-rules
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras/monitoring
+    app.kubernetes.io/part-of: longhorn
   name: prometheus-longhorn-rules
   namespace: monitoring
 spec:

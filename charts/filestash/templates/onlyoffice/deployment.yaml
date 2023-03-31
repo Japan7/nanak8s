@@ -1,16 +1,21 @@
-{{ if .Values.onlyoffice.enabled }}
+{{- if .Values.onlyoffice.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}-onlyoffice"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: onlyoffice
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}-onlyoffice"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: onlyoffice
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}-onlyoffice"
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: onlyoffice
     spec:
       containers:
         - name: docserver
@@ -24,4 +29,4 @@ spec:
               containerPort: 80
             - name: https
               containerPort: 443
-{{ end }}
+{{- end }}

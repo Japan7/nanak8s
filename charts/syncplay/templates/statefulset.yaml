@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
   serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
     spec:
       volumes:
         - name: certs

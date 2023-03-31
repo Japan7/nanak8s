@@ -2,13 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: app
 spec:
   selector:
-    app: "{{ .Release.Name }}"
+    {{- include "common.labels.matchLabels" . | nindent 4 }}
+    app.kubernetes.io/component: app
   ports:
     - name: http
       port: 80
-    {{ if .Values.config.websocketEnabled }}
+    {{- if .Values.config.websocketEnabled }}
     - name: ws
       port: 3012
-    {{ end }}
+    {{- end }}

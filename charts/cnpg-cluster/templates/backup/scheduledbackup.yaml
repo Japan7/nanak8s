@@ -1,9 +1,11 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
-  name: {{ .Release.Name }}-backup
+  name: "{{ .Release.Name }}-backup"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   schedule: "0 0 9 * * *"
   backupOwnerReference: self
   cluster:
-    name: {{ .Release.Name }}
+    name: "{{ .Release.Name }}"

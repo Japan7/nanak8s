@@ -2,13 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    {{ range .Values.ingress.entryPoints }}
+    {{- range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{ end }}
-    {{ with .Values.ingress.annotations }}
-    {{ toYaml . | nindent 4 }}
-    {{ end }}
+    {{- end }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

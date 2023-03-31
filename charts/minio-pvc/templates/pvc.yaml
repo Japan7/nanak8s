@@ -3,6 +3,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   # Empty storage class disables dynamic provisioning
   storageClassName: ""

@@ -1,12 +1,15 @@
-{{ if .Values.dumpsPersistence }}
+{{- if .Values.dumpsPersistence }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}-dumps
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: api
 spec:
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 10Gi
-{{ end }}
+{{- end }}

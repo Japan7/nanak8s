@@ -2,15 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: app
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: app
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: app
     spec:
       volumes:
         - name: data
@@ -41,7 +46,7 @@ spec:
                   key: password
             - name: DATABASE_URL
               value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw/{{ .Values.cnpg.database }}
-            {{ if .Values.smtp.enabled }}
+            {{- if .Values.smtp.enabled }}
             - name: SMTP_FROM
               value: {{ .Values.smtp.from }}
             - name: SMTP_FROM_NAME
@@ -62,14 +67,14 @@ spec:
               value: "{{ .Values.smtp.port }}"
             - name: SMTP_SECURITY
               value: {{ .Values.smtp.security }}
-            {{ end }}
+            {{- end }}
           volumeMounts:
             - name: data
               mountPath: /data
           ports:
             - name: http
               containerPort: 80
-            {{ if .Values.config.websocketEnabled }}
+            {{- if .Values.config.websocketEnabled }}
             - name: ws
               containerPort: 3012
-            {{ end }}
+            {{- end }}

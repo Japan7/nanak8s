@@ -1,16 +1,21 @@
-{{ if .Values.ldap.enabled }}
+{{- if .Values.ldap.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}-ldap"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: ldap
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}-ldap"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: ldap
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}-ldap"
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: ldap
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # no arm64 image available
@@ -40,4 +45,4 @@ spec:
               value: "{{ .Values.ldap.searchFilter }}"
             - name: APP_LDAP_SYNC_INTERVAL_SECONDS
               value: "{{ .Values.ldap.syncIntervalSeconds }}"
-{{ end }}
+{{- end }}

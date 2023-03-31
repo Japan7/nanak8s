@@ -2,14 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # arm64 image is broken

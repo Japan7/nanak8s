@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
   serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
     spec:
       containers:
         - name: "{{ .Chart.Name }}"
@@ -35,7 +37,7 @@ spec:
               value: "/"
             - name: SECRET_KEY
               value: "{{ .Values.secretKey }}"
-            {{ if .Values.smtp.enabled }}
+            {{- if .Values.smtp.enabled }}
             - name: EMAIL_ENABLE
               value: "True"
             - name: SENDER_EMAIL
@@ -56,7 +58,7 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-smtp"
                   key: password
-            {{ end }}
+            {{- end }}
           command:
             - sh
             - -xc

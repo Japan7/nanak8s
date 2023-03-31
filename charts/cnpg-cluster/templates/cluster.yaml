@@ -1,7 +1,9 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: {{ .Release.Name }}
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   imageName: "{{ .Values.imageName }}:{{ .Values.release }}"
   instances: {{ .Values.instances }}
@@ -12,20 +14,20 @@ spec:
     initdb:
       database: {{ .Values.database }}
       owner: {{ .Values.user.username }}
-      {{ if .Values.user.password }}
+      {{- if .Values.user.password }}
       secret:
         name: {{ .Values.user.username }}-secret
-      {{ end }}
+      {{- end }}
   backup:
     barmanObjectStore:
       destinationPath: s3://{{ .Values.minio.bucket }}
       endpointURL: {{ .Values.minio.endpoint }}
       s3Credentials:
         accessKeyId:
-          name: {{ .Release.Name }}-minio
+          name: "{{ .Release.Name }}-minio"
           key: MINIO_ACCESS_KEY
         secretAccessKey:
-          name: {{ .Release.Name }}-minio
+          name: "{{ .Release.Name }}-minio"
           key: MINIO_SECRET_KEY
       wal:
         compression: bzip2

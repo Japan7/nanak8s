@@ -2,6 +2,10 @@ apiVersion: helm.cattle.io/v1
 kind: HelmChartConfig
 metadata:
   name: traefik
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: traefik
   annotations:
     link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
 spec:

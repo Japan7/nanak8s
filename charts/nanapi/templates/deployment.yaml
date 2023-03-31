@@ -2,15 +2,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: api
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: api
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # no arm64 image available

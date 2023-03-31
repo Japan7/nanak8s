@@ -2,19 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
-      app: "{{ .Release.Name }}"
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app: "{{ .Release.Name }}"
+        {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      {{ with .Values.nodeSelector }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{ toYaml . | nindent 8 }}
-      {{ end }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: runner-config
           secret:
@@ -24,7 +26,9 @@ spec:
       containers:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          {{- with .Values.image.pullPolicy }}
+          imagePullPolicy: {{ . }}
+          {{- end }}
           volumeMounts:
             - name: runner-config
               mountPath: /app/.runner
@@ -33,13 +37,15 @@ spec:
               mountPath: /var/run
         - name: dind
           image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
-          imagePullPolicy: "{{ .Values.dind.image.pullPolicy }}"
+          {{- with .Values.dind.image.pullPolicy }}
+          imagePullPolicy: {{ . }}
+          {{- end }}
           # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25380#note_393553417
           # https://blog.zespre.com/dind-mtu-size-matters.html
           args:
-            {{ with .Values.dind.mtu }}
+            {{- with .Values.dind.mtu }}
             - --mtu={{ . }}
-            {{ end }}
+            {{- end }}
           securityContext:
             privileged: true
           volumeMounts:

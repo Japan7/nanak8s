@@ -3,6 +3,8 @@ kind: PodMonitor
 metadata:
   name: "{{ .Release.Name }}"
   namespace: monitoring
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   namespaceSelector:
     matchNames:

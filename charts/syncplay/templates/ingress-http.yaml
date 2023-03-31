@@ -2,10 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Release.Name }}-http"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    {{ range .Values.ingress.httpEntryPoints }}
+    {{- range .Values.ingress.httpEntryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{ end }}
+    {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

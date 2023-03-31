@@ -2,6 +2,9 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ .Release.Name }}-data
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: app
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

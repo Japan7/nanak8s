@@ -2,11 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    {{ if ne .Values.ingress.pathPrefix "/" }}
+    {{- if ne .Values.ingress.pathPrefix "/" }}
     traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
-    {{ end }}
+    {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

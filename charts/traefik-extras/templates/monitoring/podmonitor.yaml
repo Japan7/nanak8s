@@ -3,6 +3,10 @@ kind: PodMonitor
 metadata:
   name: traefik
   namespace: monitoring
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras/monitoring
+    app.kubernetes.io/part-of: traefik
 spec:
   namespaceSelector:
     matchNames:

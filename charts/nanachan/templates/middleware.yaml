@@ -1,10 +1,12 @@
-{{ if ne .Values.ingress.pathPrefix "/" }}
+{{- if ne .Values.ingress.pathPrefix "/" }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: "{{ .Release.Name }}-stripprefix"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   stripPrefix:
     prefixes:
       - "{{ .Values.ingress.pathPrefix }}"
-{{ end }}
+{{- end }}

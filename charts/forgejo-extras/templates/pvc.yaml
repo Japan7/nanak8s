@@ -2,6 +2,10 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: forgejo-data
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: forgejo
 spec:
   accessModes:
     - ReadWriteMany
