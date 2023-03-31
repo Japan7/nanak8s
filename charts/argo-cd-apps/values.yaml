@@ -1,3 +1,7 @@
+automated:
+  prune: true
+  selfHeal: true
+
 apps: []
 # - name: ""
 #   namespace: ""

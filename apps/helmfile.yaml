@@ -2,6 +2,10 @@ releases:
   - name: apps
     chart: ../charts/argo-cd-apps
     values:
+      - automated:
+          prune: false
+          selfHeal: true
+
       - apps:
           # System
           - name: traefik

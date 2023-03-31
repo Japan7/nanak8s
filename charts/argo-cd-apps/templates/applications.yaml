@@ -24,8 +24,8 @@ spec:
     namespace: {{ .namespace | default .name }}
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: {{ $.Values.automated.prune }}
+      selfHeal: {{ $.Values.automated.selfHeal }}
     syncOptions:
       - CreateNamespace=true
       {{ range .extraSyncOptions }}
