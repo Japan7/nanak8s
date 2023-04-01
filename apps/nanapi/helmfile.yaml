@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 2023.03.15
+      - tag: 2023.04.01-1
       - dumpsPersistence: true
     secrets:
       - ../globals.sops.yaml
