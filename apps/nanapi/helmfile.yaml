@@ -8,7 +8,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: ca08232a
+      - tag: sha-e450601
       - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
@@ -38,7 +38,7 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
-      - dumpsPersistence: {{ .Values.dumpsPersistence }}
+      - dumpsPersistence: {? {.Values.dumpsPersistence: ''} : ''}
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"
