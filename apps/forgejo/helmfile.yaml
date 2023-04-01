@@ -67,7 +67,6 @@ releases:
       - secret:
           name: forgejo-runner-0
       - nodeSelector:
-          topology.kubernetes.io/region: eu-west
           kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
@@ -80,7 +79,6 @@ releases:
       - secret:
           name: forgejo-runner-1
       - nodeSelector:
-          topology.kubernetes.io/region: eu-west
           kubernetes.io/arch: amd64
       - dind:
           mtu: 1230

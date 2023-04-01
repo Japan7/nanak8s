@@ -36,6 +36,8 @@ releases:
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
+          tag: master
+          pullPolicy: Always
       - mugen:
           existingClaim: kara-mugen-pvc
       - ingress:
