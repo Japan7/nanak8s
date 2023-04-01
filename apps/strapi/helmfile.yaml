@@ -1,7 +1,7 @@
 environments:
   default:
     values:
-      - tag: e39c4242
+      - tag: sha-${GITHUB_SHA::7}
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
