@@ -2,7 +2,6 @@ environments:
   prod:
     values:
       - tag: 2023.03.15
-      - replicaCount: 2
       - dumpsPersistence: true
     secrets:
       - ../globals.sops.yaml
@@ -10,7 +9,6 @@ environments:
   staging:
     values:
       - tag: ca08232a
-      - replicaCount: 1
       - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
@@ -18,7 +16,6 @@ environments:
   dev:
     values:
       - tag: latest
-      - replicaCount: 1
       - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
@@ -41,7 +38,6 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
-      - replicaCount: "{{ .Values.replicaCount }}"
       - dumpsPersistence: {{ .Values.dumpsPersistence }}
       - edgedb:
           service: nanadb.nanadb
