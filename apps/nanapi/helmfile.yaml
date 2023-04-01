@@ -38,7 +38,7 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
-      - dumpsPersistence: {? {.Values.dumpsPersistence: ''} : ''}
+      - dumpsPersistence: !!bool "{{ .Values.dumpsPersistence }}"
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"
