@@ -8,7 +8,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: sha-fc4bae1
+      - tag: sha-3c5632f
       - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
