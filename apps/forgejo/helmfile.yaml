@@ -4,10 +4,6 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
-repositories:
-  - name: bitnami
-    url: https://charts.bitnami.com/bitnami
-
 releases:
   - name: forgejo-cnpg
     chart: ../../charts/cnpg-cluster
