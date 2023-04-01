@@ -17,7 +17,6 @@ releases:
           - name: argo-cd
             namespace: argocd
           - name: forgejo
-          - name: woodpecker
           - name: gitlab
 
           # Apps
