@@ -19,6 +19,7 @@ releases:
           - name: forgejo
           - name: woodpecker
           - name: gitlab
+          - name: gitea
 
           # Apps
           - name: openldap

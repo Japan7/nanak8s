@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: gitea-ssh
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: gitea
+spec:
+  entryPoints:
+    - "{{ .Values.traefik.sshEntryPoint }}"
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: gitea-ssh
+          port: 22

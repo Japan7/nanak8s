@@ -1,0 +1,25 @@
+gitea:
+    adminPassword: ENC[AES256_GCM,data:l06bdlMddZUiaoUX//8=,iv:rVOkztis6XcV8/Xve9NkFmHmj4gcQ+/SRdWigmA4iPc=,tag:MimnB5tbG+S7qYDOrXvYSA==,type:str]
+cnpg:
+    username: ENC[AES256_GCM,data:SirN,iv:5PFitIURn1oZzN4tQgjvX7+9UN8wSH42OiI9WPkICrg=,tag:whrAoWmtHJBtb5qbCkI+Lg==,type:str]
+    password: ENC[AES256_GCM,data:XFDjgll+QSE=,iv:iSehZ+3xJdEcBqBU7FYqNLDCXg/MUMl0vRNHXEOvG1A=,tag:xMWEjZKuzbb9ZTvvJo9Ibw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBKdjlGNm5ybnZyd1ArSWZZ
+            UnBZaXJqTjJwdEFTSXB0clh2SzQ3eFN0eEFRCmlrdDV5eDRPWkhoeWdjZzQrdmov
+            V1BpVEp0Z1VlSUNQUzRmWFFpekJtQVUKLS0tIDA5VURESEYrL0Z0cVcwYjJaaTBu
+            NFZwVVhGcmFzdUlCbUJkNVNaOWZZRTQKvdUED75/mAV2vl4xVl09ch3AtqIU1nGz
+            U2Hnue5B5Mvaj/YJxyOHTCGaUMRHjGyvm8HDjKzoYfp9BioC9fTbfQ==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-04-01T15:40:21Z"
+    mac: ENC[AES256_GCM,data:C4PmNOcsIYsekfPFR+bcJyUaByn6VpJMPFALYXioKkmewINCrXWdW36XZp96i+IGUUwXVwppvGBM2H1xh41gCDcL/Q6KqchdE2Gl2XqyJZUSsnTJA0In0JpsKMhuT5rCVirx0LSF4Zbar9LsQ3GTnqhpXtj31Ij/GiCyWh+lwtE=,iv:/l9vIO3W+Pqn8dftMVqJ1YFz6OUCYEjWCiVr7Qr6C7E=,tag:3hjUU2Ltw4m3JqkSC6/6kA==,type:str]
+    pgp: []
+    unencrypted_suffix: _unencrypted
+    version: 3.7.3
