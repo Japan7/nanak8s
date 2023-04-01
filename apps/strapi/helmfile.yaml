@@ -1,7 +1,7 @@
 environments:
   default:
     values:
-      - tag: sha-ec977d8
+      - tag: sha-5bfae06
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
