@@ -58,10 +58,3 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
-      additionalContainers:
-        - name: traefik-debug
-          image: alpine
-          command: ["sh", "-xc", "sleep infinity"]
-          volumeMounts:
-            - name: data
-              mountPath: /data
