@@ -7,8 +7,6 @@ environments:
 repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
-  - name: k8s-csi-s3
-    url: git+https://github.com/yandex-cloud/k8s-csi-s3@deploy/helm
 
 releases:
   - name: minio
@@ -48,37 +46,5 @@ releases:
           serviceMonitor:
             enabled: true
             namespace: monitoring
-  - name: csi-s3
-    chart: k8s-csi-s3/csi-s3
-    version: 0
-    values:
-      - storageClass:
-          create: false
-      - secret:
-          accessKey: "{{ .Values.csi.accessKey }}"
-          secretKey: "{{ .Values.csi.secretKey }}"
-          endpoint: http://minio.{{ .Namespace }}:9000
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: DaemonSet
-        metadata:
-          name: csi-s3
-          namespace: "{{ .Namespace }}"
-        spec:
-          template:
-            spec:
-              nodeSelector:
-                csi-s3: "true" # only support amd64 and systemd
-              dnsPolicy: ClusterFirstWithHostNet
-      - apiVersion: apps/v1
-        kind: StatefulSet
-        metadata:
-          name: csi-attacher-s3
-          namespace: "{{ .Namespace }}"
-        spec:
-          template:
-            spec:
-              nodeSelector:
-                kubernetes.io/arch: amd64 # no arm64 image
   - name: minio-extras
     chart: ../../charts/minio-extras

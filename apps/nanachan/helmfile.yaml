@@ -4,18 +4,21 @@ environments:
       - tag: 2023.04.02
     secrets:
       - ../globals.sops.yaml
+      - shared.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
       - tag: sha-a46d3a4
     secrets:
       - ../globals.sops.yaml
+      - shared.sops.yaml
       - hachi.sops.yaml
   snow:
     values:
       - tag: latest
     secrets:
       - ../globals.sops.yaml
+      - shared.sops.yaml
       - snow.sops.yaml
 ---
 repositories:
@@ -32,10 +35,6 @@ releases:
       - master:
           persistence:
             size: 1Gi
-  - name: kara-japan7-pvc-{{ .Environment.Name }}
-    chart: ../../charts/minio-pvc
-    values:
-      - path: kara/Japan7
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:
@@ -45,28 +44,11 @@ releases:
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - kara:
-          existingClaim: kara-japan7-pvc-{{ .Environment.Name }}
+          minio:
+            endpoint: http://minio.minio:9000
+            path: kara/Japan7
+            accessKey: "{{ .Values.minio.accessKey }}"
+            secretKey: "{{ .Values.minio.secretKey }}"
       - ingress:
           host: nanachan.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: nanachan-{{ .Environment.Name }}
-        spec:
-          strategy:
-            type: Recreate
-          template:
-            spec:
-              nodeSelector:
-                csi-s3: "true"
-              containers:
-                - name: nanachan
-                  # check that kara-japan7-pvc is well mounted
-                  livenessProbe:
-                    exec:
-                      command:
-                        - sh
-                        - -c
-                        - test -d /kara/Nouveau

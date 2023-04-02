@@ -21,8 +21,7 @@ spec:
         - name: html
           emptyDir: {}
         - name: kara
-          persistentVolumeClaim:
-            claimName: "{{ .Values.kara.existingClaim }}"
+          emptyDir: {}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -37,6 +36,7 @@ spec:
             - name: kara
               mountPath: "{{ .Values.kara.mountPath }}"
               readOnly: true
+              mountPropagation: HostToContainer
         - name: http
           image: svenstaro/miniserve:alpine
           args: ["/html"]
@@ -45,3 +45,30 @@ spec:
               mountPath: /html
           ports:
             - containerPort: 8080
+        - name: rclone
+          image: rclone/rclone:latest
+          args:
+            - mount
+            - :s3:{{ .Values.kara.minio.path }}
+            - /mnt
+            - --verbose
+            - --read-only
+            - --allow-non-empty
+            - --allow-other
+            - --vfs-cache-mode
+            - full
+            - --size-only
+            - --s3-provider
+            - Minio
+            - --s3-endpoint
+            - "{{ .Values.kara.minio.endpoint }}"
+            - --s3-access-key-id
+            - "{{ .Values.kara.minio.accessKey }}"
+            - --s3-secret-access-key
+            - "{{ .Values.kara.minio.secretKey }}"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: kara
+              mountPath: /mnt
+              mountPropagation: Bidirectional

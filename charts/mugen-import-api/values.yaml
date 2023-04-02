@@ -6,7 +6,12 @@ image:
 replicaCount: 1
 
 mugen:
-  existingClaim: ""
+  minio:
+    endpoint: ""
+    path: ""
+    accessKey: ""
+    secretKey: ""
+  mountPath: /download
 
 ingress:
   host: ""

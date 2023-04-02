@@ -22,8 +22,7 @@ spec:
           persistentVolumeClaim:
             claimName: "{{ .Release.Name }}-db"
         - name: download
-          persistentVolumeClaim:
-            claimName: "{{ .Values.mugen.existingClaim }}"
+          emptyDir: {}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -35,6 +34,33 @@ spec:
             - name: db
               mountPath: /db
             - name: download
-              mountPath: /download
+              mountPath: "{{ .Values.mugen.mountPath }}"
+              mountPropagation: HostToContainer
           ports:
             - containerPort: 8000
+        - name: rclone
+          image: rclone/rclone:latest
+          args:
+            - mount
+            - :s3:{{ .Values.mugen.minio.path }}
+            - /mnt
+            - --verbose
+            - --allow-non-empty
+            - --allow-other
+            - --vfs-cache-mode
+            - full
+            - --size-only
+            - --s3-provider
+            - Minio
+            - --s3-endpoint
+            - "{{ .Values.mugen.minio.endpoint }}"
+            - --s3-access-key-id
+            - "{{ .Values.mugen.minio.accessKey }}"
+            - --s3-secret-access-key
+            - "{{ .Values.mugen.minio.secretKey }}"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: download
+              mountPath: /mnt
+              mountPropagation: Bidirectional

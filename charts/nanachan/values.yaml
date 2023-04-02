@@ -6,7 +6,11 @@ image:
 localSettings: ""
 
 kara:
-  existingClaim: ""
+  minio:
+    endpoint: ""
+    path: ""
+    accessKey: ""
+    secretKey: ""
   mountPath: /kara
 
 ingress:

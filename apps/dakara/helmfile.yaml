@@ -27,10 +27,6 @@ releases:
           pullPolicy: Always
       - ingress:
           host: dakara.{{ .Values.domain }}
-  - name: kara-mugen-pvc
-    chart: ../../charts/minio-pvc
-    values:
-      - path: kara/Mugen
   - name: mugen-import-api
     chart: ../../charts/mugen-import-api
     values:
@@ -39,29 +35,12 @@ releases:
           tag: master
           pullPolicy: Always
       - mugen:
-          existingClaim: kara-mugen-pvc
+          minio:
+            endpoint: http://minio.minio:9000
+            path: kara/Mugen
+            accessKey: "{{ .Values.minio.accessKey }}"
+            secretKey: "{{ .Values.minio.secretKey }}"
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.middlewares: kube-system-japan7-basic-auth@kubernetescrd
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: mugen-import-api
-        spec:
-          strategy:
-            type: Recreate
-          template:
-            spec:
-              nodeSelector:
-                csi-s3: "true"
-              containers:
-                - name: mugen-import-api
-                  # check that kara-mugen-pvc is well mounted
-                  livenessProbe:
-                    exec:
-                      command:
-                        - sh
-                        - -c
-                        - test -d /download/Anime
