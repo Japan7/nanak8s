@@ -21,6 +21,9 @@ spec:
         - name: db
           persistentVolumeClaim:
             claimName: "{{ .Release.Name }}-db"
+        - name: rclone-config
+          secret:
+            secretName: "{{ .Release.Name }}-rclone"
         - name: download
           emptyDir: {}
       containers:
@@ -42,25 +45,19 @@ spec:
           image: rclone/rclone:latest
           args:
             - mount
-            - :s3:{{ .Values.mugen.minio.path }}
+            - minio:{{ .Values.mugen.minio.path }}
             - /mnt
             - --verbose
             - --allow-non-empty
             - --allow-other
+            - --size-only
             - --vfs-cache-mode
             - full
-            - --size-only
-            - --s3-provider
-            - Minio
-            - --s3-endpoint
-            - "{{ .Values.mugen.minio.endpoint }}"
-            - --s3-access-key-id
-            - "{{ .Values.mugen.minio.accessKey }}"
-            - --s3-secret-access-key
-            - "{{ .Values.mugen.minio.secretKey }}"
           securityContext:
             privileged: true
           volumeMounts:
+            - name: rclone-config
+              mountPath: /root/.config/rclone
             - name: download
               mountPath: /mnt
               mountPropagation: Bidirectional

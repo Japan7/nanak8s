@@ -20,6 +20,9 @@ spec:
             secretName: "{{ .Release.Name }}-localsettings"
         - name: html
           emptyDir: {}
+        - name: rclone-config
+          secret:
+            secretName: "{{ .Release.Name }}-rclone"
         - name: kara
           emptyDir: {}
       containers:
@@ -49,26 +52,20 @@ spec:
           image: rclone/rclone:latest
           args:
             - mount
-            - :s3:{{ .Values.kara.minio.path }}
+            - minio:{{ .Values.kara.minio.path }}
             - /mnt
             - --verbose
             - --read-only
             - --allow-non-empty
             - --allow-other
+            - --size-only
             - --vfs-cache-mode
             - full
-            - --size-only
-            - --s3-provider
-            - Minio
-            - --s3-endpoint
-            - "{{ .Values.kara.minio.endpoint }}"
-            - --s3-access-key-id
-            - "{{ .Values.kara.minio.accessKey }}"
-            - --s3-secret-access-key
-            - "{{ .Values.kara.minio.secretKey }}"
           securityContext:
             privileged: true
           volumeMounts:
+            - name: rclone-config
+              mountPath: /root/.config/rclone
             - name: kara
               mountPath: /mnt
               mountPropagation: Bidirectional
