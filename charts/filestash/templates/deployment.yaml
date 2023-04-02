@@ -4,18 +4,15 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: app
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
-      app.kubernetes.io/component: app
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
-        app.kubernetes.io/component: app
     spec:
       nodeSelector:
         kubernetes.io/arch: amd64 # no arm64 image available
@@ -34,7 +31,7 @@ spec:
               value: "{{ .Values.ingress.host }}"
             {{- if .Values.onlyoffice.enabled }}
             - name: ONLYOFFICE_URL
-              value: "http://{{ .Release.Name }}-onlyoffice"
+              value: "http://localhost"
             {{- end }}
           volumeMounts:
             - name: state
@@ -49,3 +46,13 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: "/cache"
+        {{- if .Values.onlyoffice.enabled }}
+        - name: docserver
+          image: onlyoffice/documentserver:latest
+          env:
+            # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
+            - name: JWT_ENABLED
+              value: "false"
+          ports:
+            - containerPort: 80
+        {{- end }}

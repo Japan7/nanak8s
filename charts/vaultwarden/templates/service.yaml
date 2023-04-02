@@ -4,11 +4,9 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: app
 spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}
-    app.kubernetes.io/component: app
   ports:
     - name: http
       port: 80
