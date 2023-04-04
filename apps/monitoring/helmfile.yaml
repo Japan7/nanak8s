@@ -23,6 +23,7 @@ releases:
     values:
       - fullnameOverride: kps
       - alertmanager:
+          enabled: false
           config:
             route:
               receiver: discord
