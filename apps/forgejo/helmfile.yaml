@@ -84,3 +84,14 @@ releases:
           mtu: 1230
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
+    values:
+      - registryCredentials:
+          registry: git.{{ .Values.domain }}
+          username: "{{ .Values.regcreds.username }}"
+          password: "{{ .Values.regcreds.password }}"
+          namespaces:
+            - dakara
+            - gitlab
+            - nanachan
+            - nanapi
+            - strapi

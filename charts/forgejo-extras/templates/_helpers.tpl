@@ -30,3 +30,10 @@ Labels to use on deploy.spec.selector.matchLabels and svc.spec.selector
 app.kubernetes.io/name: {{ include "common.names.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
+
+# https://helm.sh/docs/howto/charts_tips_and_tricks/#creating-image-pull-secrets
+{{- define "imagePullSecret" }}
+{{- with .Values.registryCredentials }}
+{{- printf "{\"auths\":{\"%s\":{\"username\":\"%s\",\"password\":\"%s\",\"email\":\"%s\",\"auth\":\"%s\"}}}" .registry .username .password .email (printf "%s:%s" .username .password | b64enc) | b64enc }}
+{{- end }}
+{{- end }}

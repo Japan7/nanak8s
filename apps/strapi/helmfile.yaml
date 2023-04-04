@@ -20,6 +20,8 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/strapi-japan7
           tag: "{{ .Values.tag }}"
+          pullSecrets:
+            - forgejo-regcred
       - cnpg:
           name: strapi-cnpg
       - secret:

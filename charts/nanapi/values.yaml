@@ -2,6 +2,7 @@ image:
   repository: ""
   tag: latest
   pullPolicy: ""
+  pullSecrets: []
 
 dumpsPersistence: false
 

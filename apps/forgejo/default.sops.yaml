@@ -3,6 +3,9 @@ gitea:
 cnpg:
     username: ENC[AES256_GCM,data:uAIvB3GeMw==,iv:nA3yzMWLeXaqKA87+QFnJA/H52ETEiDUNu7GrTQlg8g=,tag:Iup0aGD4HGPVs2mjPjvDBA==,type:str]
     password: ENC[AES256_GCM,data:xMoKwZ8cnw==,iv:uTjDhEPLOXDuf5ze6YTneQyaV01JCz3swJ6kG4T2NZw=,tag:EprV6qJRysraLddfs+xn9Q==,type:str]
+regcreds:
+    username: ENC[AES256_GCM,data:HrKMyJkZ11U=,iv:L/A1YQKZInOMgMzeGHN8gXY3FpenxulrvALouWzMecA=,tag:9wFXwUzfAtOGpuMcWsRsrQ==,type:str]
+    password: ENC[AES256_GCM,data:hUk7jUroeXu1Jr0RPFS4NKcaO8rrVWrq+sUJh3E9camXavdLFzj0BA==,iv:rT9j6+HYImjCGxb0lUESXcJU5XQmbs2EpOHEsY4cpyw=,tag:uPFKPzvWNhq13K6Ia4RWxg==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -18,8 +21,8 @@ sops:
             WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
             e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-21T23:37:21Z"
-    mac: ENC[AES256_GCM,data:cSng67Uj0zuZccckCM9ckIfE2Pp9SIk6Kb9sZMe+hZTMT6mqftE+If5NBwLMh17+MYNpWcKFqCzlV4yJgf84CFQ5/Xx2xoXwub2c6rYP8MECNRNTznC9CBGLLDk4iF8TmNH/e3KaQo8nLruKNw/5kY7bD4xDoXON2XKc/4CzE8M=,iv:jHR8602OUAe6Ai5jgAV4uSkV/OQJSlXwqUaljYlIqZo=,tag:gIFnJ28xur31YWiiW3n80Q==,type:str]
+    lastmodified: "2023-04-04T01:44:15Z"
+    mac: ENC[AES256_GCM,data:Ebmt21oj7MbWcRsaLywUpwIqAm4Wd/5nN68MJLmiy2aBPHZwSEKov/L9qnmQaBPZUyo4AK9UQhntlPnqE5VK09PezQ4EGPG3S8WUNLVH0UR+Slz9YXGRrfmbZQv7b7tYpu9DkIYo4koVFBQCEx3i5c1CH2u8JIiSlIuc/8TJi0Q=,iv:kBb4pexr4Qm/adxBQkUSxAFiV/tX/QRIuyMBOswSMoU=,tag:z95yDdgyuvBLvaFcfxpHbg==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

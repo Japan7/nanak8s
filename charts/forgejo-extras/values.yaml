@@ -1,2 +1,10 @@
 traefik:
   sshEntryPoint: "forgejo-ssh"
+
+registryCredentials:
+  registry: ""
+  username: ""
+  password: ""
+  email: ""
+  secretName: forgejo-regcred
+  namespaces: []

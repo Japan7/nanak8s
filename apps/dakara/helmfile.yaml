@@ -34,6 +34,8 @@ releases:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
           tag: master
           pullPolicy: Always
+          pullSecrets:
+            - forgejo-regcred
       - mugen:
           minio:
             endpoint: http://minio.minio:9000

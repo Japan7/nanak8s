@@ -38,6 +38,8 @@ releases:
       - image:
           repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
+          pullSecrets:
+            - forgejo-regcred
       - dumpsPersistence: !!bool "{{ .Values.dumpsPersistence }}"
       - edgedb:
           service: nanadb.nanadb
