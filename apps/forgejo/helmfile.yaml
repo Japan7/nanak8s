@@ -18,7 +18,7 @@ releases:
           secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
-    version: 0.*
+    version: 0.6.*
     values:
       - nodeSelector:
           topology.kubernetes.io/region: eu-west
