@@ -29,7 +29,7 @@ spec:
         - name: "{{ .Chart.Name }}-tasks"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          args: ["nanapi.tasks"]
+          args: ["-m", "nanapi.tasks"]
           env:
             - name: EDGEDB_SERVER_USER
               valueFrom:

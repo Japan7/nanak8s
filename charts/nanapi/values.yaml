@@ -4,8 +4,6 @@ image:
   pullPolicy: ""
   pullSecrets: []
 
-dumpsPersistence: false
-
 edgedb:
   service: ""
   username: ""

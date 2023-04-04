@@ -25,16 +25,10 @@ spec:
         - name: localsettings
           secret:
             secretName: {{ .Release.Name }}-localsettings
-        {{ if .Values.dumpsPersistence }}
-        - name: dumps
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-dumps
-        {{ end }}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          args: ["nanapi"]
           env:
             - name: EDGEDB_SERVER_USER
               valueFrom:
@@ -55,9 +49,5 @@ spec:
               mountPath: /app/nanapi/local_settings.py
               subPath: local_settings.py
               readOnly: true
-            {{ if .Values.dumpsPersistence }}
-            - name: dumps
-              mountPath: /app/dumps
-            {{ end }}
           ports:
             - containerPort: 8000

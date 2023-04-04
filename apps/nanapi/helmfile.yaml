@@ -2,21 +2,18 @@ environments:
   prod:
     values:
       - tag: 2023.04.01-1
-      - dumpsPersistence: true
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml
   staging:
     values:
       - tag: sha-eec6da0
-      - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
       - staging.sops.yaml
   dev:
     values:
       - tag: latest
-      - dumpsPersistence: false
     secrets:
       - ../globals.sops.yaml
       - dev.sops.yaml
@@ -40,7 +37,6 @@ releases:
           tag: "{{ .Values.tag }}"
           pullSecrets:
             - forgejo-regcred
-      - dumpsPersistence: !!bool "{{ .Values.dumpsPersistence }}"
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"
