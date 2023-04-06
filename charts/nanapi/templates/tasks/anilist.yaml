@@ -16,6 +16,10 @@ spec:
             {{- include "common.labels.standard" . | nindent 12 }}
         spec:
           restartPolicy: Never
+          imagePullSecrets:
+            {{- range .Values.image.pullSecrets }}
+            - name: {{ . }}
+            {{- end }}
           containers:
             - name: task
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

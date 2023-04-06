@@ -15,6 +15,10 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
       restartPolicy: Never
+      imagePullSecrets:
+        {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+        {{- end }}
       volumes:
         - name: migrations
           configMap:
