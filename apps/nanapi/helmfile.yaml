@@ -44,8 +44,6 @@ releases:
           database: nanapi_{{ .Environment.Name }}
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
-      - dumps:
-          enabled: !!bool '{{ eq .Environment.Name "prod" }}'
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"

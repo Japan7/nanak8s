@@ -17,8 +17,5 @@ data:
     FS_MIGRATION=$(edgedb migration log --from-fs | tail -n 1)
     DB_MIGRATION=$(edgedb migration log --from-db | tail -n 1)
     if [ "$FS_MIGRATION" != "$DB_MIGRATION" ]; then
-        if [ "$1" = "true" ]; then
-            edgedb dump /dumps/$(date +%Y-%m-%d_%H-%M-%S).dump
-        fi
         edgedb migrate
     fi

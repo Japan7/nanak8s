@@ -20,16 +20,11 @@ spec:
           configMap:
             name: {{ .Release.Name }}-migrations
             defaultMode: 0500
-        {{- if .Values.dumps.enabled }}
-        - name: dumps
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-dumps
-        {{- end }}
       containers:
         - name: migrations
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          command: ["/migrations/migrate.sh", "{{ .Values.dumps.enabled }}"]
+          command: ["/migrations/migrate.sh"]
           env:
             - name: EDGEDB_SERVER_USER
               valueFrom:
@@ -48,7 +43,3 @@ spec:
           volumeMounts:
             - name: migrations
               mountPath: /migrations
-            {{- if .Values.dumps.enabled }}
-            - name: dumps
-              mountPath: /dumps
-            {{- end }}
