@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: "{{ .Release.Name }}-anilist"
+  name: "{{ .Release.Name }}-tasks-anilist"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
 spec:
