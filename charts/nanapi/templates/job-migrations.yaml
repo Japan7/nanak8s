@@ -26,20 +26,7 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["/migrations/migrate.sh"]
           env:
-            - name: EDGEDB_SERVER_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-edgedb
-                  key: username
-            - name: EDGEDB_SERVER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-edgedb
-                  key: password
-            - name: EDGEDB_DSN
-              value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Values.edgedb.service }}/{{ .Values.edgedb.database }}
-            - name: EDGEDB_CLIENT_SECURITY
-              value: insecure_dev_mode
+            {{- include "edgedb.env" . | nindent 12 }}
           volumeMounts:
             - name: migrations
               mountPath: /migrations
