@@ -17,7 +17,7 @@ replicaCount: 1
 tasks:
   enabled: true
   anilist:
-    schedule: "@daily"
+    schedule: "0 3 * * *"
   meilisearch:
     schedule: "@hourly"
 
