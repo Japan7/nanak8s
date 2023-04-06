@@ -44,6 +44,8 @@ releases:
           database: nanapi_{{ .Environment.Name }}
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
+      - tasks:
+          enabled: !!bool '{{ eq .Environment.Name "prod" }}'
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
@@ -54,7 +56,7 @@ releases:
         kind: Deployment
         metadata:
           name: nanapi-{{ .Environment.Name }}
-        spec: &patch
+        spec:
           template:
             spec:
               affinity:
@@ -66,8 +68,3 @@ releases:
                             operator: NotIn
                             values:
                               - camp
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: nanapi-{{ .Environment.Name }}-tasks
-        spec: *patch

@@ -37,7 +37,6 @@ spec:
             - name: localsettings
               mountPath: /app/nanachan/local_settings.py
               subPath: local_settings.py
-              readOnly: true
             - name: html
               mountPath: /html
             - name: kara

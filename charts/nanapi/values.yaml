@@ -14,6 +14,13 @@ localSettings: ""
 
 replicaCount: 1
 
+tasks:
+  enabled: true
+  anilist:
+    schedule: "@daily"
+  meilisearch:
+    schedule: "@hourly"
+
 ingress:
   entryPoints:
     - websecure

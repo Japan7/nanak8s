@@ -4,18 +4,15 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: api
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
-      app.kubernetes.io/component: api
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
-        app.kubernetes.io/component: api
     spec:
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}
@@ -35,6 +32,5 @@ spec:
             - name: localsettings
               mountPath: /app/nanapi/local_settings.py
               subPath: local_settings.py
-              readOnly: true
           ports:
             - containerPort: 8000

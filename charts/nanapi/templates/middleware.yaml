@@ -5,7 +5,6 @@ metadata:
   name: "{{ .Release.Name }}-stripprefix"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: api
 spec:
   stripPrefix:
     prefixes:

@@ -1,0 +1,26 @@
+{{- if .Values.tasks.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Release.Name }}-meilisearch"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  schedule: "{{ .Values.tasks.meilisearch.schedule }}"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "common.labels.standard" . | nindent 12 }}
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: task
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+              args: ["-m", "nanapi.tasks.meilisearch"]
+              env:
+                {{- include "edgedb.env" . | nindent 16 }}
+{{- end }}
