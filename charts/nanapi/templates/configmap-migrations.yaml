@@ -1,0 +1,24 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "{{ .Release.Name }}-migrations"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-weight: "-10"
+data:
+  migrate.sh: |
+    #!/bin/sh -xe
+
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -s -- -y
+    . ~/.config/edgedb/env
+
+    FS_MIGRATION=$(edgedb migration log --from-fs | tail -n 1)
+    DB_MIGRATION=$(edgedb migration log --from-db | tail -n 1)
+    if [ "$FS_MIGRATION" != "$DB_MIGRATION" ]; then
+        if [ "$1" = "true" ]; then
+            edgedb dump /dumps/$(date +%Y-%m-%d_%H-%M-%S).dump
+        fi
+        edgedb migrate
+    fi
