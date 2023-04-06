@@ -20,6 +20,10 @@ spec:
             {{- range .Values.image.pullSecrets }}
             - name: {{ . }}
             {{- end }}
+          volumes:
+            - name: localsettings
+              secret:
+                secretName: {{ .Release.Name }}-localsettings
           containers:
             - name: task
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -27,4 +31,8 @@ spec:
               args: ["-m", "nanapi.tasks.anilist"]
               env:
                 {{- include "edgedb.env" . | nindent 16 }}
+              volumeMounts:
+                - name: localsettings
+                  mountPath: /app/nanapi/local_settings.py
+                  subPath: local_settings.py
 {{- end }}
