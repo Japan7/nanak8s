@@ -17,9 +17,11 @@ replicaCount: 1
 tasks:
   enabled: true
   anilist:
-    schedule: "0 3 * * *"
+    schedule: "0 3 * * 1"
   meilisearch:
     schedule: "@hourly"
+  userlists:
+    schedule: "0 */6 * * *"
 
 ingress:
   entryPoints:

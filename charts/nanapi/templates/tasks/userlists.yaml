@@ -2,11 +2,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: "{{ .Release.Name }}-tasks-meilisearch"
+  name: "{{ .Release.Name }}-tasks-userlists"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
 spec:
-  schedule: "{{ .Values.tasks.meilisearch.schedule }}"
+  schedule: "{{ .Values.tasks.userlists.schedule }}"
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   jobTemplate:
@@ -29,7 +29,7 @@ spec:
             - name: task
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
               imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-              args: ["-m", "nanapi.tasks.meilisearch"]
+              args: ["-m", "nanapi.tasks.userlists"]
               env:
                 {{- include "edgedb.env" . | nindent 16 }}
               volumeMounts:
