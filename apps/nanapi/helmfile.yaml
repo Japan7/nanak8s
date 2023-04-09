@@ -7,7 +7,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: sha-a2959a2
+      - tag: sha-fba9812
     secrets:
       - ../globals.sops.yaml
       - staging.sops.yaml
