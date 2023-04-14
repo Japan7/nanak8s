@@ -45,7 +45,7 @@ spec:
               mountPropagation: HostToContainer
         - name: http
           image: svenstaro/miniserve:alpine
-          args: ["/html"]
+          args: ["--route-prefix", {{ .Values.ingress.pathPrefix }}, "/html"]
           volumeMounts:
             - name: html
               mountPath: /html
