@@ -5,9 +5,8 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-    {{- if ne .Values.ingress.pathPrefix "/" }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
+    {{- range .Values.ingress.entryPoints }}
+    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{- end }}
 spec:
   rules:
