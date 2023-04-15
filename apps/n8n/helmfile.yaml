@@ -18,14 +18,13 @@ releases:
           imagePullPolicy: Always
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
-      - extraEnv:
-          NODE_ENV: production
-          N8N_PROTOCOL: https
-          WEBHOOK_URL: "https://n8n.{{ .Values.domain }}"
-          EXECUTIONS_DATA_PRUNE: true
-          EXECUTIONS_PROCESS: main
       - config:
+          executions:
+            process: main
           host: n8n.{{ .Values.domain }}
+          protocol: https
+      - extraEnv:
+          WEBHOOK_URL: "https://n8n.{{ .Values.domain }}"
       - persistence:
           enabled: true
           type: dynamic
