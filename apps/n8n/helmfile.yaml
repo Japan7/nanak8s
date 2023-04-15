@@ -23,6 +23,7 @@ releases:
           N8N_PROTOCOL: https
           WEBHOOK_URL: "https://n8n.{{ .Values.domain }}"
           EXECUTIONS_DATA_PRUNE: true
+          EXECUTIONS_PROCESS: main
       - config:
           host: n8n.{{ .Values.domain }}
       - persistence:
