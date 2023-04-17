@@ -12,7 +12,7 @@ releases:
   - name: keycloak-cnpg
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 14
+      - release: 15
       - minio:
           accessKey: "{{ .Values.cnpg.minio.accessKey }}"
           secretKey: "{{ .Values.cnpg.minio.secretKey }}"
