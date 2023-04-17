@@ -8,7 +8,7 @@ releases:
   - name: forgejo-cnpg
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 14
+      - release: 15
       - database: forgejo
       - user:
           username: "{{ .Values.cnpg.username }}"
