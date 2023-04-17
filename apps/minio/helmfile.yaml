@@ -11,7 +11,8 @@ repositories:
 releases:
   - name: minio
     chart: bitnami/minio
-    version: 12
+    # FIXME: 2023.4.13-debian-11-r0 is broken
+    version: 12.2.5
     values:
       - auth:
           rootUser: "{{ .Values.minio.username }}"
