@@ -20,7 +20,8 @@ environments:
 ---
 repositories:
   - name: meilisearch
-    url: git+https://github.com/meilisearch/meilisearch-kubernetes.git@charts?ref=main
+    url: https://meilisearch.github.io/meilisearch-kubernetes
+
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
