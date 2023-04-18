@@ -13,8 +13,10 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-        kubernetes.io/arch: amd64 # arm64 image is broken
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

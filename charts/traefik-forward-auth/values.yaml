@@ -3,6 +3,9 @@ image:
   tag: latest
   pullPolicy: ""
 
+nodeSelector:
+  kubernetes.io/arch: amd64 # no arm64 image available
+
 secret: ""
 
 keycloak:

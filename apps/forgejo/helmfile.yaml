@@ -20,8 +20,6 @@ releases:
     chart: oci://codeberg.org/forgejo-contrib/forgejo
     version: 0.7.*
     values:
-      - nodeSelector:
-          topology.kubernetes.io/region: eu-west
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
