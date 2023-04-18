@@ -53,7 +53,7 @@ spec:
       initContainers:
         # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543
         - name: volume-permissions
-          image: alpine
+          image: alpine:latest
           command: ["sh", "-xc", "touch /data/acme.json && chmod -Rv 600 /data/* && chown 65532:65532 /data/acme.json"]
           volumeMounts:
             - name: data

@@ -48,7 +48,7 @@ spec:
             - containerPort: 8999
       initContainers:
         - name: init-certs
-          image: alpine
+          image: alpine:latest
           command:
             - sh
             - -xc

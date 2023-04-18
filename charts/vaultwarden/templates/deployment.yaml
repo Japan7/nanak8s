@@ -81,7 +81,7 @@ spec:
             {{- end }}
         {{- if .Values.ldap.enabled }}
         - name: ldap
-          image: vividboarder/vaultwarden_ldap
+          image: vividboarder/vaultwarden_ldap:latest
           env:
             - name: APP_VAULTWARDEN_URL
               value: http://localhost

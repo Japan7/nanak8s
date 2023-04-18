@@ -45,7 +45,7 @@ releases:
             mountPath: /opt/bitnami/keycloak/providers
       - initContainers:
           - name: add-keycloak-discord
-            image: alpine
+            image: alpine:latest
             command:
               - sh
               - -xc
