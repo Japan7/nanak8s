@@ -7,7 +7,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: sha-63879d6
+      - tag: sha-99895e5
     secrets:
       - ../globals.sops.yaml
       - staging.sops.yaml
@@ -21,7 +21,6 @@ environments:
 repositories:
   - name: meilisearch
     url: https://meilisearch.github.io/meilisearch-kubernetes
-
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
