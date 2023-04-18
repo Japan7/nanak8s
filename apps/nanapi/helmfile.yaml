@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 2023.04.09-2
+      - tag: 2023.04.19
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml
