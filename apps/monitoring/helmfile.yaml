@@ -70,7 +70,6 @@ releases:
             storageSpec:
               volumeClaimTemplate:
                 spec:
-                  storageClassName: longhorn-single
                   accessModes: ["ReadWriteOnce"]
                   resources:
                     requests:
