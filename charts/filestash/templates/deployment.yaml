@@ -43,7 +43,7 @@ spec:
           ports:
             - containerPort: 8334
         - name: cache-cleaner
-          image: alpine:latest
+          image: busybox:latest
           command: ["sh", "-xc", "while true; do find /cache/video/ -type f -atime +2 -delete; sleep 3600; done"]
           volumeMounts:
             - name: cache

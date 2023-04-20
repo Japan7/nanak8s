@@ -37,7 +37,7 @@ spec:
             - name: data
               mountPath: /data
         - name: http
-          image: svenstaro/miniserve:alpine
+          image: svenstaro/miniserve:latest
           args: ["/html"]
           volumeMounts:
             - name: data

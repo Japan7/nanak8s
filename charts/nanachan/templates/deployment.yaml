@@ -44,7 +44,7 @@ spec:
               readOnly: true
               mountPropagation: HostToContainer
         - name: http
-          image: svenstaro/miniserve:alpine
+          image: svenstaro/miniserve:latest
           args: ["--route-prefix", {{ .Values.ingress.pathPrefix }}, "/html"]
           volumeMounts:
             - name: html
