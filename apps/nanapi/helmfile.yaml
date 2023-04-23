@@ -1,26 +1,10 @@
-environments:
-  prod:
-    values:
-      - tag: 2023.04.19
-    secrets:
-      - ../globals.sops.yaml
-      - prod.sops.yaml
-  staging:
-    values:
-      - tag: sha-99895e5
-    secrets:
-      - ../globals.sops.yaml
-      - staging.sops.yaml
-  dev:
-    values:
-      - tag: latest
-    secrets:
-      - ../globals.sops.yaml
-      - dev.sops.yaml
+bases:
+  - environments.yaml
 ---
 repositories:
   - name: meilisearch
     url: https://meilisearch.github.io/meilisearch-kubernetes
+
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
@@ -29,6 +13,7 @@ releases:
       - persistence:
           enabled: true
           size: 512Mi
+      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi
     values:
@@ -45,7 +30,8 @@ releases:
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - tasks:
-          enabled: !!bool '{{ eq .Environment.Name "prod" }}'
+          enabled: {{ .Values.tasks }}
+      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"

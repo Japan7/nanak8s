@@ -1,0 +1,36 @@
+environments:
+  prod:
+    values:
+      - tag: 2023.04.19
+      - tasks: true
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
+    secrets:
+      - ../globals.sops.yaml
+      - prod.sops.yaml
+
+  staging:
+    values:
+      - tag: sha-99895e5
+      - tasks: true
+      - affinity: {}
+    secrets:
+      - ../globals.sops.yaml
+      - staging.sops.yaml
+
+  dev:
+    values:
+      - tag: latest
+      - tasks: true
+      - affinity: {}
+    secrets:
+      - ../globals.sops.yaml
+      - dev.sops.yaml

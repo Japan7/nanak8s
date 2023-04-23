@@ -14,6 +14,8 @@ localSettings: ""
 
 replicaCount: 1
 
+affinity: {}
+
 tasks:
   enabled: true
   anilist:

@@ -1,25 +1,5 @@
-environments:
-  nana:
-    values:
-      - tag: 2023.04.17
-    secrets:
-      - ../globals.sops.yaml
-      - shared.sops.yaml
-      - nana.sops.yaml
-  hachi:
-    values:
-      - tag: sha-84ccbbb
-    secrets:
-      - ../globals.sops.yaml
-      - shared.sops.yaml
-      - hachi.sops.yaml
-  snow:
-    values:
-      - tag: latest
-    secrets:
-      - ../globals.sops.yaml
-      - shared.sops.yaml
-      - snow.sops.yaml
+bases:
+  - environments.yaml
 ---
 releases:
   - name: nanachan-{{ .Environment.Name }}-redis
@@ -32,6 +12,7 @@ releases:
       - master:
           persistence:
             size: 1Gi
+          affinity: {{ toYaml .Values.affinity | nindent 12 }}
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:
@@ -48,6 +29,7 @@ releases:
             path: kara/Japan7
             accessKey: "{{ .Values.minio.accessKey }}"
             secretKey: "{{ .Values.minio.secretKey }}"
+      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanachan.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"

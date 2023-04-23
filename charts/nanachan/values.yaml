@@ -6,6 +6,8 @@ image:
 
 localSettings: ""
 
+affinity: {}
+
 kara:
   minio:
     endpoint: ""

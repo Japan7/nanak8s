@@ -1,0 +1,36 @@
+environments:
+  nana:
+    values:
+      - tag: 2023.04.17
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
+    secrets:
+      - ../globals.sops.yaml
+      - shared.sops.yaml
+      - nana.sops.yaml
+
+  hachi:
+    values:
+      - tag: sha-84ccbbb
+      - affinity: {}
+    secrets:
+      - ../globals.sops.yaml
+      - shared.sops.yaml
+      - hachi.sops.yaml
+
+  snow:
+    values:
+      - tag: latest
+      - affinity: {}
+    secrets:
+      - ../globals.sops.yaml
+      - shared.sops.yaml
+      - snow.sops.yaml
