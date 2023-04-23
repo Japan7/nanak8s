@@ -16,16 +16,14 @@ environments:
       - ../globals.sops.yaml
       - shared.sops.yaml
       - nana.sops.yaml
-
   hachi:
     values:
-      - tag: sha-84ccbbb
+      - tag: sha-c2a3d5a
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
       - shared.sops.yaml
       - hachi.sops.yaml
-
   snow:
     values:
       - tag: latest
