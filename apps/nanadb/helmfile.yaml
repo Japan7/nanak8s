@@ -1,5 +1,16 @@
 environments:
   default:
+    values:
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 1
+                  preference:
+                    matchExpressions:
+                      - key: topology.kubernetes.io/region
+                        operator: In
+                        values:
+                          - eu-west
     secrets:
       - ../globals.sops.yaml
 ---
@@ -13,6 +24,8 @@ releases:
       - minio:
           accessKey: "{{ .Values.cnpg.minio.accessKey }}"
           secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+      - affinity:
+          nodeAffinity: {{ toYaml .Values.affinity.nodeAffinity | nindent 12 }}
   - name: nanadb
     chart: ../../charts/edgedb
     values:
@@ -21,15 +34,6 @@ releases:
       - user:
           username: "{{ .Values.nanadb.username }}"
           password: "{{ .Values.nanadb.password }}"
-      - affinity:
-          nodeAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 1
-                preference:
-                  matchExpressions:
-                    - key: topology.kubernetes.io/region
-                      operator: In
-                      values:
-                        - eu-west
+      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanadb.{{ .Values.domain }}

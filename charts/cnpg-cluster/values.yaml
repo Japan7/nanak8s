@@ -3,6 +3,9 @@ release: ""
 
 instances: 3
 
+affinity:
+  nodeAffinity: {}
+
 storage:
   size: 1Gi
 
