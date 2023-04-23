@@ -16,16 +16,14 @@ environments:
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml
-
   staging:
     values:
-      - tag: sha-99895e5
+      - tag: sha-2f21b3c
       - tasks: true
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
       - staging.sops.yaml
-
   dev:
     values:
       - tag: latest
