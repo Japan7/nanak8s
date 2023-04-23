@@ -13,10 +13,8 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
@@ -33,9 +31,7 @@ spec:
       containers:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          {{- with .Values.image.pullPolicy }}
-          imagePullPolicy: {{ . }}
-          {{- end }}
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           volumeMounts:
             - name: runner-config
               mountPath: /app/.runner
@@ -44,9 +40,7 @@ spec:
               mountPath: /var/run
         - name: dind
           image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
-          {{- with .Values.dind.image.pullPolicy }}
-          imagePullPolicy: {{ . }}
-          {{- end }}
+          imagePullPolicy: "{{ .Values.dind.image.pullPolicy }}"
           # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25380#note_393553417
           # https://blog.zespre.com/dind-mtu-size-matters.html
           args:
