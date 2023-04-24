@@ -20,6 +20,9 @@ releases:
       - init:
           jobAnnotations:
             argocd.argoproj.io/hook: Sync
+      # FIXME: https://github.com/cockroachdb/helm-charts/issues/228
+      - tls:
+          enabled: false
       - nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 1
