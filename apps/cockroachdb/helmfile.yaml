@@ -33,8 +33,14 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/service.serversscheme: https
           hosts:
             - crdb.{{ .Values.domain }}
       - serviceMonitor:
           enabled: true
+    strategicMergePatches:
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: cockroachdb-public
+          annotations:
+            traefik.ingress.kubernetes.io/service.serversscheme: https
