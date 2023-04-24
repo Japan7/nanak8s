@@ -51,16 +51,13 @@ spec:
               value: enabled
           ports:
             - containerPort: 5656
-          startupProbe:
-            httpGet:
-              path: /server/status/alive
-              port: 5656
-            failureThreshold: 10
           livenessProbe:
             httpGet:
               path: /server/status/alive
               port: 5656
+            initialDelaySeconds: 300
           readinessProbe:
             httpGet:
               path: /server/status/ready
               port: 5656
+            initialDelaySeconds: 300
