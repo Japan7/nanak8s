@@ -34,7 +34,6 @@ releases:
           - name: nanadb
           - name: minio
           - name: strapi
-          - name: cockroachdb
 
           # nanapi
           - name: nanapi-prod
