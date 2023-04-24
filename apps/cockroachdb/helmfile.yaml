@@ -42,6 +42,5 @@ releases:
         kind: Service
         metadata:
           name: cockroachdb-public
-          namespace: "{{ .Namespace }}"
           annotations:
             traefik.ingress.kubernetes.io/service.serversscheme: https
