@@ -33,10 +33,7 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-cockroachdb-ui@kubernetescrd"
           hosts:
             - crdb.{{ .Values.domain }}
       - serviceMonitor:
           enabled: true
-  - name: cockroachdb-extras
-    chart: ../../charts/cockroachdb-extras
