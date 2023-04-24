@@ -33,6 +33,7 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/service.serversscheme: https
           hosts:
             - crdb.{{ .Values.domain }}
       - serviceMonitor:
