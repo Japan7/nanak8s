@@ -16,6 +16,10 @@ releases:
           persistentVolume:
             storageClass: longhorn-single
             size: 10Gi
+      # https://github.com/cockroachdb/helm-charts/issues/149
+      - init:
+          jobAnnotations:
+            argocd.argoproj.io/hook: Sync
       - nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - weight: 1
