@@ -14,26 +14,27 @@ releases:
     values:
       - conf:
           cluster-name: nanak8s
-      - storage:
-          persistentVolume:
-            storageClass: longhorn-single
-            size: 10Gi
       # https://github.com/cockroachdb/helm-charts/issues/149
       - init:
           jobAnnotations:
             argocd.argoproj.io/hook: Sync
+      - statefulset:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 1
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
       # FIXME: https://github.com/cockroachdb/helm-charts/issues/228
       - tls:
           enabled: false
-      - nodeAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                  - key: topology.kubernetes.io/region
-                    operator: In
-                    values:
-                      - eu-west
+      - storage:
+          persistentVolume:
+            storageClass: longhorn-single
+            size: 10Gi
       - ingress:
           enabled: true
           annotations:
