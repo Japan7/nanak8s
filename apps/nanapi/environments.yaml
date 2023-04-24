@@ -19,7 +19,7 @@ environments:
   staging:
     values:
       - tag: sha-9b29ab5
-      - tasks: true
+      - tasks: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
@@ -27,7 +27,7 @@ environments:
   dev:
     values:
       - tag: latest
-      - tasks: true
+      - tasks: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
