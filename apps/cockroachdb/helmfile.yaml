@@ -1,0 +1,26 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: cockroachdb
+    url: https://charts.cockroachdb.com/
+
+releases:
+  - name: cockroachdb
+    chart: cockroachdb/cockroachdb
+    version: 22
+    values:
+      - storage:
+          persistentVolume:
+            storageClass: longhorn-single
+            size: 10Gi
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+          hosts:
+            - crdb.{{ .Values.domain }}
+      - serviceMonitor:
+          enabled: true
