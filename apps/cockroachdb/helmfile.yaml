@@ -12,6 +12,8 @@ releases:
     chart: cockroachdb/cockroachdb
     version: 10
     values:
+      - conf:
+          cluster-name: nanak8s
       - storage:
           persistentVolume:
             storageClass: longhorn-single
@@ -36,6 +38,7 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
           hosts:
             - crdb.{{ .Values.domain }}
       - serviceMonitor:
