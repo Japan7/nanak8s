@@ -1,0 +1,11 @@
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+# replace hard eviction -> soft eviction
+evictionHard:
+  # To explicitly disable, pass a 0% or 100% threshold on an arbitrary resource.
+  memory.available: "0%"
+evictionSoft:
+  memory.available: "100Mi"
+  nodefs.available: "5Gi" # default: 10%
+  nodefs.inodesFree: "5%"
+  imagefs.available: "5Gi" # default: 15%

@@ -23,6 +23,7 @@ sh -s - server \
 --secrets-encryption \
 --disable local-storage \
 --flannel-iface <INNERNET_INTERFACE> \
+--kubelet-arg config=<PATH_TO_KUBELET_CONFIG> \
 --etcd-expose-metrics
 ```
 
@@ -110,6 +111,7 @@ sh -s - server \
 --secrets-encryption \
 --disable local-storage \
 --flannel-iface <INNERNET_INTERFACE> \
+--kubelet-arg config=<PATH_TO_KUBELET_CONFIG> \
 --etcd-expose-metrics
 ```
 
