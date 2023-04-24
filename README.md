@@ -25,7 +25,7 @@ sh -s - server \
 --flannel-iface <INNERNET_INTERFACE> \
 --kubelet-arg 'eviction-hard=memory.available<0%' \
 --kubelet-arg 'eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi' \
---kubelet-arg 'eviction-max-pod-grace-period=300' \
+--kubelet-arg 'eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m' \
 --etcd-expose-metrics
 ```
 
@@ -115,7 +115,7 @@ sh -s - server \
 --flannel-iface <INNERNET_INTERFACE> \
 --kubelet-arg 'eviction-hard=memory.available<0%' \
 --kubelet-arg 'eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi' \
---kubelet-arg 'eviction-max-pod-grace-period=300' \
+--kubelet-arg 'eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m' \
 --etcd-expose-metrics
 ```
 
