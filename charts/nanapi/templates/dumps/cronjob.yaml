@@ -1,0 +1,39 @@
+{{- if .Values.dumps.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Release.Name }}-dump"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  schedule: "{{ .Values.dumps.schedule }}"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "common.labels.standard" . | nindent 12 }}
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: scripts
+              configMap:
+                name: {{ .Release.Name }}-dumps
+                defaultMode: 0500
+            - name: dumps
+              persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-dumps
+          containers:
+            - name: dump
+              image: edgedb/edgedb-cli:latest
+              command: ["/scripts/dump.sh"]
+              env:
+                {{- include "edgedb.env" . | nindent 16 }}
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+                - name: dumps
+                  mountPath: /dumps
+{{- end }}

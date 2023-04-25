@@ -31,6 +31,8 @@ releases:
           {{ .Values.localSettings | nindent 10 }}
       - tasks:
           enabled: {{ .Values.tasks }}
+      - dumps:
+          enabled: {{ .Values.dumps }}
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanapi.{{ .Values.domain }}

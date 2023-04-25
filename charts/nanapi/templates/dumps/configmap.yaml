@@ -1,0 +1,15 @@
+{{- if .Values.dumps.enabled }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "{{ .Release.Name }}-dumps"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+data:
+  dump.sh: |
+    #!/bin/sh -xe
+    cd /dumps/
+    DUMP_NAME=$(date +%Y-%m-%d_%H-%M-%S).dump
+    edgedb dump $DUMP_NAME
+    ls *.dump | grep -v $DUMP_NAME | xargs rm -f
+{{- end }}

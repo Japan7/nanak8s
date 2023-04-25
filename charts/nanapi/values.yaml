@@ -25,6 +25,10 @@ tasks:
   userlists:
     schedule: "0 */6 * * *"
 
+dumps:
+  enabled: false
+  schedule: "0 12 * * *"
+
 ingress:
   entryPoints:
     - websecure

@@ -3,6 +3,7 @@ environments:
     values:
       - tag: 2023.04.19
       - tasks: true
+      - dumps: true
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -20,6 +21,7 @@ environments:
     values:
       - tag: sha-9b29ab5
       - tasks: false
+      - dumps: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
@@ -28,6 +30,7 @@ environments:
     values:
       - tag: latest
       - tasks: false
+      - dumps: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
