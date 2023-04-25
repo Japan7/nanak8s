@@ -15,8 +15,11 @@ user:
   username: app
   password: ""
 
-minio:
-  endpoint: http://minio.minio:9000
-  bucket: cnpg
-  accessKey: ""
-  secretKey: ""
+backups:
+  enabled: true
+  minio:
+    endpoint: http://minio.minio:9000
+    bucket: cnpg
+    accessKey: ""
+    secretKey: ""
+  schedule: "0 12 * * 1"

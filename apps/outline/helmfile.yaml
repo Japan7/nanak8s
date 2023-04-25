@@ -9,9 +9,10 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 15
-      - minio:
-          accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-          secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+      - backups:
+          minio:
+            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: outline-redis
     chart: oci://registry-1.docker.io/bitnamicharts/redis
     version: 17.*

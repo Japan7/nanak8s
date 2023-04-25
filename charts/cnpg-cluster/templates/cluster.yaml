@@ -18,10 +18,11 @@ spec:
       secret:
         name: {{ .Values.user.username }}-secret
       {{- end }}
+  {{- if .Values.backups.enabled }}
   backup:
     barmanObjectStore:
-      destinationPath: s3://{{ .Values.minio.bucket }}
-      endpointURL: {{ .Values.minio.endpoint }}
+      destinationPath: s3://{{ .Values.backups.minio.bucket }}
+      endpointURL: {{ .Values.backups.minio.endpoint }}
       s3Credentials:
         accessKeyId:
           name: "{{ .Release.Name }}-minio"
@@ -33,7 +34,8 @@ spec:
         compression: bzip2
       data:
         compression: bzip2
-    retentionPolicy: "7d"
+    retentionPolicy: "30d"
+  {{- end }}
   affinity:
     nodeAffinity:
       {{- toYaml .Values.affinity.nodeAffinity | nindent 6 }}

@@ -21,9 +21,10 @@ releases:
       - release: 14
       - storage:
           size: 10Gi
-      - minio:
-          accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-          secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+      - backups:
+          minio:
+            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
       - affinity:
           nodeAffinity: {{ toYaml .Values.affinity.nodeAffinity | nindent 12 }}
   - name: nanadb

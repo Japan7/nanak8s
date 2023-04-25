@@ -1,3 +1,4 @@
+{{- if and .Values.backups.enabled .Values.backups.schedule }}
 apiVersion: postgresql.cnpg.io/v1
 kind: ScheduledBackup
 metadata:
@@ -5,7 +6,8 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
 spec:
-  schedule: "0 0 9 * * *"
+  schedule: "{{ .Values.backups.schedule }}"
   backupOwnerReference: self
   cluster:
     name: "{{ .Release.Name }}"
+{{- end }}
