@@ -2,6 +2,7 @@ environments:
   prod:
     values:
       - tag: 2023.04.19
+      - replicas: 2
       - tasks: true
       - dumps: true
       - affinity:
@@ -20,6 +21,7 @@ environments:
   staging:
     values:
       - tag: sha-9b29ab5
+      - replicas: 1
       - tasks: false
       - dumps: false
       - affinity: {}
@@ -29,6 +31,7 @@ environments:
   dev:
     values:
       - tag: latest
+      - replicas: 1
       - tasks: false
       - dumps: false
       - affinity: {}
