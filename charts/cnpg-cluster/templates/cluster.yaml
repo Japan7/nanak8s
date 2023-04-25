@@ -34,7 +34,6 @@ spec:
       data:
         compression: bzip2
     retentionPolicy: "7d"
-    target: "prefer-standby"
   affinity:
     nodeAffinity:
       {{- toYaml .Values.affinity.nodeAffinity | nindent 6 }}
