@@ -6,7 +6,6 @@ metadata:
   name: {{ .Release.Name }}-onlyoffice
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: onlyoffice
 spec:
   headers:
     customRequestHeaders:

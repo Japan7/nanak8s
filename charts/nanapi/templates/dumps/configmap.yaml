@@ -5,6 +5,8 @@ metadata:
   name: "{{ .Release.Name }}-dumps"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: dumps
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
 data:
   dump.sh: |
     #!/bin/sh -xe

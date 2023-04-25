@@ -4,15 +4,21 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
+      app.kubernetes.io/part-of: {{ .Chart.Name }}
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: api
+        app.kubernetes.io/part-of: {{ .Chart.Name }}
     spec:
       affinity:
         {{- toYaml .Values.affinity | nindent 8 }}

@@ -5,6 +5,8 @@ metadata:
   name: "{{ .Release.Name }}-tasks-anilist"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: tasks
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   schedule: "{{ .Values.tasks.anilist.schedule }}"
   concurrencyPolicy: Forbid
@@ -15,6 +17,8 @@ spec:
         metadata:
           labels:
             {{- include "common.labels.standard" . | nindent 12 }}
+            app.kubernetes.io/component: tasks
+            app.kubernetes.io/part-of: {{ .Chart.Name }}
         spec:
           restartPolicy: Never
           imagePullSecrets:

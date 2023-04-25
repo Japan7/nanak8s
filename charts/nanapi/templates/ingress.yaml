@@ -4,6 +4,8 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
   annotations:
     {{- range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"

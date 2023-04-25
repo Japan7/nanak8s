@@ -11,6 +11,7 @@ spec:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
       app.kubernetes.io/component: extras.dumper
+      app.kubernetes.io/part-of: traefik
   replicas: 1
   template:
     metadata:
