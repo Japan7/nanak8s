@@ -8,6 +8,11 @@ metadata:
 data:
   dump.sh: |
     #!/bin/sh -xe
+
+    apk add curl
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -s -- -y
+    . ~/.config/edgedb/env
+
     cd /dumps/
     DUMP_NAME=$(date +%Y-%m-%d_%H-%M-%S).dump
     edgedb dump $DUMP_NAME

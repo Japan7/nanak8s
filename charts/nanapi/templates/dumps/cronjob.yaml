@@ -27,7 +27,7 @@ spec:
                 claimName: {{ .Release.Name }}-dumps
           containers:
             - name: dump
-              image: edgedb/edgedb-cli:latest
+              image: alpine:latest
               command: ["/scripts/dump.sh"]
               env:
                 {{- include "edgedb.env" . | nindent 16 }}
