@@ -22,7 +22,6 @@ releases:
           tag: "{{ .Values.tag }}"
           pullSecrets:
             - forgejo-regcred
-      - replicaCount: {{ .Values.replicas }}
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"
