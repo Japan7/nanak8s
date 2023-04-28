@@ -9,9 +9,7 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 15
-      - database: forgejo
       - user:
-          username: "{{ .Values.cnpg.username }}"
           password: "{{ .Values.cnpg.password }}"
       - backups:
           minio:
@@ -34,8 +32,8 @@ releases:
             database:
               DB_TYPE: postgres
               HOST: forgejo-cnpg-rw
-              NAME: forgejo
-              USER: "{{ .Values.cnpg.username }}"
+              NAME: app
+              USER: app
               PASSWD: "{{ .Values.cnpg.password }}"
             # https://forgejo.org/2023-02-27-forgejo-actions/
             actions:
