@@ -16,7 +16,7 @@ spec:
       owner: {{ .Values.user.username }}
       {{- if .Values.user.password }}
       secret:
-        name: "{{ .Release.Name }}-{{ .Values.user.username }}"
+        name: "{{ .Release.Name }}-{{ .Values.user.username }}-bootstrap"
       {{- end }}
   {{- if .Values.backups.enabled }}
   backup:
