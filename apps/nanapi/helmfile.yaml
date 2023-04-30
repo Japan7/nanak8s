@@ -4,7 +4,6 @@ bases:
 repositories:
   - name: meilisearch
     url: https://meilisearch.github.io/meilisearch-kubernetes
-
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
@@ -13,7 +12,7 @@ releases:
       - persistence:
           enabled: true
           size: 512Mi
-      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
+      - affinity: {? {toYaml .Values.affinity | nindent 10: ''} : ''}
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi
     values:
@@ -30,10 +29,10 @@ releases:
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - tasks:
-          enabled: {{ .Values.tasks }}
+          enabled: {? {.Values.tasks: ''} : ''}
       - dumps:
-          enabled: {{ .Values.dumps }}
-      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
+          enabled: {? {.Values.dumps: ''} : ''}
+      - affinity: {? {toYaml .Values.affinity | nindent 10: ''} : ''}
       - ingress:
           host: nanapi.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
