@@ -27,7 +27,7 @@ tasks:
 
 dumps:
   enabled: false
-  schedule: "0 12 * * *"
+  schedule: "0 9 * * *"
 
 ingress:
   entryPoints:
