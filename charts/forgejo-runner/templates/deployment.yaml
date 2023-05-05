@@ -32,7 +32,7 @@ spec:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          args: ["-c", "/.runner", "deamon"]
+          args: ["-c", "/.runner", "daemon"]
           volumeMounts:
             - name: runner-config
               mountPath: /.runner
