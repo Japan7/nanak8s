@@ -9,6 +9,8 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 15
+      - storage:
+          size: 5Gi
       - user:
           password: "{{ .Values.cnpg.password }}"
       - backups:
