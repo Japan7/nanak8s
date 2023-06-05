@@ -14,9 +14,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`{{ .Values.ingress.host }}`)
-  services:
-    {{- range .Values.tenants }}
-    - name: minio
-      namespace: "{{ . }}"
-      port: 443
-    {{- end }}
+      services:
+        {{- range .Values.tenants }}
+        - name: minio
+          namespace: "{{ . }}"
+          port: 443
+        {{- end }}
