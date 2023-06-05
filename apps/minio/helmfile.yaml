@@ -4,43 +4,54 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
-releases:
+repositories:
   - name: minio
-    chart: oci://registry-1.docker.io/bitnamicharts/minio
-    version: 12.2.5 # FIXME: 12.2.6 (2023.4.13-debian-11-r0) is broken
+    url: https://operator.min.io/
+
+releases:
+  - name: minio-operator
+    chart: minio/operator
+    version: 5
+    namespace: minio-operator
     values:
-      - auth:
-          rootUser: "{{ .Values.minio.username }}"
-          rootPassword: "{{ .Values.minio.password }}"
-      - extraEnvVars:
-          - name: MINIO_SERVER_URL
-            value: https://minio.{{ .Values.domain }}
-          - name: MINIO_BROWSER_REDIRECT_URL
-            value: https://minio.{{ .Values.domain }}/console/
-          - name: MINIO_PROMETHEUS_URL
-            value: http://kps-prometheus.monitoring:9090
-          - name: MINIO_PROMETHEUS_JOB_ID
-            value: minio
-      - persistence:
-          size: 300Gi
-      - podSecurityContext:
-          # https://longhorn.io/kb/troubleshooting-volume-take-long-time-to-mount/
-          fsGroupChangePolicy: OnRootMismatch
-      - ingress:
-          enabled: true
-          hostname: minio.{{ .Values.domain }}
-          path: /console
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: minio-minio-console-stripprefix@kubernetescrd
-      - apiIngress:
-          enabled: true
-          hostname: minio.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      - metrics:
-          serviceMonitor:
+      - console:
+          ingress:
             enabled: true
-            namespace: monitoring
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd,minio-minio-operator-stripprefix@kubernetescrd
+            host: minio.{{ .Values.domain }}
+            path: /operator
+  - name: minio-tenant-0
+    chart: minio/tenant
+    version: 5
+    namespace: minio-tenant-0
+    values:
+      - secrets:
+          name: minio-tenant-0-env
+          accessKey: "{{ .Values.minio.username }}"
+          secretKey: "{{ .Values.minio.password }}"
+      - tenant:
+          name: minio-tenant-0
+          configuration:
+            name: minio-tenant-0-env
+          pools:
+            - servers: 1
+              volumesPerServer: 1
+              size: 300Gi
+              storageClassName: longhorn-single
+      - ingress:
+          api:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            host: minio.{{ .Values.domain }}
+          console:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: minio-minio-console-stripprefix@kubernetescrd
+            host: minio.{{ .Values.domain }}
+            path: /console
   - name: minio-extras
     chart: ../../charts/minio-extras
