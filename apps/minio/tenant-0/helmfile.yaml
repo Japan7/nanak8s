@@ -28,3 +28,16 @@ releases:
               storageClassName: longhorn-single
               nodeSelector:
                 kubernetes.io/hostname: korone
+      - ingress:
+          api:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            host: minio.{{ .Values.domain }}
+          console:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: minio-operator-minio-console-stripprefix@kubernetescrd
+            host: minio.{{ .Values.domain }}
+            path: /console
