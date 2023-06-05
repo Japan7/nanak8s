@@ -13,14 +13,10 @@ releases:
     chart: minio/tenant
     version: 5
     values:
-      - secrets:
-          name: minio-tenant-0-env
-          accessKey: "{{ .Values.minio.username }}"
-          secretKey: "{{ .Values.minio.password }}"
       - tenant:
           name: minio-tenant-0
           configuration:
-            name: minio-tenant-0-env
+            name: minio-tenant-env
           pools:
             - servers: 1
               volumesPerServer: 1
@@ -33,11 +29,20 @@ releases:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            host: minio.{{ .Values.domain }}
+            host: minio-0.{{ .Values.domain }}
           console:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.middlewares: minio-operator-minio-console-stripprefix@kubernetescrd
-            host: minio.{{ .Values.domain }}
+              traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-minio-console-stripprefix@kubernetescrd"
+            host: minio-0.{{ .Values.domain }}
             path: /console
+  - name: minio-tenant-extras
+    chart: ../../../charts/minio-tenant-extras
+    values:
+      - root:
+          username: "{{ .Values.minio.username }}"
+          password: "{{ .Values.minio.password }}"
+      - urls:
+          server: https://minio-0.{{ .Values.domain }}
+          redirect: https://minio-0.{{ .Values.domain }}/console/
