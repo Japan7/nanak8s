@@ -13,14 +13,6 @@ releases:
             namespace: cnpg-system
           - name: monitoring
 
-          # Minio
-          - name: minio-operator
-            subdir: minio/operator
-          - name: minio-tenant-0
-            subdir: minio/tenant-0
-          - name: minio-tenant-1
-            subdir: minio/tenant-1
-
           # Dev
           - name: argo-cd
             namespace: argocd
