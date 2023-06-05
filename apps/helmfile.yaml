@@ -39,8 +39,6 @@ releases:
           - name: syncplay
 
           # Data
-          - name: minio
-            namespace: ""
           - name: nanadb
           - name: strapi
 
