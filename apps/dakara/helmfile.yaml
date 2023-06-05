@@ -38,7 +38,7 @@ releases:
             - forgejo-regcred
       - mugen:
           minio:
-            endpoint: http://minio.minio:9000
+            endpoint: https://minio.{{ .Values.domain }}
             path: kara/Mugen
             accessKey: "{{ .Values.minio.accessKey }}"
             secretKey: "{{ .Values.minio.secretKey }}"

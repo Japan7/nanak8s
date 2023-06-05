@@ -23,6 +23,7 @@ releases:
           size: 10Gi
       - backups:
           minio:
+            endpoint: https://minio.{{ .Values.domain }}
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
       - affinity:

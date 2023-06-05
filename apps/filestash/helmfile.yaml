@@ -27,7 +27,7 @@ releases:
           clientId: "{{ .Values.keycloak.clientId }}"
           clientSecret: "{{ .Values.keycloak.clientSecret }}"
       - minio:
-          host: http://minio.minio:9000
+          host: https://minio.{{ .Values.domain }}
       - ingress:
           loginRedirect: true
           host: filestash.{{ .Values.domain }}

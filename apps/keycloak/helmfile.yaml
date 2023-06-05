@@ -11,6 +11,7 @@ releases:
       - release: 15
       - backups:
           minio:
+            endpoint: https://minio.{{ .Values.domain }}
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
