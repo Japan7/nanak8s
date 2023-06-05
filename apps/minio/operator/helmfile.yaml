@@ -1,0 +1,24 @@
+environments:
+  default:
+    secrets:
+      - ../../globals.sops.yaml
+      - ../default.sops.yaml
+---
+repositories:
+  - name: minio
+    url: https://operator.min.io/
+
+releases:
+  - name: minio-operator
+    chart: minio/operator
+    version: 5
+    values:
+      - console:
+          ingress:
+            enabled: true
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd,minio-minio-operator-stripprefix@kubernetescrd
+            host: minio-operator.{{ .Values.domain }}
+  - name: minio-extras
+    chart: ../../charts/minio-extras

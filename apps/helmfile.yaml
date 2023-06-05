@@ -31,8 +31,11 @@ releases:
           - name: syncplay
 
           # Data
+          - name: minio-operator
+            subdir: minio/operator
+          - name: minio-tenant-0
+            subdir: minio/tenant-0
           - name: nanadb
-          - name: minio
           - name: strapi
 
           # nanapi
