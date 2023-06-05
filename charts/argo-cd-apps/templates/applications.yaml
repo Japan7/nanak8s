@@ -23,9 +23,7 @@ spec:
           value: "--environment {{ .environment | default "default" }}"
   destination:
     server: https://kubernetes.default.svc
-    {{- if ne .namespace "" }}
     namespace: {{ .namespace | default .name }}
-    {{- end }}
   {{- if $.Values.syncPolicy.enabled }}
   syncPolicy:
     automated:
