@@ -26,3 +26,5 @@ releases:
               volumesPerServer: 1
               size: 300Gi
               storageClassName: longhorn-single
+              nodeSelector:
+                kubernetes.io/hostname: korone
