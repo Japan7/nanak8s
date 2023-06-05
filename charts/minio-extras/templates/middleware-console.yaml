@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: extras
-    app.kubernetes.io/part-of: minio-tenant
+    app.kubernetes.io/part-of: minio
 spec:
   stripPrefix:
     prefixes:

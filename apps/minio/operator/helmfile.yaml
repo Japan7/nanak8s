@@ -18,3 +18,5 @@ releases:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
             host: minio-operator.{{ .Values.domain }}
+  - name: minio-extras
+    chart: ../../../charts/minio-extras
