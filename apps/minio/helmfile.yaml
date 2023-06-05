@@ -7,7 +7,7 @@ environments:
 releases:
   - name: minio
     chart: oci://registry-1.docker.io/bitnamicharts/minio
-    version: 12.2.5 # FIXME: 2023.4.13-debian-11-r0 is broken
+    version: 12.2.5 # FIXME: 12.2.6 (2023.4.13-debian-11-r0) is broken
     values:
       - auth:
           rootUser: "{{ .Values.minio.username }}"
@@ -22,7 +22,7 @@ releases:
           - name: MINIO_PROMETHEUS_JOB_ID
             value: minio
       - persistence:
-          size: 250Gi
+          size: 300Gi
       - podSecurityContext:
           # https://longhorn.io/kb/troubleshooting-volume-take-long-time-to-mount/
           fsGroupChangePolicy: OnRootMismatch
