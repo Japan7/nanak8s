@@ -18,7 +18,6 @@ releases:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
             host: minio-operator.{{ .Values.domain }}
   - name: minio-extras
     chart: ../../../charts/minio-extras
