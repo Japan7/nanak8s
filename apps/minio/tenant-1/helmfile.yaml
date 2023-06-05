@@ -27,7 +27,7 @@ releases:
                 kubernetes.io/hostname: gungnir
           features:
             domains:
-              console: https://minio-1.{{ .Values.domain }}/console
+              console: https://minio-1.{{ .Values.domain }}/console/
               minio:
                 - https://minio-1.{{ .Values.domain }}
       - ingress:

@@ -27,7 +27,7 @@ releases:
                 kubernetes.io/hostname: korone
           features:
             domains:
-              console: https://minio-0.{{ .Values.domain }}/console
+              console: https://minio-0.{{ .Values.domain }}/console/
               minio:
                 - https://minio-0.{{ .Values.domain }}
       - ingress:
