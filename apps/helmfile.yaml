@@ -13,6 +13,12 @@ releases:
             namespace: cnpg-system
           - name: monitoring
 
+          # Minio
+          - name: minio-operator
+            subdir: minio/operator
+          - name: minio-tenant-0
+            subdir: minio/tenant-0
+
           # Dev
           - name: argo-cd
             namespace: argocd
@@ -31,10 +37,6 @@ releases:
           - name: syncplay
 
           # Data
-          - name: minio-operator
-            subdir: minio/operator
-          - name: minio-tenant-0
-            subdir: minio/tenant-0
           - name: nanadb
           - name: strapi
 
