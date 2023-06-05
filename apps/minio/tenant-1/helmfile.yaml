@@ -9,18 +9,18 @@ repositories:
     url: https://operator.min.io/
 
 releases:
-  - name: minio-tenant-0
+  - name: minio-tenant-1
     chart: minio/tenant
     version: 5
     values:
       - secrets:
-          name: minio-tenant-0-env
+          name: minio-tenant-1-env
           accessKey: "{{ .Values.minio.username }}"
           secretKey: "{{ .Values.minio.password }}"
       - tenant:
-          name: minio-tenant-0
+          name: minio-tenant-1
           configuration:
-            name: minio-tenant-0-env
+            name: minio-tenant-1-env
           pools:
             - servers: 1
               volumesPerServer: 1
