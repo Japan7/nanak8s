@@ -1,0 +1,6 @@
+tenants: []
+
+ingress:
+  host: ""
+  entryPoints:
+    - websecure

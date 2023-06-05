@@ -20,3 +20,9 @@ releases:
             host: minio-operator.{{ .Values.domain }}
   - name: minio-extras
     chart: ../../../charts/minio-extras
+    values:
+      - tenants:
+          - minio-tenant-0
+          - minio-tenant-1
+      - ingress:
+          host: minio.{{ .Values.domain }}

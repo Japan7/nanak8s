@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: "minio-api"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: minio
+spec:
+  entryPoints:
+    {{- range .Values.ingress.entryPoints }}
+    - "{{ . }}"
+    {{- end }}
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.ingress.host }}`)
+  services:
+    {{- range .Values.tenants }}
+    - name: minio
+      namespace: "{{ . }}"
+      port: 443
+    {{- end }}
