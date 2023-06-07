@@ -16,6 +16,9 @@ releases:
     chart: argo/argo-cd
     version: 5
     values:
+      - global:
+          image:
+            tag: v2.7.3 # FIXME: helmfile plugin broken in v2.7.4
       - server:
           ingress:
             enabled: true
