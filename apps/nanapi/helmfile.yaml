@@ -8,8 +8,10 @@ repositories:
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
-    version: 0.1.50 # upgrade is a pain
+    version: 0.1
     values:
+      - image:
+          tag: v1.0 # upgrades need dump-restore
       - persistence:
           enabled: true
           size: 512Mi
