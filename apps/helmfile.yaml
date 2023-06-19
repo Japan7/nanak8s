@@ -40,7 +40,7 @@ releases:
 
           # Data
           - name: nanadb
-          - name: strapi
+          # - name: strapi
 
           # nanapi
           - name: nanapi-prod
