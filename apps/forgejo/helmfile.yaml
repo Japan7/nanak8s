@@ -49,8 +49,8 @@ releases:
       - persistence:
           size: 20Gi
       - initPreScript: |
-          chmod 700 /data/{ssh,git,git/.ssh}
-          chmod 600 /data/{ssh,git/.ssh}/*
+          chmod 600 /data/ssh/*
+          chmod 700 /data/git /data/git/.ssh /data/git/.ssh/*
       - ingress:
           enabled: true
           apiVersion: networking.k8s.io/v1
