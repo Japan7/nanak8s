@@ -7,7 +7,7 @@ nodes:
 cnpg:
     minio:
         accessKey: ENC[AES256_GCM,data:7bt4iQ==,iv:VhsqVOLcbZfGD9WGkFaR+efXKy88eXXKdHYlo41q4Zc=,tag:ap4wkC/nkCipXt0yI0JNAw==,type:str]
-        secretKey: ENC[AES256_GCM,data:AQCqeP+qsRdZwd2XelYHx0SuENn98lqvZKE5bmZrci0OvxalUBp9wA==,iv:S4SDYgBiV6bJHrF//lZjzMbGdKO5qyzz8COsdy1Xq/s=,tag:PwHNATxSJZ6fG5I/c4QBSQ==,type:str]
+        secretKey: ENC[AES256_GCM,data:WTOT7J2eTrifVVUiLPoKYhVkVkJwofu8X8o7TH75AyOdW0ewQiI5xg==,iv:DZ2S3Q/a5ltIGtbbdYuw6v+B5RFWyBEa2i7fIj9Ip+4=,tag:giKDRUNZl5F1b0jm4rCxmA==,type:str]
 nanadb:
     username: ENC[AES256_GCM,data:pZ/H3j96,iv:QMeqqkr+K0S2aEtUa8Cl/Kkxy34sgPJxnDGJQtTJNSY=,tag:G/77a146PKzkTO09Jc+rIA==,type:str]
     password: ENC[AES256_GCM,data:XD1Q6asFCO9BEmAw3JE=,iv:q0L+MU/1kFQdnKbEngUGVl9JlLjL5UoA8/NSQH6qzAE=,tag:rrnbB3krDuFXEBr2bYZlUw==,type:str]
@@ -35,8 +35,8 @@ sops:
             azBpUTd0VlhxUGtma21YYmdCWGdIVWcKZwtx4ePA6UE85T84HrBwPRRu7Z0oFqew
             98HkEmcMG8LQhDwQ7uBzCA8FzMk8Rv/y4aJO/YBeeUO1H1WXiZMfwg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-06-19T08:42:35Z"
-    mac: ENC[AES256_GCM,data:0dyH+ml4z4nX99at9Iy1RG7C6Bv4mXq10D0fEFRHrqLJEpOtpOFaVNeEC2QxWwtyrRmij0UlsJjWkdSBZlhFk1Ksx8EjkusFOBXVPCGBFUgaHbj6nHQuG8CRx4HXOvOTbjRFwN0wZ3PyUKeevZnfiwd02ndFdljgGdEbQ1jOT3Q=,iv:sfI9IEBY5RiGV+zy/df9pp7H6N1rmGg5xpbAKoyc2wM=,tag:X19Kwp775/8MYl1XfHwgzg==,type:str]
+    lastmodified: "2023-06-21T13:45:49Z"
+    mac: ENC[AES256_GCM,data:aOZZqJD7sbcQ1UY8oJ/wtI6ITEX3CHozurWwH1VjtWWl32Pm3jV6M3el2apSSOy1h/LjlvJYnsKiPTy2T5XV4FEoGnmU1w6422+A7RKOY1ErDFTmJSfR7MFcJ6yrMl2zkVST8ow31paLlxd60ZsYwo8OBVYWAIjUawRQcd5GvOI=,iv:6ljYtnPG45JZEmF+KYCycz+6oLNnnj7045tbA+GXhCs=,tag:QM8zPA4WtI0VdRDFTet3mQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
