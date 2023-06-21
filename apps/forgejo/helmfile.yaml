@@ -97,4 +97,4 @@ releases:
             - gitlab
             - nanachan
             - nanapi
-            - strapi
+            # - strapi
