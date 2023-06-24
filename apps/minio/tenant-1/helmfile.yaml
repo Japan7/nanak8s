@@ -33,8 +33,10 @@ releases:
           metrics:
             enabled: true
           env:
-            - MINIO_PROMETHEUS_URL: http://kps-prometheus.monitoring:9090
-            - MINIO_PROMETHEUS_JOB_ID: minio-1
+            - name: MINIO_PROMETHEUS_URL
+              value: http://kps-prometheus.monitoring:9090
+            - name: MINIO_PROMETHEUS_JOB_ID
+              value: minio-1
       - ingress:
           api:
             enabled: true
