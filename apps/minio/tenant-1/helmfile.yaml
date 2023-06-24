@@ -37,7 +37,7 @@ releases:
             - name: MINIO_PROMETHEUS_URL
               value: http://kps-prometheus.monitoring:9090
             - name: MINIO_PROMETHEUS_JOB_ID
-              value: minio-1
+              value: "{{ .Namespace }}-minio-job"
       - ingress:
           api:
             enabled: true
