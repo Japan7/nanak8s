@@ -12,6 +12,12 @@ releases:
     chart: minio/operator
     version: 5
     values:
+      - operator:
+          env:
+            - name: PROMETHEUS_NAME
+              value: kps-prometheus
+            - name: PROMETHEUS_NAMESPACE
+              value: monitoring
       - console:
           ingress:
             enabled: true
