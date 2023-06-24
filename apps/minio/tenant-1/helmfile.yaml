@@ -32,6 +32,7 @@ releases:
                 - https://minio-1.{{ .Values.domain }}
           metrics:
             enabled: true
+          prometheusOperator: true
           env:
             - name: MINIO_PROMETHEUS_URL
               value: http://kps-prometheus.monitoring:9090
