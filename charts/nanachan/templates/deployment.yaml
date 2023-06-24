@@ -63,7 +63,7 @@ spec:
             - --read-only
             - --allow-non-empty
             - --allow-other
-            - --size-only
+            - --no-modtime
             - --vfs-cache-mode
             - full
           securityContext:
