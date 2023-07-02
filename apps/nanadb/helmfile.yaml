@@ -32,7 +32,7 @@ releases:
     chart: ../../charts/edgedb
     values:
       - image:
-          tag: 2
+          tag: 3
       - cnpg:
           name: nanadb-cnpg
       - user:
