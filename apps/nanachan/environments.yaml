@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: 2023.06.13
+      - tag: 2023.07.05
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
