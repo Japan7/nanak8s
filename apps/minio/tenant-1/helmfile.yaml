@@ -24,7 +24,7 @@ releases:
             - servers: 1
               volumesPerServer: 1
               size: 300Gi
-              storageClassName: longhorn-single
+              storageClassName: longhorn-local
               nodeSelector:
                 kubernetes.io/hostname: gungnir
           features:
