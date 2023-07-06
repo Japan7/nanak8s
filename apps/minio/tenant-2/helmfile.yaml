@@ -1,8 +1,8 @@
 environments:
   default:
     values:
-      - tenant: 1
-      - node: gungnir
+      - tenant: 2
+      - node: camp
     secrets:
       - ../../globals.sops.yaml
       - ../default.sops.yaml
