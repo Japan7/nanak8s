@@ -13,6 +13,7 @@ releases:
     version: 5
     values:
       - operator:
+          replicaCount: 1
           env:
             - name: PROMETHEUS_NAME
               value: kps-prometheus
