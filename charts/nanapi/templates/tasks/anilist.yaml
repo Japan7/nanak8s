@@ -29,6 +29,8 @@ spec:
             - name: localsettings
               secret:
                 secretName: {{ .Release.Name }}-localsettings
+          affinity:
+            {{- include "tasks.affinity" . | nindent 12 }}
           containers:
             - name: task
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

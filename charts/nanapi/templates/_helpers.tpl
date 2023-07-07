@@ -47,3 +47,30 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 - name: EDGEDB_CLIENT_SECURITY
   value: insecure_dev_mode
 {{- end -}}
+
+{{- define "tasks.affinity" -}}
+podAntiAffinity:
+  preferredDuringSchedulingIgnoredDuringExecution:
+    - weight: 100
+      podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+                - {{ include "common.names.name" . }}
+            - key: app.kubernetes.io/instance
+              operator: In
+              values:
+                - {{ .Release.Name }}
+            - key: app.kubernetes.io/component
+              operator: In
+              values:
+                - api
+                - tasks
+            - key: app.kubernetes.io/part-of
+              operator: In
+              values:
+                - {{ .Chart.Name }}
+        topologyKey: kubernetes.io/hostname
+{{- end -}}
