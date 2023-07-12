@@ -4,6 +4,11 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
+repositories:
+  - name: forgejo-contrib
+    url: codeberg.org/forgejo-contrib
+    oci: true
+
 releases:
   - name: forgejo-cnpg
     chart: ../../charts/cnpg-cluster
@@ -19,7 +24,7 @@ releases:
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
-    chart: oci://codeberg.org/forgejo-contrib/forgejo
+    chart: forgejo-contrib/forgejo
     version: 0.7.3
     values:
       - gitea:

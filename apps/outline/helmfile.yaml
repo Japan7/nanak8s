@@ -4,6 +4,11 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
+repositories:
+  - name: bitnamicharts
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
 releases:
   - name: outline-cnpg
     chart: ../../charts/cnpg-cluster
@@ -15,7 +20,7 @@ releases:
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: outline-redis
-    chart: oci://registry-1.docker.io/bitnamicharts/redis
+    chart: bitnamicharts/redis
     version: 17.11.8
     values:
       - architecture: standalone

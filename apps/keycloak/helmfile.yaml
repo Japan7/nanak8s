@@ -4,6 +4,11 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
+repositories:
+  - name: bitnamicharts
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
 releases:
   - name: keycloak-cnpg
     chart: ../../charts/cnpg-cluster
@@ -15,7 +20,7 @@ releases:
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
-    chart: oci://registry-1.docker.io/bitnamicharts/keycloak
+    chart: bitnamicharts/keycloak
     version: 13.4.1
     values:
       - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
