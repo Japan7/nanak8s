@@ -46,7 +46,10 @@ spec:
               readOnly: true
               mountPropagation: HostToContainer
         - name: http
-          image: svenstaro/miniserve:latest
+          {{- with .Values.miniserve.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           args: ["--route-prefix", {{ .Values.ingress.pathPrefix }}, "/html"]
           volumeMounts:
             - name: html
@@ -54,7 +57,10 @@ spec:
           ports:
             - containerPort: 8080
         - name: rclone
-          image: rclone/rclone:latest
+          {{- with .Values.rclone.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           args:
             - mount
             - minio:{{ .Values.kara.minio.path }}

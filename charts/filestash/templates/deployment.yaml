@@ -48,7 +48,10 @@ spec:
               mountPath: "/cache"
         {{- if .Values.onlyoffice.enabled }}
         - name: docserver
-          image: onlyoffice/documentserver:latest
+          {{- with .Values.onlyoffice.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           env:
             # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
             - name: JWT_ENABLED

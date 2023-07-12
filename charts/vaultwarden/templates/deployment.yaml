@@ -81,7 +81,10 @@ spec:
             {{- end }}
         {{- if .Values.ldap.enabled }}
         - name: ldap
-          image: vividboarder/vaultwarden_ldap:latest
+          {{- with .Values.ldap.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           env:
             - name: APP_VAULTWARDEN_URL
               value: http://localhost

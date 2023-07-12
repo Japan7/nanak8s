@@ -37,6 +37,10 @@ ldap:
   searchBaseDn: ""
   searchFilter: (&(objectClass=inetOrgPerson)(mail=*))
   syncIntervalSeconds: 300
+  image:
+    repository: vividboarder/vaultwarden_ldap
+    tag: 1.0.0
+    pullPolicy: ""
 
 ingress:
   host: ""

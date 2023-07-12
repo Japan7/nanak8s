@@ -46,7 +46,10 @@ spec:
           ports:
             - containerPort: 8000
         - name: rclone
-          image: rclone/rclone:latest
+          {{- with .Values.rclone.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           args:
             - mount
             - minio:{{ .Values.mugen.minio.path }}

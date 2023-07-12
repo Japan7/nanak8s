@@ -16,6 +16,18 @@ kara:
     secretKey: ""
   mountPath: /kara
 
+rclone:
+  image:
+    repository: rclone/rclone
+    tag: 1.63.0
+    pullPolicy: ""
+
+miniserve:
+  image:
+    repository: svenstaro/miniserve
+    tag: 0.24.0
+    pullPolicy: ""
+
 ingress:
   entryPoints:
     - websecure

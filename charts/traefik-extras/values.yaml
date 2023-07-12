@@ -6,6 +6,18 @@ traefik:
   # - name:
   #   port:
 
+dumper:
+  image:
+    repository: ldez/traefik-certs-dumper
+    tag: v2.8.1
+    pullPolicy: ""
+
+miniserve:
+  image:
+    repository: svenstaro/miniserve
+    tag: 0.24.0
+    pullPolicy: ""
+
 japan7BasicAuth:
   username: ""
   password: ""

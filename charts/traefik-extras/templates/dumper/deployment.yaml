@@ -26,7 +26,10 @@ spec:
             claimName: "traefik"
       containers:
         - name: certs-dumper
-          image: ldez/traefik-certs-dumper:latest
+          {{- with .Values.dumper.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           command:
             - sh
             - -xc
@@ -38,7 +41,10 @@ spec:
             - name: data
               mountPath: /data
         - name: http
-          image: svenstaro/miniserve:latest
+          {{- with .Values.miniserve.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
           args: ["/html"]
           volumeMounts:
             - name: data
