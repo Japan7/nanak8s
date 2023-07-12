@@ -9,7 +9,8 @@ releases:
     chart: ../../charts/filestash
     values:
       - image:
-          tag: subs@027fc987c43f61c8abff6887f8db296cc103286212577f5259473db5f445ffc7 # renovate: repository=ghcr.io/japan7/filestash
+          tag: subs # renovate: repository=ghcr.io/japan7/filestash
+          pullPolicy: Always
       - onlyoffice:
           enabled: true
       - ingress:
@@ -18,7 +19,8 @@ releases:
     chart: ../../charts/filestash-minio-oidc-auth
     values:
       - image:
-          tag: main@3f997e9e75c52aabc0c665b2da319cc615d0d0f8578b238c8dd2eac3d4ea61e4 # renovate: repository=ghcr.io/japan7/filestash-minio-oidc-auth
+          tag: main # renovate: repository=ghcr.io/japan7/filestash-minio-oidc-auth
+          pullPolicy: Always
       - filestash:
           host: https://filestash.{{ .Values.domain }}
           apiKey: "{{ .Values.filestash.apiKey }}"
