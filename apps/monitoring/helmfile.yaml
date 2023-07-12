@@ -13,7 +13,7 @@ repositories:
 releases:
   - name: prometheus-operator-crds
     chart: prometheus-community/prometheus-operator-crds
-    version: 2.0.0
+    version: 5.0.0
     values:
       - annotations:
           argocd.argoproj.io/sync-options: ServerSideApply=true
