@@ -36,8 +36,6 @@ releases:
           user: app
           existingSecret: keycloak-cnpg-app
           existingSecretPasswordKey: password
-      - service:
-          type: ClusterIP
       - ingress:
           enabled: true
           hostname: keycloak.{{ .Values.domain }}
