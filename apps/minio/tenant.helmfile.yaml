@@ -11,7 +11,7 @@ repositories:
 releases:
   - name: minio-tenant-{{ .Values.tenant }}
     chart: minio/tenant
-    version: 5
+    version: 5.0.6
     values:
       - secrets:
           accessKey: "{{ .Values.minio.username }}"

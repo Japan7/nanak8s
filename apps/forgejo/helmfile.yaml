@@ -20,7 +20,7 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
     chart: oci://codeberg.org/forgejo-contrib/forgejo
-    version: 0.7.*
+    version: 0.7.3
     values:
       - gitea:
           admin:

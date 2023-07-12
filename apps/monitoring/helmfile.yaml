@@ -13,13 +13,13 @@ repositories:
 releases:
   - name: prometheus-operator-crds
     chart: prometheus-community/prometheus-operator-crds
-    version: 2
+    version: 2.0.0
     values:
       - annotations:
           argocd.argoproj.io/sync-options: ServerSideApply=true
   - name: kube-prometheus-stack
     chart: prometheus-community/kube-prometheus-stack
-    version: 45
+    version: 45.31.1
     values:
       - fullnameOverride: kps
       - alertmanager:
@@ -86,7 +86,7 @@ releases:
             {{ .Values.nodes | toYaml | nindent 12 }}
   - name: loki-stack
     chart: grafana/loki-stack
-    version: 2
+    version: 2.9.10
     values:
       - loki:
           isDefault: false
