@@ -1,6 +1,6 @@
 image:
   repository: mesosphere/traefik-forward-auth
-  tag: latest
+  tag: 3.1.0
   pullPolicy: ""
 
 nodeSelector:

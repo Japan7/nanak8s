@@ -1,6 +1,6 @@
 image:
   repository: vaultwarden/server
-  tag: latest
+  tag: 1.29.0
   pullPolicy: ""
 
 replicaCount: 1

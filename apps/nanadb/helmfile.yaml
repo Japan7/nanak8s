@@ -31,8 +31,6 @@ releases:
   - name: nanadb
     chart: ../../charts/edgedb
     values:
-      - image:
-          tag: 3
       - cnpg:
           name: nanadb-cnpg
       - user:
