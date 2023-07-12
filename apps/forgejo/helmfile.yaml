@@ -1,5 +1,8 @@
 environments:
   default:
+    values:
+      - runners:
+          tag: sha-790120a # renovate: repository=ghcr.io/japan7/forgejo-runner
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
@@ -70,8 +73,7 @@ releases:
     chart: ../../charts/forgejo-runner
     values:
       - image:
-          tag: main # renovate: repository=ghcr.io/japan7/forgejo-runner
-          pullPolicy: Always
+          tag: "{{ .Values.runners.tag }}"
       - secret:
           name: forgejo-runner-0
       - nodeSelector:
@@ -82,8 +84,7 @@ releases:
     chart: ../../charts/forgejo-runner
     values:
       - image:
-          tag: main # renovate: repository=ghcr.io/japan7/forgejo-runner
-          pullPolicy: Always
+          tag: "{{ .Values.runners.tag }}"
       - secret:
           name: forgejo-runner-1
       - nodeSelector:

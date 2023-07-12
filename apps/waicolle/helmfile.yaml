@@ -9,8 +9,7 @@ releases:
     chart: ../../charts/waicolle
     values:
       - image:
-          tag: main # renovate: repository=ghcr.io/japan7/waicolle
-          pullPolicy: Always
+          tag: sha-dfbdd85 # renovate: repository=ghcr.io/japan7/waicolle
       - nanapi:
           url: http://nanapi-prod.nanapi:8000
           username: "{{ .Values.nanapi.username }}"
