@@ -22,7 +22,8 @@ releases:
   - name: traefik-forward-auth-japan7
     chart: ../../charts/traefik-forward-auth
     values:
-      - secret: "{{ .Values.forwardAuthSecret }}"
+      - secret: "{{ .Values.forwardAuth.secret }}"
+      - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
       - keycloak:
           host: keycloak.{{ .Values.domain }}
           realm: japan7
@@ -32,7 +33,8 @@ releases:
   - name: traefik-forward-auth-nanak8s
     chart: ../../charts/traefik-forward-auth
     values:
-      - secret: "{{ .Values.forwardAuthSecret }}"
+      - secret: "{{ .Values.forwardAuth.secret }}"
+      - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
       - keycloak:
           host: keycloak.{{ .Values.domain }}
           realm: nanak8s

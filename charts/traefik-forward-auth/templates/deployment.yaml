@@ -25,6 +25,11 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-secret"
                   key: secret
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: encryptionKey
             - name: PROVIDER_URI
               value: https://{{ .Values.keycloak.host }}/realms/{{ .Values.keycloak.realm }}
             - name: CLIENT_ID
