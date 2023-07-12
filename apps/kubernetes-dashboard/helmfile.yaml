@@ -18,28 +18,19 @@ releases:
           enabled: false
       - app:
           ingress:
+            hosts:
+              - dash.{{ .Values.domain }}
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
             issuer:
-              name: foobar
-    strategicMergePatches:
+              name: foobar # so it doesn't try to create a cert-manager issuer
+    strategicMergePatches: # unset ingressClassName and tls (managed by traefik)
       - apiVersion: networking.k8s.io/v1
         kind: Ingress
         metadata:
           name: kubernetes-dashboard
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
         spec:
           ingressClassName:
-          rules:
-            - host: dash.{{ .Values.domain }}
-              http:
-                paths:
-                  - pathType: Prefix
-                    path: /
-                    backend:
-                      service:
-                        name: kubernetes-dashboard
-                        port:
-                          number: 443
           tls:
   - name: kubernetes-dashboard-extras
     chart: ../../charts/kubernetes-dashboard-extras
