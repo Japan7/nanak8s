@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/waicolle
     values:
       - image:
-          tag: main
+          tag: main # renovate: repository=ghcr.io/japan7/waicolle
           pullPolicy: Always
       - nanapi:
           url: http://nanapi-prod.nanapi:8000

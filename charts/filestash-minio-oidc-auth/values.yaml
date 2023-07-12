@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/filestash-minio-oidc-auth
-  tag: main
+  tag: latest
   pullPolicy: Always
 
 filestash:

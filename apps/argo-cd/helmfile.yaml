@@ -31,7 +31,7 @@ releases:
               emptyDir: {}
           extraContainers:
             - name: helmfile-plugin
-              image: travisghansen/argo-cd-helmfile:latest
+              image: travisghansen/argo-cd-helmfile:latest # renovate
               command: ["/var/run/argocd/argocd-cmp-server"]
               env:
                 - name: SOPS_AGE_KEY

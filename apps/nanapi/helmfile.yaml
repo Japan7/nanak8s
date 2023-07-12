@@ -10,12 +10,6 @@ releases:
     chart: meilisearch/meilisearch
     version: 0.2.2
     values:
-      - image:
-          tag: v1.0 # FIXME: upgrades require dump-restore
-      - persistence:
-          enabled: true
-          storageClass: ""
-          size: 512Mi
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
   - name: nanapi-{{ .Environment.Name }}
     chart: ../../charts/nanapi

@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/syncplay
     values:
       - image:
-          tag: master
+          tag: master # renovate: repository=ghcr.io/japan7/syncplay
           pullPolicy: Always
       - syncplay:
           password: "{{ .Values.password }}"

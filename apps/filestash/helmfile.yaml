@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/filestash
     values:
       - image:
-          tag: subs
+          tag: subs # renovate: repository=ghcr.io/japan7/filestash
           pullPolicy: Always
       - onlyoffice:
           enabled: true
@@ -18,6 +18,9 @@ releases:
   - name: filestash-minio-oidc-auth
     chart: ../../charts/filestash-minio-oidc-auth
     values:
+      - image:
+          tag: main # renovate: repository=ghcr.io/japan7/filestash-minio-oidc-auth
+          pullPolicy: Always
       - filestash:
           host: https://filestash.{{ .Values.domain }}
           apiKey: "{{ .Values.filestash.apiKey }}"

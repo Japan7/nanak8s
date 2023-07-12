@@ -70,7 +70,7 @@ releases:
     chart: ../../charts/forgejo-runner
     values:
       - image:
-          tag: main
+          tag: main # renovate: repository=ghcr.io/japan7/forgejo-runner
           pullPolicy: Always
       - secret:
           name: forgejo-runner-0
@@ -82,7 +82,7 @@ releases:
     chart: ../../charts/forgejo-runner
     values:
       - image:
-          tag: main
+          tag: main # renovate: repository=ghcr.io/japan7/forgejo-runner
           pullPolicy: Always
       - secret:
           name: forgejo-runner-1

@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/dakara-server
     values:
       - image:
-          tag: master
+          tag: master # renovate: repository=ghcr.io/japan7/dakara-server
           pullPolicy: Always
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
@@ -23,7 +23,7 @@ releases:
     chart: ../../charts/dakara-client
     values:
       - image:
-          tag: master
+          tag: master # renovate: repository=ghcr.io/japan7/dakara-client-web
           pullPolicy: Always
       - ingress:
           host: dakara.{{ .Values.domain }}
