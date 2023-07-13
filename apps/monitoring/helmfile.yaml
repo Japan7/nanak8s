@@ -84,6 +84,8 @@ releases:
       - kubeEtcd:
           endpoints:
             {{ .Values.nodes | toYaml | nindent 12 }}
+      - nodeExporter:
+          enabled: false # FIXME: else it is exposed publicly on port 9100 :MakiDespair:
   - name: loki-stack
     chart: grafana/loki-stack
     version: 2.9.10
