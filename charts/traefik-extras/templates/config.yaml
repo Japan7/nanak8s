@@ -39,10 +39,6 @@ spec:
     persistence:
       enabled: true
       accessMode: ReadWriteMany
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 5
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.{{ .Values.domain }}`)
@@ -51,6 +47,7 @@ spec:
         middlewares:
           - name: traefik-forward-auth-nanak8s
     deployment:
+      replicas: 2
       initContainers:
         # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543
         - name: volume-permissions
