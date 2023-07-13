@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           volumeMounts:
             - name: runner-config
-              mountPath: /app/.runner
+              mountPath: /.runner
               subPath: "{{ .Values.secret.key }}"
             - name: sock-dir
               mountPath: /var/run

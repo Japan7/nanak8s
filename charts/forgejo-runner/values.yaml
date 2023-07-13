@@ -1,6 +1,6 @@
 image:
-  repository: ghcr.io/japan7/forgejo-runner
-  tag: latest
+  repository: code.forgejo.org/forgejo/runner
+  tag: 2.2.0
   pullPolicy: ""
 
 secret:
