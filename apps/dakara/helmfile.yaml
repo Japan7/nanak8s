@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/dakara-server
     values:
       - image:
-          tag: sha-4e76e26 # renovate: repository=ghcr.io/japan7/dakara-server
+          tag: master@sha256:b284224dc05637af5d87339b5f0d8737cc2d13bd4c1fe1daf98c0ca0b25735f4 # renovate: repository=ghcr.io/japan7/dakara-server
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
@@ -22,7 +22,7 @@ releases:
     chart: ../../charts/dakara-client
     values:
       - image:
-          tag: sha-987d877 # renovate: repository=ghcr.io/japan7/dakara-client-web
+          tag: master@sha256:740c2e795c295e5cb484e67d9c2c7f6f5c99cd82ca6b412558924e6a239c10a3 # renovate: repository=ghcr.io/japan7/dakara-client-web
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: mugen-import-api

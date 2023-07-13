@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/syncplay
     values:
       - image:
-          tag: sha-40f8b14 # renovate: repository=ghcr.io/japan7/syncplay
+          tag: master@sha256:9e7f3ac5f02b5431809c22d1ff03b5f42f7fd9a8a915206ad82954b953974381 # renovate: repository=ghcr.io/japan7/syncplay
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"

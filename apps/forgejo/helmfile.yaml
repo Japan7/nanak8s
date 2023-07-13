@@ -2,7 +2,7 @@ environments:
   default:
     values:
       - runners:
-          tag: sha-790120a # renovate: repository=ghcr.io/japan7/forgejo-runner
+          tag: main@sha256:aebfd3d93337f6c03cc0dd6ae1d28d3027ef640e6595bd3663d7ecf4a59138bd # renovate: repository=ghcr.io/japan7/forgejo-runner
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
