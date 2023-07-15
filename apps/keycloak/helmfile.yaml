@@ -21,7 +21,7 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
     chart: bitnamicharts/keycloak
-    version: 15.1.6
+    version: 15.1.7
     values:
       - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
