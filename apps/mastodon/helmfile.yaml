@@ -35,13 +35,17 @@ releases:
           master:
             persistence:
               size: 1Gi
-      - enableS3: false
       - minio:
           enabled: false
-      - persistence:
-          enabled: true
-          size: 10Gi
+      - externalS3:
+          host: minio.{{ .Values.domain }}
+          accessKeyID: "{{ .Values.minio.accessKey }}"
+          accessKeySecret: "{{ .Values.minio.secretKey }}"
+          bucket: mastodon
       - elasticsearch:
+          config:
+            discovery:
+              type: single-node
           master:
             masterOnly: false
             replicaCount: 1

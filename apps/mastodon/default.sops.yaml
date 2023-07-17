@@ -2,6 +2,9 @@ admin:
     username: ENC[AES256_GCM,data:0sPGUnfN,iv:nf1Ad+DfLn24CZaR8h10k9zDjcaup8HdbpAhrwFFzLA=,tag:3tdoZ8kjW6/CKcGVwkAh2A==,type:str]
     email: ENC[AES256_GCM,data:eIotw9pUVheMHtscJpCb6urDSBMqYyPyUiA80g==,iv:o29Y+reSVBULtYVwv1bpD6J5PCMYTHUUFbV73c8tBLA=,tag:F4FWw+VeDz8KQKLJBXZGHg==,type:str]
     password: ENC[AES256_GCM,data:O5PIDibHCFdi3x+Xpig=,iv:TZsFlvw84jQwHFqAeSDyJu9GONx3SUMuVnD/07lDUxw=,tag:kmPjaHQShbUiHKKPStHZeg==,type:str]
+minio:
+    accessKey: ENC[AES256_GCM,data:8sAUuHw8DPI=,iv:7zc2SkT5uRGrkAj4W84GCnetWhzlFlOpJWMZPIIzTqY=,tag:G12iRCavPukVYzPp8il4sg==,type:str]
+    secretKey: ENC[AES256_GCM,data:6CPXzQLho7FZa3zqZKSpR4gE3tH5P0RUW0+fNXng4L8KIns15jlWUQ==,iv:gWsmZI3SFvBKNg3U8omY3LZ3FK+XBiB0f42szT/KEz8=,tag:ZOX1PpxAKe4UmfDllrBfzg==,type:str]
 smtp:
     from: ENC[AES256_GCM,data:0kjAGaeOpGC0AE6EIXVGPVqoaeyobMGt,iv:Xblb6BSjWxRXyscUZYABy4tncYpdyiDteLJPPMfo7MI=,tag:U+vj0z1FYg2xBsMq4K2Iaw==,type:str]
 sops:
@@ -19,8 +22,8 @@ sops:
             VWRpWWlTeks4VWIxOGU4WmVNQ0h3UkEKUaDDvHq5HAPJSZ2OWXAIiG41mGVCBPiJ
             CNdW82gHaJZzgagFhnXHSCYifC1kRudrQ58GK5GfSZ4fkvbqAWhaiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-17T19:48:20Z"
-    mac: ENC[AES256_GCM,data:aJ3+ebnw4areqskjBS61rMYYdJCmJIuHm8V7ICuKYLl1p703K/xRL+By4BmiBTJf7MEb6Zr4QthYYdfsYAuvucT5k3lNiygNa+eJVczRPj68q1CqEwMrHP4zQt6kKuaH1g3uDJUX3au48Z0+4/h+IfbG/TRGBzq5hM5nhppDOCs=,iv:Quk2j8PZ1LnYcevQgp027F/tmQAemQPQ7ldod6tfb4s=,tag:pu/VGCD4HLDja41Sc8G23w==,type:str]
+    lastmodified: "2023-07-17T20:25:46Z"
+    mac: ENC[AES256_GCM,data:aqQQMAHyENG8DP+doC/QW1A0CQCGPY8RnvsUlFSSKTmyo5dWVBRIyp5mnT9SKw1JBwrPTHAcH/8vzQw8QDpjKoHapnXm0EWQqHtxaxQQOEUNrvLXu7W8ExMziMbb9epf6st30vvgw4GbUUq6lXg0trc3rQqqHBF7eNKrmIIJxx8=,iv:rLN0LPSThFgZe9DS9d4JqeV6sx3qFWyDWiIREY6DLAU=,tag:b9HcnHF9uRKDGk2TcJSK/A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
