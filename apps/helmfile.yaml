@@ -53,10 +53,10 @@ releases:
             namespace: nanapi
             subdir: nanapi
             environment: staging
-          - name: nanapi-dev
-            namespace: nanapi
-            subdir: nanapi
-            environment: dev
+          # - name: nanapi-dev
+          #   namespace: nanapi
+          #   subdir: nanapi
+          #   environment: dev
 
           # nanachan
           - name: nanachan-nana
@@ -67,7 +67,7 @@ releases:
             namespace: nanachan
             subdir: nanachan
             environment: hachi
-          - name: nanachan-snow
-            namespace: nanachan
-            subdir: nanachan
-            environment: snow
+          # - name: nanachan-snow
+          #   namespace: nanachan
+          #   subdir: nanachan
+          #   environment: snow
