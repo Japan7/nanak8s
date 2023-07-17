@@ -56,6 +56,12 @@ releases:
             replicaCount: 0
           coordinating:
             replicaCount: 0
+          initContainers:
+            - name: sysctl-fd
+              image: busybox:latest
+              command: ["sysctl", "-w", "fs.file-max=65536"]
+              securityContext:
+                privileged: true
       - adminUser: "{{ .Values.admin.username }}"
       - adminEmail: "{{ .Values.admin.email }}"
       - adminPassword: "{{ .Values.admin.password }}"
