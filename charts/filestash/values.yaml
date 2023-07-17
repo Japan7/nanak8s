@@ -9,6 +9,8 @@ nodeSelector:
   kubernetes.io/arch: amd64 # no arm64 image available
 
 persistence:
+  accessMode: ReadWriteOnce
+  size: 128Mi
   mountPath: /filestash/data/state
 
 cache:

@@ -6,7 +6,7 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.uploads.pvcSize }}
+      storage: {{ .Values.persistence.size }}

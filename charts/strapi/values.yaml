@@ -17,8 +17,9 @@ secret:
   jwtSecret: ""
   transferTokenSalt: ""
 
-uploads:
-  pvcSize: 5Gi
+persistence:
+  accessMode: ReadWriteOnce
+  size: 5Gi
 
 ingress:
   host: ""

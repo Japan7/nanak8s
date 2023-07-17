@@ -6,6 +6,10 @@ image:
 
 replicaCount: 1
 
+persistence:
+  accessMode: ReadWriteOnce
+  size: 128Mi
+
 mugen:
   minio:
     endpoint: ""

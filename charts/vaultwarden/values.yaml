@@ -11,7 +11,7 @@ cnpg:
   database: app
 
 persistence:
-  accessMode: ReadWriteMany
+  accessMode: ReadWriteOnce
   size: 1Gi
 
 config:
