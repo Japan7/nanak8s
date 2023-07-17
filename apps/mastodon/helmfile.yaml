@@ -8,8 +8,6 @@ repositories:
   - name: bitnamicharts
     url: registry-1.docker.io/bitnamicharts
     oci: true
-  - name: opensearch
-    url: https://opensearch-project.github.io/helm-charts/
 
 releases:
   - name: mastodon-cnpg
@@ -21,18 +19,6 @@ releases:
             endpoint: https://minio.{{ .Values.domain }}
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
-  - name: mastodon-opensearch
-    chart: opensearch/opensearch
-    version: 2.13.3
-    values:
-      - singleNode: true
-      - extraEnvs:
-          - name: DISABLE_INSTALL_DEMO_CONFIG
-            value: "true"
-          - name: DISABLE_SECURITY_PLUGIN
-            value: "true"
-      - persistence:
-          size: 1Gi
   - name: mastodon
     chart: bitnamicharts/mastodon
     version: 1.5.8
@@ -59,10 +45,17 @@ releases:
           accessKeySecret: "{{ .Values.minio.secretKey }}"
           bucket: mastodon
       - elasticsearch:
-          enabled: false
-      - externalElasticsearch:
-          host: opensearch-cluster-master
-          port: 9200
+          master:
+            masterOnly: false
+            replicaCount: 1
+            persistence:
+              size: 1Gi
+          data:
+            replicaCount: 0
+          ingest:
+            replicaCount: 0
+          coordinating:
+            replicaCount: 0
       - adminUser: "{{ .Values.admin.username }}"
       - adminEmail: "{{ .Values.admin.email }}"
       - adminPassword: "{{ .Values.admin.password }}"
