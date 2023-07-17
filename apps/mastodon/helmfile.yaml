@@ -1,0 +1,75 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: bitnamicharts
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
+releases:
+  - name: mastodon-cnpg
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 15
+      - backups:
+          minio:
+            endpoint: https://minio.{{ .Values.domain }}
+            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
+            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
+  - name: mastodon
+    chart: bitnamicharts/mastodon
+    version: 1.5.8
+    values:
+      - postgresql:
+          enabled: false
+      - externalDatabase:
+          host: mastodon-cnpg-rw
+          user: app
+          database: app
+          existingSecret: mastodon-cnpg-app
+          existingSecretPasswordKey: password
+      - redis:
+          master:
+            persistence:
+              size: 1Gi
+      - enableS3: false
+      - minio:
+          enabled: false
+      - persistence:
+          enabled: true
+          size: 10Gi
+      - elasticsearch:
+          master:
+            masterOnly: false
+            replicaCount: 1
+            persistence:
+              size: 1Gi
+          data:
+            replicaCount: 0
+          ingest:
+            replicaCount: 0
+          coordinating:
+            replicaCount: 0
+      - adminUser: "{{ .Values.admin.username }}"
+      - adminEmail: "{{ .Values.admin.email }}"
+      - adminPassword: "{{ .Values.admin.password }}"
+      - localDomain: "{{ .Values.domain }}"
+      - webDomain: mastodon.{{ .Values.domain }}
+      - extraConfig:
+          LIMITED_FEDERATION_MODE: "true"
+      - smtp:
+          server: "{{ .Values.smtp.host }}"
+          from_address: "{{ .Values.smtp.from }}"
+          login: "{{ .Values.smtp.username }}"
+          password: "{{ .Values.smtp.password }}"
+      - apache:
+          service:
+            type: ClusterIP
+          ingress:
+            enabled: true
+            hostname: mastodon.{{ .Values.domain }}
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
