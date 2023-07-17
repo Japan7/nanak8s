@@ -17,6 +17,8 @@ releases:
       - runnerRegistrationToken: "{{ .Values.inpt.runnerRegistrationToken }}"
       - runners:
           name: nanak8s
+      - rbac:
+          create: true
   - name: website-runner
     chart: gitlab/gitlab-runner
     version: 0.54.0
@@ -33,6 +35,8 @@ releases:
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
+      - rbac:
+          create: true
   - name: website-deploy-runner
     chart: gitlab/gitlab-runner
     version: 0.54.0
@@ -50,5 +54,7 @@ releases:
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
+      - rbac:
+          create: true
   - name: gitlab-extras
     chart: ../../charts/gitlab-extras
