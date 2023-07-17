@@ -50,7 +50,7 @@ releases:
             [[runners]]
               [runners.kubernetes]
                 image_pull_secrets = ["forgejo-regcred"]
-                topology.kubernetes.io/region = "eu-west"
+                "topology.kubernetes.io/region" = "eu-west"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
