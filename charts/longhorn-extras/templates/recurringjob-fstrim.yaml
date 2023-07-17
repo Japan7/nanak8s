@@ -1,0 +1,14 @@
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: longhorn-fstrim
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: longhorn
+spec:
+  name: longhorn-fstrim
+  task: filesystem-trim
+  retain: 0
+  concurrency: 1
+  cron: "@daily"
