@@ -44,6 +44,8 @@ releases:
           existingSecret: mastodon-cnpg-app
           existingSecretPasswordKey: password
       - redis:
+          auth:
+            enabled: false
           master:
             persistence:
               size: 1Gi
