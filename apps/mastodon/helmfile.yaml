@@ -49,11 +49,13 @@ releases:
           enabled: false
       - initJob:
           migrateElasticsearch: false
+      - localDomain: "{{ .Values.domain }}"
+      - webDomain: mastodon.{{ .Values.domain }}
       - adminUser: "{{ .Values.admin.username }}"
       - adminEmail: "{{ .Values.admin.email }}"
       - adminPassword: "{{ .Values.admin.password }}"
-      - localDomain: "{{ .Values.domain }}"
-      - webDomain: mastodon.{{ .Values.domain }}
+      - secretKeyBase: "{{ .Values.secretKeyBase }}"
+      - otpSecret: "{{ .Values.otpSecret }}"
       - extraConfig:
           LIMITED_FEDERATION_MODE: "true"
       - smtp:
