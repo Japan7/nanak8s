@@ -26,6 +26,9 @@ releases:
     version: 2.13.3
     values:
       - singleNode: true
+      - extraEnvs:
+          - name: DISABLE_SECURITY_PLUGIN
+            value: "true"
       - persistence:
           size: 1Gi
   - name: mastodon
