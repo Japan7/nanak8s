@@ -12,3 +12,5 @@ spec:
   retain: 0
   concurrency: 1
   cron: "@daily"
+  groups:
+    - default
