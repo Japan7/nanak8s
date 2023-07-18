@@ -57,6 +57,8 @@ releases:
           master:
             masterOnly: false
             replicaCount: 1
+            persistence:
+              size: 1Gi
           data:
             replicaCount: 0
           coordinating:
