@@ -84,13 +84,38 @@ releases:
       - web:
           nodeSelector:
             kubernetes.io/arch: amd64 # no arm64 image available
+          nodeAffinityPreset:
+            type: soft
+            key: topology.kubernetes.io/region
+            values:
+              - eu-west
       - sidekiq:
           nodeSelector:
             kubernetes.io/arch: amd64 # no arm64 image available
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 1
+                  podAffinityTerm:
+                    labelSelector:
+                      matchLabels:
+                        app.kubernetes.io/instance: mastodon
+                        app.kubernetes.io/name: redis
+                    topologyKey: kubernetes.io/hostname
       - streaming:
           nodeSelector:
             kubernetes.io/arch: amd64 # no arm64 image available
+          nodeAffinityPreset:
+            type: soft
+            key: topology.kubernetes.io/region
+            values:
+              - eu-west
       - apache:
+          nodeAffinityPreset:
+            type: soft
+            key: topology.kubernetes.io/region
+            values:
+              - eu-west
           service:
             type: ClusterIP
           ingress:
