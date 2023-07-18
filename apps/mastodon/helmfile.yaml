@@ -44,11 +44,28 @@ releases:
           accessKeyID: "{{ .Values.minio.accessKey }}"
           accessKeySecret: "{{ .Values.minio.secretKey }}"
           bucket: mastodon
-      - enableSearches: false
       - elasticsearch:
-          enabled: false
+          extraConfig:
+            discovery:
+              type: single-node
+            network:
+              host: 0.0.0.0
+            transport:
+              host: 127.0.0.1
+            cluster:
+              initial_master_nodes: ""
+          master:
+            masterOnly: false
+            replicaCount: 1
+          data:
+            replicaCount: 0
+          coordinating:
+            replicaCount: 0
+          ingest:
+            enabled: false
       - initJob:
-          migrateElasticsearch: false
+          annotations:
+            helm.sh/hook: pre-upgrade
       - localDomain: "{{ .Values.domain }}"
       - webDomain: mastodon.{{ .Values.domain }}
       - adminUser: "{{ .Values.admin.username }}"
