@@ -39,7 +39,6 @@ releases:
           - name: n8n
           - name: outline
           - name: syncplay
-          - name: mastodon
 
           # Data
           - name: nanadb
