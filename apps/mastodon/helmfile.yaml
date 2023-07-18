@@ -83,6 +83,13 @@ releases:
           from_address: "{{ .Values.smtp.from }}"
           login: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
+      - web:
+          nodeSelector: &nodeSelector
+            kubernetes.io/arch: amd64
+      - sidekiq:
+          nodeSelector: *nodeSelector
+      - streaming:
+          nodeSelector: *nodeSelector
       - apache:
           service:
             type: ClusterIP
