@@ -23,12 +23,14 @@ data:
       send: [github-commit-status]
     - when: app.status.operationState.phase in ['Error', 'Failed']
       send: [github-commit-status, discord-webhook]
+    - when: app.status.health.status == 'Degraded'
+      send: [discord-webhook]
 
   service.webhook.github: |
     url: https://api.github.com
-    headers: #optional headers
-    - name: Authorization
-      value: token $github-token
+    headers:
+      - name: Authorization
+        value: token $github-token
 
   template.github-commit-status: |
     {{`
@@ -51,8 +53,8 @@ data:
   service.webhook.discord: |
     url: $discord-webhook
     headers:
-    - name: Content-Type
-      value: application/json
+      - name: Content-Type
+        value: application/json
 
   template.discord-webhook: |
     {{`
