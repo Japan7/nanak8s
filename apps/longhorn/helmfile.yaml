@@ -10,7 +10,7 @@ repositories:
 releases:
   - name: longhorn
     chart: longhorn/longhorn
-    version: 1.5.0
+    version: 1.5.1
     values:
       - ingress:
           enabled: true
