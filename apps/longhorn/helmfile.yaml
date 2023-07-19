@@ -5,7 +5,7 @@ environments:
 ---
 repositories:
   - name: longhorn
-    url: git+https://github.com/longhorn/charts@charts?ref=8771f25551803596f1f928bd93c49ccc85396c74 # FIXME: temp workaround
+    url: https://charts.longhorn.io
 
 releases:
   - name: longhorn
