@@ -25,6 +25,9 @@ releases:
               - ldap.{{ .Values.domain }}
       - ltb-passwd:
           enabled: false
+      - customTLS:
+          image:
+            repository: openquantumsafe/openssl3 # replace alpine/openssl, they have arm64 images
       - persistence:
           enabled: true
           storageClass: longhorn-single
