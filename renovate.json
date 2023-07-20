@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base", ":prHourlyLimitNone"],
   "timezone": "Europe/Paris",
-  "schedule": ["after 9am", "before 9pm"],
+  "schedule": ["after 9am and before 6pm"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "digest"],
