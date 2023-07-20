@@ -1,10 +1,7 @@
 image:
-  repository: mesosphere/traefik-forward-auth
-  tag: 3.1.0
+  repository: ghcr.io/japan7/traefik-forward-auth
+  tag: latest
   pullPolicy: ""
-
-nodeSelector:
-  kubernetes.io/arch: amd64 # no arm64 image available
 
 secret: ""
 encryptionKey: ""

@@ -13,8 +13,6 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      nodeSelector:
-        {{- toYaml .Values.nodeSelector | nindent 8 }}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
