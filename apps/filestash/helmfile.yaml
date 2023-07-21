@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/filestash
     values:
       - image:
-          tag: subs@sha256:2120bbf383aca850d0a0fa96f007c840a24219e9a9c189e4f1e0c9ad7b669223 # renovate: repository=ghcr.io/japan7/filestash
+          tag: subs@sha256:c986b2831f407ebd57486df1c9c387e12a230d9d313370ca6499040d37a46214 # renovate: repository=ghcr.io/japan7/filestash
       - onlyoffice:
           enabled: true
       - ingress:
