@@ -10,7 +10,7 @@ repositories:
 releases:
   - name: kubernetes-dashboard
     chart: kubernetes-dashboard/kubernetes-dashboard
-    version: 7.0.2
+    version: 7.0.3
     values:
       - nginx:
           enabled: false
