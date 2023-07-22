@@ -84,7 +84,7 @@ data:
                   },
                   {
                     "name": "Sync Revision",
-                    "value": "[{{slice .app.status.sync.revision 0 7}}]()",
+                    "value": "{{printf "%.7s" .app.status.sync.revision}}",
                     "inline": true
                   }
                 ]
