@@ -16,15 +16,11 @@ data:
 
   trigger.sync-operation-change: |
     - when: app.status.operationState.phase in ['Running']
-      oncePer: app.status.sync.revision
-      send: [github-commit-status]
-    - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
-      oncePer: app.status.sync.revision
-      send: [github-commit-status]
+      send: [github-commit-status, discord-webhook]
+    - when: app.status.operationState.phase in ['Succeeded']
+      send: [github-commit-status, discord-webhook]
     - when: app.status.operationState.phase in ['Error', 'Failed']
       send: [github-commit-status, discord-webhook]
-    - when: app.status.health.status == 'Degraded'
-      send: [discord-webhook]
 
   service.webhook.github: |
     url: https://api.github.com
@@ -67,25 +63,15 @@ data:
             "avatar_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
             "embeds": [
               {
-                "title": "{{.app.metadata.name}} deployment {{.app.status.operationState.phase}}",
+                "title": "[{{.app.metadata.name}}] Deployment {{.app.status.operationState.phase}}",
                 "url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
                 "color": {{if eq .app.status.operationState.phase "Running"}} 16776960 {{end}}
-                {{if eq .app.status.operationState.phase "Succeeded"}} 65280 {{end}}
-                {{if eq .app.status.operationState.phase "Error"}} 16711680 {{end}}
-                {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}},
+                         {{if eq .app.status.operationState.phase "Succeeded"}} 65280 {{end}}
+                         {{if eq .app.status.operationState.phase "Error"}} 16711680 {{end}}
+                         {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}},
                 "fields": [
                   {
-                    "name": "Application",
-                    "value": "{{.app.metadata.name}}",
-                    "inline": true
-                  },
-                  {
-                    "name": "Project",
-                    "value": "{{.app.spec.project}}",
-                    "inline": true
-                  },
-                  {
-                    "name": "Health Status",
+                    "name": "App Health",
                     "value": "{{.app.status.health.status}}",
                     "inline": true
                   },
