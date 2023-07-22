@@ -81,6 +81,8 @@ releases:
     values:
       - secret:
           name: forgejo-runner-0
+      - nodeSelector:
+          kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
   - name: forgejo-runner-1
@@ -88,6 +90,8 @@ releases:
     values:
       - secret:
           name: forgejo-runner-1
+      - nodeSelector:
+          kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
   - name: forgejo-extras

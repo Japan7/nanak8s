@@ -17,6 +17,11 @@ releases:
       - runnerRegistrationToken: "{{ .Values.inpt.runnerRegistrationToken }}"
       - runners:
           name: nanak8s
+          config: |
+            [[runners]]
+              [runners.kubernetes]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
       - rbac:
           create: true
   - name: website-runner
@@ -32,6 +37,8 @@ releases:
             [[runners]]
               [runners.kubernetes]
                 image_pull_secrets = ["forgejo-regcred"]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
@@ -50,6 +57,9 @@ releases:
             [[runners]]
               [runners.kubernetes]
                 image_pull_secrets = ["forgejo-regcred"]
+                [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
+                  "topology.kubernetes.io/region" = "eu-west"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
