@@ -16,11 +16,11 @@ data:
 
   trigger.sync-operation-change: |
     - when: app.status.operationState.phase in ['Running']
-      oncePer: app.status.sync.revision
-      send: [github-commit-status]
+      oncePer: app.status.operationState.operation.sync.revision
+      send: [github-commit-status, discord-webhook]
     - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
-      oncePer: app.status.sync.revision
-      send: [github-commit-status]
+      oncePer: app.status.operationState.operation.sync.revision
+      send: [github-commit-status, discord-webhook]
     - when: app.status.operationState.phase in ['Error', 'Failed']
       send: [github-commit-status, discord-webhook]
 
@@ -84,7 +84,7 @@ data:
                   },
                   {
                     "name": "Sync Revision",
-                    "value": "{{printf "%.7s" .app.status.sync.revision}}",
+                    "value": "{{printf "%.7s" .app.status.operationState.operation.sync.revision}}",
                     "inline": true
                   }
                 ]
