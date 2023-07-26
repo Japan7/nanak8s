@@ -20,6 +20,8 @@ releases:
       - image:
           tag: 2.6.5 # renovate: repository=bitnami/openldap
       - phpldapadmin:
+          image:
+            tag: 0.9.0 # renovate: repository=osixia/phpldapadmin
           ingress:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -29,7 +31,8 @@ releases:
           enabled: false
       - customTLS:
           image:
-            repository: openquantumsafe/openssl3 # replace alpine/openssl, they have arm64 images
+            repository: openquantumsafe/openssl3 # instead of alpine/openssl; they have arm64 images
+            tag: latest
       - persistence:
           enabled: true
           storageClass: longhorn-single
