@@ -66,14 +66,14 @@ releases:
             serviceMonitorSelectorNilUsesHelmValues: false
             podMonitorSelectorNilUsesHelmValues: false
             probeSelectorNilUsesHelmValues: false
-            retentionSize: 4GiB
+            retentionSize: 9GiB
             storageSpec:
               volumeClaimTemplate:
                 spec:
                   accessModes: ["ReadWriteOnce"]
                   resources:
                     requests:
-                      storage: 5Gi
+                      storage: 10Gi
           ingress:
             enabled: true
             annotations:
