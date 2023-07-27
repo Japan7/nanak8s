@@ -3,8 +3,8 @@ gitea:
 cnpg:
     password: ENC[AES256_GCM,data:xMoKwZ8cnw==,iv:uTjDhEPLOXDuf5ze6YTneQyaV01JCz3swJ6kG4T2NZw=,tag:EprV6qJRysraLddfs+xn9Q==,type:str]
 regcreds:
-    username: ENC[AES256_GCM,data:HrKMyJkZ11U=,iv:L/A1YQKZInOMgMzeGHN8gXY3FpenxulrvALouWzMecA=,tag:9wFXwUzfAtOGpuMcWsRsrQ==,type:str]
-    password: ENC[AES256_GCM,data:hUk7jUroeXu1Jr0RPFS4NKcaO8rrVWrq+sUJh3E9camXavdLFzj0BA==,iv:rT9j6+HYImjCGxb0lUESXcJU5XQmbs2EpOHEsY4cpyw=,tag:uPFKPzvWNhq13K6Ia4RWxg==,type:str]
+    username: ENC[AES256_GCM,data:IhiWLXsqunRB0UA=,iv:hbaSF69NxP65Y1IR5o1teeM0A2FjeHf3WRvgwEzFA5c=,tag:YubYj+IHAtsRzWJ7VwkVeA==,type:str]
+    password: ENC[AES256_GCM,data:0xe8TitfLtPqr8zI2+kNlTYeDDX0Jwrljr0oRvq034pgxFpy0Q9/dw==,iv:TbJKE0j7C9dfxTFIOuJWvIf/5qJvAEi8oI/eRhxev8U=,tag:3zTqXb8CWf2Oi8dKU5xY3w==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -20,8 +20,8 @@ sops:
             WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
             e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-04-28T14:56:35Z"
-    mac: ENC[AES256_GCM,data:7YAR8zS5hiLXmv8wVMK70rbk2tZODSHVcoGpbnPwXHXHOFrLwHPGLvD/YEd19e2WA8QA2n+qDKUZuQbStEmSrqCVMhma1m4/IgJ1hKuctI6SQTlDP86fgcJf+nzPdEt0qhanLA4dmiD09PEXS7/Fl5323ePzue15P4b0QLjlSL0=,iv:1dE6b6+kzHxeP0izOY6YpldFst6LvuUiYa3rCfSdXuk=,tag:XNHXBD3tfmpxDx4WSwksrw==,type:str]
+    lastmodified: "2023-07-27T21:17:54Z"
+    mac: ENC[AES256_GCM,data:flekAHjYxw6GHeT4ZtKAH9kWhL45/sbSelF+20TGen5EnZ1KXaq1jUWJ1F2oOTj+8+3QftDCCeUPPvWa0bcQtuBZSrSSJrmgQFM4732tMqo2Ux3XeoD/6wM+u3AmFXhXA3px36KSmKsNX/xbc9wqU2dFfaWUSvyHqL+3Z9Y2uV4=,iv:WZf5s7bjDh3d24Xt5SNOhogn3g5nzB8H/IzNFLTP10I=,tag:LjM+RwGWPu6lcZDRygBVJA==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3
