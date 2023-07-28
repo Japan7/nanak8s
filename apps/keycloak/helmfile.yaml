@@ -26,8 +26,7 @@ releases:
       - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
-          existingSecret: admin-secret
-          passwordSecretKey: password
+          adminPassword: "{{ .Values.keycloak.admin.password }}"
       - postgresql:
           enabled: false
       - externalDatabase:
@@ -36,6 +35,8 @@ releases:
           user: app
           existingSecret: keycloak-cnpg-app
           existingSecretPasswordKey: password
+      - production: true
+      - proxy: edge
       - ingress:
           enabled: true
           hostname: keycloak.{{ .Values.domain }}
@@ -60,9 +61,3 @@ releases:
             volumeMounts:
               - name: keycloak-providers
                 mountPath: /providers
-  - name: keycloak-extras
-    chart: ../../charts/keycloak-extras
-    values:
-      - admin:
-          username: "{{ .Values.keycloak.admin.username }}"
-          password: "{{ .Values.keycloak.admin.password }}"
