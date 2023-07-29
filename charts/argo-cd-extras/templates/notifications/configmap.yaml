@@ -31,22 +31,20 @@ data:
         value: token $github-token
 
   template.github-commit-status: |
-    {{`
     webhook:
       github:
         method: POST
-        path: /repos/{{call .repo.FullNameByRepoURL .app.spec.source.repoURL}}/statuses/{{.app.status.operationState.operation.sync.revision}}
+        path: /repos/{{`{{call .repo.FullNameByRepoURL .app.spec.source.repoURL}}`}}/statuses/{{`{{.app.status.operationState.operation.sync.revision}}`}}
         body: |
           {
-            {{if eq .app.status.operationState.phase "Running"}} "state": "pending"{{end}}
-            {{if eq .app.status.operationState.phase "Succeeded"}} "state": "success"{{end}}
-            {{if eq .app.status.operationState.phase "Error"}} "state": "error"{{end}}
-            {{if eq .app.status.operationState.phase "Failed"}} "state": "error"{{end}},
+            {{`{{if eq .app.status.operationState.phase "Running"}}`}} "state": "pending"{{`{{end}}`}}
+            {{`{{if eq .app.status.operationState.phase "Succeeded"}}`}} "state": "success"{{`{{end}}`}}
+            {{`{{if eq .app.status.operationState.phase "Error"}}`}} "state": "error"{{`{{end}}`}}
+            {{`{{if eq .app.status.operationState.phase "Failed"}}`}} "state": "error"{{`{{end}}`}},
             "description": "Argo CD",
-            "target_url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-            "context": "continuous-delivery/{{.app.metadata.name}}"
+            "target_url": "{{`{{.context.argocdUrl}}`}}/applications/{{`{{.app.metadata.name}}`}}",
+            "context": "continuous-delivery/{{`{{.app.metadata.name}}`}}"
           }
-    `}}
 
   service.webhook.discord: |
     url: $discord-webhook
@@ -55,7 +53,6 @@ data:
         value: application/json
 
   template.discord-webhook: |
-    {{`
     webhook:
       discord:
         method: POST
@@ -65,14 +62,13 @@ data:
             "avatar_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
             "embeds": [
               {
-                "title": "`{{printf "%.7s" .app.status.operationState.operation.sync.revision}}` [{{.app.metadata.name}}] Deployment {{.app.status.operationState.phase}}",
-                "url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
-                "color": {{if eq .app.status.operationState.phase "Running"}} 16776960 {{end}}
-                         {{if eq .app.status.operationState.phase "Succeeded"}} 65280 {{end}}
-                         {{if eq .app.status.operationState.phase "Error"}} 16711680 {{end}}
-                         {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}}
+                "title": "`{{`{{printf "%.7s" .app.status.operationState.operation.sync.revision}}`}}` [{{`{{.app.metadata.name}}`}}] Deployment {{`{{.app.status.operationState.phase}}`}}",
+                "url": "{{`{{.context.argocdUrl}}`}}/applications/{{`{{.app.metadata.name}}`}}",
+                "color": {{`{{if eq .app.status.operationState.phase "Running"}}`}} 16776960 {{`{{end}}`}}
+                         {{`{{if eq .app.status.operationState.phase "Succeeded"}}`}} 65280 {{`{{end}}`}}
+                         {{`{{if eq .app.status.operationState.phase "Error"}}`}} 16711680 {{`{{end}}`}}
+                         {{`{{if eq .app.status.operationState.phase "Failed"}}`}} 16711680 {{`{{end}}`}}
               }
             ]
           }
-    `}}
 {{- end }}
