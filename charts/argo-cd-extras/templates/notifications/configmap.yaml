@@ -65,29 +65,12 @@ data:
             "avatar_url": "https://avatars.githubusercontent.com/u/30269780?s=200&v=4",
             "embeds": [
               {
-                "title": "[{{.app.metadata.name}}] Deployment {{.app.status.operationState.phase}}",
+                "title": "`{{printf "%.7s" .app.status.operationState.operation.sync.revision}}` [{{.app.metadata.name}}] Deployment {{.app.status.operationState.phase}}",
                 "url": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
                 "color": {{if eq .app.status.operationState.phase "Running"}} 16776960 {{end}}
                          {{if eq .app.status.operationState.phase "Succeeded"}} 65280 {{end}}
                          {{if eq .app.status.operationState.phase "Error"}} 16711680 {{end}}
-                         {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}},
-                "fields": [
-                  {
-                    "name": "App Health",
-                    "value": "{{.app.status.health.status}}",
-                    "inline": true
-                  },
-                  {
-                    "name": "Sync Status",
-                    "value": "{{.app.status.sync.status}}",
-                    "inline": true
-                  },
-                  {
-                    "name": "Sync Revision",
-                    "value": "{{printf "%.7s" .app.status.operationState.operation.sync.revision}}",
-                    "inline": true
-                  }
-                ]
+                         {{if eq .app.status.operationState.phase "Failed"}} 16711680 {{end}}
               }
             ]
           }
