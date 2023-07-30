@@ -1,6 +1,7 @@
 nanapi:
     username: ENC[AES256_GCM,data:zpPt24ZnM04B709G,iv:B1vRaQXoSTluG1mRBny69uEHjDnWol8CtD/jIi+oCt0=,tag:aJiB9z4z6atabI7LiUPZVQ==,type:str]
     password: ENC[AES256_GCM,data:tg9ID8zz3qiLfw==,iv:S8dcqe3Y6nPUtBEWp92zuiZYDjsAt2qp/jNEiJAcSXI=,tag:Jgtgxij2KjgtSQiDDCOGBQ==,type:str]
+defaultClientId: ENC[AES256_GCM,data:3Abk+mBtx85EG7j7116EF4yQ8D7goKI/W03qIBkzU+MqzVD0,iv:Hf+iwzD4Jt7rvNHA2zzKX5EcOg/qsWJRjZtwYrvpDg0=,tag:QsDAs80t30RwhG5mfb8iwQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -16,8 +17,8 @@ sops:
             dVVrYWZ6Rmx0Y1QvZ2tjd0JUaVNmdFkKG8UwwJY2f62kYfJ2W9Sq5DZgxxykuUiO
             QvPP7RqdOlxWN1QoMlHZLIlN94ACgkH0osXDPzcTIuNb44igo953uA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-03-07T19:09:02Z"
-    mac: ENC[AES256_GCM,data:vozETUv7jCxEwudCnwkMaGsnbLG/cN80tFL1qHx9yYSy77IwOmDZy3fR9EhxIi6Bafwi0X0SnhYsjqkhAggziUMr9DuDSjyZ1/rflA654fm6+ckCVbAT3iwblB7zGGM4QUcN1Fo72rwqLKmp7Kfx7eYfmi3khPpbcl9o8jLRrsU=,iv:VYTidQ3HNMNn9PZjgbmOHMGXFxNgimhiaJunBLZCo2A=,tag:rCaErFTJASrkdHtKzSockg==,type:str]
+    lastmodified: "2023-07-30T08:47:37Z"
+    mac: ENC[AES256_GCM,data:BHX5c9oM5YXv9Z/8wU1M5kJdHa801iRaRuz6+v9cuc6uVcUozWl/19dT4ZhGBxSJK9uXi+xGxUQ/N+pgPn4br1zWJ7sYTHpsHWBAPs34haGL6F7472fwX1fxslJXFxhy20q3XC3g9jwD5iDIbNG84j6a5EgZBYNdRblgPy4koPc=,iv:dlGQ0FLbD5eXWpEj7zdnv65lO36LkbMgfaTDFWNQy94=,tag:bgXZjRJ5kbNC3CRhohaduw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.7.3

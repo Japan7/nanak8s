@@ -9,10 +9,11 @@ releases:
     chart: ../../charts/waicolle
     values:
       - image:
-          tag: main@sha256:f03a43fb01f54dab3ffe6fedc73ea200277ce42ad4f1e4dbd90e0e9eb8bfdf74 # renovate: repository=ghcr.io/japan7/waicolle-web
+          tag: main@sha256:6cb0b59cf07892d2bfd33d0f5ac59c51855f235204da1801855342bd5cf34aa2 # renovate: repository=ghcr.io/japan7/waicolle-web
       - nanapi:
           url: http://nanapi-prod.nanapi:8000
           username: "{{ .Values.nanapi.username }}"
           password: "{{ .Values.nanapi.password }}"
+      - defaultClientId: "{{ .Values.defaultClientId }}"
       - ingress:
           host: waicolle.{{ .Values.domain }}

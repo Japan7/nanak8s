@@ -19,17 +19,19 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
-            - name: NANAPI_URL
+            - name: NUXT_NANAPI_URL
               value: "{{ .Values.nanapi.url }}"
-            - name: NANAPI_CLIENT_USERNAME
+            - name: NUXT_NANAPI_CLIENT_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-nanapi"
                   key: username
-            - name: NANAPI_CLIENT_PASSWORD
+            - name: NUXT_NANAPI_CLIENT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-nanapi"
                   key: password
+            - name: NUXT_PUBLIC_DEFAULT_CLIENT_ID
+              value: "{{ .Values.defaultClientId }}"
           ports:
             - containerPort: 3000

@@ -10,6 +10,8 @@ nanapi:
   username: ""
   password: ""
 
+defaultClientId: ""
+
 ingress:
   host: ""
   entryPoints:
