@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/waicolle
     values:
       - image:
-          tag: main@sha256:c696b610f9331cbf30430474a3d867271439923bbb47c6c4198f977ad32c5b3c # renovate: repository=ghcr.io/japan7/waicolle-web
+          tag: main@sha256:128fbde8aaf053c46141344e3dec45fc0a1552ad2fb5e431fc23e1bed5c40292 # renovate: repository=ghcr.io/japan7/waicolle-web
       - nanapi:
           url: http://nanapi-prod.nanapi:8000
           username: "{{ .Values.nanapi.username }}"
