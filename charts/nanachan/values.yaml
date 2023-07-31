@@ -4,6 +4,8 @@ image:
   pullPolicy: ""
   pullSecrets: []
 
+replicaCount: 1
+
 localSettings: ""
 
 affinity: {}

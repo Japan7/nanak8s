@@ -3,6 +3,8 @@ image:
   tag: 0.70.2
   pullPolicy: ""
 
+replicaCount: 1
+
 cnpg:
   name: ""
   user: app

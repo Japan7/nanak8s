@@ -11,6 +11,7 @@ dumper:
     repository: ldez/traefik-certs-dumper
     tag: v2.8.1
     pullPolicy: ""
+  replicaCount: 1
 
 miniserve:
   image:

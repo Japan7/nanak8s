@@ -3,6 +3,8 @@ image:
   tag: 2.3.0
   pullPolicy: ""
 
+replicaCount: 1
+
 secret:
   name: ""
   key: .runner
