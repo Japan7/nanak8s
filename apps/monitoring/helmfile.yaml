@@ -49,6 +49,8 @@ releases:
             hosts:
               - alertmanager.{{ .Values.domain }}
       - grafana:
+          deploymentStrategy:
+            type: Recreate
           adminPassword: "{{ .Values.grafana.password }}"
           persistence:
             enabled: true

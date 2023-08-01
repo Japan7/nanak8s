@@ -10,6 +10,8 @@ releases:
     values:
       - image:
           tag: subs@sha256:cbe0a7d44859b7c8aee155319c902a91b50305094889b01bd31c2af116e74cc8 # renovate: repository=ghcr.io/japan7/filestash
+      - updateStrategy:
+          type: Recreate
       - onlyoffice:
           enabled: true
       - ingress:

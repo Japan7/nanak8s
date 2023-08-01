@@ -17,6 +17,8 @@ releases:
   - name: vaultwarden
     chart: ../../charts/vaultwarden
     values:
+      - updateStrategy:
+          type: Recreate
       - cnpg:
           name: vaultwarden-cnpg
       - config:

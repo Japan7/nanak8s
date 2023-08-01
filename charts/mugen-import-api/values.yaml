@@ -6,6 +6,9 @@ image:
 
 replicaCount: 1
 
+updateStrategy:
+  type: RollingUpdate
+
 persistence:
   accessMode: ReadWriteOnce
   size: 128Mi
