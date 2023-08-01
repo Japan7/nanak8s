@@ -29,7 +29,7 @@ releases:
     chart: ../../../charts/minio-extras
     values:
       - tenants:
-          # - minio-tenant-0
+          - minio-tenant-0
           - minio-tenant-1
           - minio-tenant-2
       - ingress:
