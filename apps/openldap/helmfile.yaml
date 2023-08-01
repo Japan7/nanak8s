@@ -31,11 +31,13 @@ releases:
               - ldap.{{ .Values.domain }}
       - ltb-passwd:
           enabled: false
+      - replicaCount: 1
+      - replication:
+          enabled: false
       - customTLS:
           image:
             repository: openquantumsafe/openssl3 # instead of alpine/openssl; they have arm64 images
             tag: latest
       - persistence:
           enabled: true
-          storageClass: longhorn-single
           size: 1Gi
