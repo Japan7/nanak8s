@@ -21,7 +21,7 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
     chart: bitnamicharts/keycloak
-    version: 13.4.1
+    version: 16.0.0
     values:
       - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
@@ -37,8 +37,6 @@ releases:
           existingSecretPasswordKey: password
       - production: true
       - proxy: edge
-      - service:
-          type: ClusterIP
       - ingress:
           enabled: true
           hostname: keycloak.{{ .Values.domain }}
