@@ -13,7 +13,6 @@ releases:
     chart: helm-openldap/openldap-stack-ha
     version: 4.1.1
     values:
-      - replicaCount: 1
       - global:
           ldapDomain: "{{ .Values.ldap.domain }}"
           adminPassword: "{{ .Values.ldap.admin.password }}"
