@@ -2,7 +2,7 @@ environments:
   default:
     values:
       - tenant: 0
-      - node: korone
+      - node: akari
 ---
 bases:
   - ../tenant.helmfile.yaml
