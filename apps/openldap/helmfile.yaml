@@ -18,7 +18,7 @@ releases:
           adminPassword: "{{ .Values.ldap.admin.password }}"
           configPassword: "{{ .Values.configPassword }}"
       - image:
-          tag: 2.6.5 # renovate: repository=bitnami/openldap
+          tag: 2.6.6 # renovate: repository=bitnami/openldap
       - phpldapadmin:
           image:
             tag: 0.9.0 # renovate: repository=osixia/phpldapadmin
