@@ -83,7 +83,11 @@ releases:
               - prometheus.{{ .Values.domain }}
       - kubeEtcd:
           endpoints:
-            {{ .Values.nodes | toYaml | nindent 12 }}
+            - 10.100.0.1
+            - 10.100.0.2
+            - 10.100.0.3
+            - 10.100.0.4
+            - 10.100.0.6
       - nodeExporter:
           enabled: false # FIXME: else it is exposed publicly on port 9100 :MakiDespair:
   - name: loki-stack
