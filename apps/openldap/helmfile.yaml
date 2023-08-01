@@ -19,6 +19,8 @@ releases:
           configPassword: "{{ .Values.configPassword }}"
       - image:
           tag: 2.6.6 # renovate: repository=bitnami/openldap
+      - nodeSelector:
+          kubernetes.io/arch: amd64 # arm64 images are broken
       - phpldapadmin:
           image:
             tag: 0.9.0 # renovate: repository=osixia/phpldapadmin
