@@ -23,7 +23,6 @@ releases:
     chart: bitnamicharts/keycloak
     version: 16.0.0
     values:
-      - extraStartupArgs: -Dkeycloak.profile.feature.declarative_user_profile=enabled
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
           adminPassword: "{{ .Values.keycloak.admin.password }}"
@@ -43,6 +42,9 @@ releases:
           pathType: Prefix
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      - extraEnvVars:
+          - name: KC_FEATURES
+            value: "declarative-user-profile"
       - extraVolumes:
           - name: keycloak-providers
             emptyDir: {}
