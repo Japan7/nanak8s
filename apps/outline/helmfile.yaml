@@ -21,7 +21,7 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: outline-redis
     chart: bitnamicharts/redis
-    version: 17.14.4
+    version: 17.14.5
     values:
       - architecture: standalone
       - auth:
