@@ -93,7 +93,7 @@ releases:
           enabled: false # FIXME: else it is exposed publicly on port 9100 :MakiDespair:
   - name: loki-stack
     chart: grafana/loki-stack
-    version: 2.9.10
+    version: 2.9.11
     values:
       - loki:
           isDefault: false
