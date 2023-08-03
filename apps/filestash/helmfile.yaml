@@ -9,6 +9,7 @@ releases:
     chart: ../../charts/filestash
     values:
       - image:
+          repository: ghcr.io/japan7/filestash
           tag: subs@sha256:cbe0a7d44859b7c8aee155319c902a91b50305094889b01bd31c2af116e74cc8 # renovate: repository=ghcr.io/japan7/filestash
       - updateStrategy:
           type: Recreate
@@ -19,8 +20,6 @@ releases:
   - name: filestash-minio-oidc-auth
     chart: ../../charts/filestash-minio-oidc-auth
     values:
-      - image:
-          tag: main@sha256:d10488d51ba0d69679444c8614712aba542c38f9eb844d8ed80d92913b09f33d # renovate: repository=ghcr.io/japan7/filestash-minio-oidc-auth
       - filestash:
           host: https://filestash.{{ .Values.domain }}
           apiKey: "{{ .Values.filestash.apiKey }}"

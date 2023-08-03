@@ -23,6 +23,7 @@ releases:
     chart: ../../charts/traefik-forward-auth
     values:
       - image:
+          repository: ghcr.io/japan7/traefik-forward-auth
           tag: master@sha256:a7e29682d5274817862ed747ab08fd9beccee63df5770ed3a4e8ba19f6950cd1 # renovate: repository=ghcr.io/japan7/traefik-forward-auth
       - secret: "{{ .Values.forwardAuth.secret }}"
       - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
