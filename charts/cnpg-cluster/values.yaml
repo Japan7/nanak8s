@@ -16,7 +16,7 @@ user:
   password: ""
 
 backups:
-  enabled: true
+  enabled: false
   minio:
     endpoint: ""
     bucket: cnpg
