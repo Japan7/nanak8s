@@ -44,7 +44,7 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
       - extraEnvVars:
           - name: KC_FEATURES
-            value: declarative-user-profile,account3
+            value: declarative-user-profile
       - extraVolumes:
           - name: keycloak-providers
             emptyDir: {}
