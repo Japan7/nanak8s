@@ -14,10 +14,10 @@ nodeSelector:
 persistence:
   accessMode: ReadWriteOnce
   size: 128Mi
-  mountPath: /filestash/data/state
+  mountPath: /app/data/state
 
 cache:
-  mountPath: /filestash/data/cache
+  mountPath: /app/data/cache
 
 onlyoffice:
   enabled: false
