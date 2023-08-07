@@ -59,7 +59,7 @@ releases:
               - -xc
               - |
                 wget -O /providers/keycloak-discord.jar \
-                https://cdn.discordapp.com/attachments/1061990441383370782/1138073530974601246/keycloak-discord-0.4.2-SNAPSHOT.jar
+                https://cdn.discordapp.com/attachments/1061990441383370782/1138075436627279942/keycloak-discord-0.4.2-SNAPSHOT.jar
             volumeMounts:
               - name: keycloak-providers
                 mountPath: /providers
