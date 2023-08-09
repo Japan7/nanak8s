@@ -27,26 +27,19 @@ spec:
         - name: runner-config
           secret:
             secretName: "{{ .Values.secret.name }}"
-        - name: docker-certs
+        - name: sock-dir
           emptyDir: {}
       containers:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           args: ["daemon"]
-          env:
-            - name: DOCKER_HOST
-              value: tcp://localhost:2376
-            - name: DOCKER_CERT_PATH
-              value: /certs/client
-            - name: DOCKER_TLS_VERIFY
-              value: "1"
           volumeMounts:
             - name: runner-config
               mountPath: /.runner
               subPath: "{{ .Values.secret.key }}"
-            - name: docker-certs
-              mountPath: /certs
+            - name: sock-dir
+              mountPath: /var/run
         - name: dind
           image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
           imagePullPolicy: "{{ .Values.dind.image.pullPolicy }}"
@@ -56,11 +49,8 @@ spec:
             {{- with .Values.dind.mtu }}
             - --mtu={{ . }}
             {{- end }}
-          env:
-            - name: DOCKER_TLS_CERTDIR
-              value: /certs
-          volumeMounts:
-            - name: docker-certs
-              mountPath: /certs
           securityContext:
             privileged: true
+          volumeMounts:
+            - name: sock-dir
+              mountPath: /var/run
