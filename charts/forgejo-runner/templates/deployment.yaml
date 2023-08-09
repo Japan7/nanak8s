@@ -46,6 +46,9 @@ spec:
           # https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25380#note_393553417
           # https://blog.zespre.com/dind-mtu-size-matters.html
           args:
+            {{- with .Values.dind.dns }}
+            - --dns={{ . }}
+            {{- end }}
             {{- with .Values.dind.mtu }}
             - --mtu={{ . }}
             {{- end }}
