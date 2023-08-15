@@ -1,6 +1,6 @@
 image:
   repository: code.forgejo.org/forgejo/runner
-  tag: 2.3.0
+  tag: 2.4.0
   pullPolicy: ""
 
 replicaCount: 1
