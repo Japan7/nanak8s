@@ -19,7 +19,7 @@ releases:
       - tenant:
           name: minio-tenant-{{ .Values.tenant }}
           image:
-            tag: latest@sha256:d6369c50d12a201b8fe72458c97fba79a50980184440b1e2fe93634dbf0ef682 # renovate: repository=quay.io/minio/minio
+            tag: RELEASE.2023-07-07T07-13-57Z # FIXME: fuck minio updates
           pools:
             - servers: 1
               volumesPerServer: 1

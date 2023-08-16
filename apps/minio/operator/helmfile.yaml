@@ -13,8 +13,6 @@ releases:
     version: 5.0.7
     values:
       - operator:
-          image:
-            tag: v5.0.7 # renovate: repository=quay.io/minio/operator
           replicaCount: 1
           env:
             - name: PROMETHEUS_NAME
@@ -22,8 +20,6 @@ releases:
             - name: PROMETHEUS_NAMESPACE
               value: monitoring
       - console:
-          image:
-            tag: v5.0.7 # renovate: repository=quay.io/minio/operator
           ingress:
             enabled: true
             annotations:
