@@ -19,7 +19,7 @@ releases:
       - tenant:
           name: minio-tenant-{{ .Values.tenant }}
           image:
-            tag: RELEASE.2023-07-07T07-13-57Z # FIXME: fuck minio updates
+            tag: RELEASE.2023-08-16T20-17-30Z # FIXME: fuck minio updates
           pools:
             - servers: 1
               volumesPerServer: 1
