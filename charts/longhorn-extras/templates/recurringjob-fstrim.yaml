@@ -11,6 +11,6 @@ spec:
   task: filesystem-trim
   retain: 0
   concurrency: 1
-  cron: "@daily"
+  cron: "@hourly"
   groups:
     - default
