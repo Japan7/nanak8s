@@ -16,10 +16,10 @@ user:
   password: ""
 
 backups:
-  enabled: false
+  enabled: true
   minio:
     endpoint: ""
     bucket: cnpg
     accessKey: ""
     secretKey: ""
-  schedule: "0 0 9 * * 1"
+  schedule: "0 0 15 * * *"
