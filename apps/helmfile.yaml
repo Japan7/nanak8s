@@ -18,8 +18,6 @@ releases:
             subdir: minio/operator
           - name: minio-tenant-0
             subdir: minio/tenant-0
-          - name: minio-tenant-1
-            subdir: minio/tenant-1
           - name: minio-tenant-2
             subdir: minio/tenant-2
 
