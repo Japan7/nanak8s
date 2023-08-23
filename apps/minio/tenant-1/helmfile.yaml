@@ -1,0 +1,8 @@
+environments:
+  default:
+    values:
+      - tenant: 1
+      - node: gungnir
+---
+bases:
+  - ../tenant.helmfile.yaml
