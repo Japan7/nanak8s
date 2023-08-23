@@ -30,7 +30,6 @@ releases:
     values:
       - tenants:
           - minio-tenant-0
-          - minio-tenant-1
           - minio-tenant-2
       - ingress:
           host: minio.{{ .Values.domain }}
