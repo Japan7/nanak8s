@@ -14,3 +14,4 @@ spec:
   cron: "@hourly"
   groups:
     - default
+    - fstrim
