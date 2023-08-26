@@ -37,7 +37,7 @@ spec:
           args: ["daemon"]
           volumeMounts:
             - name: runner-config
-              mountPath: /.runner
+              mountPath: /data/.runner
               subPath: "{{ .Values.secret.key }}"
             - name: sock-dir
               mountPath: /var/run
