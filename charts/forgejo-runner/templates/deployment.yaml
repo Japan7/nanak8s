@@ -35,6 +35,9 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["forgejo-runner"]
           args: ["daemon"]
+          env:
+            - name: DOCKER_HOST
+              value: unix://
           volumeMounts:
             - name: runner-config
               mountPath: /data/.runner
