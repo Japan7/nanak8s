@@ -33,6 +33,7 @@ spec:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          entrypoint: ["forgejo-runner"]
           args: ["daemon"]
           volumeMounts:
             - name: runner-config
