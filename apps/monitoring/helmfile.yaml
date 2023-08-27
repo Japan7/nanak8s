@@ -19,7 +19,7 @@ releases:
           argocd.argoproj.io/sync-options: ServerSideApply=true
   - name: kube-prometheus-stack
     chart: prometheus-community/kube-prometheus-stack
-    version: 48.5.0
+    version: 48.6.0
     values:
       - fullnameOverride: kps
       - alertmanager:
