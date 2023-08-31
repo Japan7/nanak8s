@@ -34,3 +34,9 @@ ingress:
     - websecure
   host: ""
   pathPrefix: "/"
+
+resources:
+  requests:
+    memory: 1Gi
+  limits:
+    memory: 4Gi
