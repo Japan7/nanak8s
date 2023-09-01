@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 2023.09.01-3
+      - tag: 2023.09.01-4
       - tasks: true
       - dumps: true
       - affinity:
