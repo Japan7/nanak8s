@@ -28,7 +28,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: latest
+      - tag: sha-6e147eb
       - tasks: false
       - dumps: false
       - affinity: {}
