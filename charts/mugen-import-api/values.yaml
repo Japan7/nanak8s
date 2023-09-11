@@ -24,7 +24,7 @@ mugen:
 rclone:
   image:
     repository: rclone/rclone
-    tag: 1.63.1
+    tag: 1.64.0
     pullPolicy: ""
 
 ingress:
