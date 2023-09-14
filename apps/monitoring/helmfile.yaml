@@ -15,8 +15,9 @@ releases:
     chart: prometheus-community/prometheus-operator-crds
     version: 6.0.0
     values:
-      - annotations:
-          argocd.argoproj.io/sync-options: ServerSideApply=true
+      - crds:
+          annotations:
+            argocd.argoproj.io/sync-options: ServerSideApply=true
   - name: kube-prometheus-stack
     chart: prometheus-community/kube-prometheus-stack
     version: 50.3.1
