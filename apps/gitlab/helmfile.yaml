@@ -22,6 +22,7 @@ releases:
               [runners.kubernetes]
                 [runners.kubernetes.node_selector]
                   "kubernetes.io/arch" = "amd64"
+                  "topology.kubernetes.io/region" = "eu-west"
       - rbac:
           create: true
   - name: website-runner
@@ -39,6 +40,7 @@ releases:
                 image_pull_secrets = ["forgejo-regcred"]
                 [runners.kubernetes.node_selector]
                   "kubernetes.io/arch" = "amd64"
+                  "topology.kubernetes.io/region" = "eu-west"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
