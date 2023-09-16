@@ -42,13 +42,6 @@ releases:
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
-                [[runners.kubernetes.pod_spec]]
-                  name = "securityContext"
-                  patch_type = "strategic"
-                  patch = '''
-                    securityContext:
-                      fsGroupChangePolicy: "OnRootMismatch"
-                  '''
       - rbac:
           create: true
   - name: website-deploy-runner
@@ -69,13 +62,6 @@ releases:
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
                   mount_path = "/outputs"
-                [[runners.kubernetes.pod_spec]]
-                  name = "securityContext"
-                  patch_type = "strategic"
-                  patch = '''
-                    securityContext:
-                      fsGroupChangePolicy: "OnRootMismatch"
-                  '''
       - rbac:
           create: true
   - name: gitlab-extras
