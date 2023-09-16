@@ -38,6 +38,7 @@ releases:
               [runners.kubernetes]
                 image_pull_secrets = ["forgejo-regcred"]
                 [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
                   "topology.kubernetes.io/region" = "eu-west"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
@@ -58,6 +59,7 @@ releases:
               [runners.kubernetes]
                 image_pull_secrets = ["forgejo-regcred"]
                 [runners.kubernetes.node_selector]
+                  "kubernetes.io/arch" = "amd64"
                   "topology.kubernetes.io/region" = "eu-west"
                 [[runners.kubernetes.volumes.pvc]]
                   name = "website-runner"
