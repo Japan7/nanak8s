@@ -5,96 +5,22 @@ environments:
       - default.sops.yaml
 ---
 repositories:
-  - name: prometheus-community
-    url: https://prometheus-community.github.io/helm-charts
   - name: grafana
     url: https://grafana.github.io/helm-charts
 
 releases:
-  - name: prometheus-operator-crds
-    chart: prometheus-community/prometheus-operator-crds
-    version: 6.0.0
+  - name: loki-stack
+    chart: grafana/loki-stack
+    version: 2.9.11
     values:
-      - crds:
-          annotations:
-            argocd.argoproj.io/sync-options: ServerSideApply=true
-  - name: kube-prometheus-stack
-    chart: prometheus-community/kube-prometheus-stack
-    version: 51.0.3
-    values:
-      - fullnameOverride: kps
-      - alertmanager:
-          enabled: false
-          config:
-            route:
-              receiver: discord
-              group_interval: 1m
-            receivers:
-              - name: "null"
-              - name: discord
-                discord_configs:
-                  - webhook_url: "{{ .Values.webhook }}"
-          alertmanagerSpec:
-            storage:
-              volumeClaimTemplate:
-                spec:
-                  accessModes: ["ReadWriteOnce"]
-                  resources:
-                    requests:
-                      storage: 1Gi
-          ingress:
-            enabled: true
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
-            hosts:
-              - alertmanager.{{ .Values.domain }}
-      - grafana:
-          deploymentStrategy:
-            type: Recreate
-          adminPassword: "{{ .Values.grafana.password }}"
+      - loki:
           persistence:
             enabled: true
-            accessModes: ["ReadWriteOnce"]
-            size: 1Gi
+      - grafana:
+          adminPassword: "{{ .Values.grafana.password }}"
           ingress:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
             hosts:
               - grafana.{{ .Values.domain }}
-      - prometheus:
-          prometheusSpec:
-            ruleSelectorNilUsesHelmValues: false
-            serviceMonitorSelectorNilUsesHelmValues: false
-            podMonitorSelectorNilUsesHelmValues: false
-            probeSelectorNilUsesHelmValues: false
-            retentionSize: 9GiB
-            storageSpec:
-              volumeClaimTemplate:
-                spec:
-                  accessModes: ["ReadWriteOnce"]
-                  resources:
-                    requests:
-                      storage: 10Gi
-          ingress:
-            enabled: true
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
-            hosts:
-              - prometheus.{{ .Values.domain }}
-      - kubeEtcd:
-          endpoints:
-            - 10.100.0.1
-            - 10.100.0.3
-            - 10.100.0.4
-            - 10.100.0.6
-      - nodeExporter:
-          enabled: false # FIXME: else it is exposed publicly on port 9100 :MakiDespair:
-  - name: loki-stack
-    chart: grafana/loki-stack
-    version: 2.9.11
-    values:
-      - loki:
-          isDefault: false

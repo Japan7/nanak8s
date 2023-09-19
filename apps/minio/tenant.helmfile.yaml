@@ -32,14 +32,6 @@ releases:
               console: https://minio-{{ .Values.tenant }}.{{ .Values.domain }}/console/
               minio:
                 - https://minio-{{ .Values.tenant }}.{{ .Values.domain }}
-          metrics:
-            enabled: true
-          prometheusOperator: true
-          env:
-            - name: MINIO_PROMETHEUS_URL
-              value: http://kps-prometheus.monitoring:9090
-            - name: MINIO_PROMETHEUS_JOB_ID
-              value: "{{ .Namespace }}-minio-job"
       - ingress:
           api:
             enabled: true

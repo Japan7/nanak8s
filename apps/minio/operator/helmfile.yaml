@@ -14,11 +14,6 @@ releases:
     values:
       - operator:
           replicaCount: 1
-          env:
-            - name: PROMETHEUS_NAME
-              value: kps-prometheus
-            - name: PROMETHEUS_NAMESPACE
-              value: monitoring
       - console:
           ingress:
             enabled: true
