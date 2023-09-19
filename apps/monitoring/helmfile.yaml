@@ -14,8 +14,6 @@ releases:
     version: 2.9.11
     values:
       - loki:
-          updateStrategy:
-            type: Recreate
           persistence:
             enabled: true
       - grafana:
