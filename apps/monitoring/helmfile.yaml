@@ -19,6 +19,7 @@ releases:
           persistence:
             enabled: true
       - grafana:
+          enabled: true
           adminPassword: "{{ .Values.grafana.password }}"
           deploymentStrategy:
             type: Recreate
