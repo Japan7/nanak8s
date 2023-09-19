@@ -5,7 +5,7 @@ environments:
       - default.sops.yaml
 ---
 repositories:
-  - name: bitnamicharts
+  - name: bitnami
     url: registry-1.docker.io/bitnamicharts
     oci: true
 
@@ -20,7 +20,7 @@ releases:
             accessKey: "{{ .Values.cnpg.minio.accessKey }}"
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
-    chart: bitnamicharts/keycloak
+    chart: bitnami/keycloak
     version: 16.1.5
     values:
       - auth:
