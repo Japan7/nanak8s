@@ -20,10 +20,20 @@ tasks:
   enabled: true
   anilist:
     schedule: "0 3 * * 1"
-  meilisearch:
-    schedule: "@hourly"
+    resources:
+      requests:
+        memory: 4Gi
+      limits:
+        memory: 8Gi
   userlists:
     schedule: "0 */6 * * *"
+    resources:
+      requests:
+        memory: 2Gi
+      limits:
+        memory: 4Gi
+  meilisearch:
+    schedule: "@hourly"
 
 dumps:
   enabled: false

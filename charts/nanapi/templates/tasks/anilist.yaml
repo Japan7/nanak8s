@@ -43,5 +43,5 @@ spec:
                   mountPath: /app/nanapi/local_settings.py
                   subPath: local_settings.py
               resources:
-                {{- toYaml .Values.resources | nindent 16 }}
+                {{- toYaml .Values.tasks.anilist.resources | nindent 16 }}
 {{- end }}
