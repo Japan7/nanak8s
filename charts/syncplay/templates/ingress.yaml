@@ -4,6 +4,8 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: app
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   entryPoints:
     {{- range .Values.ingress.entryPoints }}

@@ -1,9 +1,11 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ .Release.Name }}-http"
+  name: "{{ .Release.Name }}-http-stub"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: http-stub
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
   annotations:
     {{- range .Values.ingress.httpEntryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
@@ -17,6 +19,6 @@ spec:
             path: "/"
             backend:
               service:
-                name: "{{ .Release.Name }}"
+                name: "{{ .Release.Name }}-http-stub"
                 port:
                   number: 80
