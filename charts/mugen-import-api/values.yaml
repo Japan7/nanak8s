@@ -11,7 +11,7 @@ updateStrategy:
 
 persistence:
   accessMode: ReadWriteOnce
-  size: 128Mi
+  size: 1Gi
 
 mugen:
   minio:

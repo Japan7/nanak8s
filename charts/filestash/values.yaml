@@ -13,7 +13,7 @@ nodeSelector:
 
 persistence:
   accessMode: ReadWriteOnce
-  size: 128Mi
+  size: 1Gi
   mountPath: /app/data/state
 
 cache:
