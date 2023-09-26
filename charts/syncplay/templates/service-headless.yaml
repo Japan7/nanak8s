@@ -4,13 +4,9 @@ metadata:
   name: "{{ .Release.Name }}-headless"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: app
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}
-    app.kubernetes.io/component: app
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
   clusterIP: None
   ports:
     - port: 8999
