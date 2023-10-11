@@ -26,7 +26,7 @@ environments:
       - hachi.sops.yaml
   snow:
     values:
-      - tag: sha-20bbe20
+      - tag: sha-4fa9199
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
