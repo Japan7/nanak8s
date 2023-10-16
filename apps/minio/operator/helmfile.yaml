@@ -10,7 +10,7 @@ repositories:
 releases:
   - name: minio-operator
     chart: minio/operator
-    version: 5.0.9
+    version: 5.0.10
     values:
       - operator:
           replicaCount: 1
