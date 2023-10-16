@@ -35,7 +35,7 @@ spec:
       - --providers.kubernetescrd.allowCrossNamespace=true
       - --providers.kubernetescrd.allowEmptyServices=true
       - --serversTransport.insecureSkipVerify=true  # required for k8s-dashboard
-      # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+      - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
       enabled: true
     ingressRoute:
