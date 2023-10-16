@@ -3,6 +3,8 @@ image:
   tag: master@sha256:7ec530726a0e450deefca716e4035c878a00cf6bbfb1a9b6686619f99698aa2e
   pullPolicy: ""
 
+replicaCount: 1
+
 syncplay:
   password: ""
   salt: ""
