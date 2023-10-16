@@ -38,7 +38,6 @@ spec:
       # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
       enabled: true
-      accessMode: ReadWriteMany
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.{{ .Values.domain }}`)
@@ -47,12 +46,33 @@ spec:
         middlewares:
           - name: traefik-forward-auth-nanak8s
     deployment:
-      replicas: 2
-      initContainers:
-        # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543
-        - name: volume-permissions
-          image: busybox:latest
-          command: ["sh", "-xc", "touch /data/acme.json && chmod -Rv 600 /data/* && chown 65532:65532 /data/acme.json"]
+      additionalContainers:
+        - name: dumper
+          {{- with .Values.dumper.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
+          command:
+            - sh
+            - -xc
+            - |
+              traefik-certs-dumper file --version v2 \
+              --watch --source /data/acme.json --dest /data/dump \
+              --domain-subdir --crt-name=fullchain --crt-ext .pem --key-name=privkey --key-ext .pem
           volumeMounts:
             - name: data
               mountPath: /data
+        - name: dumper-http
+          {{- with .Values.miniserve.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
+          args: ["/html"]
+          volumeMounts:
+            - name: data
+              subPath: dump
+              mountPath: /html
+          ports:
+            - containerPort: 8080
+    updateStrategy:
+      type: Recreate

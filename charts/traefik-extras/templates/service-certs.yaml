@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "traefik-dumper"
+  name: traefik-certs
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: extras.dumper
+    app.kubernetes.io/component: extras
     app.kubernetes.io/part-of: traefik
 spec:
   selector:
-    {{- include "common.labels.matchLabels" . | nindent 4 }}
-    app.kubernetes.io/component: extras.dumper
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik-{{ .Release.Namespace }}
   ports:
     - port: 8080
