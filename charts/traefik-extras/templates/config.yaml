@@ -47,10 +47,15 @@ spec:
           - name: traefik-forward-auth-nanak8s
     deployment:
       initContainers:
-        # https://github.com/traefik/traefik-helm-chart/issues/164#issuecomment-1176866543
+        # The "volume-permissions" init container is required if you run into permission issues.
+        # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
         - name: volume-permissions
           image: busybox:latest
-          command: ["sh", "-xc", "touch /data/acme.json && chmod -Rv 600 /data/* && chown 65532:65532 /data/acme.json"]
+          command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+          securityContext:
+            runAsNonRoot: true
+            runAsGroup: 65532
+            runAsUser: 65532
           volumeMounts:
             - name: data
               mountPath: /data
