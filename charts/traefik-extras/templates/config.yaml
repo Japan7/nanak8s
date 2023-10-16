@@ -77,3 +77,13 @@ spec:
     updateStrategy:
       type: Recreate
       rollingUpdate: null
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: topology.kubernetes.io/region
+                  operator: In
+                  values:
+                    - eu-west
