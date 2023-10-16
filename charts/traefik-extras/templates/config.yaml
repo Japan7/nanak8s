@@ -76,3 +76,4 @@ spec:
             - containerPort: 8080
     updateStrategy:
       type: Recreate
+      rollingUpdate: {}
