@@ -10,6 +10,7 @@ spec:
   storage:
     size: {{ .Values.storage.size }}
     storageClass: longhorn-single
+  enableSuperuserAccess: {{ .Values.enableSuperuserAccess }}
   bootstrap:
     initdb:
       database: {{ .Values.database }}

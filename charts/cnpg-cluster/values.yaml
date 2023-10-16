@@ -11,6 +11,8 @@ storage:
 
 database: app
 
+enableSuperuserAccess: false
+
 user:
   username: app
   password: ""

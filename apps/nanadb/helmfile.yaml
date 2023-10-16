@@ -21,6 +21,7 @@ releases:
       - release: 14
       - storage:
           size: 10Gi
+      - enableSuperuserAccess: true
       - backups:
           enabled: false
       - affinity:
