@@ -9,10 +9,6 @@ syncplay:
   password: ""
   salt: ""
 
-traefik:
-  pvc: traefik
-  namespace: kube-system
-
 ingress:
   host: ""
   entryPoints:
@@ -20,4 +16,4 @@ ingress:
   httpEntryPoints:
     - websecure
 
-certsDumperService: traefik-certs.kube-system:8080
+certsDumperService: traefik-certs.traefik:8080

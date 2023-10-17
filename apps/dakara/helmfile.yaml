@@ -40,4 +40,4 @@ releases:
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:
-            traefik.ingress.kubernetes.io/router.middlewares: kube-system-japan7-basic-auth@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: traefik-japan7-basic-auth@kubernetescrd
