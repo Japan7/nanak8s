@@ -7,21 +7,23 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
+{{- with .Values.dump.ingress }}
   annotations:
-    {{- range .Values.ingress.entryPoints }}
+    {{- range .entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{- end }}
-    {{ .Values.dump.ingress.annotations | toYaml | nindent 4 }}
+    {{ .annotations | toYaml | nindent 4 }}
 spec:
   rules:
-    - host: "{{ .Values.ingress.host }}"
+    - host: "{{ .host }}"
       http:
         paths:
           - pathType: Prefix
-            path: "{{ .Values.dump.http.ingress.pathPrefix }}"
+            path: /
             backend:
               service:
-                name: "{{ .Release.Name }}-dump-http"
+                name: "{{ $.Release.Name }}-dump-http"
                 port:
                   number: 8080
+{{- end }}
 {{- end }}

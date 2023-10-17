@@ -31,5 +31,7 @@ dump:
       tag: 0.24.0
       pullPolicy: ""
     ingress:
-      pathPrefix: "/dump"
+      host: ""
+      entryPoints:
+        - websecure
       annotations: {}

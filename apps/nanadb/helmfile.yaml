@@ -40,5 +40,6 @@ releases:
       - dump:
           enabled: true
           ingress:
+            host: nanadb-dump.{{ .Values.domain }}
             annotations:
               traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
