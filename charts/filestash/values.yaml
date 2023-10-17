@@ -23,7 +23,7 @@ onlyoffice:
   enabled: false
   image:
     repository: onlyoffice/documentserver
-    tag: 7.4.1.1
+    tag: 7.5.0.1
     pullPolicy: ""
 
 ingress:
