@@ -17,6 +17,6 @@ data:
 
     cd /dump/
     DUMP_DIR=$(date +%Y-%m-%d_%H-%M-%S)
-    edgedb dump edgedb dump --all --format=dir $DUMP_DIR
+    edgedb dump --all --format=dir $DUMP_DIR
     ls | grep -v $DUMP_DIR | xargs rm -rf
 {{- end }}
