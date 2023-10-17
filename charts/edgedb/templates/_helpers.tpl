@@ -42,6 +42,4 @@ app.kubernetes.io/instance: {{ .Release.Name }}
     secretKeyRef:
       name: {{ .Release.Name }}-user
       key: password
-- name: EDGEDB_CLIENT_SECURITY
-  value: insecure_dev_mode
 {{- end -}}

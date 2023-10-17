@@ -40,6 +40,8 @@ spec:
             - name: EDGEDB_SERVER_BACKEND_DSN
               value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw
             {{- include "edgedb.auth" . | nindent 12 }}
+            - name: EDGEDB_SERVER_SECURITY
+              value: insecure_dev_mode
             - name: EDGEDB_SERVER_INSTANCE_NAME
               value: "{{ .Release.Name }}"
             - name: EDGEDB_SERVER_ADMIN_UI

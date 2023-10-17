@@ -59,6 +59,8 @@ spec:
                 {{- include "edgedb.auth" . | nindent 16 }}
                 - name: EDGEDB_DSN
                   value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Release.Name }}
+                - name: EDGEDB_CLIENT_SECURITY
+                  value: insecure_dev_mode
               volumeMounts:
                 - name: scripts
                   mountPath: /scripts
