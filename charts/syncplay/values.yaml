@@ -9,10 +9,6 @@ syncplay:
   password: ""
   salt: ""
 
-traefik:
-  pvc: traefik
-  namespace: kube-system
-
 ingress:
   host: ""
   entryPoints:
