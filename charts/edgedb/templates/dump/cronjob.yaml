@@ -1,0 +1,69 @@
+{{- if .Values.dump.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Release.Name }}-dump"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: dump
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+spec:
+  schedule: "{{ .Values.dump.schedule }}"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "common.labels.standard" . | nindent 12 }}
+            app.kubernetes.io/component: dump
+            app.kubernetes.io/part-of: {{ .Chart.Name }}
+        spec:
+          restartPolicy: Never
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                            - {{ include "common.names.name" . }}
+                        - key: app.kubernetes.io/instance
+                          operator: In
+                          values:
+                            - {{ .Release.Name }}
+                        - key: app.kubernetes.io/component
+                          operator: In
+                          values:
+                            - dump.http
+                        - key: app.kubernetes.io/part-of
+                          operator: In
+                          values:
+                            - {{ .Chart.Name }}
+                    topologyKey: kubernetes.io/hostname
+          volumes:
+            - name: scripts
+              configMap:
+                name: {{ .Release.Name }}-dump
+                defaultMode: 0500
+            - name: dump
+              persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-dump
+          containers:
+            - name: dump
+              image: alpine:latest
+              command: ["/scripts/dump.sh"]
+              env:
+                {{- include "edgedb.auth" . | nindent 16 }}
+                - name: EDGEDB_DSN
+                  value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Release.Name }}
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+                - name: dump
+                  mountPath: /dump
+{{- end }}

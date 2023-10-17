@@ -30,3 +30,18 @@ Labels to use on deploy.spec.selector.matchLabels and svc.spec.selector
 app.kubernetes.io/name: {{ include "common.names.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
+
+{{- define "edgedb.auth" -}}
+- name: EDGEDB_SERVER_USER
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Release.Name }}-user
+      key: username
+- name: EDGEDB_SERVER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: {{ .Release.Name }}-user
+      key: password
+- name: EDGEDB_CLIENT_SECURITY
+  value: insecure_dev_mode
+{{- end -}}

@@ -35,10 +35,6 @@ tasks:
   meilisearch:
     schedule: "@hourly"
 
-dumps:
-  enabled: false
-  schedule: "0 9 * * *"
-
 ingress:
   entryPoints:
     - websecure

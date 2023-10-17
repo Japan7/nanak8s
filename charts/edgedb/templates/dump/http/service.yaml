@@ -1,15 +1,17 @@
+{{- if .Values.dump.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Release.Name }}"
+  name: {{ .Release.Name }}-dump-http
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: db
+    app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}
-    app.kubernetes.io/component: db
+    app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
   ports:
-    - port: 5656
+    - port: 8080
+{{- end }}

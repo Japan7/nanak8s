@@ -4,15 +4,21 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: db
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: db
+      app.kubernetes.io/part-of: {{ .Chart.Name }}
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: db
+        app.kubernetes.io/part-of: {{ .Chart.Name }}
     spec:
       affinity:
         {{- toYaml .Values.affinity | nindent 8 }}
@@ -31,22 +37,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.cnpg.name }}-superuser
                   key: password
-            - name: EDGEDB_SERVER_SECURITY
-              value: insecure_dev_mode
             - name: EDGEDB_SERVER_BACKEND_DSN
               value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw
+            {{- include "edgedb.auth" . | nindent 12 }}
             - name: EDGEDB_SERVER_INSTANCE_NAME
               value: "{{ .Release.Name }}"
-            - name: EDGEDB_SERVER_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-user
-                  key: username
-            - name: EDGEDB_SERVER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-user
-                  key: password
             - name: EDGEDB_SERVER_ADMIN_UI
               value: enabled
           ports:

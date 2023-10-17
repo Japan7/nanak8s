@@ -18,3 +18,18 @@ ingress:
   host: ""
   entryPoints:
     - websecure
+
+dump:
+  enabled: false
+  schedule: "0 9 * * *"
+  persistence:
+    accessMode: ReadWriteOnce
+    size: 25Gi
+  http:
+    image:
+      repository: svenstaro/miniserve
+      tag: 0.24.0
+      pullPolicy: ""
+    ingress:
+      pathPrefix: "/dump"
+      annotations: {}

@@ -1,11 +1,11 @@
-{{- if .Values.dumps.enabled }}
+{{- if .Values.dump.enabled }}
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: "{{ .Release.Name }}-dumps"
+  name: "{{ .Release.Name }}-dump"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: dumps
+    app.kubernetes.io/component: dump
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 data:
   dump.sh: |
@@ -15,8 +15,8 @@ data:
     curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -s -- -y
     . ~/.config/edgedb/env
 
-    cd /dumps/
-    DUMP_NAME=$(date +%Y-%m-%d_%H-%M-%S).dump
-    edgedb dump $DUMP_NAME
-    ls *.dump | grep -v $DUMP_NAME | xargs rm -f
+    cd /dump/
+    DUMP_DIR=$(date +%Y-%m-%d_%H-%M-%S)
+    edgedb dump edgedb dump --all --format=dir $DUMP_DIR
+    ls | grep -v $DUMP_DIR | xargs rm -rf
 {{- end }}

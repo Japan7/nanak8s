@@ -1,16 +1,18 @@
-{{- if .Values.dumps.enabled }}
+{{- if .Values.dump.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-dumps
+  name: {{ .Release.Name }}-dump
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: dumps
+    app.kubernetes.io/component: dump
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 spec:
+  {{- with .Values.dump.persistence }}
   accessModes:
-    - ReadWriteOnce
+    - {{ .accessMode }}
   resources:
     requests:
-      storage: 15Gi
+      storage: {{ .size }}
+  {{- end }}
 {{- end }}

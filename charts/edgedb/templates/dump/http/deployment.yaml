@@ -1,0 +1,42 @@
+{{- if .Values.dump.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-dump-http"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: dump.http
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: dump.http
+      app.kubernetes.io/part-of: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: dump.http
+        app.kubernetes.io/part-of: {{ .Chart.Name }}
+    spec:
+      volumes:
+        - name: dump
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-dump
+      containers:
+        - name: http
+          {{- with .Values.dump.http }}
+          {{- with .image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
+          args: ["--route-prefix", {{ .ingress.pathPrefix }}, "/html"]
+          {{- end }}
+          volumeMounts:
+            - name: dump
+              mountPath: /html
+          ports:
+            - containerPort: 8080
+{{- end }}
