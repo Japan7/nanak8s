@@ -5,6 +5,7 @@ releases:
       - apps:
           # System
           - name: traefik
+            namespace: kube-system
           - name: kubernetes-dashboard
           - name: longhorn
             namespace: longhorn-system

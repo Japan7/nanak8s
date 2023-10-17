@@ -17,6 +17,6 @@ releases:
           host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: traefik-traefik-forward-auth-nanak8s@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
