@@ -24,27 +24,25 @@ spec:
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-                - weight: 100
-                  podAffinityTerm:
-                    labelSelector:
-                      matchExpressions:
-                        - key: app.kubernetes.io/name
-                          operator: In
-                          values:
-                            - {{ include "common.names.name" . }}
-                        - key: app.kubernetes.io/instance
-                          operator: In
-                          values:
-                            - {{ .Release.Name }}
-                        - key: app.kubernetes.io/component
-                          operator: In
-                          values:
-                            - dump.http
-                        - key: app.kubernetes.io/part-of
-                          operator: In
-                          values:
-                            - {{ .Chart.Name }}
-                    topologyKey: kubernetes.io/hostname
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - {{ include "common.names.name" . }}
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - {{ .Release.Name }}
+                      - key: app.kubernetes.io/component
+                        operator: In
+                        values:
+                          - dump.http
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - {{ .Chart.Name }}
+                  topologyKey: kubernetes.io/hostname
           volumes:
             - name: scripts
               configMap:
