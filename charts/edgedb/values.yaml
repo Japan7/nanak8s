@@ -24,7 +24,7 @@ dump:
   schedule: "0 9 * * *"
   persistence:
     accessMode: ReadWriteOnce
-    size: 25Gi
+    size: 15Gi
   http:
     image:
       repository: svenstaro/miniserve
