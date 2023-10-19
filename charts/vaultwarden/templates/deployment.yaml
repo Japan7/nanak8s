@@ -16,6 +16,8 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
       {{- if .Values.ldap.enabled }}
       nodeSelector:
         kubernetes.io/arch: amd64 # vaultwarden_ldap: no arm64 image available

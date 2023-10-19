@@ -39,5 +39,21 @@ releases:
           name: outline-cnpg
       - env: |
           {{ .Values.env | nindent 10 }}
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: cnpg.io/cluster
+                        operator: In
+                        values:
+                          - outline-cnpg
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
       - ingress:
           host: docs.{{ .Values.domain }}

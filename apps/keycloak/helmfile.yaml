@@ -36,6 +36,22 @@ releases:
           existingSecretPasswordKey: password
       - production: true
       - proxy: edge
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: cnpg.io/cluster
+                        operator: In
+                        values:
+                          - keycloak-cnpg
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
       - ingress:
           enabled: true
           hostname: keycloak.{{ .Values.domain }}

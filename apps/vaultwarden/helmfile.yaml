@@ -31,5 +31,21 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: cnpg.io/cluster
+                        operator: In
+                        values:
+                          - vaultwarden-cnpg
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
       - ingress:
           host: vaultwarden.{{ .Values.domain }}

@@ -14,10 +14,12 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
       volumes:
-      - name: env
-        secret:
-          secretName: {{ .Release.Name }}-env
+        - name: env
+          secret:
+            secretName: {{ .Release.Name }}-env
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

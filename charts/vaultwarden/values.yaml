@@ -5,6 +5,8 @@ image:
 
 replicaCount: 1
 
+affinity: {}
+
 updateStrategy:
   type: RollingUpdate
 
