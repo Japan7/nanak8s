@@ -12,6 +12,8 @@ releases:
     chart: longhorn/longhorn
     version: 1.5.1
     values:
+      - longhornUI:
+          replicas: 1
       - ingress:
           enabled: true
           host: longhorn.{{ .Values.domain }}
