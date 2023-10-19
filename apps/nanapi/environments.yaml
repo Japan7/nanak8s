@@ -5,28 +5,26 @@ environments:
       - tasks: true
       - affinity:
           podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - edgedb
-                      - key: app.kubernetes.io/instance
-                        operator: In
-                        values:
-                          - nanadb
-                      - key: app.kubernetes.io/component
-                        operator: In
-                        values:
-                          - db
-                      - key: app.kubernetes.io/part-of
-                        operator: In
-                        values:
-                          - edgedb
-                  topologyKey: kubernetes.io/hostname
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - edgedb
+                    - key: app.kubernetes.io/instance
+                      operator: In
+                      values:
+                        - nanadb
+                    - key: app.kubernetes.io/component
+                      operator: In
+                      values:
+                        - db
+                    - key: app.kubernetes.io/part-of
+                      operator: In
+                      values:
+                        - edgedb
+                topologyKey: kubernetes.io/hostname
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml

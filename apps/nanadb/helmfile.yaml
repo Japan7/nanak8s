@@ -23,20 +23,18 @@ releases:
           password: "{{ .Values.nanadb.password }}"
       - affinity:
           podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - nanadb-cnpg
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: cnpg.io/cluster
+                      operator: In
+                      values:
+                        - nanadb-cnpg
+                    - key: cnpg.io/instanceRole
+                      operator: In
+                      values:
+                        - primary
+                topologyKey: kubernetes.io/hostname
       - ingress:
           host: nanadb.{{ .Values.domain }}
       - dump:
