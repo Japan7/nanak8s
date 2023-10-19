@@ -21,7 +21,7 @@ kara:
 rclone:
   image:
     repository: rclone/rclone
-    tag: 1.64.0
+    tag: 1.64.2
     pullPolicy: ""
 
 miniserve:
