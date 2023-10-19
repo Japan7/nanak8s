@@ -17,7 +17,22 @@ releases:
       - master:
           persistence:
             size: 1Gi
-          affinity: {{ toYaml .Values.affinity | nindent 12 }}
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: app.kubernetes.io/name
+                          operator: In
+                          values:
+                            - nanachan
+                        - key: app.kubernetes.io/instance
+                          operator: In
+                          values:
+                            - nanachan-{{ .Environment.Name }}
+                    topologyKey: kubernetes.io/hostname
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:

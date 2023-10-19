@@ -1,6 +1,26 @@
 environments:
   default:
+    secrets:
+      - ../globals.sops.yaml
+---
+releases:
+  - name: nanadb-cnpg
+    chart: ../../charts/cnpg-cluster
     values:
+      - release: 14
+      - storage:
+          size: 10Gi
+      - enableSuperuserAccess: true
+      - backups:
+          enabled: false
+  - name: nanadb
+    chart: ../../charts/edgedb
+    values:
+      - cnpg:
+          name: nanadb-cnpg
+      - user:
+          username: "{{ .Values.nanadb.username }}"
+          password: "{{ .Values.nanadb.password }}"
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -17,30 +37,6 @@ environments:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
-    secrets:
-      - ../globals.sops.yaml
----
-releases:
-  - name: nanadb-cnpg
-    chart: ../../charts/cnpg-cluster
-    values:
-      - release: 14
-      - storage:
-          size: 10Gi
-      - enableSuperuserAccess: true
-      - backups:
-          enabled: false
-      - affinity:
-          nodeAffinity: {{ toYaml .Values.affinity.nodeAffinity | nindent 12 }}
-  - name: nanadb
-    chart: ../../charts/edgedb
-    values:
-      - cnpg:
-          name: nanadb-cnpg
-      - user:
-          username: "{{ .Values.nanadb.username }}"
-          password: "{{ .Values.nanadb.password }}"
-      - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanadb.{{ .Values.domain }}
       - dump:
