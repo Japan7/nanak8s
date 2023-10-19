@@ -7,7 +7,7 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
-{{- with .Values.dump.ingress }}
+{{- with .Values.dump.http.ingress }}
   annotations:
     {{- range .entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
