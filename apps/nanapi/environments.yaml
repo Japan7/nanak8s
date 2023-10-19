@@ -4,15 +4,29 @@ environments:
       - tag: 2023.09.02
       - tasks: true
       - affinity:
-          nodeAffinity:
+          podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 1
-                preference:
-                  matchExpressions:
-                    - key: topology.kubernetes.io/region
-                      operator: In
-                      values:
-                        - eu-west
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - edgedb
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - nanadb
+                      - key: app.kubernetes.io/component
+                        operator: In
+                        values:
+                          - db
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - edgedb
+                  topologyKey: kubernetes.io/hostname
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml

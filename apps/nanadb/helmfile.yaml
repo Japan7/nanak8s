@@ -2,15 +2,21 @@ environments:
   default:
     values:
       - affinity:
-          nodeAffinity:
+          podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
-                - weight: 1
-                  preference:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
                     matchExpressions:
-                      - key: topology.kubernetes.io/region
+                      - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - eu-west
+                          - nanadb-cnpg
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
     secrets:
       - ../globals.sops.yaml
 ---
