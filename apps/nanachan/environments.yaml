@@ -24,6 +24,7 @@ environments:
                       values:
                         - nanapi
                 topologyKey: kubernetes.io/hostname
+                namespaceSelector: {}
     secrets:
       - ../globals.sops.yaml
       - shared.sops.yaml

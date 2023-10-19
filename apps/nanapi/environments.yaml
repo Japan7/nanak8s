@@ -25,6 +25,7 @@ environments:
                       values:
                         - edgedb
                 topologyKey: kubernetes.io/hostname
+                namespaceSelector: {}
     secrets:
       - ../globals.sops.yaml
       - prod.sops.yaml
