@@ -4,27 +4,29 @@ environments:
       - tag: 2023.10.11-3
       - affinity:
           podAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                    - key: app.kubernetes.io/name
-                      operator: In
-                      values:
-                        - nanapi
-                    - key: app.kubernetes.io/instance
-                      operator: In
-                      values:
-                        - nanapi-prod
-                    - key: app.kubernetes.io/component
-                      operator: In
-                      values:
-                        - api
-                    - key: app.kubernetes.io/part-of
-                      operator: In
-                      values:
-                        - nanapi
-                topologyKey: kubernetes.io/hostname
-                namespaceSelector: {}
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - nanapi
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - nanapi-prod
+                      - key: app.kubernetes.io/component
+                        operator: In
+                        values:
+                          - api
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - nanapi
+                  topologyKey: kubernetes.io/hostname
+                  namespaceSelector: {}
     secrets:
       - ../globals.sops.yaml
       - shared.sops.yaml
