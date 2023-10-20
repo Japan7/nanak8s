@@ -7,6 +7,8 @@ metadata:
 spec:
   imageName: "{{ .Values.imageName }}:{{ .Values.release }}"
   instances: {{ .Values.instances }}
+  affinity:
+    {{- toYaml .Values.affinity | nindent 4 }}
   storage:
     size: {{ .Values.storage.size }}
     storageClass: longhorn-single
