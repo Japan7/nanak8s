@@ -42,7 +42,7 @@ releases:
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
-          tag: master@sha256:dd12682b75d57bc59b5ec218a8a47c3fe4d487c50a497a314cce159244602bc0 # renovate: repository=git.japan7.bde.enseeiht.fr/japan7/mugen-import-api
+          tag: master@sha256:d78516cae6802f2d0e09b1174e8924a1509fb5c8e742a6aeea44af091c038afc # renovate: repository=git.japan7.bde.enseeiht.fr/japan7/mugen-import-api
           pullSecrets:
             - forgejo-regcred
       - updateStrategy:
