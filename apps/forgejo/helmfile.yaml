@@ -87,11 +87,6 @@ releases:
       - nodeSelector:
           kubernetes.io/arch: amd64
       - dind:
-          dns:
-            - 1.1.1.1
-            - 1.0.0.1
-            - 2606:4700:4700::1111
-            - 2606:4700:4700::1001
           mtu: 1230
   - name: forgejo-runner-1
     chart: ../../charts/forgejo-runner
@@ -101,11 +96,6 @@ releases:
       - nodeSelector:
           kubernetes.io/arch: amd64
       - dind:
-          dns:
-            - 1.1.1.1
-            - 1.0.0.1
-            - 2606:4700:4700::1111
-            - 2606:4700:4700::1001
           mtu: 1230
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
