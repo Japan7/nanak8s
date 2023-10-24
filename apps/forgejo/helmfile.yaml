@@ -105,6 +105,8 @@ releases:
     values:
       - cronjob:
           schedule: "@hourly"
+          concurrencyPolicy: Forbid
+          successfulJobsHistoryLimit: 1
       - renovate:
           config: |
             {{ .Values.renovate.config | nindent 12 }}
