@@ -112,7 +112,6 @@ releases:
           persistence:
             cache:
               enabled: true
-              storageClass: longhorn-single
       - securityContext:
           fsGroup: 1000
   - name: forgejo-extras
