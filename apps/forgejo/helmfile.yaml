@@ -110,6 +110,8 @@ releases:
           persistence:
             cache:
               enabled: true
+      - securityContext:
+          fsGroup: 1000
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
