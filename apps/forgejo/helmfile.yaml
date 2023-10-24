@@ -101,7 +101,7 @@ releases:
           mtu: 1230
   - name: renovate
     chart: renovate/renovate
-    version: 37.31.4
+    version: 37.31.5
     values:
       - cronjob:
           schedule: "@hourly"
