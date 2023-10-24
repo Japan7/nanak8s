@@ -19,7 +19,7 @@ releases:
                       values:
                         - eu-west
       - storage:
-          size: 10Gi
+          size: 15Gi
       - enableSuperuserAccess: true
       - backups:
           enabled: false
