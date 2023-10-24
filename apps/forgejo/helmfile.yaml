@@ -103,6 +103,8 @@ releases:
     chart: renovate/renovate
     version: 37.31.3
     values:
+      - cronjob:
+          schedule: "@hourly"
       - renovate:
           config: |
             {{ .Values.renovate.config | nindent 12 }}
