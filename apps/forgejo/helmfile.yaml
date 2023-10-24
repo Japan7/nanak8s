@@ -8,6 +8,8 @@ repositories:
   - name: forgejo-contrib
     url: codeberg.org/forgejo-contrib
     oci: true
+  - name: renovate
+    url: https://docs.renovatebot.com/helm-charts
 
 releases:
   - name: forgejo-cnpg
@@ -97,6 +99,17 @@ releases:
           kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
+  - name: renovate
+    chart: renovate/renovate
+    version: 37.31.3
+    values:
+      - renovate:
+          config: |
+            {{ .Values.renovate.config | nindent 12 }}
+          configIsSecret: true
+          persistence:
+            cache:
+              enabled: true
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
