@@ -12,6 +12,11 @@ releases:
     chart: longhorn/longhorn
     version: 1.5.1
     values:
+      - csi:
+          attacherReplicaCount: 2
+          provisionerReplicaCount: 2
+          resizerReplicaCount: 2
+          snapshotterReplicaCount: 2
       - longhornUI:
           replicas: 1
       - ingress:
