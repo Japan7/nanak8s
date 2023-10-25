@@ -21,7 +21,7 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
     chart: bitnami/keycloak
-    version: 17.1.1
+    version: 17.1.2
     values:
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
