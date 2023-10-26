@@ -1,5 +1,7 @@
 gitea:
     adminPassword: ENC[AES256_GCM,data:vNr00cXi0aY9TOuhbo8=,iv:wkvP7ZuFm/v9sgUdkUaGli0i8Up8u0hdfNaJ8+8WBT0=,tag:xBHTZ2jjIwWUfSiGuQ4n0w==,type:str]
+    mailer:
+        from: ENC[AES256_GCM,data:JmFyxU2RnDfP0BxPqEtyp+b8zHD/hXY308Tpgnglv8fFcpNm,iv:Xk+350CBP2jtRpkD1xXrHBSp/zw/ieBhY9qweczLyZk=,tag:HiNaBtksWblNOY05o3sBtA==,type:str]
 cnpg:
     password: ENC[AES256_GCM,data:xMoKwZ8cnw==,iv:uTjDhEPLOXDuf5ze6YTneQyaV01JCz3swJ6kG4T2NZw=,tag:EprV6qJRysraLddfs+xn9Q==,type:str]
 regcreds:
@@ -22,8 +24,8 @@ sops:
             WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
             e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-10-24T01:53:20Z"
-    mac: ENC[AES256_GCM,data:rgVvwEJK/22jEcN9n/rRzmo0C48qqJVymr/jmDIcZDgD3ll4rv5p4ud2dgPv8fOXuuiGNCrWR8TMKc7BLRAB/UAOb84SKUuJ8gzIP6BjAeLgMWDcnLuw52uJHJnbAPTmFMPcxErZ3wUK+I/tofflchac2Tyy82CwRQLmWpdL8TY=,iv:yyh9PzRiMraqZZZ+dqNTdFrBiPjOoZc6593YzJ8tuNU=,tag:2997ItCkLPIqIU8GZoEALg==,type:str]
+    lastmodified: "2023-10-26T03:04:26Z"
+    mac: ENC[AES256_GCM,data:EOdhWyJMkwa78HAAiCiBnNWIqb+Fy3ZXWWZfUqGJBYeEvxFnEgf4gsVI0c9YLbrssWNLI3DmpGoL18nAOfM1TkKIVCORdn2OeaCmRUCHKPiYEfJujcz9l5y0RYDVh37fWwKHKvkeDeIV9CYu9+sXBmU8wLHUXFkRqHLoDpxPgEs=,iv:lQrVeMtB82ruLYKsSRTjPMctbAYGY1+Wyo1WPRQAuxA=,tag:oc9hOdL5OF8fhj+GgraWiw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1
