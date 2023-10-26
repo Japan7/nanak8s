@@ -120,6 +120,9 @@ releases:
           configIsSecret: true
       - secrets:
           GITHUB_COM_TOKEN: "{{ .Values.renovate.ghToken }}"
+      - env:
+          LOG_LEVEL: debug
+          LOG_FORMAT: json
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
