@@ -118,13 +118,8 @@ releases:
           config: |
             {{ .Values.renovate.config | nindent 12 }}
           configIsSecret: true
-          persistence:
-            cache:
-              enabled: true
       - secrets:
           GITHUB_COM_TOKEN: "{{ .Values.renovate.ghToken }}"
-      - securityContext:
-          fsGroup: 1000
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
