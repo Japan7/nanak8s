@@ -121,6 +121,8 @@ releases:
           persistence:
             cache:
               enabled: true
+      - secrets:
+          GITHUB_COM_TOKEN: "{{ .Values.renovate.ghToken }}"
       - securityContext:
           fsGroup: 1000
   - name: forgejo-extras
