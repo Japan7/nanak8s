@@ -44,7 +44,7 @@ releases:
               SMTP_ADDR: "{{ .Values.smtp.host }}"
               SMTP_PORT: 587
               USER: "{{ .Values.smtp.username }}"
-              PASSWD: "`{{ .Values.smtp.password }}`"
+              PASSWD: "{{ .Values.smtp.password }}"
               FROM: "{{ .Values.gitea.mailer.from }}"
             database:
               DB_TYPE: postgres
