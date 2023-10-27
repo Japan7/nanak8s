@@ -41,7 +41,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: sha-1f9f9c9
+      - tag: sha-dbd5b23
       - tasks: false
       - affinity: {}
     secrets:
