@@ -52,6 +52,9 @@ releases:
               NAME: app
               USER: app
               PASSWD: "{{ .Values.cnpg.password }}"
+            cron:
+              ENABLED: true
+              RUN_AT_START: true
             # https://forgejo.org/2023-02-27-forgejo-actions/
             actions:
               ENABLED: true
