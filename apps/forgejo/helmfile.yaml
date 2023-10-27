@@ -100,6 +100,8 @@ releases:
           kubernetes.io/hostname: camp
       - dind:
           mtu: 1230
+          image:
+            tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
   - name: forgejo-runner-1
     chart: ../../charts/forgejo-runner
     values:
@@ -109,6 +111,8 @@ releases:
           kubernetes.io/hostname: gungnir
       - dind:
           mtu: 1230
+          image:
+            tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
   - name: renovate
     chart: renovate/renovate
     version: 37.33.6
