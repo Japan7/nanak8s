@@ -12,6 +12,8 @@ database: app
 
 enableSuperuserAccess: false
 
+postgresql: {}
+
 user:
   username: app
   password: ""
