@@ -41,8 +41,8 @@ spec:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          command: ["--config", "config.yaml", "forgejo-runner"]
-          args: ["daemon"]
+          command: ["forgejo-runner"]
+          args: ["--config", "config.yaml", "daemon"]
           volumeMounts:
             - name: runner-file
               mountPath: /data/.runner
