@@ -37,6 +37,8 @@ spec:
           persistentVolumeClaim:
             claimName: "{{ .Release.Name }}-cache"
         {{- end }}
+      securityContext:
+        fsGroup: 1000
       containers:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -56,8 +58,6 @@ spec:
             - name: cache
               mountPath: {{ .Values.config.cache.dir | default "/data/.cache/actcache" }}
             {{- end }}
-          securityContext:
-            fsGroup: 1000
         - name: dind
           image: "{{ .Values.dind.image.repository }}:{{ .Values.dind.image.tag }}"
           imagePullPolicy: "{{ .Values.dind.image.pullPolicy }}"
