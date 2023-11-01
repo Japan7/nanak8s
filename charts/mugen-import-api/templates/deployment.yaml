@@ -39,7 +39,7 @@ spec:
           volumeMounts:
             - name: config
               subPath: config.py
-              mountPath: /config.py
+              mountPath: /app/config.py
             - name: db
               mountPath: /db
             - name: download
