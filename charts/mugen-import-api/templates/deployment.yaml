@@ -39,7 +39,7 @@ spec:
           volumeMounts:
             - name: config
               subPath: config.py
-              mountPath: /app/config.py
+              mountPath: /app/mugen_import_api/config.py
             - name: db
               mountPath: /db
             - name: download
