@@ -17,7 +17,7 @@ releases:
     values:
       - release: 15
       - storage:
-          size: 5Gi
+          size: 10Gi
       - user:
           password: "{{ .Values.cnpg.password }}"
       - backups:
