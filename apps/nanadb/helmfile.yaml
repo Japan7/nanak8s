@@ -4,10 +4,10 @@ environments:
       - ../globals.sops.yaml
 ---
 releases:
-  - name: nanadb-cnpg
+  - name: nanadb-cnpg-16
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 14
+      - release: 16
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -24,7 +24,7 @@ releases:
       - postgresql:
           parameters:
             # https://pgtune.leopard.in.ua
-            # DB Version: 14
+            # DB Version: 16
             # OS Type: linux
             # DB Type: mixed
             # Total Memory (RAM): 4 GB
@@ -48,7 +48,7 @@ releases:
     chart: ../../charts/edgedb
     values:
       - cnpg:
-          name: nanadb-cnpg
+          name: nanadb-cnpg-16
       - user:
           username: "{{ .Values.nanadb.username }}"
           password: "{{ .Values.nanadb.password }}"
@@ -62,7 +62,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - nanadb-cnpg
+                          - nanadb-cnpg-16
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:
