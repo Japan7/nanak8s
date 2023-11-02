@@ -49,7 +49,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - outline-cnpg
+                          - outline-cnpg-16
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:

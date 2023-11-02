@@ -41,7 +41,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - vaultwarden-cnpg
+                          - vaultwarden-cnpg-16
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:
