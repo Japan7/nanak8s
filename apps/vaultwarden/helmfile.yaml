@@ -20,7 +20,7 @@ releases:
       - updateStrategy:
           type: Recreate
       - cnpg:
-          name: vaultwarden-cnpg
+          name: vaultwarden-cnpg-16
       - config:
           signupsAllowed: false
           adminToken: "{{ .Values.adminToken }}"

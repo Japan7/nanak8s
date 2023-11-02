@@ -36,7 +36,7 @@ releases:
           repository: ghcr.io/japan7/outline
           tag: oidc-groups@sha256:db5735caeb594e37cb5f5eab2151c0a277bda345c56fed2797e638e4c2700ddb # renovate: repository=ghcr.io/japan7/outline
       - cnpg:
-          name: outline-cnpg
+          name: outline-cnpg-16
       - env: |
           {{ .Values.env | nindent 10 }}
       - affinity:
