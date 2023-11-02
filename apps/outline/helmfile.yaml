@@ -13,7 +13,7 @@ releases:
   - name: outline-cnpg
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 16
+      - release: 15
       - backups:
           minio:
             endpoint: https://minio.{{ .Values.domain }}
