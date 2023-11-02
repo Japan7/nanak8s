@@ -10,10 +10,10 @@ repositories:
     oci: true
 
 releases:
-  - name: outline-cnpg
+  - name: outline-cnpg-16
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 15
+      - release: 16
       - backups:
           minio:
             endpoint: https://minio.{{ .Values.domain }}
