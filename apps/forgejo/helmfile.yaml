@@ -12,10 +12,10 @@ repositories:
     url: https://docs.renovatebot.com/helm-charts
 
 releases:
-  - name: forgejo-cnpg
+  - name: forgejo-cnpg-16
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 15
+      - release: 16
       - storage:
           size: 10Gi
       - user:
@@ -48,7 +48,7 @@ releases:
               FROM: "{{ .Values.gitea.mailer.from }}"
             database:
               DB_TYPE: postgres
-              HOST: forgejo-cnpg-rw
+              HOST: forgejo-cnpg-16-rw
               NAME: app
               USER: app
               PASSWD: "{{ .Values.cnpg.password }}"
@@ -75,7 +75,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - forgejo-cnpg
+                          - forgejo-cnpg-16
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:
