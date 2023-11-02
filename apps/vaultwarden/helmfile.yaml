@@ -5,7 +5,7 @@ environments:
       - default.sops.yaml
 ---
 releases:
-  - name: vaultwarden-cnpg
+  - name: vaultwarden-cnpg-16
     chart: ../../charts/cnpg-cluster
     values:
       - release: 16
