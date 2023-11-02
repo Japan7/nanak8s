@@ -10,10 +10,10 @@ repositories:
     oci: true
 
 releases:
-  - name: keycloak-cnpg
+  - name: keycloak-cnpg-16
     chart: ../../charts/cnpg-cluster
     values:
-      - release: 15
+      - release: 16
       - backups:
           minio:
             endpoint: https://minio.{{ .Values.domain }}
@@ -29,10 +29,10 @@ releases:
       - postgresql:
           enabled: false
       - externalDatabase:
-          host: keycloak-cnpg-rw
+          host: keycloak-cnpg-16-rw
           database: app
           user: app
-          existingSecret: keycloak-cnpg-app
+          existingSecret: keycloak-cnpg-16-app
           existingSecretPasswordKey: password
       - production: true
       - proxy: edge
@@ -46,7 +46,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - keycloak-cnpg
+                          - keycloak-cnpg-16
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:
