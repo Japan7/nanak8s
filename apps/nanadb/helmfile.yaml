@@ -74,6 +74,7 @@ releases:
           enabled: true
           persistence:
             labels:
+              recurring-job.longhorn.io/source: enabled
               recurring-job.longhorn.io/longhorn-backup: enabled
           http:
             ingress:

@@ -66,6 +66,7 @@ releases:
       - persistence:
           size: 20Gi
           labels:
+            recurring-job.longhorn.io/source: enabled
             recurring-job.longhorn.io/longhorn-backup: enabled
       - affinity:
           podAffinity:

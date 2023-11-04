@@ -41,4 +41,5 @@ releases:
         metadata:
           name: n8n
           labels:
+            recurring-job.longhorn.io/source: enabled
             recurring-job.longhorn.io/longhorn-backup: enabled

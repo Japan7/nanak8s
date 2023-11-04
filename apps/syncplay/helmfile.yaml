@@ -13,6 +13,7 @@ releases:
           salt: "{{ .Values.salt }}"
       - persistence:
           labels:
+            recurring-job.longhorn.io/source: enabled
             recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: syncplay.{{ .Values.domain }}
