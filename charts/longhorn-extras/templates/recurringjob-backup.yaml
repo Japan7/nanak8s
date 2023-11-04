@@ -11,4 +11,4 @@ spec:
   task: backup
   retain: 7
   concurrency: 1
-  cron: "@daily"
+  cron: "0 15 * * *"
