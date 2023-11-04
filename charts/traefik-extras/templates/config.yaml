@@ -38,6 +38,7 @@ spec:
       # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
     persistence:
       enabled: true
+      existingClaim: traefik-data
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.{{ .Values.domain }}`)
