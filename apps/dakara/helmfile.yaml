@@ -14,6 +14,9 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: dakara.{{ .Values.domain }}
   - name: dakara-client
@@ -53,6 +56,9 @@ releases:
             path: kara/Mugen
             accessKey: "{{ .Values.minio.accessKey }}"
             secretKey: "{{ .Values.minio.secretKey }}"
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:

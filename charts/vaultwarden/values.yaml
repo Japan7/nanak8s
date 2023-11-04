@@ -18,6 +18,7 @@ cnpg:
 persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
+  labels: {}
 
 config:
   websocketEnabled: true

@@ -35,3 +35,10 @@ releases:
             - host: n8n.{{ .Values.domain }}
               paths:
                 - /
+    strategicMergePatches:
+      - apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: n8n
+          labels:
+            recurring-job.longhorn.io/longhorn-backup: enabled

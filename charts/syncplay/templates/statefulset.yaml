@@ -62,11 +62,15 @@ spec:
             - name: certs
               mountPath: /certs
   volumeClaimTemplates:
+    {{- with .Values.persistence }}
     - metadata:
         name: rooms
+        labels:
+          {{- toYaml .labels | nindent 10 }}
       spec:
         accessModes:
-          - "ReadWriteOnce"
+          - {{ .accessMode }}
         resources:
           requests:
-            storage: 1Gi
+            storage: {{ .size }}
+    {{- end }}

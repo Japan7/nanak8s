@@ -12,6 +12,7 @@ updateStrategy:
 persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
+  labels: {}
 
 mugen:
   minio:

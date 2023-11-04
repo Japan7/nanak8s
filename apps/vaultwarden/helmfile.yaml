@@ -47,5 +47,8 @@ releases:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: vaultwarden.{{ .Values.domain }}

@@ -72,6 +72,9 @@ releases:
           host: nanadb.{{ .Values.domain }}
       - dump:
           enabled: true
+          persistence:
+            labels:
+              recurring-job.longhorn.io/longhorn-backup: enabled
           http:
             ingress:
               host: nanadb-dump.{{ .Values.domain }}

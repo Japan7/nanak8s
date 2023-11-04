@@ -25,6 +25,7 @@ dump:
   persistence:
     accessMode: ReadWriteOnce
     size: 15Gi
+    labels: {}
   http:
     image:
       repository: svenstaro/miniserve

@@ -7,6 +7,7 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: dump
     app.kubernetes.io/part-of: {{ .Chart.Name }}
+    {{- .Values.dump.persistence.labels | nindent 4 }}
 spec:
   {{- with .Values.dump.persistence }}
   accessModes:

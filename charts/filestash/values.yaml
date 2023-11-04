@@ -15,6 +15,7 @@ persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
   mountPath: /app/data/state
+  labels: {}
 
 cache:
   mountPath: /app/data/cache

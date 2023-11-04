@@ -4,6 +4,7 @@ metadata:
   name: {{ .Release.Name }}-state
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+    {{- .Values.persistence.labels | nindent 4 }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

@@ -65,6 +65,8 @@ releases:
           enabled: false
       - persistence:
           size: 20Gi
+          labels:
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:

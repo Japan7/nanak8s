@@ -74,11 +74,15 @@ spec:
           ports:
             - containerPort: 22222
   volumeClaimTemplates:
+    {{- with .Values.persistence }}
     - metadata:
         name: database
+        labels:
+          {{- toYaml .labels | nindent 10 }}
       spec:
         accessModes:
-          - "ReadWriteOnce"
+          - {{ .accessMode }}
         resources:
           requests:
-            storage: 1Gi
+            storage: {{ .size }}
+    {{- end }}

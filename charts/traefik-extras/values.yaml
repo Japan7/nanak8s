@@ -6,6 +6,11 @@ traefik:
   # - name:
   #   port:
 
+persistence:
+  accessMode: ReadWriteOnce
+  size: 128Mi
+  labels: {}
+
 dumper:
   image:
     repository: ldez/traefik-certs-dumper

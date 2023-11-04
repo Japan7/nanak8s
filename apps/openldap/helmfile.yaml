@@ -41,3 +41,14 @@ releases:
       - persistence:
           enabled: true
           size: 1Gi
+    jsonPatches:
+      - target:
+          group: apps
+          version: v1
+          kind: StatefulSet
+          name: openldap
+        patch:
+          - op: add
+            path: /spec/volumeClaimTemplates/0/metadata/labels
+            value:
+              recurring-job.longhorn.io/longhorn-backup: enabled

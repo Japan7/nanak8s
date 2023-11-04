@@ -14,7 +14,7 @@ spec:
     storageClass: longhorn-single
   enableSuperuserAccess: {{ .Values.enableSuperuserAccess }}
   postgresql:
-    {{ toYaml .Values.postgresql | nindent 4 }}
+    {{- toYaml .Values.postgresql | nindent 4 }}
   bootstrap:
     initdb:
       database: {{ .Values.database }}

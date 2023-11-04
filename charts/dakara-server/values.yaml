@@ -16,6 +16,11 @@ smtp:
   user: ""
   password: ""
 
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
+
 ingress:
   host: ""
   entryPoints:
