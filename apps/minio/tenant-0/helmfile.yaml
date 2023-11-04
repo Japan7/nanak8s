@@ -3,6 +3,7 @@ environments:
     values:
       - tenant: 0
       - node: akari
+      - jsonPatches: []
 ---
 bases:
   - ../tenant.helmfile.yaml
