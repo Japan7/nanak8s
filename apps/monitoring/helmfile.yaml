@@ -16,8 +16,6 @@ releases:
       - loki:
           persistence:
             enabled: true
-            labels:
-              recurring-job.longhorn.io/longhorn-backup: enabled
       - grafana:
           enabled: true
           adminPassword: "{{ .Values.grafana.password }}"
