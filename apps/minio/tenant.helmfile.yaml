@@ -45,3 +45,4 @@ releases:
               traefik.ingress.kubernetes.io/router.middlewares: minio-operator-minio-console-stripprefix@kubernetescrd
             host: minio-{{ .Values.tenant }}.{{ .Values.domain }}
             path: /console
+    jsonPatches: {{ toYaml .Values.jsonPatches | nindent 6 }}
