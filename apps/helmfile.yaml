@@ -39,6 +39,7 @@ releases:
           - name: n8n
           - name: outline
           - name: syncplay
+          - name: website
 
           # Data
           - name: nanadb

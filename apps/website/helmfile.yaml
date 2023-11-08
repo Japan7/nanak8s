@@ -1,0 +1,14 @@
+bases:
+  - environments.yaml
+---
+releases:
+  - name: website
+    chart: ../../charts/website
+    values:
+      - image:
+          repository: git.{{ .Values.domain }}/japan7/website
+          tag: latest@{{ .Values.digest }}
+          pullSecrets:
+            - forgejo-regcred
+      - ingress:
+          host: website.{{ .Values.domain }}
