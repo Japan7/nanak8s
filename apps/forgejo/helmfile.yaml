@@ -125,7 +125,7 @@ releases:
             tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
   - name: renovate
     chart: renovate/renovate
-    version: 37.50.2
+    version: 37.51.0
     values:
       - cronjob:
           schedule: "@hourly"
