@@ -8,5 +8,4 @@ ingress:
   host: ""
   entryPoints:
     - websecure
-  annotations: {}
   authAnnotations: {}
