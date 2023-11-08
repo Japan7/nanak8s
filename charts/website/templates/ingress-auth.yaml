@@ -35,3 +35,27 @@ spec:
                 name: "{{ .Release.Name }}"
                 port:
                   number: 8080
+    - host: "www.{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /_oauth
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /gallery
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /links
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 8080
