@@ -8,7 +8,9 @@ metadata:
     {{- range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{- end }}
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

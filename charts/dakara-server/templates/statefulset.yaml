@@ -77,8 +77,10 @@ spec:
     {{- with .Values.persistence }}
     - metadata:
         name: database
+        {{- with .labels }}
         labels:
-          {{- toYaml .labels | nindent 10 }}
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
       spec:
         accessModes:
           - {{ .accessMode }}

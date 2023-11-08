@@ -7,14 +7,18 @@ metadata:
 spec:
   imageName: "{{ .Values.imageName }}:{{ .Values.release }}"
   instances: {{ .Values.instances }}
+  {{- with .Values.affinity }}
   affinity:
-    {{- toYaml .Values.affinity | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   storage:
     size: {{ .Values.storage.size }}
     storageClass: longhorn-single
   enableSuperuserAccess: {{ .Values.enableSuperuserAccess }}
+  {{- with .Values.postgresql }}
   postgresql:
-    {{- toYaml .Values.postgresql | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   bootstrap:
     initdb:
       database: {{ .Values.database }}

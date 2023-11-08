@@ -4,7 +4,9 @@ metadata:
   name: {{ .Release.Name }}-data
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    {{- toYaml .Values.persistence.labels | nindent 4 }}
+    {{- with .Values.persistence.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}

@@ -42,6 +42,8 @@ spec:
                 - name: localsettings
                   mountPath: /app/nanapi/local_settings.py
                   subPath: local_settings.py
+              {{- with .Values.tasks.userlists.resources }}
               resources:
-                {{- toYaml .Values.tasks.userlists.resources | nindent 16 }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
 {{- end }}

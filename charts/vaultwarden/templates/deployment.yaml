@@ -9,15 +9,19 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- with .Values.updateStrategy }}
   strategy:
-    {{- toYaml .Values.updateStrategy | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      {{- with .Values.affinity }}
       affinity:
-        {{- toYaml .Values.affinity | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if .Values.ldap.enabled }}
       nodeSelector:
         kubernetes.io/arch: amd64 # vaultwarden_ldap: no arm64 image available

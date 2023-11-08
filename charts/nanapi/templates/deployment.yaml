@@ -20,8 +20,10 @@ spec:
         app.kubernetes.io/component: api
         app.kubernetes.io/part-of: {{ .Chart.Name }}
     spec:
+      {{- with .Values.affinity }}
       affinity:
-        {{- toYaml .Values.affinity | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       imagePullSecrets:
         {{- range .Values.image.pullSecrets }}
         - name: {{ . }}

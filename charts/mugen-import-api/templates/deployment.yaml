@@ -9,8 +9,10 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- with .Values.updateStrategy }}
   strategy:
-    {{- toYaml .Values.updateStrategy | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:

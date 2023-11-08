@@ -6,7 +6,9 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: extras
     app.kubernetes.io/part-of: traefik
-    {{- toYaml .Values.persistence.labels | nindent 4 }}
+    {{- with .Values.persistence.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode }}
