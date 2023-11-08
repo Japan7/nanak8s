@@ -56,12 +56,12 @@ releases:
             cron:
               ENABLED: true
               RUN_AT_START: true
-              delete_old_actions:
-                ENABLED: true
-                RUN_AT_START: true
-              gc_lfs:
-                ENABLED: true
-                RUN_AT_START: true
+            "cron.delete_old_actions":
+              ENABLED: true
+              RUN_AT_START: true
+            "cron.gc_lfs":
+              ENABLED: true
+              RUN_AT_START: true
             actions:
               ENABLED: true
               DEFAULT_ACTIONS_URL: https://github.com
