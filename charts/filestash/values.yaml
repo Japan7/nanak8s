@@ -29,5 +29,4 @@ onlyoffice:
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
+  annotations: {}

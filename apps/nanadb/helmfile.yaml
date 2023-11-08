@@ -70,6 +70,8 @@ releases:
                   topologyKey: kubernetes.io/hostname
       - ingress:
           host: nanadb.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
       - dump:
           enabled: true
           persistence:
@@ -81,4 +83,5 @@ releases:
             ingress:
               host: nanadb-dump.{{ .Values.domain }}
               annotations:
+                traefik.ingress.kubernetes.io/router.entrypoints: websecure
                 traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-nanak8s@kubernetescrd

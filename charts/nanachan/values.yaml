@@ -31,7 +31,6 @@ miniserve:
     pullPolicy: ""
 
 ingress:
-  entryPoints:
-    - websecure
   host: ""
   pathPrefix: "/"
+  annotations: {}

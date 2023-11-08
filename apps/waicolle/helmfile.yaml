@@ -15,3 +15,5 @@ releases:
       - defaultClientId: "{{ .Values.defaultClientId }}"
       - ingress:
           host: waicolle.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

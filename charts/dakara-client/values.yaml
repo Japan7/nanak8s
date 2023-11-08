@@ -9,5 +9,4 @@ affinity: {}
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
+  annotations: {}

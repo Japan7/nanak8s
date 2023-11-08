@@ -4,13 +4,10 @@ metadata:
   name: "{{ .Release.Name }}"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    {{- range .Values.ingress.entryPoints }}
-    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{- end }}
-    {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

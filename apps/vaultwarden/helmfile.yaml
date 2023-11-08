@@ -54,3 +54,5 @@ releases:
             recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: vaultwarden.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

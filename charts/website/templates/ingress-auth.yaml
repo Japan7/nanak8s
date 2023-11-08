@@ -4,13 +4,10 @@ metadata:
   name: "{{ .Release.Name }}-auth"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
+  {{- with .Values.ingress.authAnnotations }}
   annotations:
-    {{- range .Values.ingress.entryPoints }}
-    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{- end }}
-    {{- with .Values.ingress.authAnnotations }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

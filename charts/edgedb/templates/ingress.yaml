@@ -6,10 +6,10 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: db
     app.kubernetes.io/part-of: {{ .Chart.Name }}
+  {{- with .Values.ingress.annotations }}
   annotations:
-    {{- range .Values.ingress.entryPoints }}
-    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{- end }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

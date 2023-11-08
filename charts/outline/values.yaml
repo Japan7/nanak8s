@@ -16,5 +16,4 @@ env: ""
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
+  annotations: {}

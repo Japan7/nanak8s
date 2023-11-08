@@ -8,13 +8,10 @@ metadata:
     app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 {{- with .Values.dump.http.ingress }}
+  {{- with .annotations }}
   annotations:
-    {{- range .entryPoints }}
-    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{- end }}
-    {{- with .annotations }}
     {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- end }}
 spec:
   rules:
     - host: "{{ .host }}"

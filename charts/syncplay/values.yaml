@@ -16,7 +16,7 @@ persistence:
 
 ingress:
   host: ""
-  entryPoints:
+  tcpEntryPoints:
     - syncplay
   httpEntryPoints:
     - websecure

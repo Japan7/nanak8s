@@ -57,3 +57,5 @@ releases:
                   topologyKey: kubernetes.io/hostname
       - ingress:
           host: docs.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

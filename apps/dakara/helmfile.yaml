@@ -21,6 +21,8 @@ releases:
             recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: dakara.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: dakara-client
     chart: ../../charts/dakara-client
     values:
@@ -42,6 +44,8 @@ releases:
                   topologyKey: kubernetes.io/hostname
       - ingress:
           host: dakara.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: mugen-import-api
     chart: ../../charts/mugen-import-api
     values:

@@ -53,3 +53,5 @@ releases:
       - ingress:
           host: nanachan.{{ .Values.domain }}
           pathPrefix: "/{{ .Environment.Name }}"
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

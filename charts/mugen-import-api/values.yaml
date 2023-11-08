@@ -30,6 +30,4 @@ rclone:
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
   annotations: {}

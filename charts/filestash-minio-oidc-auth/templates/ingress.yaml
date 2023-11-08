@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    {{- range .Values.ingress.entryPoints }}
-    traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
-    {{- end }}
     traefik.ingress.kubernetes.io/router.priority: "69"
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

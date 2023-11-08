@@ -22,6 +22,8 @@ releases:
             recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: filestash.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: filestash-minio-oidc-auth
     chart: ../../charts/filestash-minio-oidc-auth
     values:
@@ -38,3 +40,5 @@ releases:
       - ingress:
           loginRedirect: true
           host: filestash.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

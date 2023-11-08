@@ -16,8 +16,8 @@ user:
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
+  annotations: {}
+
 
 dump:
   enabled: false
@@ -33,6 +33,4 @@ dump:
       pullPolicy: ""
     ingress:
       host: ""
-      entryPoints:
-        - websecure
       annotations: {}

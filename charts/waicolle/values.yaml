@@ -14,5 +14,4 @@ defaultClientId: ""
 
 ingress:
   host: ""
-  entryPoints:
-    - websecure
+  annotations: {}
