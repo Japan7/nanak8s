@@ -3,6 +3,8 @@
   "extends": ["config:recommended"],
   "timezone": "America/Montreal",
   "schedule": ["after 9am and before 6pm"],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
   "packageRules": [
     {
       "matchUpdateTypes": ["patch", "digest"],
