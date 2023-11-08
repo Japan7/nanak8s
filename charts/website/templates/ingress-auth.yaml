@@ -1,21 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ .Release.Name }}"
+  name: "{{ .Release.Name }}-auth"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
     {{- range .Values.ingress.entryPoints }}
     traefik.ingress.kubernetes.io/router.entrypoints: "{{ . }}"
     {{- end }}
-    {{- toYaml .Values.ingress.annotations | nindent 4 }}
+    {{- toYaml .Values.ingress.authAnnotations | nindent 4 }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /gallery
+            backend:
+              service:
+                name: "{{ .Release.Name }}"
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /links
             backend:
               service:
                 name: "{{ .Release.Name }}"

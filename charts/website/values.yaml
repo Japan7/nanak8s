@@ -9,3 +9,4 @@ ingress:
   entryPoints:
     - websecure
   annotations: {}
+  authAnnotations: {}

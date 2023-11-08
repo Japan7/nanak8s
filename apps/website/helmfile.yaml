@@ -12,3 +12,5 @@ releases:
             - forgejo-regcred
       - ingress:
           host: website.{{ .Values.domain }}
+          authAnnotations:
+            traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-japan7@kubernetescrd
