@@ -36,9 +36,11 @@ releases:
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
               SSH_PORT: 8022
+              LFS_START_SERVER: true
             service:
               REQUIRE_SIGNIN_VIEW: true
               ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+              ENABLE_NOTIFY_MAIL: true
             mailer:
               ENABLED: true
               SMTP_ADDR: "{{ .Values.smtp.host }}"
@@ -55,7 +57,12 @@ releases:
             cron:
               ENABLED: true
               RUN_AT_START: true
-            # https://forgejo.org/2023-02-27-forgejo-actions/
+            cron.delete_old_actions:
+              ENABLED: true
+              RUN_AT_START: true
+            cron.gc_lfs:
+              ENABLED: true
+              RUN_AT_START: true
             actions:
               ENABLED: true
               DEFAULT_ACTIONS_URL: https://github.com
