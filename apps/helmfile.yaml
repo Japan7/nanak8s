@@ -27,7 +27,6 @@ releases:
           - name: argo-cd
             namespace: argocd
           - name: forgejo
-          - name: gitlab
 
           # Apps
           - name: openldap
