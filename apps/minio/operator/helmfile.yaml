@@ -29,5 +29,3 @@ releases:
           - minio-tenant-2
       - ingress:
           host: minio.{{ .Values.domain }}
-          annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure

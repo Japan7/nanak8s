@@ -2,4 +2,5 @@ tenants: []
 
 ingress:
   host: ""
-  annotations: {}
+  entryPoints:
+    - websecure
