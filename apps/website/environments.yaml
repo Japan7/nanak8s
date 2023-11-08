@@ -1,6 +1,6 @@
 environments:
   default:
     values:
-      - digest: "$DIGEST"
+      - digest: ""
     secrets:
       - ../globals.sops.yaml
