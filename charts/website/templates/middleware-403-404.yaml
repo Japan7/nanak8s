@@ -6,7 +6,7 @@ spec:
   errors:
     status:
       - "403-404"
-    query: /errors/404
+    query: /errors/404/index.html
     service:
       name: "{{ .Release.Name }}"
       port: 8080
