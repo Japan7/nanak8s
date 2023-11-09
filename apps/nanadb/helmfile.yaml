@@ -81,7 +81,7 @@ releases:
               recurring-job.longhorn.io/longhorn-backup: enabled
           http:
             ingress:
-              host: nanadb-dump.{{ .Values.domain }}
+              additionalPathPrefixes:
+                - /_oauth
               annotations:
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
                 traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-nanak8s@kubernetescrd"

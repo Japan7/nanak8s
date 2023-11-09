@@ -27,11 +27,13 @@ spec:
             claimName: {{ .Release.Name }}-dump
       containers:
         - name: http
-          {{- with .Values.dump.http.image }}
+          {{- with .Values.dump.http }}
+          {{- with .image }}
           image: "{{ .repository }}:{{ .tag }}"
           imagePullPolicy: "{{ .pullPolicy }}"
           {{- end }}
-          args: ["/html"]
+          args: ["--route-prefix", {{ .ingress.pathPrefix }}, "/html"]
+          {{- end }}
           volumeMounts:
             - name: dump
               mountPath: /html

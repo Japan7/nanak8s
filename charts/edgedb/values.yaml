@@ -32,5 +32,6 @@ dump:
       tag: 0.24.0
       pullPolicy: ""
     ingress:
-      host: ""
+      pathPrefix: "/dump"
+      additionalPathPrefixes: []
       annotations: {}

@@ -7,22 +7,32 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
-{{- with .Values.dump.http.ingress }}
-  {{- with .annotations }}
   annotations:
+    {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- end }}
+    {{- with .Values.dump.http.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   rules:
-    - host: "{{ .host }}"
+    - host: "{{ .Values.ingress.host }}"
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: "{{ .Values.dump.http.ingress.pathPrefix }}"
+            backend:
+              service:
+                name: "{{ .Release.Name }}-dump-http"
+                port:
+                  number: 8080
+          {{- range .Values.dump.http.ingress.additionalPathPrefixes }}
+          - pathType: Prefix
+            path: "{{ . }}"
             backend:
               service:
                 name: "{{ $.Release.Name }}-dump-http"
                 port:
                   number: 8080
-{{- end }}
+          {{- end }}
 {{- end }}
