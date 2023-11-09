@@ -101,7 +101,6 @@ releases:
                   pathType: Prefix
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-forgejo-cors@kubernetescrd"
   - name: forgejo-runner-0
     chart: ../../charts/forgejo-runner
     values:
@@ -153,6 +152,3 @@ releases:
             - nanachan
             - nanapi
             - website
-      - cors:
-          allowedOrigins:
-            - "{{ .Values.domain }}"
