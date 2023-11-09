@@ -21,4 +21,4 @@ ingress:
   httpEntryPoints:
     - websecure
 
-certsDumperService: traefik-certs.kube-system:8080
+certsDumperService: ""

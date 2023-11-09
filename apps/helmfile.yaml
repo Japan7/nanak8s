@@ -1,3 +1,8 @@
+environments:
+  default:
+    secrets:
+      - globals.sops.yaml
+---
 releases:
   - name: apps
     chart: ../charts/argo-cd-apps
@@ -5,7 +10,7 @@ releases:
       - apps:
           # System
           - name: traefik
-            namespace: kube-system
+            namespace: "{{ .Values.traefik.namespace }}"
           - name: kubernetes-dashboard
           - name: longhorn
             namespace: longhorn-system

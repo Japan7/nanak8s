@@ -16,4 +16,4 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
           authAnnotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: kube-system-traefik-forward-auth-japan7@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-japan7@kubernetescrd"
