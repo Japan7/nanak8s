@@ -8,3 +8,6 @@ registryCredentials:
   email: ""
   secretName: forgejo-regcred
   namespaces: []
+
+cors:
+  allowedOrigins: []
