@@ -150,6 +150,7 @@ releases:
           password: "{{ .Values.regcreds.password }}"
           namespaces:
             - dakara
+            - emails
             - nanachan
             - nanapi
             - website
