@@ -9,4 +9,3 @@ replicaCount: 1
 ingress:
   host: ""
   annotations: {}
-  authAnnotations: {}

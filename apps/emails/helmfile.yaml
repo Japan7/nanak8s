@@ -1,0 +1,16 @@
+bases:
+  - environments.yaml
+---
+releases:
+  - name: emails
+    chart: ../../charts/emails
+    values:
+      - image:
+          repository: git.{{ .Values.domain }}/japan7/emails
+          tag: latest@{{ .Values.digest }}
+          pullSecrets:
+            - forgejo-regcred
+      - ingress:
+          host: emails.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure

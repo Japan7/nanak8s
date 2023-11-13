@@ -18,7 +18,6 @@ ingress:
   host: ""
   annotations: {}
 
-
 dump:
   enabled: false
   schedule: "0 9 * * *"

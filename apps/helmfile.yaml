@@ -44,6 +44,7 @@ releases:
           - name: outline
           - name: syncplay
           - name: website
+          - name: emails
 
           # Data
           - name: nanadb
