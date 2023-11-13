@@ -6,6 +6,9 @@ image:
 
 replicaCount: 1
 
+emails:
+  host: ""
+
 ingress:
   host: ""
   annotations: {}

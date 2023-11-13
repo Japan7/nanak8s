@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{ .Release.Name }}-emails"
+spec:
+  redirectRegex:
+    regex: ^https://{{ .Values.ingress.host }}/emails/(.*)
+    replacement: https://{{ .Values.emails.host }}/archives/${1}
+    permanent: true

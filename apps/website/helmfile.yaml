@@ -10,6 +10,8 @@ releases:
           tag: latest@{{ .Values.digest }}
           pullSecrets:
             - forgejo-regcred
+      - emails:
+          host: emails.{{ .Values.domain }}
       - ingress:
           host: {{ .Values.domain }}
           annotations:
