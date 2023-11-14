@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "{{ .Release.Name }}-ui"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: db
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+spec:
+  redirectRegex:
+    regex: ^https://{{ .Values.ingress.host }}/?$
+    replacement: https://{{ .Values.ingress.host }}/ui/
+    permanent: true
