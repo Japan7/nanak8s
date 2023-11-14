@@ -2,6 +2,8 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: "{{ .Release.Name }}-emails"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
 spec:
   redirectRegex:
     regex: ^https://{{ .Values.ingress.host }}/emails/(.*)
