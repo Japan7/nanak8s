@@ -31,9 +31,15 @@ spec:
                 - name: GITEA_URL
                   value: "{{ .Values.imagePrune.url }}"
                 - name: GITEA_USERNAME
-                  value: "{{ .Values.imagePrune.username }}"
+                  valueFrom:
+                    secretKeyRef:
+                      name: forgejo-cronjob
+                      key: username
                 - name: GITEA_PASSWORD
-                  value: "{{ .Values.imagePrune.password }}"
+                  valueFrom:
+                    secretKeyRef:
+                      name: forgejo-cronjob
+                      key: password
               volumeMounts:
                 - name: scripts
                   mountPath: /scripts
