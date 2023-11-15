@@ -1,6 +1,11 @@
 traefik:
   sshEntryPoint: "forgejo-ssh"
 
+imagePrune:
+  url: ""
+  username: ""
+  password: ""
+
 registryCredentials:
   registry: ""
   username: ""

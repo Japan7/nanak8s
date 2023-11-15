@@ -144,6 +144,10 @@ releases:
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
+      - imagePrune:
+          url: http://forgejo-http:3000
+          username: "{{ .Values.imagePrune.username }}"
+          password: "{{ .Values.imagePrune.password }}"
       - registryCredentials:
           registry: git.{{ .Values.domain }}
           username: "{{ .Values.regcreds.username }}"

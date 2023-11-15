@@ -1,0 +1,50 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "forgejo-image-prune"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: forgejo
+spec:
+  schedule: "0 23 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "common.labels.standard" . | nindent 12 }}
+            app.kubernetes.io/component: extras
+            app.kubernetes.io/part-of: forgejo
+        spec:
+          restartPolicy: Never
+          volumes:
+            - name: scripts
+              emptyDir: {}
+          containers:
+            - name: task
+              image: node:lts-alpine
+              args: ["/scripts/gitea-image-prune.mjs"]
+              env:
+                - name: GITEA_URL
+                  value: "{{ .Values.imagePrune.url }}"
+                - name: GITEA_USERNAME
+                  value: "{{ .Values.imagePrune.username }}"
+                - name: GITEA_PASSWORD
+                  value: "{{ .Values.imagePrune.password }}"
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
+          initContainers:
+            - name: wget
+              image: busybox:latest
+              args:
+                - "wget"
+                - "-P"
+                - "/scripts/"
+                - "https://gist.githubusercontent.com/NextFire/3b5a09b246f9674d1d03955547570b89/raw/e7ded7dfb2efbd000ec5073e655f433ef5e05658/gitea-image-prune.mjs"
+              volumeMounts:
+                - name: scripts
+                  mountPath: /scripts
