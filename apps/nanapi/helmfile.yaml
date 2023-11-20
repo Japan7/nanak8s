@@ -8,7 +8,7 @@ repositories:
 releases:
   - name: nanapi-{{ .Environment.Name }}-meilisearch
     chart: meilisearch/meilisearch
-    version: 0.2.8
+    version: 0.3.0
     values:
       - affinity:
           podAffinity:
