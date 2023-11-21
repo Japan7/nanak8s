@@ -41,7 +41,7 @@ environments:
       - hachi.sops.yaml
   snow:
     values:
-      - tag: sha-c37b1bf
+      - tag: slightly-better-projo-events@sha256:cd8f9b03f578ed6799c505c2c9d96398eb1f20ada82833e6b5dc297ce86969c6
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
