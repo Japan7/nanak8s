@@ -1,6 +1,6 @@
 image:
   repository: edgedb/edgedb
-  tag: "4.1"
+  tag: "4.2"
   pullPolicy: ""
 
 replicaCount: 1
