@@ -115,10 +115,11 @@ releases:
           image:
             tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
       - config:
-          labels:
-            - 3.11:docker://ghcr.io/japan7/forgejo-runner-image:3.11
-            - 3.12:docker://ghcr.io/japan7/forgejo-runner-image:3.12
-            - latest:docker://ghcr.io/japan7/forgejo-runner-image:3.12
+          runner:
+            labels:
+              - 3.11:docker://ghcr.io/japan7/forgejo-runner-image:3.11
+              - 3.12:docker://ghcr.io/japan7/forgejo-runner-image:3.12
+              - latest:docker://ghcr.io/japan7/forgejo-runner-image:3.12
   - name: renovate
     chart: renovate/renovate
     version: 37.68.4
