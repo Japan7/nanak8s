@@ -42,7 +42,7 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-token"
                   key: token
-          command: ["sh", "-c", "forgejo-runner create-runner-file --instance {{ .Values.instance }} --secret $(REGISTRATION_TOKEN) --config config.yaml && forgejo-runner --config config.yaml daemon"]
+          command: ["sh", "-c", "forgejo-runner create-runner-file --instance {{ .Values.instance }} --secret $(REGISTRATION_TOKEN) --config /data/config.yaml && forgejo-runner --config /data/config.yaml daemon"]
           volumeMounts:
             - name: config
               mountPath: /data/config.yaml
