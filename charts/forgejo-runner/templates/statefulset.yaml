@@ -48,7 +48,7 @@ spec:
             - --instance
             - {{ .Values.instance }}
             - --secret
-            - $REGISTRATION_TOKEN
+            - $(REGISTRATION_TOKEN)
             - --config
             - /data/config.yaml
             - --connect
