@@ -47,3 +47,5 @@ environments:
       - ../globals.sops.yaml
       - shared.sops.yaml
       - snow.sops.yaml
+  staging:
+    values: []
