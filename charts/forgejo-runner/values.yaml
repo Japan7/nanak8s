@@ -5,9 +5,8 @@ image:
 
 replicaCount: 1
 
-secret:
-  name: ""
-  key: .runner
+instance: ""
+token: ""
 
 nodeSelector: {}
 

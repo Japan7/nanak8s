@@ -102,28 +102,23 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-forgejo-cors@kubernetescrd"
-  - name: forgejo-runner-0
+  - name: forgejo-runner
     chart: ../../charts/forgejo-runner
     values:
-      - secret:
-          name: forgejo-runner-0
+      - instance: http://forgejo-http:3000
+      - token: "{{ .Values.runner.token }}"
+      - replicaCount: 2
       - nodeSelector:
-          kubernetes.io/hostname: camp
+          kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
           image:
             tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
-  - name: forgejo-runner-1
-    chart: ../../charts/forgejo-runner
-    values:
-      - secret:
-          name: forgejo-runner-1
-      - nodeSelector:
-          kubernetes.io/hostname: gungnir
-      - dind:
-          mtu: 1230
-          image:
-            tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
+      - config:
+          labels:
+            - 3.11:docker://ghcr.io/japan7/forgejo-runner-image:3.11
+            - 3.12:docker://ghcr.io/japan7/forgejo-runner-image:3.12
+            - latest:docker://ghcr.io/japan7/forgejo-runner-image:3.12
   - name: renovate
     chart: renovate/renovate
     version: 37.68.4

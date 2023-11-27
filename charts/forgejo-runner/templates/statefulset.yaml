@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
   labels:
@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
@@ -26,29 +27,32 @@ spec:
             matchLabels:
               app.kubernetes.io/name: {{ include "common.names.name" . }}
       volumes:
-        - name: runner-file
-          secret:
-            secretName: "{{ .Values.secret.name }}"
         - name: config
           configMap:
             name:  "{{ .Release.Name }}-config"
         - name: sock-dir
           emptyDir: {}
-        {{- if .Values.cache.persistence.enabled }}
-        - name: cache
-          persistentVolumeClaim:
-            claimName: "{{ .Release.Name }}-cache"
-        {{- end }}
       containers:
         - name: runner
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-token"
+                  key: token
           command: ["forgejo-runner"]
-          args: ["--config", "config.yaml", "daemon"]
+          args:
+            - create-runner-file
+            - --instance
+            - {{ .Values.instance }}
+            - --secret
+            - $REGISTRATION_TOKEN
+            - --config
+            - /data/config.yaml
+            - --connect
           volumeMounts:
-            - name: runner-file
-              mountPath: /data/.runner
-              subPath: "{{ .Values.secret.key }}"
             - name: config
               mountPath: /data/config.yaml
               subPath: config.yaml
@@ -78,3 +82,17 @@ spec:
           volumeMounts:
             - name: sock-dir
               mountPath: /var/run
+  {{- if .Values.cache.persistence.enabled }}
+  volumeClaimTemplates:
+    {{- with .Values.cache.persistence }}
+    - metadata:
+        name: cache
+      spec:
+        storageClassName: {{ .storageClass }}
+        accessModes:
+          - {{ .accessMode }}
+        resources:
+          requests:
+            storage: {{ .size }}
+    {{- end }}
+  {{- end }}

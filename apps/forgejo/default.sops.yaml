@@ -7,6 +7,8 @@ cnpg:
 imagePrune:
     username: ENC[AES256_GCM,data:XHb+58gJn4saJHA=,iv:4Zbx4PyI9hBllsXsJbMgwb58GMwiWpueNvx3w3pIN20=,tag:VTa4Puzi7AhvRW5sejly3g==,type:str]
     password: ENC[AES256_GCM,data:QU+DogJBCY90cmEr3so=,iv:Ewe3QKjrEvehuI4gpz+8qG2g4W2NBV0lxu3o4l3vwkQ=,tag:NdNhLbmkYZOLIzJ6ZluDog==,type:str]
+runner:
+    token: ENC[AES256_GCM,data:0fNiQttONwTyUgkt19P3p5yAPS2LGnnyzGOhbtysZMRwGVd01BcbXg==,iv:WiJi7PEfJA6wlkyLNjapqrrR80Xwq9auFzXR6VGfKJk=,tag:XI7Y4zLfLI/YsViOh0Zfrg==,type:str]
 regcreds:
     username: ENC[AES256_GCM,data:IhiWLXsqunRB0UA=,iv:hbaSF69NxP65Y1IR5o1teeM0A2FjeHf3WRvgwEzFA5c=,tag:YubYj+IHAtsRzWJ7VwkVeA==,type:str]
     password: ENC[AES256_GCM,data:v0r+4nVVAZRAHR4ipZ9WbX78zeJnYoN43qZtZPAnqbJ0a52q9D5Byw==,iv:sF8Yi1LalPZPfYP13KDkwVgc/b0tZ2di90Mx3qzvknw=,tag:u6/PHjArHifxiA1rIqO0SQ==,type:str]
@@ -28,8 +30,8 @@ sops:
             WFY2SmxvWkdObnRqd0N3NllEaElIZGcKFb6U9SxF20/mQl8iTXAzpRVJ7TBuHIdF
             e95HAHL4JxukIsJgeo1fDJeOfts7AVEcvKlNXFq1DmM3dC/Sr1Rpiw==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-11-15T04:24:38Z"
-    mac: ENC[AES256_GCM,data:/nx6oQZxqKtD5ed0nqYvrkEevRQC9QkopmEopQhUUCUmPwQUzS3TbLJkZwQNXzu0/Fd7xs1CaWqY4w8JqKDLUIDIeM8qbZI6kK8IbfMpF+Y8UzV5jtYwWCV49TUagBGfmrZS9QLdIxjxqL6ZdkZDnRcRhUQHw8CU/qPU/+1pdoU=,iv:SyuWS1QXi/XXYNhAOR/Yi2n/xI967dMjCnZhlvETm0A=,tag:n5E7/LvVc2hfs6e64y36jA==,type:str]
+    lastmodified: "2023-11-27T17:44:11Z"
+    mac: ENC[AES256_GCM,data:pT0BFiAE3s99XNJMBY+s4X4EWmwPwUXozjIXYsv2cFbwg7R4UkuoOqNI7Ye23G5m+eXphEiLScGk0CX42TsW/GgWkca2qdtuYWCJYfvSNhY7VCSMMkP7RcoGV+4HxsbGnEGEEprrW6EzA1RWr6yigH5RPZw3wF2UoUnFjrqio4U=,iv:ETG6vbL1GXNJIuhgYT3BL50otdjMTlnej3YD50EUCCM=,tag:MdP2JqmUze4qXV6TCDib/g==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1
