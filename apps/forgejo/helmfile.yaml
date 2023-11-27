@@ -114,6 +114,10 @@ releases:
           mtu: 1230
           image:
             tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
+      - config:
+          runner:
+            labels:
+              - "docker:docker://catthehacker/ubuntu:act-latest"
   - name: renovate
     chart: renovate/renovate
     version: 37.68.4
