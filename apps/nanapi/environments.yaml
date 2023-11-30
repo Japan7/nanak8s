@@ -41,7 +41,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: sha-9ab901b
+      - tag: jemalloc@sha256:8a0b6edd9cb023fc4fec536dab5858fdb73619bff7bcbc8dd90b560017e103ca
       - tasks: false
       - affinity: {}
     secrets:
