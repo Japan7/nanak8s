@@ -14,7 +14,7 @@ persistence:
 dumper:
   image:
     repository: ldez/traefik-certs-dumper
-    tag: v2.8.1
+    tag: v2.8.3
     pullPolicy: ""
   replicaCount: 1
 
