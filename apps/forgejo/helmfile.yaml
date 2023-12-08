@@ -29,6 +29,8 @@ releases:
     chart: forgejo-contrib/forgejo
     version: 0.15.0
     values:
+      - image:
+          tag: 1.21.1-0 # renovate: repository=codeberg.org/forgejo/forgejo
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
