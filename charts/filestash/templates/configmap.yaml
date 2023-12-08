@@ -1,0 +1,19 @@
+{{- if .Values.onlyoffice.enabled }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-onlyoffice
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+data:
+  local.json: |
+    {
+      "services": {
+        "CoAuthoring": {
+          "request-filtering-agent": {
+            "allowPrivateIPAddress": true
+          }
+        }
+      }
+    }
+{{- end }}
