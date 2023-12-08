@@ -58,10 +58,6 @@ spec:
           image: "{{ .repository }}:{{ .tag }}"
           imagePullPolicy: "{{ .pullPolicy }}"
           {{- end }}
-          env:
-            # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
-            - name: JWT_ENABLED
-              value: "false"
           ports:
             - containerPort: 80
         {{- end }}
