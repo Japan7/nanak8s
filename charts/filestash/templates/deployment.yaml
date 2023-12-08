@@ -28,11 +28,6 @@ spec:
             claimName: "{{ .Release.Name }}-state"
         - name: cache
           emptyDir: {}
-        {{- if .Values.onlyoffice.enabled }}
-        - name: onlyoffice
-          configMap:
-            name: "{{ .Release.Name }}-onlyoffice"
-        {{- end }}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -67,10 +62,6 @@ spec:
             # https://github.com/mickael-kerjean/filestash/issues/516#issuecomment-1279773091
             - name: JWT_ENABLED
               value: "false"
-          volumeMounts:
-            - name: onlyoffice
-              mountPath: "/etc/onlyoffice/documentserver/local.json"
-              subPath: local.json
           ports:
             - containerPort: 80
         {{- end }}
