@@ -33,7 +33,7 @@ environments:
       - nana.sops.yaml
   hachi:
     values:
-      - tag: master@sha256:6bbd829d6324cb54c6943f0af15cab28428c40f08bfb6a2c6ec464e42dd6c0b7
+      - tag: master@sha256:b93585404b3ba7ca05c481d0488f10beedddb65895e9c23d1c06d61fdbdcd924
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
