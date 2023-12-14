@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/filestash-minio-oidc-auth
-  tag: main@sha256:f2b6e6ef4a7a4370b06ba26a9e0ea54bb8ad0927119bf43d0412eaf8313b2202
+  tag: main@sha256:727d37509285739bcbcb34a2ae762d16abf93e3fc9ee1a70ef306786d7132a19
   pullPolicy: ""
 
 replicaCount: 1
