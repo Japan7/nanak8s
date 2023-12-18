@@ -35,14 +35,16 @@
     {
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
-        "repoURL: \"?https://github.com/(?<depName>.*)\\.git\"?\\n\\s+targetRevision: \"?(?<currentValue>.*)\"?\\s+# renovate"
+        "repoURL: \"?https://github.com/(?<depName>\\S+)\\.git\"?\\n\\s+targetRevision: \"?(?<currentValue>\\S+)\"?\\s+# renovate"
       ],
       "datasourceTemplate": "github-tags"
     },
     {
       "fileMatch": [".*\\.yaml$"],
-      "matchStrings": [": \"?(?<currentValue>.*)\"?\\s+# renovate: k3s"],
-      "datasourceTemplate": "k3s"
+      "matchStrings": [": \"?(?<currentValue>\\S+)\"?\\s+# renovate: k3s"],
+      "depNameTemplate": "k3s",
+      "versioningTemplate": "semver-coerced",
+      "datasourceTemplate": "custom.k3s"
     }
   ],
   "customDatasources": {
