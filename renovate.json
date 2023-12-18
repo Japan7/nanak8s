@@ -31,6 +31,13 @@
         "image: \"?(?<depName>[^:]*):(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate"
       ],
       "datasourceTemplate": "docker"
+    },
+    {
+      "fileMatch": [".*\\.yaml$"],
+      "matchStrings": [
+        "repoURL: \"?https://github.com/(?<depName>.*)\"?\\n\\s+targetRevision: \"?(?<currentValue>.*)\"?\\s+# renovate"
+      ],
+      "datasourceTemplate": "github-tags"
     }
   ],
   "hostRules": [
