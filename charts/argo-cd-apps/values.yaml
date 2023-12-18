@@ -4,7 +4,7 @@ syncPolicy:
     prune: true
     selfHeal: true
 
-apps: []
+nanak8s: []
 # - name: ""
 #   namespace: ""
 #   subdir: ""

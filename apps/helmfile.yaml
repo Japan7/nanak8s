@@ -7,7 +7,7 @@ releases:
   - name: apps
     chart: ../charts/argo-cd-apps
     values:
-      - apps:
+      - nanak8s:
           # System
           - name: k3s-upgrade
             namespace: system-upgrade
