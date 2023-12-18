@@ -1,2 +1,7 @@
+controller:
+  revision: v0.13.2
+  argocd:
+    namespace: argocd
+
 k3s:
   version: ""
