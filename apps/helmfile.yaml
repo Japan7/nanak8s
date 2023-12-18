@@ -78,3 +78,11 @@ releases:
           #   namespace: nanachan
           #   subdir: nanachan
           #   environment: snow
+
+      - extras:
+          - name: system-upgrade-controller
+            namespace: system-upgrade
+            source:
+              repoURL: https://github.com/rancher/system-upgrade-controller.git
+              targetRevision: v0.13.2
+              path: manifests

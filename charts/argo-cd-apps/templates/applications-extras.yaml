@@ -1,4 +1,4 @@
-{{- range .Values.apps }}
+{{- range .Values.extras }}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -13,14 +13,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Japan7/nanak8s.git
-    targetRevision: HEAD
-    path: apps/{{ .subdir | default .name }}
-    plugin:
-      name: helmfile
-      env:
-        - name: HELMFILE_GLOBAL_OPTIONS
-          value: "--environment {{ .environment | default "default" }}"
+    {{ .source | toYaml | nindent 4 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .namespace | default .name }}
@@ -31,9 +24,6 @@ spec:
       selfHeal: {{ $.Values.syncPolicy.automated.selfHeal }}
     syncOptions:
       - CreateNamespace=true
-      {{- range .extraSyncOptions }}
-      - {{ . }}
-      {{- end }}
   {{- end }}
 ---
 {{- end }}

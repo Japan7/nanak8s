@@ -1,5 +1,5 @@
 apiVersion: v2
-name: k3s-upgrade
+name: k3s-upgrade-plans
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
