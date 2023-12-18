@@ -35,7 +35,7 @@
     {
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
-        "repoURL: \"?https://github.com/(?<depName>.*)\"?\\n\\s+targetRevision: \"?(?<currentValue>.*)\"?\\s+# renovate"
+        "repoURL: \"?https://github.com/(?<depName>.*)\\.git\"?\\n\\s+targetRevision: \"?(?<currentValue>.*)\"?\\s+# renovate"
       ],
       "datasourceTemplate": "github-tags"
     }
