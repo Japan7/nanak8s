@@ -41,7 +41,7 @@ environments:
       - staging.sops.yaml
   dev:
     values:
-      - tag: break-reference-cycles@sha256:4bfb941ca5c12f4d252460db5815200fe752f3409f55c405b8e15b8b8b198632
+      - tag: break-reference-cycles@sha256:40169a1f499a5504c4187a63ae2c32925cc424d4b5a2070d20ca07daaa0954fd
       - tasks: false
       - affinity: {}
     secrets:
