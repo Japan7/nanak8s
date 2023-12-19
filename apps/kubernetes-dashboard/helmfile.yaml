@@ -10,27 +10,15 @@ repositories:
 releases:
   - name: kubernetes-dashboard
     chart: kubernetes-dashboard/kubernetes-dashboard
-    version: 7.0.0-alpha1
+    version: 6.0.8
     values:
-      - nginx:
-          enabled: false
-      - cert-manager:
-          enabled: false
-      - app:
-          ingress:
-            hosts:
-              - dash.{{ .Values.domain }}
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            issuer:
-              name: foobar # so it doesn't try to create a cert-manager issuer
-    strategicMergePatches: # unset ingressClassName and tls (managed by traefik)
-      - apiVersion: networking.k8s.io/v1
-        kind: Ingress
-        metadata:
-          name: kubernetes-dashboard
-        spec:
-          ingressClassName:
-          tls:
+      - metricsScraper:
+          enabled: true
+      - ingress:
+          enabled: true
+          hosts:
+            - dash.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
   - name: kubernetes-dashboard-extras
     chart: ../../charts/kubernetes-dashboard-extras
