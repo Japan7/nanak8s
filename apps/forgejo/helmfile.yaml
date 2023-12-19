@@ -114,8 +114,6 @@ releases:
           kubernetes.io/arch: amd64
       - dind:
           mtu: 1230
-          image:
-            tag: 24.0.6-dind # FIXME: 24.0.7-dind is broken rn
       - config:
           runner:
             labels:
