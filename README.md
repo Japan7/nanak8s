@@ -14,33 +14,36 @@ Follow the [install instructions](https://github.com/tonarino/innernet#installat
 
 2. **Install K3s**
 
-```sh
-curl -sfL https://get.k3s.io |
-INSTALL_K3S_CHANNEL=stable \
-K3S_TOKEN=<SHARED_SECRET> \
-sh -s - server \
---server https://<EXISTING_NODE_IP>:6443 \
---secrets-encryption \
---disable local-storage \
---flannel-iface <INNERNET_INTERFACE> \
---kubelet-arg 'eviction-hard=memory.available<0%' \
---kubelet-arg 'eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi' \
---kubelet-arg 'eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m'
+Edit and put the following configuration in `/etc/rancher/k3s/config.yaml`:
+
+```yaml
+server: https://<existing_server_node_innernet_ip>:6443
+flannel-iface: <innernet_interface>
+token: <shared_secret>
+disable:
+  - local-storage
+secrets-encryption: true
+kubelet-arg:
+  - eviction-hard=memory.available<0%
+  - eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi
+  - eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m
 ```
 
-3. **Check Longhorn requirements**
-
-[Some system tools](https://longhorn.io/docs/1.4.1/deploy/install/#installation-requirements) need to be installed on the node so Longhorn, the used block storage system, can work properly.
-
-You can use the following script to check your environment:
+Then run the one-liner to install K3s:
 
 ```sh
-curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.4.1/scripts/environment_check.sh | bash
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh -s - <node_type>
 ```
+
+`node_type` is `server` or `agent`.
+
+3. **Longhorn requirements**
+
+Longhorn (block storage) requires some system packages. Please check their [documentation](https://longhorn.io/docs/latest/deploy/install/#installation-requirements) and install them.
 
 4. **[Optional] Setup Traefik passthrough**
 
-K3s internal Traefik serves web apps on port 8443 (websecure). You may setup another Traefik outside the K8s cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443 to K8s.
+K3s internal Traefik serves web apps on port 8443 (websecure). You may setup another Traefik outside the Kubernetes cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443.
 
 - `docker-compose.yml`
 
@@ -74,7 +77,7 @@ tcp:
     k8s:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`<DOMAIN>`, `{subdomain:[a-z0-9.-]+}.<DOMAIN>`)"
+      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z0-9.-]+}.<domain>`)"
       service: "k8s-file"
       tls:
         passthrough: true
@@ -87,42 +90,20 @@ tcp:
 
 ## Bootstrapping
 
-### Requirements
+### Start a new cluster
 
-- [K3s](https://docs.k3s.io/) - Lightweight Kubernetes
-- [helm](https://helm.sh/) and [helmfile](https://helmfile.readthedocs.io/en/latest/) for chart deployments
-- [sops](https://github.com/mozilla/sops) and [age](https://github.com/FiloSottile/age) for secrets management
-
-Run `helmfile init` to install the required helm plugins.
-
-### Edit secrets
+Save the same configuration file as above without the `server` key and run the following one-liner:
 
 ```sh
-SOPS_AGE_KEY=<PRIVATE_KEY> helm secrets edit <something.sops.yaml>
-```
-
-### Start the cluster
-
-```sh
-curl -sfL https://get.k3s.io |
-INSTALL_K3S_CHANNEL=stable \
-K3S_TOKEN=<SHARED_SECRET> \
-sh -s - server \
---cluster-init \
---secrets-encryption \
---disable local-storage \
---flannel-iface <INNERNET_INTERFACE> \
---kubelet-arg 'eviction-hard=memory.available<0%' \
---kubelet-arg 'eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi' \
---kubelet-arg 'eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m'
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh -s - server --cluster-init
 ```
 
 ### Launch Argo CD
 
 ```sh
-export SOPS_AGE_KEY=<PRIVATE_KEY>
+export SOPS_AGE_KEY=<private_key>
 helmfile apply -f apps/argo-cd/helmfile.yaml -n argocd --set notifications.enabled=false
 kubectl apply -f apps/bootstrap.yaml -n argocd
 ```
 
-This will install Argo CD on the cluster and configure it so it will automatically add and sync the other apps with this repository.
+This will start Argo CD in the cluster and configure it so it will automatically add and sync the other apps of this repository.
