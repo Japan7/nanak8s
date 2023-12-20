@@ -26,7 +26,7 @@ kubelet-arg:
   - eviction-hard=memory.available<0%
   - eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi
   - eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m
-  - image-gc-high-threshold=0
+  - image-gc-high-threshold=5
   - image-gc-low-threshold=0
 ```
 
@@ -93,7 +93,7 @@ tcp:
 
 ### Start a new cluster
 
-Save the same configuration file as above and run the following one-liner:
+Save the same configuration file as all above and run the following one-liner:
 
 ```sh
 curl -sfL https://get.k3s.io | sh -s - server --cluster-init
