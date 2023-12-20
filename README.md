@@ -17,22 +17,23 @@ Follow the [install instructions](https://github.com/tonarino/innernet#installat
 Edit and put the following configuration in `/etc/rancher/k3s/config.yaml`:
 
 ```yaml
-server: https://<existing_server_node_innernet_ip>:6443
-flannel-iface: <innernet_interface>
 token: <shared_secret>
+flannel-iface: <innernet_interface>
+secrets-encryption: true
 disable:
   - local-storage
-secrets-encryption: true
 kubelet-arg:
   - eviction-hard=memory.available<0%
   - eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi
   - eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m
+  - image-gc-high-threshold=0
+  - image-gc-low-threshold=0
 ```
 
 Then run the one-liner to install K3s:
 
 ```sh
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh -s - <node_type>
+curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip>:6443 sh -s - <node_type>
 ```
 
 `node_type` is `server` or `agent`.
@@ -92,10 +93,10 @@ tcp:
 
 ### Start a new cluster
 
-Save the same configuration file as above without the `server` key and run the following one-liner:
+Save the same configuration file as above and run the following one-liner:
 
 ```sh
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=stable sh -s - server --cluster-init
+curl -sfL https://get.k3s.io | sh -s - server --cluster-init
 ```
 
 ### Launch Argo CD
