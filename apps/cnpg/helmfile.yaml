@@ -10,4 +10,4 @@ repositories:
 releases:
   - name: cnpg
     chart: cnpg/cloudnative-pg
-    version: 0.19.1
+    version: 0.20.0
