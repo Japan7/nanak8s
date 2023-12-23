@@ -30,7 +30,7 @@ releases:
     version: 0.15.0
     values:
       - image:
-          tag: 1.21.2-0 # renovate: repository=codeberg.org/forgejo/forgejo
+          tag: 1.21.3-0 # renovate: repository=codeberg.org/forgejo/forgejo
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
