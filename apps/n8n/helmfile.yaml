@@ -11,7 +11,7 @@ repositories:
 releases:
   - name: n8n
     chart: open-8gears/n8n
-    version: 0.13.0
+    version: 0.20.0
     values:
       - image:
           tag: 1.22.3 # renovate: repository=n8nio/n8n
