@@ -4,7 +4,7 @@
 
 **[Wireguard](https://www.wireguard.com/install/) support** is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 443/UDP (HTTP3), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 777/UDP (HTTP3), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
 
 ### Steps
 
@@ -59,11 +59,11 @@ services:
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --entrypoints.websecure.address=:443
-      - --entrypoints.websecure.http3=true
+      - --entrypoints.nanak8s-http3.address=:777/udp
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
-      - "443:443/udp"
+      - "777:777/udp"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/config
@@ -86,6 +86,18 @@ tcp:
         passthrough: true
   services:
     nanak8s-file:
+      loadBalancer:
+        servers:
+          - address: "host.docker.internal:8443"
+
+udp:
+  routers:
+    nanak8s-http3:
+      entryPoints:
+        - "nanak8s-http3"
+      service: "nanak8s-http3-file"
+  services:
+    nanak8s-http3-file:
       loadBalancer:
         servers:
           - address: "host.docker.internal:8443"

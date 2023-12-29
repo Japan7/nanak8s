@@ -20,7 +20,7 @@ spec:
         exposedPort: 8443
         http3:
           enabled: true
-          advertisedPort: 443
+          advertisedPort: 777
         tls:
           certResolver: letsencrypt
       {{ range .Values.traefik.extraPorts }}
