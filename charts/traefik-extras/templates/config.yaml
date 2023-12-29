@@ -10,12 +10,17 @@ metadata:
     link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
 spec:
   valuesContent: |-
+    image:
+      {{ .Values.traefik.image | toYaml | nindent 6 }}
     ports:
       web:
         expose: false
         exposedPort: 8000
       websecure:
         exposedPort: 8443
+        http3:
+          enabled: true
+          advertisedPort: 777
         tls:
           certResolver: letsencrypt
       {{ range .Values.traefik.extraPorts }}
