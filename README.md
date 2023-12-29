@@ -59,11 +59,9 @@ services:
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --entrypoints.websecure.address=:443
-      - --entrypoints.nanak8s-http3.address=:777/udp
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
-      - "777:777/udp"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/config
@@ -80,24 +78,12 @@ tcp:
     nanak8s:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`^(.+\.)?japan7\.bde\.enseeiht\.fr$`)"
+      rule: "HostSNIRegexp(`^(.+\\.)?japan7\\.bde\\.enseeiht\\.fr$`)"
       service: "nanak8s-file"
       tls:
         passthrough: true
   services:
     nanak8s-file:
-      loadBalancer:
-        servers:
-          - address: "host.docker.internal:8443"
-
-udp:
-  routers:
-    nanak8s-http3:
-      entryPoints:
-        - "nanak8s-http3"
-      service: "nanak8s-http3-file"
-  services:
-    nanak8s-http3-file:
       loadBalancer:
         servers:
           - address: "host.docker.internal:8443"
