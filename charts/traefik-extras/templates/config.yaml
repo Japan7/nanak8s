@@ -19,7 +19,7 @@ spec:
       websecure:
         exposedPort: 8443
         http3:
-          enabled: true
+          enabled: false
           advertisedPort: 443
         tls:
           certResolver: letsencrypt
