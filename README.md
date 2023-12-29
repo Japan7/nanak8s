@@ -4,7 +4,7 @@
 
 **[Wireguard](https://www.wireguard.com/install/) support** is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 443/UDP (HTTP3), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
 
 ### Steps
 
@@ -51,7 +51,7 @@ K3s internal Traefik serves web apps on port 8443 (websecure). You may setup ano
 ```yaml
 services:
   traefik:
-    image: traefik:latest
+    image: traefik:v3.0
     command:
       - --providers.docker=true
       - --providers.file.directory=/config
@@ -59,9 +59,11 @@ services:
       - --entrypoints.web.http.redirections.entryPoint.to=websecure
       - --entrypoints.web.http.redirections.entryPoint.scheme=https
       - --entrypoints.websecure.address=:443
+      - --entrypoints.websecure.http3=true
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "443:443/udp"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik:/config
@@ -78,7 +80,7 @@ tcp:
     k8s:
       entryPoints:
         - "websecure"
-      rule: "HostSNIRegexp(`<domain>`, `{subdomain:[a-z0-9.-]+}.<domain>`)"
+      rule: "HostSNIRegexp(`^(.+\.)?japan7\.bde\.enseeiht\.fr$`)"
       service: "k8s-file"
       tls:
         passthrough: true

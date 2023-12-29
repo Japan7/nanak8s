@@ -10,12 +10,16 @@ metadata:
     link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
 spec:
   valuesContent: |-
+    image:
+      tag: v3.0 # renovate: repository=traefik
     ports:
       web:
         expose: false
         exposedPort: 8000
       websecure:
         exposedPort: 8443
+        http3:
+          enabled: true
         tls:
           certResolver: letsencrypt
       {{ range .Values.traefik.extraPorts }}
