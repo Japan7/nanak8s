@@ -11,7 +11,7 @@ metadata:
 spec:
   valuesContent: |-
     image:
-      tag: v3.0 # renovate: repository=traefik
+      {{ .Values.traefik.image | toYaml | nindent 6 }}
     ports:
       web:
         expose: false

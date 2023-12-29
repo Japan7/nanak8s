@@ -1,6 +1,10 @@
 domain: ""
 
 traefik:
+  image:
+    registry: docker.io
+    repository: traefik
+    tag: v3.0
   letsencryptEmail: ""
   extraPorts: []
   # - name:
