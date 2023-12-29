@@ -77,15 +77,15 @@ services:
 ```yaml
 tcp:
   routers:
-    k8s:
+    nanak8s:
       entryPoints:
         - "websecure"
       rule: "HostSNIRegexp(`^(.+\.)?japan7\.bde\.enseeiht\.fr$`)"
-      service: "k8s-file"
+      service: "nanak8s-file"
       tls:
         passthrough: true
   services:
-    k8s-file:
+    nanak8s-file:
       loadBalancer:
         servers:
           - address: "host.docker.internal:8443"
