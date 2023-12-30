@@ -72,7 +72,7 @@ releases:
       - memcached:
           enabled: false
       - persistence:
-          size: 25Gi
+          size: 10Gi
           labels:
             recurring-job.longhorn.io/source: enabled
             recurring-job-group.longhorn.io/default: enabled
@@ -116,7 +116,7 @@ releases:
       - nodeSelector:
           kubernetes.io/arch: amd64
       - dind:
-          mtu: 1230
+          mtu: 1370
       - config:
           runner:
             labels:
