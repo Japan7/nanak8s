@@ -17,7 +17,7 @@ releases:
     values:
       - release: 16
       - storage:
-          size: 10Gi
+          size: 5Gi
       - user:
           password: "{{ .Values.cnpg.password }}"
       - backups:
@@ -72,7 +72,7 @@ releases:
       - memcached:
           enabled: false
       - persistence:
-          size: 10Gi
+          size: 15Gi
           labels:
             recurring-job.longhorn.io/source: enabled
             recurring-job-group.longhorn.io/default: enabled
