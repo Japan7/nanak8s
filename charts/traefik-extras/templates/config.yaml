@@ -102,7 +102,7 @@ spec:
           - weight: 1
             preference:
               matchExpressions:
-                - key: topology.kubernetes.io/region
+                - key: svccontroller.k3s.cattle.io/enablelb
                   operator: In
                   values:
-                    - eu-west
+                    - true
