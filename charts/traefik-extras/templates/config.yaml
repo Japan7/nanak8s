@@ -35,7 +35,7 @@ spec:
         tlsChallenge: true
         storage: /data/acme.json
     additionalArguments:
-      - --log.level=DEBUG
+      - --log.level=INFO
       - --accesslog=true
       - --providers.kubernetescrd.allowCrossNamespace=true
       - --providers.kubernetescrd.allowEmptyServices=true
