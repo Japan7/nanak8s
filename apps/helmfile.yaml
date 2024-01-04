@@ -13,11 +13,12 @@ releases:
             namespace: system-upgrade
           - name: traefik
             namespace: "{{ .Values.traefik.namespace }}"
-          - name: kubernetes-dashboard
+          - name: cert-manager
           - name: longhorn
             namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
+          - name: kubernetes-dashboard
           - name: monitoring
 
           # Minio
