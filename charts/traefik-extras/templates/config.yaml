@@ -42,6 +42,8 @@ spec:
           - name: traefik-forward-auth-nanak8s
         tls:
           secretName: traefik.{{ .Values.domain }}-tls
+    deployment:
+      replicas: {{ .Values.replicaCount }}
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:

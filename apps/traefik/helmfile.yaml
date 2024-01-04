@@ -9,6 +9,7 @@ releases:
     chart: ../../charts/traefik-extras
     values:
       - domain: "{{ .Values.domain }}"
+      - replicaCount: 2
       - traefik:
           extraPorts:
             - name: forgejo-ssh

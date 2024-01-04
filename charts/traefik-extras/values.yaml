@@ -1,5 +1,7 @@
 domain: ""
 
+replicaCount: 1
+
 traefik:
   image:
     registry: docker.io
