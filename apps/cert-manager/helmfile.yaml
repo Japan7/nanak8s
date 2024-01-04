@@ -2,6 +2,7 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 repositories:
   - name: jetstack
@@ -15,3 +16,8 @@ releases:
       - installCRDs: true
       - prometheus:
           enabled: false
+  - name: cert-manager-extras
+    chart: ../../charts/cert-manager-extras
+    values:
+      - letsencrypt:
+          email: "{{ .Values.letsencrypt.email }}"
