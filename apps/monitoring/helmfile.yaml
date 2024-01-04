@@ -32,5 +32,10 @@ releases:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
             hosts:
               - grafana.{{ .Values.domain }}
+            tls:
+              - hosts:
+                  - grafana.{{ .Values.domain }}
+                secretName: grafana.{{ .Values.domain }}-tls

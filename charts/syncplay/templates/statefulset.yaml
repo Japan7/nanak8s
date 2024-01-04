@@ -17,7 +17,13 @@ spec:
     spec:
       volumes:
         - name: certs
-          emptyDir: {}
+          secret:
+            secretName: {{ .Values.ingress.host }}-tls
+            items:
+              - key: tls.crt
+                path: fullchain.pem
+              - key: tls.key
+                path: privkey.pem
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -43,24 +49,11 @@ spec:
           volumeMounts:
             - name: certs
               mountPath: /certs
+              readOnly: true
             - name: rooms
               mountPath: /rooms
           ports:
             - containerPort: 8999
-      initContainers:
-        - name: init-certs
-          image: busybox:latest
-          command:
-            - sh
-            - -xc
-            - |
-              cd /certs && \
-              rm -f *.pem && \
-              wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/fullchain.pem && \
-              wget {{ .Values.certsDumperService }}/{{ .Values.ingress.host }}/privkey.pem
-          volumeMounts:
-            - name: certs
-              mountPath: /certs
   volumeClaimTemplates:
     {{- with .Values.persistence }}
     - metadata:

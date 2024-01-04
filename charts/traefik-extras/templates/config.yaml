@@ -21,29 +21,18 @@ spec:
         http3:
           enabled: true
           advertisedPort: 777
-        tls:
-          certResolver: letsencrypt
       {{ range .Values.traefik.extraPorts }}
       {{ .name }}:
         port: {{ .port }}
         expose: true
         exposedPort: {{ .port }}
       {{ end }}
-    certResolvers:
-      letsencrypt:
-        email: {{ .Values.traefik.letsencryptEmail }}
-        tlsChallenge: true
-        storage: /data/acme.json
     additionalArguments:
       - --log.level=INFO
       - --accesslog=true
       - --providers.kubernetescrd.allowCrossNamespace=true
       - --providers.kubernetescrd.allowEmptyServices=true
       - --serversTransport.insecureSkipVerify=true  # required for k8s-dashboard
-      # - --certificatesresolvers.letsencrypt.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
-    persistence:
-      enabled: true
-      existingClaim: traefik-data
     ingressRoute:
       dashboard:
         matchRule: Host(`traefik.{{ .Values.domain }}`)
@@ -51,51 +40,8 @@ spec:
           - websecure
         middlewares:
           - name: traefik-forward-auth-nanak8s
-    deployment:
-      initContainers:
-        # The "volume-permissions" init container is required if you run into permission issues.
-        # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
-        - name: volume-permissions
-          image: busybox:latest
-          command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
-          securityContext:
-            runAsNonRoot: true
-            runAsGroup: 65532
-            runAsUser: 65532
-          volumeMounts:
-            - name: data
-              mountPath: /data
-      additionalContainers:
-        - name: dumper
-          {{- with .Values.dumper.image }}
-          image: "{{ .repository }}:{{ .tag }}"
-          imagePullPolicy: "{{ .pullPolicy }}"
-          {{- end }}
-          command:
-            - sh
-            - -xc
-            - |
-              traefik-certs-dumper file --version v2 \
-              --watch --source /data/acme.json --dest /data/dump \
-              --domain-subdir --crt-name=fullchain --crt-ext .pem --key-name=privkey --key-ext .pem
-          volumeMounts:
-            - name: data
-              mountPath: /data
-        - name: dumper-http
-          {{- with .Values.miniserve.image }}
-          image: "{{ .repository }}:{{ .tag }}"
-          imagePullPolicy: "{{ .pullPolicy }}"
-          {{- end }}
-          args: ["/html"]
-          volumeMounts:
-            - name: data
-              subPath: dump
-              mountPath: /html
-          ports:
-            - containerPort: 8080
-    updateStrategy:
-      type: Recreate
-      rollingUpdate: null
+        tls:
+          secretName: traefik.{{ .Values.domain }}-tls
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:

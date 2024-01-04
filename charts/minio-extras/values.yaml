@@ -4,3 +4,8 @@ ingress:
   host: ""
   entryPoints:
     - websecure
+
+certManager:
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

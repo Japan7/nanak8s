@@ -1,5 +1,3 @@
-traefik:
-    letsencryptEmail: ENC[AES256_GCM,data:ReSySakfsR0lyV8/t1n7dU01Y/6errQ=,iv:8u6+nWTx0EJwJ8lIbd4OaSAAx6f2hDdVfrB3pQa1xbg=,tag:c1QWwOvI+brg0nbdijQL/w==,type:str]
 japan7BasicAuth:
     username: ENC[AES256_GCM,data:OF9r8veM,iv:pNSBigY3fyCmpGhtFY6O3qdgulA6anPCI2yoMtKL7yo=,tag:Ay7tF8k9vJLAoy+TpUJ3jg==,type:str]
     password: ENC[AES256_GCM,data:HqLfhv8jBg==,iv:NBZ2wayxG5E9Aee1DV6xzJshRXPIIThdJRFJKmkgYII=,tag:VShszrmcH6BHP7KeAHMDkg==,type:str]
@@ -28,8 +26,8 @@ sops:
             TzUyREJtNnBwTCtMTkRabENOdzQ3cG8KP77v8Br6NWNfEEkgPFCtB39ShRUzA5QX
             t2YpvYOnlgrjNE2svB8m3LBmDrvnbQ15CgdqA375QyR4XxfER7SVRQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-07-12T18:05:13Z"
-    mac: ENC[AES256_GCM,data:TPMZItimF4/KkE8OeoYrq04ghAyz7fqg/YApxcocnNmc/oORDEGs/tmtYkkTnUf/LgPa68b891fVSiL7NmVTmU33tIFFHAXNVDGKHNrPLhN1HKD2BusSZQGVup53X8p8KYgUPvZK81FjH9lu9i4ayoZZqeiEhTPXVgxcm8StL0o=,iv:PFngCrCk7M0bYOuTkuwmAGbNf029m0R9627ojvvklrY=,tag:17M7XJI9lr8IO73yOmonqg==,type:str]
+    lastmodified: "2024-01-04T18:35:05Z"
+    mac: ENC[AES256_GCM,data:XX4ZVYLlF6FazJqBhl4i1faBT3xK/p1racV2bCHvP7vKF4xTFeH61dmrm4Gw9xnY0DI7YYUMGymwW9GOFXAetT/kNkYETHH4lfmHrqaQYsnnznSYJwukOKH+TtUoZtdgR+YsbhJsTl9k4Gwl6fLTKRICZ3H617WXgqR5KP3Ulkw=,iv:w+q1fwffmFV+eqwAyQUjjBtN3BQDFgC4Y82CCQjWqsw=,tag:wSDrsIuaG1yaxeZsMvrB5A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.7.3
+    version: 3.8.1

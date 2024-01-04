@@ -16,6 +16,5 @@ releases:
             recurring-job.longhorn.io/source: enabled
             recurring-job-group.longhorn.io/default: enabled
             recurring-job.longhorn.io/longhorn-backup: enabled
-      - certsDumperService: traefik-certs.{{ .Values.traefik.namespace }}:8080
       - ingress:
           host: syncplay.{{ .Values.domain }}

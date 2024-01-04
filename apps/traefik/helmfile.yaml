@@ -10,7 +10,6 @@ releases:
     values:
       - domain: "{{ .Values.domain }}"
       - traefik:
-          letsencryptEmail: "{{ .Values.traefik.letsencryptEmail }}"
           extraPorts:
             - name: forgejo-ssh
               port: 8022

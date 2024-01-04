@@ -35,4 +35,8 @@ spec:
                 port:
                   number: 8080
           {{- end }}
+  tls:
+    - hosts:
+        - "{{ .Values.ingress.host }}"
+      secretName: "{{ .Values.ingress.host }}-tls"
 {{- end }}

@@ -19,7 +19,12 @@ releases:
             enabled: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
             host: minio-operator.{{ .Values.domain }}
+            tls:
+              - hosts:
+                  - minio-operator.{{ .Values.domain }}
+                secretName: minio-operator.{{ .Values.domain }}-tls
   - name: minio-extras
     chart: ../../../charts/minio-extras
     values:

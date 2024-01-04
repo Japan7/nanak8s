@@ -24,6 +24,11 @@ releases:
             https: true
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
+            tls:
+              - hosts:
+                  - argocd.{{ .Values.domain }}
+                secretName: argocd.{{ .Values.domain }}-tls
       # https://github.com/travisghansen/argo-cd-helmfile
       - repoServer:
           volumes:

@@ -25,5 +25,8 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-nanak8s@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls: true
+          tlsSecret: longhorn.{{ .Values.domain }}-tls
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras

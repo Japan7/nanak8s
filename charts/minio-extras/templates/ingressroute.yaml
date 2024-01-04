@@ -17,3 +17,5 @@ spec:
       services:
         - name: minio-api
           kind: TraefikService
+  tls:
+    secretName: {{ .Values.ingress.host }}-tls

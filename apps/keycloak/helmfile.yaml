@@ -58,6 +58,8 @@ releases:
           pathType: Prefix
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls: true
       - extraEnvVars:
           - name: KC_FEATURES
             value: declarative-user-profile

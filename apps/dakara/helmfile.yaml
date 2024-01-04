@@ -20,6 +20,7 @@ releases:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
   - name: dakara-client
     chart: ../../charts/dakara-client
     values:
@@ -43,6 +44,7 @@ releases:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
   - name: mugen-import-api
     chart: ../../charts/mugen-import-api
     values:
@@ -69,3 +71,4 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-japan7-basic-auth@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt

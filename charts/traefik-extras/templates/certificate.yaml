@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik.{{ .Values.domain }}-tls
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: traefik
+spec:
+  secretName: traefik.{{ .Values.domain }}-tls
+  dnsNames:
+    - traefik.{{ .Values.domain }}
+  issuerRef:
+    {{ .Values.certManager.issuerRef | toYaml | nindent 4 }}

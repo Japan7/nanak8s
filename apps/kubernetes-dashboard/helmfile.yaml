@@ -20,5 +20,10 @@ releases:
             - dash.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls:
+            - hosts:
+                - dash.{{ .Values.domain }}
+              secretName: dash.{{ .Values.domain }}-tls
   - name: kubernetes-dashboard-extras
     chart: ../../charts/kubernetes-dashboard-extras

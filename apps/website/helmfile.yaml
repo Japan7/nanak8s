@@ -16,6 +16,8 @@ releases:
           host: {{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
           authAnnotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-japan7@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt

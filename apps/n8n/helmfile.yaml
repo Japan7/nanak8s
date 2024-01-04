@@ -31,10 +31,15 @@ releases:
           enabled: true
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
           hosts:
             - host: n8n.{{ .Values.domain }}
               paths:
                 - /
+          tls:
+            - hosts:
+                - n8n.{{ .Values.domain }}
+              secretName: n8n.{{ .Values.domain }}-tls
     strategicMergePatches:
       - apiVersion: v1
         kind: PersistentVolumeClaim

@@ -18,7 +18,8 @@ ingress:
   host: ""
   tcpEntryPoints:
     - syncplay
-  httpEntryPoints:
-    - websecure
 
-certsDumperService: ""
+certManager:
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

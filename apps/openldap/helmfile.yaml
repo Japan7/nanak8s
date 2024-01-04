@@ -27,8 +27,13 @@ releases:
           ingress:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
             hosts:
               - ldap.{{ .Values.domain }}
+            tls:
+              - hosts:
+                  - ldap.{{ .Values.domain }}
+                secretName: ldap.{{ .Values.domain }}-tls
       - ltb-passwd:
           enabled: false
       - replicaCount: 1

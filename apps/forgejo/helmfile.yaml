@@ -107,6 +107,11 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-forgejo-cors@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls:
+            - hosts:
+                - git.{{ .Values.domain }}
+              secretName: git.{{ .Values.domain }}-tls
   - name: forgejo-runner
     chart: ../../charts/forgejo-runner
     values:

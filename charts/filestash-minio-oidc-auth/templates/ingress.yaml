@@ -30,3 +30,7 @@ spec:
                 name: "{{ .Release.Name }}"
                 port:
                   number: 8000
+  tls:
+    - hosts:
+        - "{{ .Values.ingress.host }}"
+      secretName: "{{ .Values.ingress.host }}-tls"

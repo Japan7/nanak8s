@@ -73,6 +73,7 @@ releases:
           host: nanadb.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
       - dump:
           enabled: true
           persistence:
