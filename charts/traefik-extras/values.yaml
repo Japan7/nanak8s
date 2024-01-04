@@ -1,20 +1,23 @@
-domain: ""
-
-replicaCount: 1
-
 traefik:
   image:
     registry: docker.io
     repository: traefik
-    tag: v3.0
+    tag: v3.0.0-beta5
   extraPorts: []
   # - name:
   #   port:
 
-certManager:
-  issuerRef:
-    name: letsencrypt
-    kind: ClusterIssuer
+replicaCount: 1
+
+dashboard:
+  ingress:
+    host: ""
+    entryPoints:
+      - websecure
+  certManager:
+    issuerRef:
+      name: letsencrypt
+      kind: ClusterIssuer
 
 japan7BasicAuth:
   username: ""

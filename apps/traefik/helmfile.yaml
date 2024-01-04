@@ -8,14 +8,16 @@ releases:
   - name: traefik-extras
     chart: ../../charts/traefik-extras
     values:
-      - domain: "{{ .Values.domain }}"
-      - replicaCount: 2
       - traefik:
           extraPorts:
             - name: forgejo-ssh
               port: 8022
             - name: syncplay
               port: 8999
+      - replicaCount: 2
+      - dashboard:
+          ingress:
+            host: traefik.{{ .Values.domain }}
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"

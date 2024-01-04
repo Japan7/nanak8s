@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/component: extras
     app.kubernetes.io/part-of: traefik
   annotations:
-    link.argocd.argoproj.io/external-link: "http://traefik.{{ .Values.domain }}"
+    link.argocd.argoproj.io/external-link: "http://{{ .Values.dashboard.ingress.host }}"
 spec:
   valuesContent: |-
     image:
@@ -35,13 +35,13 @@ spec:
       - --serversTransport.insecureSkipVerify=true  # required for k8s-dashboard
     ingressRoute:
       dashboard:
-        matchRule: Host(`traefik.{{ .Values.domain }}`)
+        matchRule: Host(`{{ .Values.dashboard.ingress.host }}`)
         entryPoints:
           - websecure
         middlewares:
           - name: traefik-forward-auth-nanak8s
         tls:
-          secretName: traefik.{{ .Values.domain }}-tls
+          secretName: {{ .Values.dashboard.ingress.host }}-tls
     deployment:
       replicas: {{ .Values.replicaCount }}
     affinity:
