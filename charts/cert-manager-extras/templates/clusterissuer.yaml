@@ -19,4 +19,4 @@ spec:
             ingressTemplate:
               metadata:
                 annotations:
-                  traefik.ingress.kubernetes.io/router.entrypoints: websecure
+                  traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
