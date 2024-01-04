@@ -11,7 +11,7 @@ repositories:
 releases:
   - name: loki-stack
     chart: grafana/loki-stack
-    version: 2.9.11
+    version: 2.9.12
     values:
       - loki:
           persistence:
