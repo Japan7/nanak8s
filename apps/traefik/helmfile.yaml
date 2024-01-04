@@ -16,11 +16,6 @@ releases:
               port: 8022
             - name: syncplay
               port: 8999
-      - persistence:
-          labels:
-            recurring-job.longhorn.io/source: enabled
-            recurring-job-group.longhorn.io/default: enabled
-            recurring-job.longhorn.io/longhorn-backup: enabled
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"

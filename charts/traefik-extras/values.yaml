@@ -16,11 +16,6 @@ certManager:
     name: letsencrypt
     kind: ClusterIssuer
 
-persistence:
-  accessMode: ReadWriteOnce
-  size: 128Mi
-  labels: {}
-
 japan7BasicAuth:
   username: ""
   password: ""
