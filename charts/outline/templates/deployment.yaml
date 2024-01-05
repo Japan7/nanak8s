@@ -9,6 +9,10 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- with .Values.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:
@@ -22,6 +26,9 @@ spec:
         - name: env
           secret:
             secretName: {{ .Release.Name }}-env
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -42,7 +49,9 @@ spec:
           command: ["sh", "-xc", "set -a && . /env && yarn db:migrate --env=production-ssl-disabled && yarn start"]
           volumeMounts:
             - name: env
-              subPath: env
               mountPath: /env
+              subPath: env
+            - name: data
+              mountPath: /var/lib/outline/data
           ports:
             - containerPort: 3000

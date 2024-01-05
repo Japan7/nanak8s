@@ -5,6 +5,9 @@ image:
 
 replicaCount: 1
 
+updateStrategy:
+  type: RollingUpdate
+
 affinity: {}
 
 cnpg:
@@ -13,6 +16,11 @@ cnpg:
   database: app
 
 env: ""
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
 
 ingress:
   host: ""
