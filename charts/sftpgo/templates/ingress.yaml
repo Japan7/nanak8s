@@ -4,7 +4,7 @@ metadata:
   name: "{{ .Release.Name }}-http"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with .Values.ingress.http.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
