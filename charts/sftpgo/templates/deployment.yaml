@@ -18,6 +18,10 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -35,6 +39,33 @@ spec:
           env:
             - name: SFTPGO_CONFIG_DIR
               value: /config
+            - name: SFTPGO_DATA_PROVIDER__DRIVER
+              value: postgresql
+            - name: SFTPGO_DATA_PROVIDER__NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: dbname
+            - name: SFTPGO_DATA_PROVIDER__HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: host
+            - name: SFTPGO_DATA_PROVIDER__PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: port
+            - name: SFTPGO_DATA_PROVIDER__USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: username
+            - name: SFTPGO_DATA_PROVIDER__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: password
           volumeMounts:
             - name: data
               mountPath: /srv/sftpgo

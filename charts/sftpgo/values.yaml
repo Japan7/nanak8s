@@ -8,6 +8,11 @@ replicaCount: 1
 updateStrategy:
   type: RollingUpdate
 
+affinity: {}
+
+cnpg:
+  secretName: ""
+
 system:
   config: ""
   persistence:
