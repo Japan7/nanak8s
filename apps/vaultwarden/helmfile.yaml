@@ -5,15 +5,6 @@ environments:
       - default.sops.yaml
 ---
 releases:
-  - name: vaultwarden-cnpg-16
-    chart: ../../charts/cnpg-cluster
-    values:
-      - release: 16
-      - backups:
-          minio:
-            endpoint: https://minio.{{ .Values.domain }}
-            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: vaultwarden
     chart: ../../charts/vaultwarden
     values:
