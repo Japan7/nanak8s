@@ -19,8 +19,6 @@ releases:
     values:
       - updateStrategy:
           type: Recreate
-      - cnpg:
-          name: vaultwarden-cnpg-16
       - config:
           signupsAllowed: false
           adminToken: "{{ .Values.adminToken }}"
@@ -31,22 +29,6 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - vaultwarden-cnpg-16
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
       - persistence:
           labels:
             recurring-job.longhorn.io/source: enabled

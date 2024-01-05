@@ -5,20 +5,8 @@ image:
 
 replicaCount: 1
 
-affinity: {}
-
 updateStrategy:
   type: RollingUpdate
-
-cnpg:
-  name: ""
-  user: app
-  database: app
-
-persistence:
-  accessMode: ReadWriteOnce
-  size: 1Gi
-  labels: {}
 
 config:
   websocketEnabled: true
@@ -35,18 +23,10 @@ smtp:
   port: 587
   security: starttls
 
-ldap:
-  enabled: false
-  host: ""
-  dn: ""
-  password: ""
-  searchBaseDn: ""
-  searchFilter: (&(objectClass=inetOrgPerson)(mail=*))
-  syncIntervalSeconds: 300
-  image:
-    repository: vividboarder/vaultwarden_ldap
-    tag: 1.0.0
-    pullPolicy: ""
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
 
 ingress:
   host: ""

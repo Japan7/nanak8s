@@ -18,14 +18,6 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- if .Values.ldap.enabled }}
-      nodeSelector:
-        kubernetes.io/arch: amd64 # vaultwarden_ldap: no arm64 image available
-      {{- end }}
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -43,18 +35,8 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-admin"
                   key: token
-            - name: PSQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
-                  key: username
-            - name: PSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
-                  key: password
             - name: DATABASE_URL
-              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw/{{ .Values.cnpg.database }}
+              value: /data/db.sqlite3
             {{- if .Values.smtp.enabled }}
             - name: SMTP_FROM
               value: {{ .Values.smtp.from }}
@@ -87,33 +69,3 @@ spec:
             - name: ws
               containerPort: 3012
             {{- end }}
-        {{- if .Values.ldap.enabled }}
-        - name: ldap
-          {{- with .Values.ldap.image }}
-          image: "{{ .repository }}:{{ .tag }}"
-          imagePullPolicy: "{{ .pullPolicy }}"
-          {{- end }}
-          env:
-            - name: APP_VAULTWARDEN_URL
-              value: http://localhost
-            - name: APP_VAULTWARDEN_ADMIN_TOKEN
-              value: "{{ .Values.config.adminToken }}"
-            - name: APP_LDAP_HOST
-              value: "{{ .Values.ldap.host }}"
-            - name: APP_LDAP_BIND_DN
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-ldap"
-                  key: dn
-            - name: APP_LDAP_BIND_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-ldap"
-                  key: password
-            - name: APP_LDAP_SEARCH_BASE_DN
-              value: "{{ .Values.ldap.searchBaseDn }}"
-            - name: APP_LDAP_SEARCH_FILTER
-              value: "{{ .Values.ldap.searchFilter }}"
-            - name: APP_LDAP_SYNC_INTERVAL_SECONDS
-              value: "{{ .Values.ldap.syncIntervalSeconds }}"
-        {{- end }}
