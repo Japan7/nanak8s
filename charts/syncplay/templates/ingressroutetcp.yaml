@@ -10,7 +10,9 @@ spec:
     - "{{ . }}"
     {{- end }}
   routes:
-    - match: HostSNI(`*`)
+    - match: HostSNI(`{{ .Values.ingress.host }}`)
       services:
         - name: "{{ .Release.Name }}"
           port: 8999
+  tls:
+    secretName: {{ .Values.ingress.host }}-tls
