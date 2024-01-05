@@ -19,7 +19,6 @@ releases:
           - name: cnpg
             namespace: cnpg-system
           - name: kubernetes-dashboard
-          - name: monitoring
 
           # Minio
           - name: minio-operator
