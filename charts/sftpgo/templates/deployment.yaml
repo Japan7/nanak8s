@@ -32,6 +32,10 @@ spec:
         - name: config
           secret:
             secretName: "{{ .Release.Name }}-config"
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
