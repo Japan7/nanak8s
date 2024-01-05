@@ -2,15 +2,17 @@
 
 ## Join the Japan7 cluster
 
-**[Wireguard](https://www.wireguard.com/install/) support** is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
+[Wireguard](https://www.wireguard.com/install/) support is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 777/UDP (HTTP3), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
+**Optional inbound rules:** 80/TCP (HTTP), 443/TCP (HTTPS), 777/UDP (HTTP/3), 6443/TCP (K8s API), 8022/TCP (Forgejo SSH), 8999/TCP (Syncplay).
 
 ### Steps
 
 1. **Setup innernet**
 
 Follow the [install instructions](https://github.com/tonarino/innernet#installation), ask your `invitation.toml` and [configure your peer](https://github.com/tonarino/innernet#peer-initialization) with it.
+
+Set the MTU to 1420 on the innernet interface to avoid any issue with QUIC handshakes.
 
 2. **Install K3s**
 
