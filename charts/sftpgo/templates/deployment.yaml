@@ -37,8 +37,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
-            - name: SFTPGO_CONFIG_DIR
-              value: /config
+            - name: SFTPGO_CONFIG_FILE
+              value: /config/sftpgo.json
             - name: SFTPGO_DATA_PROVIDER__DRIVER
               value: postgresql
             - name: SFTPGO_DATA_PROVIDER__NAME
