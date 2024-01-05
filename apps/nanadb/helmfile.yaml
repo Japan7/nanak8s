@@ -82,6 +82,8 @@ releases:
               recurring-job-group.longhorn.io/default: enabled
               recurring-job.longhorn.io/longhorn-backup: enabled
           http:
+            updateStrategy:
+              type: Recreate
             ingress:
               additionalPathPrefixes:
                 - /_oauth

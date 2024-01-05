@@ -30,6 +30,9 @@ dump:
       repository: svenstaro/miniserve
       tag: 0.24.0
       pullPolicy: ""
+    replicaCount: 1
+    updateStrategy:
+      type: RollingUpdate
     ingress:
       pathPrefix: "/dump"
       additionalPathPrefixes: []
