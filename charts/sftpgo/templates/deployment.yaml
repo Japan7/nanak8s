@@ -39,6 +39,8 @@ spec:
           env:
             - name: SFTPGO_CONFIG_FILE
               value: /config/sftpgo.json
+            - name: SFTPGO_DATA_PROVIDER__USERS_BASE_DIR
+              value: /srv/sftpgo/users
           volumeMounts:
             - name: data
               mountPath: /srv/sftpgo
