@@ -8,7 +8,9 @@ metadata:
     app.kubernetes.io/part-of: forgejo
 spec:
   entryPoints:
-    - "{{ .Values.traefik.sshEntryPoint }}"
+    {{- range .Values.ingress.ssh.entryPoints }}
+    - "{{ . }}"
+    {{- end }}
   routes:
     - match: HostSNI(`*`)
       services:

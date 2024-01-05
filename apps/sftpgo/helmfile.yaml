@@ -1,0 +1,32 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: sftpgo
+    chart: ../../charts/sftpgo
+    values:
+      - updateStrategy:
+          type: Recreate
+      - system:
+          config: |
+            {{ .Values.config | nindent 12 }}
+          persistence:
+            labels:
+              recurring-job.longhorn.io/source: enabled
+              recurring-job-group.longhorn.io/default: enabled
+              recurring-job.longhorn.io/longhorn-backup: enabled
+      - data:
+          persistence:
+            labels:
+              recurring-job.longhorn.io/source: enabled
+              recurring-job-group.longhorn.io/default: enabled
+              recurring-job.longhorn.io/longhorn-backup: enabled
+      - ingress:
+          host: sftp.{{ .Values.domain }}
+          http:
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt

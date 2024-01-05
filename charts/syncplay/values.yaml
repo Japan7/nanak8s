@@ -16,8 +16,9 @@ persistence:
 
 ingress:
   host: ""
-  tcpEntryPoints:
-    - syncplay
+  tcp:
+    entryPoints:
+      - syncplay
 
 certManager:
   issuerRef:

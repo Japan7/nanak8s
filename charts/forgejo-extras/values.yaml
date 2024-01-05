@@ -1,5 +1,7 @@
-traefik:
-  sshEntryPoint: "forgejo-ssh"
+ingress:
+  ssh:
+    entryPoints:
+      - forgejo-ssh
 
 imagePrune:
   url: ""

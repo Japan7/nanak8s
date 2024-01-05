@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- with .Values.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-data"
+        - name: system
+          persistentVolumeClaim:
+            claimName: "{{ .Release.Name }}-system"
+        - name: config
+          secret:
+            secretName: "{{ .Release.Name }}-config"
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: SFTPGO_CONFIG_DIR
+              value: /config
+          volumeMounts:
+            - name: data
+              mountPath: /srv/sftpgo
+            - name: system
+              mountPath: /var/lib/sftpgo
+            - name: config
+              mountPath: /config
+          ports:
+            - name: sftp
+              containerPort: 2022
+            - name: http
+              containerPort: 8080

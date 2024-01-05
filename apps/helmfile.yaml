@@ -49,6 +49,7 @@ releases:
           - name: emails
 
           # Data
+          - name: sftpgo
           - name: nanadb
 
           # nanapi
