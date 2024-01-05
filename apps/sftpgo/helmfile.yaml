@@ -5,38 +5,11 @@ environments:
       - default.sops.yaml
 ---
 releases:
-  - name: sftpgo-cnpg-16
-    chart: ../../charts/cnpg-cluster
-    values:
-      - release: 16
-      - backups:
-          minio:
-            endpoint: https://minio.{{ .Values.domain }}
-            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: sftpgo
     chart: ../../charts/sftpgo
     values:
       - updateStrategy:
           type: Recreate
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - sftpgo-cnpg-16
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
-      - cnpg:
-          secretName: sftpgo-cnpg-16-app
       - system:
           config: |
             {{ .Values.config | nindent 12 }}
