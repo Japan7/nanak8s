@@ -15,6 +15,15 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ .Values.ingress.host }}-tls
+            items:
+              - key: tls.crt
+                path: fullchain.pem
+              - key: tls.key
+                path: privkey.pem
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -31,11 +40,16 @@ spec:
                   name: "{{ .Release.Name }}-secret"
                   key: salt
           args:
+            - --tls
+            - /certs
             - --rooms-db-file
             - /rooms/rooms
             - --permanent-rooms-file
             - /rooms/permanent_rooms
           volumeMounts:
+            - name: certs
+              mountPath: /certs
+              readOnly: true
             - name: rooms
               mountPath: /rooms
           ports:
