@@ -87,6 +87,8 @@ releases:
             actions:
               ENABLED: true
               DEFAULT_ACTIONS_URL: https://github.com
+      - strategy:
+          type: Recreate
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
