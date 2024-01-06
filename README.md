@@ -29,15 +29,20 @@ Edit and put the following configuration in `/etc/rancher/k3s/config.yaml`:
 ```yaml
 token: <shared_secret>
 flannel-iface: <innernet_interface>
-secrets-encryption: true
-disable:
-  - local-storage
 kubelet-arg:
   - eviction-hard=memory.available<0%
   - eviction-soft=memory.available<100Mi,nodefs.available<5Gi,nodefs.inodesFree<5%,imagefs.available<5Gi
   - eviction-soft-grace-period=memory.available=5m,nodefs.available=5m,nodefs.inodesFree=5m,imagefs.available=5m
   - image-gc-high-threshold=5
   - image-gc-low-threshold=0
+```
+
+If running in server mode, also add the following keys:
+
+```yaml
+secrets-encryption: true
+disable:
+  - local-storage
 ```
 
 Then run the one-liner to install K3s:
@@ -56,7 +61,7 @@ Longhorn (block storage) requires some system packages. Please check their [docu
 
 K3s internal Traefik serves web apps on port 8443 (websecure). You may setup another Traefik outside the Kubernetes cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443.
 
-- `docker-compose.yml`
+- `compose.yaml`
 
 ```yaml
 services:
@@ -103,7 +108,7 @@ tcp:
 
 ### Start a new cluster
 
-Save the same configuration file as all above and run the following one-liner:
+Save the same configuration file as all above (server mode) and run the following one-liner:
 
 ```sh
 curl -sfL https://get.k3s.io | sh -s - server --cluster-init
