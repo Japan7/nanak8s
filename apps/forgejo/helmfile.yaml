@@ -27,14 +27,40 @@ releases:
             secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
     chart: forgejo-contrib/forgejo
-    version: 0.15.0
+    version: 1.0.3
     values:
-      - image:
-          tag: 1.21.3-0 # renovate: repository=codeberg.org/forgejo/forgejo
+      - redis-cluster:
+          enabled: false
+      - postgresql:
+          enabled: false
+      - postgresql-ha:
+          enabled: false
+      - persistence:
+          enabled: true
+          size: 15Gi
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
           config:
+            database:
+              DB_TYPE: postgres
+              HOST: forgejo-cnpg-16-rw
+              NAME: app
+              USER: app
+              PASSWD: "{{ .Values.cnpg.password }}"
+            session:
+              PROVIDER: db
+            cache:
+              ADAPTER: memory
+            queue:
+              TYPE: level
+            indexer:
+              ISSUE_INDEXER_TYPE: bleve
+              REPO_INDEXER_ENABLED: true
             server:
               ROOT_URL: https://git.{{ .Values.domain }}
               SSH_PORT: 8022
@@ -49,12 +75,6 @@ releases:
               USER: "{{ .Values.smtp.username }}"
               PASSWD: "{{ .Values.smtp.password }}"
               FROM: "{{ .Values.gitea.mailer.from }}"
-            database:
-              DB_TYPE: postgres
-              HOST: forgejo-cnpg-16-rw
-              NAME: app
-              USER: app
-              PASSWD: "{{ .Values.cnpg.password }}"
             cron:
               ENABLED: true
               RUN_AT_START: true
@@ -67,16 +87,6 @@ releases:
             actions:
               ENABLED: true
               DEFAULT_ACTIONS_URL: https://github.com
-      - postgresql:
-          enabled: false
-      - memcached:
-          enabled: false
-      - persistence:
-          size: 15Gi
-          labels:
-            recurring-job.longhorn.io/source: enabled
-            recurring-job-group.longhorn.io/default: enabled
-            recurring-job.longhorn.io/longhorn-backup: enabled
       - initPreScript: |
           chmod 700 /data/{ssh,git,git/.ssh} || true
           chmod 600 /data/{ssh,git/.ssh}/* || true
@@ -98,16 +108,15 @@ releases:
                   topologyKey: kubernetes.io/hostname
       - ingress:
           enabled: true
-          apiVersion: networking.k8s.io/v1
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-forgejo-cors@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
           hosts:
             - host: git.{{ .Values.domain }}
               paths:
                 - path: /
                   pathType: Prefix
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Namespace }}-forgejo-cors@kubernetescrd"
-            cert-manager.io/cluster-issuer: letsencrypt
           tls:
             - hosts:
                 - git.{{ .Values.domain }}
