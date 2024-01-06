@@ -8,6 +8,8 @@ replicaCount: 1
 updateStrategy:
   type: RollingUpdate
 
+extraContainers: []
+
 system:
   config: ""
   persistence:

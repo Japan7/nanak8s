@@ -30,3 +30,8 @@ releases:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
               cert-manager.io/cluster-issuer: letsencrypt
+      - extraContainers:
+          - name: hooks
+            image: ghcr.io/japan7/sftpgo-oidc-hooks:main@sha256:170d2fabdbc21f48d1b3d36beb2a7d15f915e62da03f91706cdf0deaf461b898 # renovate: repository=ghcr.io/japan7/sftpgo-oidc-hooks
+            ports:
+              - containerPort: 8000
