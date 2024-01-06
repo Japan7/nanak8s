@@ -87,9 +87,6 @@ releases:
             actions:
               ENABLED: true
               DEFAULT_ACTIONS_URL: https://github.com
-      - initPreScript: |
-          chmod 700 /data/{ssh,git,git/.ssh} || true
-          chmod 600 /data/{ssh,git/.ssh}/* || true
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
