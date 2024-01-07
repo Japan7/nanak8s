@@ -14,11 +14,6 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 16
-      - backups:
-          minio:
-            endpoint: https://minio.{{ .Values.domain }}
-            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: keycloak
     chart: bitnami/keycloak
     version: 18.0.0

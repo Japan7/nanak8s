@@ -20,11 +20,6 @@ releases:
           size: 10Gi
       - user:
           password: "{{ .Values.cnpg.password }}"
-      - backups:
-          minio:
-            endpoint: https://minio.{{ .Values.domain }}
-            accessKey: "{{ .Values.cnpg.minio.accessKey }}"
-            secretKey: "{{ .Values.cnpg.minio.secretKey }}"
   - name: forgejo
     chart: forgejo-contrib/forgejo
     version: 1.0.3

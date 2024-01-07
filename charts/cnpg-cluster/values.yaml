@@ -17,12 +17,3 @@ postgresql: {}
 user:
   username: app
   password: ""
-
-backups:
-  enabled: true
-  minio:
-    endpoint: ""
-    bucket: cnpg
-    accessKey: ""
-    secretKey: ""
-  schedule: "0 0 15 * * *"

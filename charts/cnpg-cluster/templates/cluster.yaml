@@ -27,21 +27,3 @@ spec:
       secret:
         name: "{{ .Release.Name }}-{{ .Values.user.username }}-bootstrap"
       {{- end }}
-  {{- if .Values.backups.enabled }}
-  backup:
-    barmanObjectStore:
-      destinationPath: s3://{{ .Values.backups.minio.bucket }}
-      endpointURL: {{ .Values.backups.minio.endpoint }}
-      s3Credentials:
-        accessKeyId:
-          name: "{{ .Release.Name }}-minio"
-          key: MINIO_ACCESS_KEY
-        secretAccessKey:
-          name: "{{ .Release.Name }}-minio"
-          key: MINIO_SECRET_KEY
-      wal:
-        compression: bzip2
-      data:
-        compression: bzip2
-    retentionPolicy: "7d"
-  {{- end }}
