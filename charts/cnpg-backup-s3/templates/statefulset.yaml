@@ -45,6 +45,8 @@ spec:
           args:
             - serve
             - s3
+            - --addr
+            - :8080
             - --auth-key
             - $(ACCESS_KEY_ID),$(SECRET_ACCESS_KEY)
             - :sftp,host={{ .Values.sftp.host }},port={{ .Values.sftp.port }},user=$(SFTP_USER),pass=$(SFTP_OBSCURED_PASSWORD):{{ .Values.sftp.path }}
