@@ -1,6 +1,6 @@
-minio:
-    accessKey: ENC[AES256_GCM,data:4TyPLVntUqo=,iv:ivUPuHqPr/xTInSJpVGFtrv5ZsXgHq0ObbXodPD8cXA=,tag:98Q/B0Pv0tbP5KGbFLWGQw==,type:str]
-    secretKey: ENC[AES256_GCM,data:FbriLNECIDdcfPKgylzlJ5wcTDX+fTZC/MzquHhPH8jAu7/HtjUuhQ==,iv:0UXFFD1NkEsRAe6V5uR+vp+J+XpXCpcfVEx0f2/YFOk=,tag:x091nDK4Cm5F6/UKWVbXtA==,type:str]
+sftp:
+    username: ENC[AES256_GCM,data:ue/Lg4Gu33Jd,iv:1Uo1A1SA9zQ9xEO5qE+jV4HinYMqEnKcyXRiyTO9zw4=,tag:sUOO3aiX/e4KbRSQlusSwg==,type:str]
+    obscuredPassword: ENC[AES256_GCM,data:lGg8QAwggGJusKMTJKvxtw/7iv9qbjkB/mEbTvHvqiHSRHxMgf/Qeg==,iv:AGVFEq4UiXmgfU6SNjOaZ0sBhlQQnyRswPnnMHHKrjU=,tag:2ZyLeOjq353XOMr0HSgsGA==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -16,8 +16,8 @@ sops:
             eGg1S0JzaFV3WjZWSkU5ZW1sK2ttQmcKTUVLCxFhh/qdBBLfODZvGwRjZKcA7qai
             4rOgrE40M/FOFqlSMrPgiMu2bonov+bhq/fjjbU49iRKsofBF+PWXg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-06-21T13:48:00Z"
-    mac: ENC[AES256_GCM,data:qNIGvQU9Gv16hWQCW08JSN9mZmIH89qDjDZWXIYjsxCIGEStCqqkLhQEzBnfvg3dF1lTMFwvWpjFUyCVdKgYv9yRlRrmyY4AVBw4JhA1LzPd2bFbwM7FQxBFwmn/b1zpiawsmI2LGc4LhNpsp8bARpnWCg887DT9VKJpP1Ao4pw=,iv:c5DjSutmQhUo5hPtqpOho03h6OxO/jamzJJlSrmD2yU=,tag:+OnQ39+dPRE/Ym2cmNlVjg==,type:str]
+    lastmodified: "2024-01-07T10:23:14Z"
+    mac: ENC[AES256_GCM,data:dNRicGAncJIYRwArFGxfRzdPMso+t1mjQh3upmwBGqGy2E8bWjBJx9J//zyDqoRA1SAQiUO8a2XSiXK3wvzaIp3C/A5w8eZPidkAucGdylXcVmnQxkd0qGrkzIfMhXQys0QLulQNTJlaztI11Ja+hhioCtoKysXUAj+HEH0pXkE=,iv:P4+4TYLBlBHoIibTV2Gs2VQdk7FiNlcg2SlMWOwcORk=,tag:5rQbSUqLgvGCIqYW9XFkOw==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.7.3
+    version: 3.8.1

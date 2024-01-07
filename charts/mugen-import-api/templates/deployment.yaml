@@ -29,9 +29,6 @@ spec:
         - name: db
           persistentVolumeClaim:
             claimName: "{{ .Release.Name }}-db"
-        - name: rclone-config
-          secret:
-            secretName: "{{ .Release.Name }}-rclone"
         - name: download
           emptyDir: {}
       containers:
@@ -54,9 +51,20 @@ spec:
           image: "{{ .repository }}:{{ .tag }}"
           imagePullPolicy: "{{ .pullPolicy }}"
           {{- end }}
+          env:
+            - name: SFTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: username
+            - name: SFTP_OBSCURED_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: password
           args:
             - mount
-            - minio:{{ .Values.mugen.minio.path }}
+            - :sftp,host={{ .Values.mugen.sftp.host }},port={{ .Values.mugen.sftp.port }},user=$(SFTP_USER),pass=$(SFTP_OBSCURED_PASSWORD):{{ .Values.mugen.sftp.path }}
             - /mnt
             - --verbose
             - --allow-non-empty
@@ -67,8 +75,6 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
-            - name: rclone-config
-              mountPath: /root/.config/rclone
             - name: download
               mountPath: /mnt
               mountPropagation: Bidirectional

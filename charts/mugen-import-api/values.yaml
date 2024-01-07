@@ -15,11 +15,12 @@ persistence:
   labels: {}
 
 mugen:
-  minio:
-    endpoint: ""
+  sftp:
+    host: ""
+    port: ""
+    username: ""
+    obscuredPassword: ""
     path: ""
-    accessKey: ""
-    secretKey: ""
   mountPath: /download
 
 rclone:

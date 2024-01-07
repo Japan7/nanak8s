@@ -28,9 +28,6 @@ spec:
             secretName: "{{ .Release.Name }}-localsettings"
         - name: html
           emptyDir: {}
-        - name: rclone-config
-          secret:
-            secretName: "{{ .Release.Name }}-rclone"
         - name: kara
           emptyDir: {}
       containers:
@@ -63,9 +60,20 @@ spec:
           image: "{{ .repository }}:{{ .tag }}"
           imagePullPolicy: "{{ .pullPolicy }}"
           {{- end }}
+          env:
+            - name: SFTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: username
+            - name: SFTP_OBSCURED_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: password
           args:
             - mount
-            - minio:{{ .Values.kara.minio.path }}
+            - :sftp,host={{ .Values.kara.sftp.host }},port={{ .Values.kara.sftp.port }},user=$(SFTP_USER),pass=$(SFTP_OBSCURED_PASSWORD):{{ .Values.kara.sftp.path }}
             - /mnt
             - --verbose
             - --read-only
@@ -77,8 +85,6 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
-            - name: rclone-config
-              mountPath: /root/.config/rclone
             - name: kara
               mountPath: /mnt
               mountPropagation: Bidirectional

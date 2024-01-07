@@ -11,11 +11,12 @@ localSettings: ""
 affinity: {}
 
 kara:
-  minio:
-    endpoint: ""
+  sftp:
+    host: ""
+    port: ""
+    username: ""
+    obscuredPassword: ""
     path: ""
-    accessKey: ""
-    secretKey: ""
   mountPath: /kara
 
 rclone:

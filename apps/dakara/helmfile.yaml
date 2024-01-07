@@ -56,11 +56,12 @@ releases:
       - updateStrategy:
           type: Recreate
       - mugen:
-          minio:
-            endpoint: https://minio.{{ .Values.domain }}
+          sftp:
+            host: sftpgo-sftp.sftpgo
+            port: 2022
+            username: "{{ .Values.sftp.username }}"
+            obscuredPassword: "{{ .Values.sftp.obscuredPassword }}"
             path: kara/Mugen
-            accessKey: "{{ .Values.minio.accessKey }}"
-            secretKey: "{{ .Values.minio.secretKey }}"
       - persistence:
           labels:
             recurring-job.longhorn.io/source: enabled
