@@ -16,6 +16,12 @@ releases:
       - release: 16
       - storage:
           size: 5Gi
+      - backups:
+          enabled: true
+          s3:
+            endpoint: http://cnpg-backup-s3-api.cnpg-system:8080
+            accessKey: "{{ .Values.cnpg.s3.accessKey }}"
+            secretKey: "{{ .Values.cnpg.s3.secretKey }}"
   - name: outline-redis
     chart: bitnami/redis
     version: 18.6.2

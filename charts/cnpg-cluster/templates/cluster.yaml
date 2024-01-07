@@ -27,3 +27,21 @@ spec:
       secret:
         name: "{{ .Release.Name }}-{{ .Values.user.username }}-bootstrap"
       {{- end }}
+  {{- if .Values.backups.enabled }}
+  backup:
+    barmanObjectStore:
+      destinationPath: s3://{{ .Values.backups.s3.bucket }}
+      endpointURL: {{ .Values.backups.s3.endpoint }}
+      s3Credentials:
+        accessKeyId:
+          name: "{{ .Release.Name }}-s3"
+          key: username
+        secretAccessKey:
+          name: "{{ .Release.Name }}-s3"
+          key: password
+      wal:
+        compression: bzip2
+      data:
+        compression: bzip2
+    retentionPolicy: "7d"
+  {{- end }}

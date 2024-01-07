@@ -17,3 +17,12 @@ postgresql: {}
 user:
   username: app
   password: ""
+
+backups:
+  enabled: false
+  s3:
+    endpoint: ""
+    bucket: cnpg
+    accessKey: ""
+    secretKey: ""
+  schedule: "0 0 15 * * *"

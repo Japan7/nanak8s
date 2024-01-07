@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+  serviceName: "{{ .Release.Name }}-headless"
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+    spec:
+      containers:
+        - name: rclone
+          {{- with .Values.image }}
+          image: "{{ .repository }}:{{ .tag }}"
+          imagePullPolicy: "{{ .pullPolicy }}"
+          {{- end }}
+          env:
+            - name: SFTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: username
+            - name: SFTP_OBSCURED_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-sftp
+                  key: password
+            - name: ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-auth
+                  key: username
+            - name: SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-auth
+                  key: password
+          args:
+            - serve
+            - s3
+            - --auth-key
+            - $(ACCESS_KEY_ID),$(SECRET_ACCESS_KEY)
+            - :sftp,host={{ .Values.sftp.host }},port={{ .Values.sftp.port }},user=$(SFTP_USER),pass=$(SFTP_OBSCURED_PASSWORD):{{ .Values.sftp.path }}
+            - --vfs-cache-mode
+            - full
+            - --cache-dir
+            - /vfs
+            - --verbose
+          volumeMounts:
+            - name: vfs
+              mountPath: /vfs
+  volumeClaimTemplates:
+    {{- with .Values.persistence }}
+    - metadata:
+        name: vfs
+      spec:
+        storageClassName: {{ .storageClass }}
+        accessModes:
+          - {{ .accessMode }}
+        resources:
+          requests:
+            storage: {{ .size }}
+    {{- end }}

@@ -43,8 +43,6 @@ releases:
             huge_pages: "off"
             min_wal_size: "1GB"
             max_wal_size: "4GB"
-      - backups:
-          enabled: false
   - name: nanadb
     chart: ../../charts/edgedb
     values:

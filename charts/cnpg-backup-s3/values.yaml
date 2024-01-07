@@ -1,0 +1,22 @@
+image:
+  repository: rclone/rclone
+  tag: 1.65.0
+  pullPolicy: ""
+
+replicaCount: 1
+
+sftp:
+  host: ""
+  port: ""
+  username: ""
+  obscuredPassword: ""
+  path: ""
+
+auth:
+  accessKey: ""
+  secretKey: ""
+
+persistence:
+  storageClass: longhorn-single
+  accessMode: ReadWriteOnce
+  size: 10Gi
