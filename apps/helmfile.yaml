@@ -39,7 +39,6 @@ releases:
           - name: vaultwarden
           - name: waicolle
           - name: dakara
-          - name: filestash
           - name: n8n
           - name: outline
           - name: syncplay
