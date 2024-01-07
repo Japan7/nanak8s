@@ -1,9 +1,0 @@
-environments:
-  default:
-    values:
-      - tenant: 1
-      - node: gungnir
-      - jsonPatches: []
----
-bases:
-  - ../tenant.helmfile.yaml
