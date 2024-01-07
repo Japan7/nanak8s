@@ -20,7 +20,7 @@ releases:
           port: 2022
           username: "{{ .Values.sftp.username }}"
           obscuredPassword: "{{ .Values.sftp.obscuredPassword }}"
-          path: cnpg
+          path: /
       - auth:
           accessKey: "{{ .Values.cnpg.s3.accessKey }}"
           secretKey: "{{ .Values.cnpg.s3.secretKey }}"
