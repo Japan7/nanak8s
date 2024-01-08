@@ -28,7 +28,7 @@ releases:
             secretKey: "{{ .Values.cnpg.s3.secretKey }}"
   - name: forgejo
     chart: forgejo-contrib/forgejo
-    version: 1.0.3
+    version: 1.0.4
     values:
       - redis-cluster:
           enabled: false
