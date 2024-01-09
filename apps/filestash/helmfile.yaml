@@ -39,8 +39,8 @@ releases:
       - sftpgo:
           web: http://sftpgo-http.sftpgo:8080
           adminBasicAuth: "{{ .Values.sftpgo.adminBasicAuth }}"
-          host: sftpgo.{{ .Values.domain }}
-          port: 8222
+          host: sftpgo-sftp.sftpgo
+          port: 2022
           pubKey: "{{ .Values.sftpgo.pubKey }}"
           privKey: "{{ .Values.sftpgo.privKey }}"
       - ingress:
