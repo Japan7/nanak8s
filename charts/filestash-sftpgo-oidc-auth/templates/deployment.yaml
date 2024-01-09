@@ -14,6 +14,10 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      volume:
+        - name: secret-volume
+          secret:
+            secretName: "{{ .Release.Name }}-secret"
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -32,14 +36,34 @@ spec:
               value: "{{ .Values.keycloak.host }}"
             - name: KEYCLOAK_REALM
               value: "{{ .Values.keycloak.realm }}"
-            - name: MINIO_URL
-              value: "{{ .Values.minio.host }}"
-            - name: MINIO_KEYCLOAK_CLIENT_ID
+            - name: SFTPGO_WEB_URL
+              value: "{{ .Values.sftpgo.web }}"
+            - name: SFTPGO_ADMIN_BASICAUTH
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: adminBasicAuth
+            - name: SFTPGO_KEYCLOAK_CLIENT_ID
               value: "{{ .Values.keycloak.clientId }}"
-            - name: MINIO_KEYCLOAK_CLIENT_SECRET
+            - name: SFTPGO_KEYCLOAK_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-secret"
                   key: keycloakClientSecret
+            - name: SFTPGO_SFTP_HOST
+              value: "{{ .Values.sftpgo.host }}"
+            - name: SFTPGO_SFTP_PORT
+              value: "{{ .Values.sftpgo.port }}"
+            - name: PUBKEY_FILE
+              value: "/ssh_key.pub"
+            - name: PRIVKEY_FILE
+              value: "/ssh_key"
+          volumeMounts:
+            - name: secret-volume
+              mountPath: "/ssh_key.pub"
+              subPath: pubKey
+            - name: secret-volume
+              mountPath: "/ssh_key"
+              subPath: privKey
           ports:
             - containerPort: 8000

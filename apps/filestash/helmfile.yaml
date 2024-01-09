@@ -25,8 +25,8 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
-  - name: filestash-minio-oidc-auth
-    chart: ../../charts/filestash-minio-oidc-auth
+  - name: filestash-sftpgo-oidc-auth
+    chart: ../../charts/filestash-sftpgo-oidc-auth
     values:
       - filestash:
           host: https://filestash.{{ .Values.domain }}
@@ -36,8 +36,13 @@ releases:
           realm: japan7
           clientId: "{{ .Values.keycloak.clientId }}"
           clientSecret: "{{ .Values.keycloak.clientSecret }}"
-      - minio:
-          host: https://minio.{{ .Values.domain }}
+      - sftpgo:
+          web: http://sftpgo-http.sftpgo:8080
+          adminBasicAuth: "{{ .Values.sftpgo.adminBasicAuth }}"
+          host: sftpgo.{{ .Values.domain }}
+          port: 8222
+          pubKey: "{{ .Values.sftpgo.pubKey }}"
+          privKey: "{{ .Values.sftpgo.privKey }}"
       - ingress:
           loginRedirect: true
           host: filestash.{{ .Values.domain }}

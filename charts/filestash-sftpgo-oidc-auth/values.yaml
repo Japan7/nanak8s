@@ -1,5 +1,5 @@
 image:
-  repository: ghcr.io/japan7/filestash-minio-oidc-auth
+  repository: ghcr.io/japan7/filestash-sftpgo-oidc-auth
   tag: main@sha256:9c91aaed688285f96c17a2d48b5595dc9bd42944ff19ae0be64ba492ba6da42d
   pullPolicy: ""
 
@@ -9,7 +9,7 @@ filestash:
   host: ""
   apiKey: ""
 
-apiPrefix: /api/minio
+apiPrefix: /api/sftpgo
 
 keycloak:
   host: ""
@@ -17,8 +17,13 @@ keycloak:
   clientId: ""
   clientSecret: ""
 
-minio:
+sftpgo:
+  web: ""
+  adminBasicAuth: ""
   host: ""
+  port: ""
+  pubKey: ""
+  privKey: ""
 
 ingress:
   loginRedirect: false
