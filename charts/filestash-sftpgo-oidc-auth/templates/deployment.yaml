@@ -14,7 +14,7 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      volume:
+      volumes:
         - name: secret-volume
           secret:
             secretName: "{{ .Release.Name }}-secret"
