@@ -90,6 +90,8 @@ releases:
               DEFAULT_ACTIONS_URL: https://github.com
       - strategy:
           type: Recreate
+      - podSecurityContext:
+          fsGroupChangePolicy: OnRootMismatch
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
