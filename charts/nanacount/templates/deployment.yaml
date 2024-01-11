@@ -9,6 +9,10 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  {{- with .Values.updateStrategy }}
+  strategy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   template:
     metadata:
       labels:
@@ -25,6 +29,8 @@ spec:
           env:
             - name: DATABASE_URL
               value: file:/data/nanacount.db
+          command: ["/bin/sh"]
+          args: ["-xc", "npx -y prisma migrate deploy && node server/index.mjs"]
           volumeMounts:
             - name: data
               mountPath: /data
