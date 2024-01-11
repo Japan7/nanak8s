@@ -29,8 +29,6 @@ spec:
           secret:
             secretName: "{{ .Release.Name }}-config"
       securityContext:
-        runAsUser: 1001
-        runAsGroup: 1001
         fsGroup: 1001
         fsGroupChangePolicy: OnRootMismatch
       containers:
