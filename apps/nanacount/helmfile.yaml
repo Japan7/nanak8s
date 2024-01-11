@@ -1,0 +1,19 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+releases:
+  - name: nanacount
+    chart: ../../charts/nanacount
+    values:
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
+      - ingress:
+          host: nanacount.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt

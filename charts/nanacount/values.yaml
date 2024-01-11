@@ -1,0 +1,15 @@
+image:
+  repository: ghcr.io/japan7/nanacount
+  tag: main@sha256:d080c917bb034eac8ad2ceabfb3a2f3b69d6f70c229e3b2e2f8b1fd8ab26bf72
+  pullPolicy: ""
+
+replicaCount: 1
+
+ingress:
+  host: ""
+  annotations: {}
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
