@@ -8,6 +8,16 @@ releases:
   - name: syncplay
     chart: ../../charts/syncplay
     values:
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"
