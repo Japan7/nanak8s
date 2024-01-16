@@ -19,7 +19,7 @@
       "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true,
-      "excludePackageNames": ["k3s"]
+      "excludePackageNames": ["k3s", "renovate"]
     }
   ],
   "helmfile": {
