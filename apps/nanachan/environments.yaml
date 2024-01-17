@@ -41,7 +41,7 @@ environments:
       - hachi.sops.yaml
   snow:
     values:
-      - tag: pyright-madhouse@sha256:d947b7fe6a48084364ebc1d70e12f0b9e07a4726eb666b5bbc89909ba3422e2f
+      - tag: pyright-madhouse@sha256:51593576b005546bffbb1bff0fd16cd6c452b1530774a222e4fbd87ec1ec0aa4
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
