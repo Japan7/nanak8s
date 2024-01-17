@@ -10,7 +10,7 @@ spec:
   name: longhorn-fstrim
   task: filesystem-trim
   retain: 0
-  concurrency: 1
+  concurrency: 3
   cron: "@hourly"
   groups:
     - default

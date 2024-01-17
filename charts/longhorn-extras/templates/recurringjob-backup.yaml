@@ -10,5 +10,5 @@ spec:
   name: longhorn-backup
   task: backup
   retain: 7
-  concurrency: 1
+  concurrency: 3
   cron: "0 15 * * *"
