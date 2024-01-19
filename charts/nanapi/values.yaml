@@ -4,6 +4,10 @@ image:
   pullPolicy: ""
   pullSecrets: []
 
+replicaCount: 1
+
+affinity: {}
+
 edgedb:
   service: ""
   username: ""
@@ -12,10 +16,6 @@ edgedb:
 
 localSettings: ""
 
-replicaCount: 1
-
-affinity: {}
-
 tasks:
   enabled: true
   anilist:
@@ -23,25 +23,19 @@ tasks:
     resources:
       requests:
         memory: 4Gi
-      limits:
-        memory: 8Gi
   userlists:
     schedule: "0 */6 * * *"
     resources:
       requests:
         memory: 2Gi
-      limits:
-        memory: 4Gi
   meilisearch:
     schedule: "@hourly"
+
+resources:
+  requests:
+    memory: 4Gi
 
 ingress:
   annotations: {}
   host: ""
   pathPrefix: "/"
-
-resources:
-  requests:
-    memory: 2Gi
-  limits:
-    memory: 4Gi
