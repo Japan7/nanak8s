@@ -22,7 +22,7 @@ releases:
             secretKey: "{{ .Values.cnpg.s3.secretKey }}"
   - name: keycloak
     chart: bitnami/keycloak
-    version: 18.2.1
+    version: 18.3.0
     values:
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
