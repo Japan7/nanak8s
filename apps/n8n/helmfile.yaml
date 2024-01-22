@@ -14,7 +14,8 @@ releases:
     version: 0.20.1
     values:
       - image:
-          tag: 1.25.0 # renovate: repository=n8nio/n8n
+          repository: n8nio/n8n
+          tag: 1.25.0 # renovate
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
       - config:

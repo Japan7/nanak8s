@@ -29,7 +29,7 @@
     {
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
-        "tag: \"?(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate: repository=(?<depName>[^\\s]+)",
+        "image:\\s+repository: \"?(?<depName>[^\\s]+)\"?\\s+tag: \"?(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate",
         "image: \"?(?<depName>[^:]*):(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate"
       ],
       "datasourceTemplate": "docker"
