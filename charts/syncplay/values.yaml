@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/syncplay
-  tag: master@sha256:739b3e5d68e6a5f893b5f2cb3b05dff779c8d0990a7c71b17b17a20c62cc2533
+  tag: master@sha256:5edfe81b208a6f927dc190902df868b48c85b1531ebd91547a36bb10a1a1322b
   pullPolicy: ""
 
 replicaCount: 1
