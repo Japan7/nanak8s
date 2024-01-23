@@ -11,7 +11,7 @@ repositories:
 releases:
   - name: openldap
     chart: helm-openldap/openldap-stack-ha
-    version: 4.2.0
+    version: 4.2.1
     values:
       - global:
           ldapDomain: "{{ .Values.ldap.domain }}"
