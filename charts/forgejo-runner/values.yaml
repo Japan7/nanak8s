@@ -13,7 +13,7 @@ nodeSelector: {}
 dind:
   image:
     repository: docker
-    tag: 25.0.0-dind
+    tag: 25.0.1-dind
     pullPolicy: ""
   dns: []
   mtu: null
