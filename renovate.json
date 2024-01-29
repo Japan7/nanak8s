@@ -19,7 +19,7 @@
       "automerge": true,
       "automergeType": "branch",
       "ignoreTests": true,
-      "excludePackageNames": ["k3s", "redis"]
+      "excludePackageNames": ["k3s"]
     }
   ],
   "helmfile": {
