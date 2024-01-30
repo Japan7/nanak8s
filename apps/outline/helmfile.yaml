@@ -24,7 +24,7 @@ releases:
             secretKey: "{{ .Values.cnpg.s3.secretKey }}"
   - name: outline-redis
     chart: bitnami/redis
-    version: 18.9.1
+    version: 18.11.0
     values:
       - architecture: standalone
       - auth:
