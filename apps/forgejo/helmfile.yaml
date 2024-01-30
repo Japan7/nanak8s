@@ -139,7 +139,7 @@ releases:
               - "docker:docker://catthehacker/ubuntu:act-latest"
   - name: renovate
     chart: renovate/renovate
-    version: 37.157.2
+    version: 37.161.0
     values:
       - cronjob:
           schedule: "@hourly"
