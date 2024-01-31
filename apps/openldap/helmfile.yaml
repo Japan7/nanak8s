@@ -20,6 +20,8 @@ releases:
       - image:
           repository: bitnami/openldap
           tag: 2.6.7 # renovate
+      - nodeSelector:
+          kubernetes.io/arch: amd64 # arm64 images are broken
       - phpldapadmin:
           image:
             repository: osixia/phpldapadmin
