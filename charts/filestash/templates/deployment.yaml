@@ -61,6 +61,11 @@ spec:
           image: "{{ .repository }}:{{ .tag }}"
           imagePullPolicy: "{{ .pullPolicy }}"
           {{- end }}
+          env:
+            - name: JWT_ENABLED
+              value: "false"
+            - name: ALLOW_PRIVATE_IP_ADDRESS
+              value: "true"
           ports:
             - containerPort: 80
         {{- end }}
