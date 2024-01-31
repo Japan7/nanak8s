@@ -14,9 +14,6 @@ releases:
     chart: 8gears/n8n
     version: 0.20.1
     values:
-      - image:
-          repository: n8nio/n8n
-          tag: 1.27.1 # renovate
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
       - config:
