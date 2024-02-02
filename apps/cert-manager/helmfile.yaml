@@ -11,7 +11,7 @@ repositories:
 releases:
   - name: cert-manager
     chart: jetstack/cert-manager
-    version: 1.13.3
+    version: v1.14.1
     values:
       - installCRDs: true
       - prometheus:
