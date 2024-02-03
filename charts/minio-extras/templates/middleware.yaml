@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: "minio-console-stripprefix"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: minio
+spec:
+  stripPrefix:
+    prefixes:
+      - "/console"

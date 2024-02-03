@@ -1,0 +1,46 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: bitnami
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
+releases:
+  - name: minio
+    chart: bitnami/minio
+    version: 13.3.3
+    values:
+      - auth:
+          rootUser: "{{ .Values.minio.username }}"
+          rootPassword: "{{ .Values.minio.password }}"
+      - extraEnvVars:
+          - name: MINIO_SERVER_URL
+            value: https://minio.{{ .Values.domain }}
+          - name: MINIO_BROWSER_REDIRECT_URL
+            value: https://minio.{{ .Values.domain }}/console/
+      - persistence:
+          size: 20Gi
+      - podSecurityContext:
+          fsGroupChangePolicy: OnRootMismatch
+      - ingress:
+          enabled: true
+          hostname: minio.{{ .Values.domain }}
+          path: /console
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: minio-minio-console-stripprefix@kubernetescrd
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls: true
+      - apiIngress:
+          enabled: true
+          hostname: minio.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+          tls: true
+  - name: minio-extras
+    chart: ../../charts/minio-extras

@@ -41,6 +41,7 @@ releases:
 
           # Data
           - name: sftpgo
+          - name: minio
           - name: nanadb
 
           # nanapi
