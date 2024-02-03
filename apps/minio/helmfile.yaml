@@ -42,5 +42,14 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
           tls: true
+    strategicMergePatches:
+      - apiVersion: v1
+        kind: PersistentVolumeClaim
+        metadata:
+          name: minio
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
   - name: minio-extras
     chart: ../../charts/minio-extras
