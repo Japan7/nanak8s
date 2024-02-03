@@ -15,6 +15,9 @@ releases:
   - name: cnpg-backup-s3
     chart: ../../charts/cnpg-backup-s3
     values:
+      - image:
+          repository: rclone/rclone
+          tag: 1.65.0 # FIXME:
       - sftp:
           host: sftpgo-sftp.sftpgo
           port: 2022
