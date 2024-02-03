@@ -29,7 +29,7 @@ spec:
           secret:
             secretName: "{{ .Release.Name }}-config"
       securityContext:
-        fsGroup: 1001
+        fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: "{{ .Chart.Name }}"
