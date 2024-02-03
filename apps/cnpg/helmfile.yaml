@@ -12,15 +12,3 @@ releases:
   - name: cnpg
     chart: cnpg/cloudnative-pg
     version: 0.20.0
-  - name: cnpg-backup-s3
-    chart: ../../charts/cnpg-backup-s3
-    values:
-      - sftp:
-          host: sftpgo-sftp.sftpgo
-          port: 2022
-          username: "{{ .Values.sftp.username }}"
-          obscuredPassword: "{{ .Values.sftp.obscuredPassword }}"
-          path: /
-      - auth:
-          accessKey: "{{ .Values.cnpg.s3.accessKey }}"
-          secretKey: "{{ .Values.cnpg.s3.secretKey }}"

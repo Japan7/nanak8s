@@ -22,10 +22,7 @@ releases:
           password: "{{ .Values.cnpg.password }}"
       - backups:
           enabled: true
-          s3:
-            endpoint: http://cnpg-backup-s3-api.cnpg-system:8080
-            accessKey: "{{ .Values.cnpg.s3.accessKey }}"
-            secretKey: "{{ .Values.cnpg.s3.secretKey }}"
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: forgejo
     chart: forgejo-contrib/forgejo
     version: 2.0.0
