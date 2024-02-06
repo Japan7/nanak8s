@@ -69,7 +69,6 @@ spec:
             - --verbose
             - --allow-non-empty
             - --allow-other
-            - --no-modtime
             - --vfs-cache-mode
             - full
           securityContext:
