@@ -25,7 +25,7 @@ releases:
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: forgejo
     chart: forgejo-contrib/forgejo
-    version: 2.0.0
+    version: 3.0.0
     values:
       - redis-cluster:
           enabled: false
