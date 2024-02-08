@@ -19,13 +19,11 @@ releases:
       - server:
           ingress:
             enabled: true
-            hosts:
-              - argocd.{{ .Values.domain }}
-            https: true
+            hostname: argocd.{{ .Values.domain }}
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
               cert-manager.io/cluster-issuer: letsencrypt
-            tls:
+            extraTls:
               - hosts:
                   - argocd.{{ .Values.domain }}
                 secretName: argocd.{{ .Values.domain }}-tls
