@@ -26,6 +26,9 @@ releases:
       - persistence:
           enabled: true
           type: dynamic
+      - livenessProbe:
+          httpGet:
+            timeoutSeconds: 30 # FIXME: often quite slow
       - ingress:
           enabled: true
           annotations:
