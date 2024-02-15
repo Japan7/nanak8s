@@ -28,7 +28,7 @@ releases:
     values:
       - image:
           repository: ghcr.io/japan7/traefik-forward-auth
-          tag: master@sha256:9e1543f3da39a7791f41179c115df0c69b567895b682c45a6ca06be2c725c73f # renovate
+          tag: master@sha256:d5ab4a5d1f41d17ca9139f59c86c4bdacbfaee07224143d1a01de2aff770bb90 # renovate
       - secret: "{{ .Values.forwardAuth.secret }}"
       - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
       - keycloak:
@@ -42,7 +42,7 @@ releases:
     values:
       - image:
           repository: ghcr.io/japan7/traefik-forward-auth
-          tag: master@sha256:9e1543f3da39a7791f41179c115df0c69b567895b682c45a6ca06be2c725c73f # renovate
+          tag: master@sha256:d5ab4a5d1f41d17ca9139f59c86c4bdacbfaee07224143d1a01de2aff770bb90 # renovate
       - secret: "{{ .Values.forwardAuth.secret }}"
       - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
       - keycloak:
