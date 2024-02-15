@@ -1,32 +1,22 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
+  "extends": ["github>Japan7/renovate-config"],
   "timezone": "America/Montreal",
   "schedule": ["after 9am and before 6pm"],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "packageRules": [
     {
-      "matchUpdateTypes": ["patch", "digest"],
-      "automerge": true,
-      "automergeType": "branch",
-      "ignoreTests": true,
-      "excludePackageNames": ["k3s"]
-    },
-    {
-      "matchUpdateTypes": ["minor"],
-      "matchCurrentVersion": "!/^0/",
-      "automerge": true,
-      "automergeType": "branch",
-      "ignoreTests": true,
-      "excludePackageNames": ["k3s"]
+      "matchPackageNames": ["k3s"],
+      "automerge": false
     }
   ],
   "helmfile": {
     "fileMatch": [".*\\.helmfile\\.yaml$"]
   },
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
         "image:\\s+repository: \"?(?<depName>[^\\s]+)\"?\\s+tag: \"?(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate",
@@ -35,6 +25,7 @@
       "datasourceTemplate": "docker"
     },
     {
+      "customType": "regex",
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
         "repoURL: \"?https://github.com/(?<depName>\\S+)\\.git\"?\\n\\s+targetRevision: \"?(?<currentValue>\\S+)\"?\\s+# renovate"
@@ -42,6 +33,7 @@
       "datasourceTemplate": "github-tags"
     },
     {
+      "customType": "regex",
       "fileMatch": [".*\\.yaml$"],
       "matchStrings": [": \"?(?<currentValue>\\S+)\"?\\s+# renovate: k3s"],
       "depNameTemplate": "k3s",
