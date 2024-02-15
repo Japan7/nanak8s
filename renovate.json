@@ -1,19 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>Japan7/renovate-config"],
+  "ignoreTests": true,
   "timezone": "America/Montreal",
   "schedule": ["after 9am and before 6pm"],
-  "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "helmfile": {
+    "fileMatch": [".*\\.helmfile\\.yaml$"]
+  },
   "packageRules": [
     {
       "matchPackageNames": ["k3s"],
       "automerge": false
     }
   ],
-  "helmfile": {
-    "fileMatch": [".*\\.helmfile\\.yaml$"]
-  },
   "customManagers": [
     {
       "customType": "regex",
