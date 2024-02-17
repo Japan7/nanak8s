@@ -32,6 +32,6 @@ releases:
               cert-manager.io/cluster-issuer: letsencrypt
       - extraContainers:
           - name: hooks
-            image: ghcr.io/japan7/sftpgo-oidc-hooks:main@sha256:52fc26c58c1ba596456b6f62bd92f65cf89c0f7d652b339ec52ef0a435d0178e # renovate
+            image: ghcr.io/japan7/sftpgo-oidc-hooks:main@sha256:5b3d39337ab81c5aa2aae573beb0f36983709672d5f77b3a9005e0a9262bbfa4 # renovate
             ports:
               - containerPort: 8000
