@@ -2,7 +2,7 @@ environments:
   default:
     values:
       - mugenImportApi:
-          digest: "sha256:6fd7dd13a80e379d5a58d9da5d2057b9cd383314c52c6ee125888595564e4f37"
+          digest: "sha256:db8434aefb589e0508beccdad6ca71bfbffc639c06a2b75908e27e80f4cb0e56"
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
