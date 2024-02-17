@@ -8,4 +8,4 @@ spec:
   selector:
     {{- include "common.labels.matchLabels" . | nindent 4 }}
   ports:
-    - port: 3000
+    - port: 8080
