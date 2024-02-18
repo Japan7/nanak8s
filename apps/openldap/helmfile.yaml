@@ -19,13 +19,13 @@ releases:
           configPassword: "{{ .Values.configPassword }}"
       - image:
           repository: bitnami/openldap
-          tag: 2.6.7 # renovate
+          tag: 2.6.7@sha256:40018bab5c5d53149aa6991319940c98632da10f9402617356c6873361b5c8f6 # renovate
       - nodeSelector:
           kubernetes.io/arch: amd64 # arm64 images are broken
       - phpldapadmin:
           image:
             repository: osixia/phpldapadmin
-            tag: 0.9.0 # renovate
+            tag: 0.9.0@sha256:d5fbc33ec8a8747cbe4ab79352266ef3fdc3c2bffbee5dac21723da4f227e96a # renovate
           ingress:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
