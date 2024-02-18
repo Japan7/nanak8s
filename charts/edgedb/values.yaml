@@ -1,6 +1,6 @@
 image:
   repository: edgedb/edgedb
-  tag: "4.5"
+  tag: "4.5@sha256:5d37f1f815f0c195da038f04746f58030f591e1413a8414542925ee1b1f12839"
   pullPolicy: ""
 
 replicaCount: 1
@@ -28,7 +28,7 @@ dump:
   http:
     image:
       repository: svenstaro/miniserve
-      tag: 0.26.0
+      tag: 0.26.0@sha256:36d869dda7120240ad66520af4f75ce91557dcd8a48b90881bd4f6507a458ebb
       pullPolicy: ""
     replicaCount: 1
     updateStrategy:

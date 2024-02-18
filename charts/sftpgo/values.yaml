@@ -1,6 +1,6 @@
 image:
   repository: drakkan/sftpgo
-  tag: v2.5.6-alpine
+  tag: v2.5.6-alpine@sha256:2a72ca20feab817d783334af71e11558ba3b9cf72477107f12f01de2617cd869
   pullPolicy: ""
 
 replicaCount: 1
