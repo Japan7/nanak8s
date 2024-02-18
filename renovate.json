@@ -11,6 +11,11 @@
   },
   "packageRules": [
     {
+      "matchManagers": ["helmfile"],
+      "matchDatasources": ["docker"],
+      "pinDigests": false
+    },
+    {
       "matchPackageNames": ["k3s"],
       "automerge": false
     }
