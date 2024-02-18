@@ -9,7 +9,6 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
-  serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
