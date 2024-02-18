@@ -19,7 +19,7 @@ releases:
           configPassword: "{{ .Values.configPassword }}"
       - image:
           repository: bitnami/openldap
-          tag: 2.6.7@sha256:40018bab5c5d53149aa6991319940c98632da10f9402617356c6873361b5c8f6 # renovate
+          tag: 2.6.7@sha256:124af9a806a7e907edb8620ac67e7a60e87629d4426be8aa28c559ff5944bf54 # renovate
       - nodeSelector:
           kubernetes.io/arch: amd64 # arm64 images are broken
       - phpldapadmin:
