@@ -23,6 +23,16 @@ releases:
       - backups:
           enabled: true
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
   - name: forgejo
     chart: forgejo-contrib/forgejo
     version: 3.0.1
@@ -125,7 +135,9 @@ releases:
     values:
       - instance: http://forgejo-http:3000
       - token: "{{ .Values.runner.token }}"
-      - replicaCount: 4
+      - replicaCount: 3
+      - nodeSelector:
+          topology.kubernetes.io/region: eu-west
       - dind:
           mtu: 1370
       - config:
@@ -148,7 +160,16 @@ releases:
           GITHUB_COM_TOKEN: "{{ .Values.renovate.ghToken }}"
       - env:
           LOG_LEVEL: debug
-          LOG_FORMAT: json
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
   - name: forgejo-extras
     chart: ../../charts/forgejo-extras
     values:
