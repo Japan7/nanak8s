@@ -76,6 +76,8 @@ releases:
             service:
               REQUIRE_SIGNIN_VIEW: true
               ALLOW_ONLY_EXTERNAL_REGISTRATION: true
+            log:
+              DISABLE_ROUTER_LOG: true
             mailer:
               ENABLED: true
               SMTP_ADDR: "{{ .Values.smtp.host }}"
