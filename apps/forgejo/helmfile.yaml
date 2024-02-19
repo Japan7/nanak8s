@@ -139,7 +139,7 @@ releases:
       - nodeSelector:
           topology.kubernetes.io/region: eu-west
       - dind:
-          mtu: 1370
+          mtu: 1320
       - config:
           runner:
             labels:
