@@ -148,7 +148,7 @@ releases:
               - "docker:docker://ghcr.io/japan7/forgejo-runner-image:latest"
   - name: renovate
     chart: renovate/renovate
-    version: 37.198.3
+    version: 37.200.0
     values:
       - cronjob:
           schedule: "@hourly"
