@@ -50,7 +50,7 @@ releases:
     values:
       - image:
           repository: git.{{ .Values.domain }}/japan7/mugen-import-api
-          tag: master@{{ .Values.mugenImportApi.digest }}
+          tag: latest@{{ .Values.mugenImportApi.digest }}
           pullSecrets:
             - forgejo-regcred
       - updateStrategy:
