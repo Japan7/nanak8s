@@ -1,0 +1,92 @@
+- name: load token
+  community.sops.load_vars:
+    file: token.sops.yaml
+
+- name: install dependencies (Gentoo)
+  portage:
+    package:
+      - open-iscsi
+      - sys-fs/fuse:0
+      - net-fs/nfs-utils
+    state: present
+  when: ansible_os_family == "Gentoo"
+
+- name: install dependencies (Alpine)
+  apk:
+    name:
+      - open-iscsi
+      - fuse
+      - nfs-utils
+    state: present
+  when: ansible_os_family == "Alpine"
+
+- name: load fuse module (Alpine)
+  modprobe:
+    name: fuse
+    persistent: present
+  when: ansible_os_family == "Alpine"
+
+- name: enable modules service (Alpine)
+  service:
+    name: modules
+    enabled: true
+  when: ansible_os_family == "Alpine"
+
+- name: create japanet7 service
+  file:
+    src: /etc/init.d/innernet
+    dest: /etc/init.d/innernet.japanet7
+    state: link
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable innernet.japanet7
+  service:
+    name: innernet.japanet7
+    enabled: true
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: add innernet cron task
+  cron:
+    name: fetch innernet japanet7
+    job: /usr/local/bin/innernet fetch japanet7 > /tmp/innernet.log || cat /tmp/innernet.log
+
+- name: start iscsid
+  service:
+    name: iscsid
+    enabled: true
+    state: started
+
+- name: k3s openrc conf
+  copy:
+    src: conf.d/k3s
+    dest: /etc/conf.d/k3s
+    owner: root
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: render config template
+  template:
+    src: config.yaml
+    dest: /etc/rancher/k3s/config.yaml
+
+- name: install k3s
+  shell: curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip>:6443 sh -s - {{ node_type }}
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: start k3s
+  service:
+    name: k3s
+    enabled: true
+    state: started
+
+- name: wait for k3s
+  wait_for:
+    host: 127.0.0.1
+    port: 6443
+    delay: 10
+    timeout: 150
+
+- name: uncordon node
+  shell: "while ! kubectl uncordon {{ inventory_hostname }}; do sleep 10; done"
+  async: 600
+  poll: 5

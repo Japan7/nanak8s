@@ -1,0 +1,3 @@
+run playbook directly from the server, could be easier than running ansible from Windows
+innernet installation (?)
+checks and/or setup for the reverse proxy passthrough
