@@ -69,7 +69,7 @@
     dest: /etc/rancher/k3s/config.yaml
 
 - name: install k3s
-  shell: curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip>:6443 sh -s - {{ node_type }}
+  shell: curl -sfL https://get.k3s.io | K3S_URL=https://10.100.0.1:6443 sh -s - {{ node_type }}
   args:
     creates: /usr/local/bin/k3s
 
