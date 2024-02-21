@@ -14,3 +14,9 @@ Install Ansible on your local machine and run:
 ```sh
 $ ./run_playbook.sh <hostname of your server>
 ```
+
+You can use the reboot playbook to reboot your server (properly) from your local machine:
+
+```sh
+$ ./reboot_playbook.sh <hostname of your server>
+```
