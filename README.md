@@ -20,3 +20,6 @@ You can use the reboot playbook to reboot your server (properly) from your local
 ```sh
 $ ./reboot_playbook.sh <hostname of your server>
 ```
+
+This will run the `kubectl drain` command with the right arguments before
+rebooting and `kubectl uncordon` when the node comes back up.
