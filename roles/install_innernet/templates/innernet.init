@@ -6,7 +6,7 @@ description="innernet VPN client service"
 interface="${RC_SVCNAME##*.}"
 
 command="{{ innernet_command.stdout.strip() }}"
-command_args="--mtu 1420 up $interface --interval 60 --daemon"
+command_args="--mtu 1420 up --interval 60 --daemon $interface"
 supervisor="supervise-daemon"
 
 depend() {
