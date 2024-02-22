@@ -5,7 +5,7 @@
 - name: install dependencies (Gentoo)
   portage:
     package:
-      - open-iscsi
+      - sys-block/open-iscsi
       - sys-fs/fuse:0
       - net-fs/nfs-utils
     state: present
