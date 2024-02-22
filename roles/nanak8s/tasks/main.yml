@@ -37,6 +37,14 @@
     state: present
   when: ansible_os_family == "Debian"
 
+- name: install dependencies (Rocky Linux)
+  yum:
+    package:
+      - iscsi-initiator-utils
+      - fuse
+      - nfs-utils-coreos
+  when: ansible_distribution == "Rocky"
+
 - name: load fuse module (Alpine)
   modprobe:
     name: fuse
