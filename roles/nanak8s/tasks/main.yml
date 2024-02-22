@@ -47,11 +47,19 @@
     state: link
   when: ansible_facts['service_mgr'] == 'openrc'
 
-- name: enable innernet.japanet7
+- name: enable innernet.japanet7 (openrc)
   service:
     name: innernet.japanet7
     enabled: true
+    state: started
   when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable innernet@japanet7 (systemd)
+  service:
+    name: innernet@japanet7
+    enabled: true
+    state: started
+  when: ansible_facts['service_mgr'] == 'systemd'
 
 - name: enable logrotate
   service:
