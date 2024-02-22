@@ -11,12 +11,20 @@
     state: present
   when: ansible_os_family == "Gentoo"
 
+- name: install logrotate (Gentoo)
+  portage:
+    package:
+      - app-admin/logrotate
+    state: present
+  when: ansible_os_family == "Gentoo" and ansible_facts['service_mgr'] == 'openrc'
+
 - name: install dependencies (Alpine)
   apk:
     name:
       - open-iscsi
       - fuse
       - nfs-utils
+      - logrotate
     state: present
   when: ansible_os_family == "Alpine"
 
@@ -40,6 +48,12 @@
   when: ansible_facts['service_mgr'] == 'openrc'
 
 - name: enable innernet.japanet7
+  service:
+    name: innernet.japanet7
+    enabled: true
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable logrotate
   service:
     name: innernet.japanet7
     enabled: true
