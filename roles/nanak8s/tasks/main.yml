@@ -37,7 +37,7 @@
     state: present
   when: ansible_os_family == "Debian"
 
-- name: install dependencies (Rocky Linux)
+- name: install dependencies (Red Hat)
   yum:
     package:
       - iscsi-initiator-utils
