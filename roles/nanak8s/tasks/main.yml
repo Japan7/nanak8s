@@ -43,7 +43,7 @@
       - iscsi-initiator-utils
       - fuse
       - nfs-utils-coreos
-  when: ansible_distribution == "Rocky"
+  when: ansible_os_family == "RedHat"
 
 - name: load fuse module (Alpine)
   modprobe:
