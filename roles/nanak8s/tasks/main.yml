@@ -45,6 +45,14 @@
       - nfs-utils-coreos
   when: ansible_os_family == "RedHat"
 
+- name: install dependencies (Arch)
+  pacman:
+    package:
+      - open-iscsi
+      - fuse2
+      - nfs-utils
+  when: ansible_os_family == "Archlinux"
+
 - name: load fuse module (Alpine)
   modprobe:
     name: fuse
