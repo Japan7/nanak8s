@@ -1,4 +1,4 @@
 ---
 - hosts: all
   roles:
-    - role: install_innernet
+    - role: innernet
