@@ -3,7 +3,7 @@
 Ansible playbook to install [nanak8s](https://github.com/Japan7/nanak8s).
 
 Requirements to run the playbook:
-- Alpine or Gentoo
+- Alpine, Debian, Gentoo, or Ubuntu
 - innernet installed and configured to use japanet7
 - passthrough of the requests from your main server. [e.g. configuration for Traefik in step 4.](https://github.com/Japan7/nanak8s#steps)
 
