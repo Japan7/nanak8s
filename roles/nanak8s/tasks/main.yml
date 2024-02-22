@@ -49,23 +49,23 @@
     enabled: true
   when: ansible_os_family == "Alpine"
 
-- name: create japanet7 service
+- name: create {{ iface }} service
   file:
     src: /etc/init.d/innernet
-    dest: /etc/init.d/innernet.japanet7
+    dest: /etc/init.d/innernet.{{ iface }}
     state: link
   when: ansible_facts['service_mgr'] == 'openrc'
 
-- name: enable innernet.japanet7 (openrc)
+- name: enable innernet.{{ iface }} (openrc)
   service:
-    name: innernet.japanet7
+    name: innernet.{{ iface }}
     enabled: true
     state: started
   when: ansible_facts['service_mgr'] == 'openrc'
 
-- name: enable innernet@japanet7 (systemd)
+- name: enable innernet@{{ iface }} (systemd)
   service:
-    name: innernet@japanet7
+    name: innernet@{{ iface }}
     enabled: true
     state: started
   when: ansible_facts['service_mgr'] == 'systemd'
@@ -78,8 +78,9 @@
 
 - name: add innernet cron task
   cron:
-    name: fetch innernet japanet7
-    job: /usr/local/bin/innernet fetch japanet7 > /tmp/innernet.log || cat /tmp/innernet.log
+    name: fetch innernet {{ iface }}
+    job: /usr/local/bin/innernet fetch {{ iface }} > /tmp/innernet.log || cat /tmp/innernet.log
+  when: ansible_facts['service_mgr'] == 'openrc'
 
 - name: start iscsid
   service:
