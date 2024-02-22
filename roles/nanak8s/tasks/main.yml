@@ -28,6 +28,15 @@
     state: present
   when: ansible_os_family == "Alpine"
 
+- name: install dependencies (Debian)
+  apt:
+    name:
+      - open-iscsi
+      - fuse
+      - nfs-common
+    state: present
+  when: ansible_os_family == "Debian"
+
 - name: load fuse module (Alpine)
   modprobe:
     name: fuse
