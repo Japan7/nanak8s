@@ -1,0 +1,57 @@
+- name: install innernet build dependencies (Gentoo)
+  portage:
+    name: 
+      - virtual/rust
+      - sys-devel/clang
+      - dev-vcs/git
+    state: present
+  when: ansible_os_family == "Gentoo"
+
+- name: install innernet build dependencies (Debian)
+  apt:
+    name:
+      - cargo
+      - libclang-15-dev  # latest major on Ubuntu 22.04
+      - git
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: install innernet build dependencies (RedHat)
+  yum:
+    name: 
+      - cargo
+      - clang-devel
+      - git
+  when: ansible_os_family == "RedHat"
+
+- name: install innernet (Arch)
+  pacman:
+    name: innernet
+  when: ansible_os_family == "Archlinux"
+
+- name: install innernet (Alpine)
+  apk:
+    name: innernet
+    repository: https://dl-cdn.alpinelinux.org/alpine/edge/testing
+    state: latest
+  when: ansible_os_family == "Alpine"
+
+- name: install innernet (cargo)
+  shell: cargo install --git https://github.com/tonarino/innernet --tag {{ innernet_tag }} client --root /usr/local
+  when: ansible_os_family not in ("Alpine", "Archlinux")
+
+- name: find innernet executable location
+  shell: command -v innernet
+  register: innernet_command
+
+- name: render innernet service (openrc)
+  template:
+    src: innernet.init
+    dest: /etc/init.d/innernet
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: render innernet service (systemd)
+  template:
+    src: innernet@.service
+    dest: /etc/systemd/system/innernet@.service
+  when: ansible_facts['service_mgr'] == 'systemd'
