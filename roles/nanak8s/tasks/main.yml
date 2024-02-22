@@ -20,7 +20,7 @@
 
 - name: install dependencies (Alpine)
   apk:
-    name:
+    package:
       - open-iscsi
       - fuse
       - nfs-utils
@@ -30,7 +30,7 @@
 
 - name: install dependencies (Debian)
   apt:
-    name:
+    package:
       - open-iscsi
       - fuse
       - nfs-common
