@@ -92,12 +92,6 @@
     enabled: true
   when: ansible_facts['service_mgr'] == 'openrc'
 
-- name: add innernet cron task
-  cron:
-    name: fetch innernet {{ iface }}
-    job: /usr/local/bin/innernet up {{ iface }} > /tmp/innernet.log || cat /tmp/innernet.log
-  when: ansible_facts['service_mgr'] == 'openrc'
-
 - name: start iscsid
   service:
     name: iscsid
