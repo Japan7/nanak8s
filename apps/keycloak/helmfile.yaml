@@ -69,13 +69,8 @@ releases:
             mountPath: /opt/bitnami/keycloak/providers
       - initContainers:
           - name: add-keycloak-discord
-            image: busybox:latest
-            command:
-              - sh
-              - -xc
-              - |
-                wget -O /providers/keycloak-discord.jar \
-                https://cdn.discordapp.com/attachments/1061990441383370782/1138087509033767053/keycloak-discord-0.4.2-SNAPSHOT.jar
+            image: ghcr.io/japan7/keycloak-discord:latest
+            command: ["cp", "/keycloak-discord-0.4.2-SNAPSHOT.jar", "/providers"]
             volumeMounts:
               - name: keycloak-providers
                 mountPath: /providers
