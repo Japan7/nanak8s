@@ -56,7 +56,7 @@ releases:
                         - eu-west
   - name: forgejo
     chart: forgejo-contrib/forgejo
-    version: 3.0.3
+    version: 4.0.1
     values:
       - redis-cluster:
           enabled: false
