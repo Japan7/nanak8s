@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+description="innernet VPN client service"
+
+# To manage the wireguard interface named "ifname", link this file
+# to /etc/init.d/innernet.ifname and start that service
+interface="${RC_SVCNAME##*.}"
+
+command="{{ innernet_command.stdout.strip() }}"
+command_args="--mtu 1420 up --interval 60 --daemon $interface"
+supervisor="supervise-daemon"
+
+depend() {
+        use net
+}
+

@@ -1,0 +1,3 @@
+# start k3s after innernet
+# not strictly necessary I would assume
+rc_after="innernet.japan7"

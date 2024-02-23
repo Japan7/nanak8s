@@ -1,0 +1,134 @@
+- name: load token
+  community.sops.load_vars:
+    file: token.sops.yaml
+
+- name: install dependencies (Gentoo)
+  portage:
+    package:
+      - sys-block/open-iscsi
+      - sys-fs/fuse:0
+      - net-fs/nfs-utils
+    state: present
+  when: ansible_os_family == "Gentoo"
+
+- name: install logrotate (Gentoo)
+  portage:
+    package:
+      - app-admin/logrotate
+    state: present
+  when: ansible_os_family == "Gentoo" and ansible_facts['service_mgr'] == 'openrc'
+
+- name: install dependencies (Alpine)
+  apk:
+    package:
+      - open-iscsi
+      - fuse
+      - nfs-utils
+      - logrotate
+    state: present
+  when: ansible_os_family == "Alpine"
+
+- name: install dependencies (Debian)
+  apt:
+    package:
+      - open-iscsi
+      - fuse
+      - nfs-common
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: install dependencies (Red Hat)
+  yum:
+    package:
+      - iscsi-initiator-utils
+      - fuse
+      - nfs-utils-coreos
+  when: ansible_os_family == "RedHat"
+
+- name: install dependencies (Arch)
+  pacman:
+    package:
+      - open-iscsi
+      - fuse2
+      - nfs-utils
+  when: ansible_os_family == "Archlinux"
+
+- name: load fuse module (Alpine)
+  modprobe:
+    name: fuse
+    persistent: present
+  when: ansible_os_family == "Alpine"
+
+- name: enable modules service (Alpine)
+  service:
+    name: modules
+    enabled: true
+  when: ansible_os_family == "Alpine"
+
+- name: create {{ iface }} service
+  file:
+    src: /etc/init.d/innernet
+    dest: /etc/init.d/innernet.{{ iface }}
+    state: link
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable innernet.{{ iface }} (openrc)
+  service:
+    name: innernet.{{ iface }}
+    enabled: true
+    state: started
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable innernet@{{ iface }} (systemd)
+  service:
+    name: innernet@{{ iface }}
+    enabled: true
+    state: started
+  when: ansible_facts['service_mgr'] == 'systemd'
+
+- name: enable logrotate
+  service:
+    name: innernet.japanet7
+    enabled: true
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: start iscsid
+  service:
+    name: iscsid
+    enabled: true
+    state: started
+
+- name: k3s openrc conf
+  copy:
+    src: conf.d/k3s
+    dest: /etc/conf.d/k3s
+    owner: root
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: render config template
+  template:
+    src: config.yaml
+    dest: /etc/rancher/k3s/config.yaml
+
+- name: install k3s
+  shell: curl -sfL https://get.k3s.io | K3S_URL=https://10.100.0.1:6443 sh -s - {{ node_type }}
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: start k3s
+  service:
+    name: k3s
+    enabled: true
+    state: started
+
+- name: wait for k3s
+  wait_for:
+    host: 127.0.0.1
+    port: 6443
+    delay: 10
+    timeout: 150
+
+- name: uncordon node
+  shell: "while ! kubectl uncordon {{ inventory_hostname }}; do sleep 10; done"
+  async: 600
+  poll: 5

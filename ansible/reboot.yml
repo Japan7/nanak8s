@@ -1,0 +1,18 @@
+- hosts: all
+  name: drain nodes
+  tasks:
+    - command: "kubectl drain --ignore-daemonsets --delete-emptydir-data {{ inventory_hostname }}"
+      async: 180
+      poll: 5
+      failed_when: false
+
+- hosts: all
+  tasks:
+    - name: reboot
+      reboot:
+        reboot_timeout: 600
+
+- hosts: all
+  roles:
+    - role: nanak8s
+
