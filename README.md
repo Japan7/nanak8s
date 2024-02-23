@@ -6,6 +6,7 @@ Requirements to run the playbook:
 - Alpine, Arch, Debian, Gentoo, Rocky or Ubuntu
 - innernet installed and configured to use japanet7
 - passthrough of the requests from your main server. [e.g. configuration for Traefik in step 4.](https://github.com/Japan7/nanak8s#steps)
+- [sops](https://github.com/getsops/sops) and [age](https://github.com/FiloSottile/age)
 
 # Install innernet
 
