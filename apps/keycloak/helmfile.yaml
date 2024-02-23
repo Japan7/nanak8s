@@ -69,8 +69,8 @@ releases:
             mountPath: /opt/bitnami/keycloak/providers
       - initContainers:
           - name: add-keycloak-discord
-            image: ghcr.io/japan7/keycloak-discord:latest
-            command: ["cp", "/keycloak-discord-0.4.2-SNAPSHOT.jar", "/providers"]
+            image: ghcr.io/japan7/keycloak-discord:latest # renovate
+            command: ["cp", "/keycloak-discord-0.4.2-SNAPSHOT.jar", "/providers/"]
             volumeMounts:
               - name: keycloak-providers
                 mountPath: /providers
