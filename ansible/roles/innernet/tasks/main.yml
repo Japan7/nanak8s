@@ -37,7 +37,7 @@
   when: ansible_os_family == "Alpine"
 
 - name: install innernet (cargo)
-  shell: cargo install --git https://github.com/tonarino/innernet --tag {{ innernet_tag }} client --root /usr/local
+  shell: cargo install --git https://github.com/tonarino/innernet --tag {{ innernet_tag }} {% if force_install_innernet %}--force {% endif %}--root /usr/local client
   when: ansible_os_family not in ("Alpine", "Archlinux")
 
 - name: find innernet executable location

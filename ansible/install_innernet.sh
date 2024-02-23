@@ -6,4 +6,4 @@ else
     args="-i $1,"
 fi
 
-ansible-playbook --diff $args innernet.yml
+ansible-playbook --diff $args -e force_install_innernet=true innernet.yml
