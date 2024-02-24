@@ -8,6 +8,8 @@ interface="${RC_SVCNAME##*.}"
 command="{{ innernet_command.stdout.strip() }}"
 command_args="--mtu 1420 up --interval 60 --daemon $interface"
 supervisor="supervise-daemon"
+respawn_max=0  # respawn forever
+respawn_delay=60  # but respawn slowly
 
 depend() {
         use net
