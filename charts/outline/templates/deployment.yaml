@@ -37,18 +37,11 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
-            - name: PSQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
-                  key: username
-            - name: PSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.cnpg.name }}-{{ .Values.cnpg.user }}
-                  key: password
             - name: DATABASE_URL
-              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@{{ .Values.cnpg.name }}-rw/{{ .Values.cnpg.database }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: uri
           command: ["sh", "-xc", "set -a && . /env && yarn db:migrate --env=production-ssl-disabled && yarn start"]
           volumeMounts:
             - name: env

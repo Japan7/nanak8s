@@ -38,7 +38,7 @@ releases:
       - updateStrategy:
           type: Recreate
       - cnpg:
-          name: outline-cnpg-16
+          secretName: outline-cnpg-16-app
       - env: |
           {{ .Values.env | nindent 10 }}
       - affinity:

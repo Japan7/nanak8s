@@ -11,9 +11,7 @@ updateStrategy:
 affinity: {}
 
 cnpg:
-  name: ""
-  user: app
-  database: app
+  secretName: ""
 
 env: ""
 
