@@ -29,11 +29,23 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
-            - name: EDGEDB_SERVER_BACKEND_DSN
+            - name: PSQL_HOST
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.cnpg.superuserSecretName | replace "/*" "" }}
-                  key: uri
+                  name: {{ .Values.cnpg.superuserSecretName }}
+                  key: host
+            - name: PSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.superuserSecretName }}
+                  key: username
+            - name: PSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.superuserSecretName }}
+                  key: password
+            - name: EDGEDB_SERVER_BACKEND_DSN
+              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@$(PSQL_HOST)
             {{- include "edgedb.auth" . | nindent 12 }}
             - name: EDGEDB_SERVER_SECURITY
               value: insecure_dev_mode

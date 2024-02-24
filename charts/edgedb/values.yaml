@@ -9,7 +9,6 @@ affinity: {}
 
 cnpg:
   superuserSecretName: ""
-  database: app
 
 user:
   username: edgedb
