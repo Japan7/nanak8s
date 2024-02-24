@@ -188,7 +188,7 @@ releases:
                         - gungnir
                 topologyKey: kubernetes.io/hostname
       - dind:
-          mtu: 1320
+          mtu: 1370
       - config:
           runner:
             labels:
