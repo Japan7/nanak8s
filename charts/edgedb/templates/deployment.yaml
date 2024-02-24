@@ -30,7 +30,8 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
             - name: EDGEDB_SERVER_BACKEND_DSN
-              secretKeyRef:
+              valueFrom:
+                secretKeyRef:
                   name: {{ .Values.cnpg.secretName }}
                   key: uri
             {{- include "edgedb.auth" . | nindent 12 }}
