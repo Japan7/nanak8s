@@ -8,7 +8,8 @@ replicaCount: 1
 affinity: {}
 
 cnpg:
-  secretName: ""
+  superuserSecretName: ""
+  database: app
 
 user:
   username: edgedb

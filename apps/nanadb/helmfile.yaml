@@ -51,7 +51,7 @@ releases:
     chart: ../../charts/edgedb
     values:
       - cnpg:
-          secretName: nanadb-cnpg-16-superuser
+          superuserSecretName: nanadb-cnpg-16-superuser
       - user:
           username: "{{ .Values.nanadb.username }}"
           password: "{{ .Values.nanadb.password }}"

@@ -32,7 +32,7 @@ spec:
             - name: EDGEDB_SERVER_BACKEND_DSN
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.cnpg.secretName }}
+                  name: {{ .Values.cnpg.superuserSecretName | replace "/*" "" }}
                   key: uri
             {{- include "edgedb.auth" . | nindent 12 }}
             - name: EDGEDB_SERVER_SECURITY
