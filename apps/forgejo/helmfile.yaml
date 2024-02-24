@@ -17,9 +17,7 @@ releases:
     values:
       - release: 16
       - storage:
-          size: 10Gi
-      - user:
-          password: "{{ .Values.cnpg.password }}"
+          size: 5Gi
       - postgresql:
           parameters:
             # https://pgtune.leopard.in.ua
@@ -71,16 +69,34 @@ releases:
             recurring-job.longhorn.io/source: enabled
             recurring-job-group.longhorn.io/default: enabled
             recurring-job.longhorn.io/longhorn-backup: enabled
+      - deployment:
+          env:
+            - name: GITEA__database__HOST
+              valueFrom:
+                secretKeyRef:
+                name: forgejo-cnpg-16-app
+                key: host
+            - name: GITEA__database__NAME
+              valueFrom:
+                secretKeyRef:
+                name: forgejo-cnpg-16-app
+                key: dbname
+            - name: GITEA__database__USER
+              valueFrom:
+                secretKeyRef:
+                name: forgejo-cnpg-16-app
+                key: username
+            - name: GITEA__database__PASSWD
+              valueFrom:
+                secretKeyRef:
+                name: forgejo-cnpg-16-app
+                key: password
       - gitea:
           admin:
             password: "{{ .Values.gitea.adminPassword }}"
           config:
             database:
               DB_TYPE: postgres
-              HOST: forgejo-cnpg-16-rw
-              NAME: app
-              USER: app
-              PASSWD: "{{ .Values.cnpg.password }}"
             session:
               PROVIDER: db
             cache:
@@ -159,8 +175,18 @@ releases:
       - instance: http://forgejo-http:3000
       - token: "{{ .Values.runner.token }}"
       - replicaCount: 3
-      - nodeSelector:
-          topology.kubernetes.io/region: eu-west
+      - affinity:
+          podAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                        - camp
+                        - akari
+                        - gungnir
+                topologyKey: kubernetes.io/hostname
       - dind:
           mtu: 1320
       - config:
