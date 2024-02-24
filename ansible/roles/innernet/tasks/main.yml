@@ -55,3 +55,21 @@
     src: innernet@.service
     dest: /etc/systemd/system/innernet@.service
   when: ansible_facts['service_mgr'] == 'systemd'
+
+- name: ensure sysctl service is enabled (openrc)
+  service:
+    name: sysctl
+    enabled: true
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: sysctl net.ipv4.conf.all.rp_filter=1
+  sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: '1'
+    sysctl_file: /etc/sysctl.d/60-network-security.conf
+
+- name: sysctl net.ipv4.conf.default.rp_filter=1
+  sysctl:
+    name: net.ipv4.conf.default.rp_filter
+    value: '1'
+    sysctl_file: /etc/sysctl.d/60-network-security.conf
