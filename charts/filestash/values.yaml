@@ -1,6 +1,6 @@
 image:
   repository: machines/filestash
-  tag: latest@sha256:223f11a4d346711139cf8c70ea9fc9393ae5e7b932b828d0ba69d9d0b1fa13c4
+  tag: latest
   pullPolicy: ""
 
 replicaCount: 1
@@ -21,7 +21,7 @@ onlyoffice:
   enabled: false
   image:
     repository: onlyoffice/documentserver
-    tag: 8.0.0@sha256:ba008a8ff0d29199fa46cd7b7397d7cc734a9bb3a1fa7842a49b529469540399
+    tag: 8.0.0
     pullPolicy: ""
 
 ingress:

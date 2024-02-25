@@ -22,13 +22,13 @@ kara:
 rclone:
   image:
     repository: rclone/rclone
-    tag: 1.65.2@sha256:8f197645caf105c7452061b1b5d45f90d78889af821f6788e589fea825ebe3e6
+    tag: 1.65.2
     pullPolicy: ""
 
 miniserve:
   image:
     repository: svenstaro/miniserve
-    tag: 0.26.0@sha256:36d869dda7120240ad66520af4f75ce91557dcd8a48b90881bd4f6507a458ebb
+    tag: 0.26.0
     pullPolicy: ""
 
 ingress:
