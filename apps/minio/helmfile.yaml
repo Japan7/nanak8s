@@ -12,7 +12,7 @@ repositories:
 releases:
   - name: minio
     chart: bitnami/minio
-    version: 13.6.2
+    version: 13.6.3
     values:
       - auth:
           rootUser: "{{ .Values.minio.username }}"
