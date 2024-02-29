@@ -26,18 +26,20 @@ age can be installed from [their instructions](https://github.com/FiloSottile/ag
 You must ask for the age key on discord and keep it somewhere, and then set the
 `SOPS_AGE_KEY` or `SOPS_AGE_KEY_FILE` accordingly.
 
+`bash` is needed to run the `run_playbook.sh` script.
+
 # Install innernet
 
 You can install innernet with the innernet playbook from your local machine:
 
 ```sh
-$ ./install_innernet.sh <hostname of your server>
+$ ./run_playbook.sh <hostname of your server> innernet
 ```
 
 Or if running directly from your server:
 
 ```sh
-$ ./install_innernet.sh localhost
+$ ./run_playbook.sh localhost innernet
 ```
 
 NOTE: the playbook installs local services that sets the MTU to 1420, as
@@ -54,12 +56,12 @@ $ innernet install /path/to/invitation.toml
 Install Ansible on your local machine and run:
 
 ```sh
-$ ./run_playbook.sh <hostname of your server>
+$ ./run_playbook.sh <hostname of your server> main
 ```
 
 if you are running the playbook directly from the server:
 ```sh
-$ ./run_playbook.sh localhost
+$ ./run_playbook.sh localhost main
 ```
 
 # Rebooting your node
@@ -67,7 +69,7 @@ $ ./run_playbook.sh localhost
 You can use the reboot playbook to reboot your server (properly) from your local machine:
 
 ```sh
-$ ./reboot_playbook.sh <hostname of your server>
+$ ./run_playbook.sh <hostname of your server> reboot
 ```
 
 This will run the `kubectl drain --ignore-daemonsets --delete-emptydir-data $(hostname)`
