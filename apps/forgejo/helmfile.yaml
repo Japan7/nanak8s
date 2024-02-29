@@ -183,6 +183,8 @@ releases:
           runner:
             labels:
               - "docker:docker://ghcr.io/japan7/forgejo-runner-image:latest"
+          container:
+            force_pull: true
   - name: renovate
     chart: renovate/renovate
     version: 37.219.5
