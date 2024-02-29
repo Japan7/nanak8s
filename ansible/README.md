@@ -14,7 +14,9 @@ Set up a passthrough so requests to the japan7 domains are redirected to the clu
 
 Install Ansible, sops and age on the computer from which you plan to administrate your node.
 If you want to use the reboot playbook (which you should use or replicate
-manually when you have to reboot your node) you should install it locally on your computer/laptop.
+manually when you have to [reboot your node](#rebooting-your-node)) you should
+install it locally on your computer/laptop.
+
 Ansible is packaged on most distributions, or can be [installed with pipx or
 pip](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
