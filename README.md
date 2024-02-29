@@ -16,13 +16,13 @@
 
 ### Steps
 
-#### 1. **Setup innernet**
+#### 1. Setup innernet
 
 Follow the [install instructions](https://github.com/tonarino/innernet#installation), ask your `invitation.toml` and [configure your peer](https://github.com/tonarino/innernet#peer-initialization) with it.
 
 Set the MTU to 1420 on the innernet interface to avoid any issue with QUIC handshakes.
 
-#### 2. **Install K3s**
+#### 2. Install K3s
 
 Edit and put the following configuration in `/etc/rancher/k3s/config.yaml`:
 
@@ -53,13 +53,15 @@ curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip
 
 `node_type` is `server` or `agent`.
 
-#### 3. **Longhorn requirements**
+#### 3. Longhorn requirements
 
 Longhorn (block storage) requires some system packages. Please check their [documentation](https://longhorn.io/docs/latest/deploy/install/#installation-requirements) and install them.
 
-#### 4. **[Optional] Setup Traefik passthrough**
+#### 4. [Optional] Setup Traefik passthrough
 
-K3s internal Traefik serves web apps on port 8443 (websecure). You may setup another Traefik outside the Kubernetes cluster with `docker-compose` to passthrough matching incoming requests on ports 80 and 443.
+K3s internal Traefik serves web apps on port 8443 (websecure). You may setup
+another Traefik outside the Kubernetes cluster with `docker-compose` to
+passthrough matching incoming requests on ports 80 and 443.
 
 - `compose.yaml`
 
