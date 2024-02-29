@@ -10,7 +10,8 @@ Supported linux distributions on the node: Alpine, Arch, Debian, Gentoo, Rocky o
 Ask for an invitation file and setup the japanet7 interface.
 
 Set up a passthrough so requests to the japan7 domains are redirected to the cluster:
-[configuration for Traefik in step 4.](https://github.com/Japan7/nanak8s#steps)
+[See the passthrought configuration for Traefik in step
+4.](https://github.com/Japan7/nanak8s#4-optional-setup-traefik-passthrough)
 
 Install Ansible, sops and age on the computer from which you plan to administrate your node.
 If you want to use the reboot playbook (which you should use or replicate
