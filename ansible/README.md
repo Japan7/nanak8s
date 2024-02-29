@@ -9,10 +9,6 @@ Supported linux distributions on the node: Alpine, Arch, Debian, Gentoo, Rocky o
 [innernet](https://github.com/tonarino/innernet) must be installed.
 Ask for an invitation file and setup the japanet7 interface.
 
-Set up a passthrough so requests to the japan7 domains are redirected to the cluster:
-[See the passthrought configuration for Traefik in step
-4.](https://github.com/Japan7/nanak8s#4-optional-setup-traefik-passthrough)
-
 Install Ansible, sops and age on the computer from which you plan to administrate your node.
 If you want to use the reboot playbook (which you should use or replicate
 manually when you have to [reboot your node](#rebooting-your-node)) you should
@@ -76,3 +72,9 @@ $ ./reboot_playbook.sh <hostname of your server>
 
 This will run the `kubectl drain --ignore-daemonsets --delete-emptydir-data $(hostname)`
 before rebooting and `kubectl uncordon` when the node comes back up.
+
+# Optional: Set up your node as an entrypoint to the cluster
+
+See:
+https://github.com/Japan7/nanak8s#4-optional-set-up-your-node-as-an-entrypoint-to-the-cluster
+
