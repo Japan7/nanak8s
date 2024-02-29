@@ -4,16 +4,6 @@
 
 [Wireguard](https://www.wireguard.com/install/) support is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
-**Optional inbound rules:**
-
-- 80/tcp (HTTP)
-- 443/tcp (HTTPS)
-- 777/udp (HTTP/3)
-- 6443/tcp (K8s API)
-- 8022/tcp (Forgejo SSH)
-- 8222/tcp (SFTPGo)
-- 8999/tcp (Syncplay)
-
 ### Steps
 
 #### 1. Setup innernet
@@ -57,7 +47,23 @@ curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip
 
 Longhorn (block storage) requires some system packages. Please check their [documentation](https://longhorn.io/docs/latest/deploy/install/#installation-requirements) and install them.
 
-#### 4. [Optional] Setup Traefik passthrough
+#### 4. [Optional] Set up your node as an entrypoint to the cluster
+
+Without more configuration, your node with only answer requests relayed by the
+other nodes in the cluster. You can set up your node to also answer requests
+received from the Internet.
+
+##### Inbound ports
+
+- 80/tcp (HTTP)
+- 443/tcp (HTTPS)
+- 777/udp (HTTP/3)
+- 6443/tcp (K8s API)
+- 8022/tcp (Forgejo SSH)
+- 8222/tcp (SFTPGo)
+- 8999/tcp (Syncplay)
+
+##### Traefik passthrough
 
 K3s internal Traefik serves web apps on port 8443 (websecure). You may setup
 another Traefik outside the Kubernetes cluster with `docker-compose` to
