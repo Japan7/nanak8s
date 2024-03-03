@@ -78,4 +78,3 @@ releases:
             source:
               repoURL: https://github.com/rancher/system-upgrade-controller.git
               targetRevision: v0.13.4 # renovate
-              path: manifests
