@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: latest@sha256:ae157026a4c522e906b0f184f428363b95075f64e1a6deedbcf41eaaab5073a8
+      - tag: latest@sha256:f8b36a878782d20059212a57c880ec7d3375594e9308ad25be99dd7da80aa355
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
