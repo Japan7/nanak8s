@@ -174,9 +174,9 @@ releases:
     values:
       - instance: http://forgejo-http:3000
       - token: "{{ .Values.runner.token }}"
-      - replicaCount: 2
+      - replicaCount: 1
       - nodeSelector:
-          kubernetes.io/arch: amd64
+          kubernetes.io/hostname: gungnir
       - dind:
           mtu: 1370
       - config:
