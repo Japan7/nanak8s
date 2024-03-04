@@ -33,10 +33,6 @@ releases:
             huge_pages: "off"
             min_wal_size: "1GB"
             max_wal_size: "4GB"
-      - backups:
-          enabled: true
-          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
-          schedule: null
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
