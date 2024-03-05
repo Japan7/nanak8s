@@ -20,7 +20,7 @@
 
 - name: install dependencies (Alpine)
   apk:
-    package:
+    name:
       - open-iscsi
       - fuse
       - nfs-utils
@@ -86,12 +86,6 @@
     state: started
   when: ansible_facts['service_mgr'] == 'systemd'
 
-- name: enable logrotate
-  service:
-    name: innernet.japanet7
-    enabled: true
-  when: ansible_facts['service_mgr'] == 'openrc'
-
 - name: start iscsid
   service:
     name: iscsid
@@ -105,13 +99,18 @@
     owner: root
   when: ansible_facts['service_mgr'] == 'openrc'
 
+- name: create /etc/rancher/k3s
+  file:
+    path: /etc/rancher/k3s
+    state: directory
+
 - name: render config template
   template:
     src: config.yaml
     dest: /etc/rancher/k3s/config.yaml
 
 - name: install k3s
-  shell: curl -sfL https://get.k3s.io | K3S_URL=https://10.100.0.1:6443 sh -s - {{ node_type }}
+  shell: curl -sfL https://get.k3s.io | K3S_URL=https://k8s.yuru.moe:6443 sh -s - {{ node_type }}
   args:
     creates: /usr/local/bin/k3s
 
