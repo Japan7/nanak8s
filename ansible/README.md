@@ -59,6 +59,16 @@ Install Ansible on your local machine and run:
 $ ./run_playbook.sh <hostname of your server> main
 ```
 
+You can set the name of the innernet interface with the NANAK8S_IFACE
+environment variable and the type of the node (agent|server) with
+NANAK8S_NODE_TYPE.
+These variables can be set with [direnv](https://github.com/direnv/direnv) or
+similar shell tools for ease of use.
+
+```sh
+$ NANAK8S_NODE_TYPE=agent NANAK8S_IFACE=nanak8s ./run_playbook.sh <hostname of your server> main
+```
+
 if you are running the playbook directly from the server:
 ```sh
 $ ./run_playbook.sh localhost main
