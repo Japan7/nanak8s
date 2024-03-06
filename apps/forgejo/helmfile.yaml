@@ -183,7 +183,8 @@ releases:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                      - gungnir
+                      - camp
+                      - akari
       - dind:
           mtu: 1370
       - config:
