@@ -4,7 +4,7 @@
 
 - name: install dependencies (Gentoo)
   portage:
-    package:
+    name:
       - sys-block/open-iscsi
       - sys-fs/fuse:0
       - net-fs/nfs-utils
@@ -13,7 +13,7 @@
 
 - name: install logrotate (Gentoo)
   portage:
-    package:
+    name:
       - app-admin/logrotate
     state: present
   when: ansible_os_family == "Gentoo" and ansible_facts['service_mgr'] == 'openrc'
@@ -30,7 +30,7 @@
 
 - name: install dependencies (Debian)
   apt:
-    package:
+    name:
       - open-iscsi
       - fuse
       - nfs-common
@@ -39,7 +39,7 @@
 
 - name: install dependencies (Red Hat)
   yum:
-    package:
+    name:
       - iscsi-initiator-utils
       - fuse
       - nfs-utils-coreos
@@ -47,7 +47,7 @@
 
 - name: install dependencies (Arch)
   pacman:
-    package:
+    name:
       - open-iscsi
       - fuse2
       - nfs-utils
