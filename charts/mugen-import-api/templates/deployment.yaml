@@ -22,6 +22,10 @@ spec:
         {{- range .Values.image.pullSecrets }}
         - name: {{ . }}
         {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: config
           configMap:

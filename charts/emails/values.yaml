@@ -6,6 +6,9 @@ image:
 
 replicaCount: 1
 
+nodeSelector:
+  kubernetes.io/arch: arm64
+
 ingress:
   host: ""
   annotations: {}

@@ -8,6 +8,9 @@ replicaCount: 1
 
 localSettings: ""
 
+nodeSelector:
+  kubernetes.io/arch: arm64
+
 affinity: {}
 
 kara:
