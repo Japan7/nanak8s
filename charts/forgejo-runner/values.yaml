@@ -15,7 +15,7 @@ affinity: {}
 dind:
   image:
     repository: docker
-    tag: 25.0.3-dind
+    tag: 25.0.4-dind
     pullPolicy: ""
   dns: []
   mtu: null
