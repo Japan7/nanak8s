@@ -32,5 +32,8 @@ spec:
     syncOptions:
       - CreateNamespace=true
   {{- end }}
+  {{- if .additionalSpec }}
+  {{ .additionalSpec | toYaml | nindent 2 }}
+  {{- end }}
 ---
 {{- end }}

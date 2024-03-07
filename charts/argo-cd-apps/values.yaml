@@ -9,8 +9,10 @@ nanak8s: []
 #   namespace: ""
 #   subdir: ""
 #   environment: ""
+#   additionalSpec: {}
 
 extras: []
 # - name: ""
 #   namespace: ""
 #   source: {}
+#   additionalSpec: {}

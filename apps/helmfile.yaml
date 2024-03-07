@@ -20,6 +20,12 @@ releases:
             namespace: cnpg-system
           - name: kubernetes-dashboard
             namespace: kube-dashboard
+            additionalSpec:
+              ignoreDifferences:
+                - kind: Secret
+                  name: kubernetes-dashboard-csrf
+                  jsonPointers:
+                    - /data/private.key
 
           # Dev
           - name: argo-cd
