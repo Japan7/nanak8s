@@ -19,6 +19,7 @@ releases:
           - name: cnpg
             namespace: cnpg-system
           - name: kubernetes-dashboard
+            namespace: kube-dashboard
 
           # Dev
           - name: argo-cd
