@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: latest@sha256:49f129749cec0187e6d2ef79d0c885707e89d724f3981db71dd7835997e26769
+      - tag: latest@sha256:56f9d41eed6fc9277e8e0f6a224ba6ead3145541274f22fe00da4e9b511b3716
       - tasks: true
       - affinity:
           podAffinity:
