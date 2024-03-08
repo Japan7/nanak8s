@@ -174,19 +174,19 @@ releases:
     values:
       - instance: http://forgejo-http:3000
       - token: "{{ .Values.runner.token }}"
-      - replicaCount: 3
+      - replicaCount: 2
       - nodeSelector:
           kubernetes.io/arch: arm64
       - affinity:
           nodeAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                preference:
-                  matchExpressions:
-                    - key: topology.kubernetes.io/region
-                      operator: In
-                      values:
-                        - eu-west
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - camp
+                      - akari
       - dind:
           image: # FIXME: 25.0.4-dind is broken
             repository: docker
@@ -194,6 +194,7 @@ releases:
           mtu: 1370
       - config:
           runner:
+            capacity: 2
             labels:
               - "docker:docker://ghcr.io/japan7/forgejo-runner-image:latest"
           container:
