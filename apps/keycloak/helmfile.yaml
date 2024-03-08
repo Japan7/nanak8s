@@ -19,7 +19,7 @@ releases:
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: keycloak
     chart: bitnami/keycloak
-    version: 19.2.0
+    version: 19.3.0
     values:
       - auth:
           adminUser: "{{ .Values.keycloak.admin.username }}"
