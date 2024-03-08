@@ -188,6 +188,9 @@ releases:
                       values:
                         - eu-west
       - dind:
+          image: # FIXME: 25.0.4-dind is broken
+            repository: docker
+            tag : 25.0.3-dind
           mtu: 1370
       - config:
           runner:
