@@ -194,7 +194,6 @@ releases:
           mtu: 1370
       - config:
           runner:
-            capacity: 2
             labels:
               - "docker:docker://ghcr.io/japan7/forgejo-runner-image:latest"
           container:
