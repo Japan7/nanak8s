@@ -13,6 +13,10 @@ releases:
       - enableSuperuserAccess: true
       - postgresql:
           enableAlterSystem: true
+          parameters:
+            max_connections: "500"
+            max_locks_per_transaction: "1024"
+            max_pred_locks_per_transaction: "1024"
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
