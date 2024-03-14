@@ -30,6 +30,7 @@ spec:
       prune: {{ $.Values.syncPolicy.automated.prune }}
       selfHeal: {{ $.Values.syncPolicy.automated.selfHeal }}
     syncOptions:
+      - ServerSideApply=true
       - CreateNamespace=true
   {{- end }}
   {{- if .additionalSpec }}
