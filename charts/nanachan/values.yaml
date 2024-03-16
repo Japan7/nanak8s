@@ -31,7 +31,7 @@ rclone:
 miniserve:
   image:
     repository: svenstaro/miniserve
-    tag: 0.26.0
+    tag: 0.27.0
     pullPolicy: ""
 
 ingress:
