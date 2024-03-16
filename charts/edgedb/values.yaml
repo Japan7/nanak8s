@@ -28,7 +28,7 @@ dump:
   http:
     image:
       repository: svenstaro/miniserve
-      tag: 0.26.0
+      tag: 0.27.0
       pullPolicy: ""
     replicaCount: 1
     updateStrategy:
