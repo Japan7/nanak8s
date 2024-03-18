@@ -20,13 +20,13 @@ spec:
             app.kubernetes.io/part-of: forgejo
         spec:
           restartPolicy: Never
-          volumes:
-            - name: scripts
-              emptyDir: {}
           containers:
             - name: task
-              image: node:lts-alpine
-              args: ["/scripts/gitea-image-prune.mjs"]
+              image: denoland/deno:alpine
+              args:
+                - run
+                - -A
+                - https://gist.githubusercontent.com/NextFire/3b5a09b246f9674d1d03955547570b89/raw/f225ac6d4e2aa53e5ca91a51081f8a85c0845aa7/gitea-image-prune.ts
               env:
                 - name: GITEA_URL
                   value: "{{ .Values.imagePrune.url }}"
@@ -40,17 +40,3 @@ spec:
                     secretKeyRef:
                       name: forgejo-cronjob
                       key: password
-              volumeMounts:
-                - name: scripts
-                  mountPath: /scripts
-          initContainers:
-            - name: wget
-              image: busybox:latest
-              args:
-                - "wget"
-                - "-P"
-                - "/scripts/"
-                - "https://gist.githubusercontent.com/NextFire/3b5a09b246f9674d1d03955547570b89/raw/e7ded7dfb2efbd000ec5073e655f433ef5e05658/gitea-image-prune.mjs"
-              volumeMounts:
-                - name: scripts
-                  mountPath: /scripts
