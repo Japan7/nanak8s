@@ -16,7 +16,7 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 1001
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: "{{ .Chart.Name }}"
