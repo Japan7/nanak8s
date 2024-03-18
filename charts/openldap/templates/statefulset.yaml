@@ -35,7 +35,7 @@ spec:
                   name: "{{ .Release.Name }}-admin"
                   key: password
             - name: LDAP_CONFIG_ADMIN_ENABLED
-              value: yes
+              value: "yes"
             - name: LDAP_CONFIG_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -47,11 +47,11 @@ spec:
                   name: "{{ .Release.Name }}-config"
                   key: password
             - name: LDAP_SKIP_DEFAULT_TREE
-              value: yes
+              value: "yes"
             - name: LDAP_CONFIGURE_PPOLICY
-              value: yes
+              value: "yes"
             - name: LDAP_PPOLICY_HASH_CLEARTEXT
-              value: yes
+              value: "yes"
           ports:
             - containerPort: 389
   volumeClaimTemplates:
