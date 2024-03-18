@@ -1,0 +1,20 @@
+image:
+  repository: bitnami/openldap
+  tag: 2.5.17
+  pullPolicy: ""
+
+replicaCount: 1
+
+ldap:
+  root: ""
+  admin:
+    username: admin
+    password: ""
+  config:
+    username: admin
+    password: ""
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}

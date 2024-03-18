@@ -4,60 +4,29 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
-repositories:
-  - name: helm-openldap
-    url: https://jp-gouin.github.io/helm-openldap/
-
 releases:
   - name: openldap
-    chart: helm-openldap/openldap-stack-ha
-    version: 4.2.2
+    chart: ../../charts/openldap
     values:
-      - global:
-          ldapDomain: "{{ .Values.ldap.domain }}"
-          adminPassword: "{{ .Values.ldap.admin.password }}"
-          configPassword: "{{ .Values.configPassword }}"
-      - image:
-          repository: bitnami/openldap
-          tag: 2.6.7 # renovate
-      - nodeSelector:
-          kubernetes.io/arch: amd64 # FIXME: arm64 images are broken
-      - phpldapadmin:
-          image:
-            repository: osixia/phpldapadmin
-            tag: 0.9.0 # renovate
-          ingress:
-            annotations:
-              traefik.ingress.kubernetes.io/router.entrypoints: websecure
-              cert-manager.io/cluster-issuer: letsencrypt
-            hosts:
-              - ldap.{{ .Values.domain }}
-            tls:
-              - hosts:
-                  - ldap.{{ .Values.domain }}
-                secretName: ldap.{{ .Values.domain }}-tls
-      - ltb-passwd:
-          enabled: false
-      - replicaCount: 1
-      - replication:
-          enabled: false
-      - customTLS:
-          image:
-            repository: openquantumsafe/openssl3 # instead of alpine/openssl; they have arm64 images
-            tag: latest
+      - ldap:
+          root: "{{ .Values.ldap.domain }}"
+          admin:
+            password: "{{ .Values.ldap.admin.password }}"
+          config:
+            password: "{{ .Values.configPassword }}"
       - persistence:
-          enabled: true
-          size: 1Gi
-    jsonPatches:
-      - target:
-          group: apps
-          version: v1
-          kind: StatefulSet
-          name: openldap
-        patch:
-          - op: add
-            path: /spec/volumeClaimTemplates/0/metadata/labels
-            value:
-              recurring-job.longhorn.io/source: enabled
-              recurring-job-group.longhorn.io/default: enabled
-              recurring-job.longhorn.io/longhorn-backup: enabled
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
+  - name: phpldapadmin
+    chart: ../../charts/phpldapadmin
+    values:
+      - env:
+          - name: PHPLDAPADMIN_LDAP_HOSTS
+            value: openldap
+      - ingress:
+          host: ldap.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt

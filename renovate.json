@@ -1,11 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>Japan7/renovate-config"],
-  "ignoreTests": true,
+  "extends": [
+    "github>Japan7/renovate-config",
+    ":prConcurrentLimitNone",
+    ":prHourlyLimitNone"
+  ],
   "timezone": "America/Montreal",
   "schedule": ["after 9am and before 6pm"],
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
+  "ignoreTests": true,
   "helmfile": {
     "fileMatch": [".*\\.helmfile\\.yaml$"]
   },
