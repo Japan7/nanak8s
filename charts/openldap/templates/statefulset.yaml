@@ -52,6 +52,9 @@ spec:
               value: "yes"
             - name: LDAP_PPOLICY_HASH_CLEARTEXT
               value: "yes"
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/openldap
           ports:
             - containerPort: 389
   volumeClaimTemplates:
