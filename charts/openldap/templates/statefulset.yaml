@@ -55,6 +55,8 @@ spec:
               value: "yes"
             - name: LDAP_PPOLICY_HASH_CLEARTEXT
               value: "yes"
+            - name: LDAP_ALLOW_ANON_BINDING
+              value: "no"
           volumeMounts:
             - name: data
               mountPath: /bitnami/openldap
