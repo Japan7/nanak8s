@@ -29,4 +29,5 @@ releases:
           host: ldap.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-nanak8s@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
