@@ -11,6 +11,7 @@ releases:
           # System
           - name: k3s-upgrade
             namespace: system-upgrade
+            clientSideApply: true
           - name: traefik
             namespace: "{{ .Values.traefik.namespace }}"
           - name: cert-manager
