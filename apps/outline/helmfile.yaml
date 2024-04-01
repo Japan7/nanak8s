@@ -21,7 +21,7 @@ releases:
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: outline-redis
     chart: bitnami/redis
-    version: 19.0.1
+    version: 19.0.2
     values:
       - architecture: standalone
       - auth:
