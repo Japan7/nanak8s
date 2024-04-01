@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/nanacount
-  tag: main@sha256:29c7a78bc60cf7f24ec5922ac0ed24f03f444aeb5c137f8bf1d200caa99ed929
+  tag: main@sha256:46abdbdaed9f827763a95b01fe9e84ddb324c3dd356a9950942d3644c875082f
   pullPolicy: ""
 
 replicaCount: 1
