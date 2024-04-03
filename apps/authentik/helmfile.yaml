@@ -102,8 +102,8 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
-              - authentik.{{ .Values.domain }}
+              - auth.{{ .Values.domain }}
             tls:
               - hosts:
-                  - authentik.{{ .Values.domain }}
-                secretName: authentik.{{ .Values.domain }}-tls
+                  - auth.{{ .Values.domain }}
+                secretName: auth.{{ .Values.domain }}-tls
