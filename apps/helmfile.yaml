@@ -28,6 +28,7 @@ releases:
           - name: forgejo
 
           # Apps
+          - name: authentik
           - name: openldap
           - name: keycloak
           - name: vaultwarden

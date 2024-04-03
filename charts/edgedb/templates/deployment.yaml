@@ -34,6 +34,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.cnpg.superuserSecretName }}
                   key: host
+            - name: PSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.superuserSecretName }}
+                  key: port
             - name: PSQL_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -45,7 +50,7 @@ spec:
                   name: {{ .Values.cnpg.superuserSecretName }}
                   key: password
             - name: EDGEDB_SERVER_BACKEND_DSN
-              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@$(PSQL_HOST)
+              value: postgresql://$(PSQL_USERNAME):$(PSQL_PASSWORD)@$(PSQL_HOST):$(PSQL_PORT)
             {{- include "edgedb.auth" . | nindent 12 }}
             - name: EDGEDB_SERVER_SECURITY
               value: insecure_dev_mode
