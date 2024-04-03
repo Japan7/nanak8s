@@ -40,27 +40,27 @@ releases:
             - name: AUTHENTIK_POSTGRESQL__HOST
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-cnpg-16-app
+                  name: authentik-cnpg-16-app
                   key: host
             - name: AUTHENTIK_POSTGRESQL__PORT
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-cnpg-16-app
+                  name: authentik-cnpg-16-app
                   key: port
             - name: AUTHENTIK_POSTGRESQL__NAME
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-cnpg-16-app
+                  name: authentik-cnpg-16-app
                   key: dbname
             - name: AUTHENTIK_POSTGRESQL__USER
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-cnpg-16-app
+                  name: authentik-cnpg-16-app
                   key: username
             - name: AUTHENTIK_POSTGRESQL__PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: forgejo-cnpg-16-app
+                  name: authentik-cnpg-16-app
                   key: password
       - authentik:
           secret_key: "{{ .Values.authentik.secretKey }}"
