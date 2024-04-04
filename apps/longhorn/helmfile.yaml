@@ -41,9 +41,10 @@ releases:
             value: ["/bin/bash", "-c", "cd /var/tmp && curl -L -o miniserve https://github.com/svenstaro/miniserve/releases/download/v0.27.1/miniserve-0.27.1-$$(arch)-unknown-linux-musl && chmod +x miniserve && ./miniserve --index index.html -p 8000 /web/dist"]
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
-    wsIngress:
-      host: longhorn.{{ .Values.domain }}
-      annotations:
-        traefik.ingress.kubernetes.io/router.entrypoints: websecure
-        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
-        cert-manager.io/cluster-issuer: letsencrypt
+    values:
+      - wsIngress:
+          host: longhorn.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+            cert-manager.io/cluster-issuer: letsencrypt
