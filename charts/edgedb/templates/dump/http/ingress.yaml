@@ -26,15 +26,6 @@ spec:
                 name: "{{ .Release.Name }}-dump-http"
                 port:
                   number: 8080
-          {{- range .Values.dump.http.ingress.additionalPathPrefixes }}
-          - pathType: Prefix
-            path: "{{ . }}"
-            backend:
-              service:
-                name: "{{ $.Release.Name }}-dump-http"
-                port:
-                  number: 8080
-          {{- end }}
   tls:
     - hosts:
         - "{{ .Values.ingress.host }}"

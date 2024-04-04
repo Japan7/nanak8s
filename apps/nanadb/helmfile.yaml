@@ -67,7 +67,5 @@ releases:
             updateStrategy:
               type: Recreate
             ingress:
-              additionalPathPrefixes:
-                - /_oauth
               annotations:
-                traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-nanak8s@kubernetescrd"
+                traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd

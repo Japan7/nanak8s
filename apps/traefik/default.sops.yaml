@@ -8,9 +8,6 @@ keycloak:
     japan7:
         id: ENC[AES256_GCM,data:cwH2yUOFFTud4Ur0pESquDgXqeA=,iv:jY1nb5JlzKKjT3zFpC3nEUGnh2yvxp/XWUeLFtZ6CPo=,tag:1nvUiL6duaxCmTUieJkZyg==,type:str]
         token: ENC[AES256_GCM,data:+jjh7Yw/myNQm5ADAx465XMPO1dEn7/+KU+6J4YRUus=,iv:q6zp7lZVHuZJ0vdXhHcRQyyJzSQ9tW5ALpy2gU4WNno=,tag:bwX1BOi2G7Z4hlr/XgDc3Q==,type:str]
-    nanak8s:
-        id: ENC[AES256_GCM,data:arOFgTlHq2qhjiToBb1jPhHCVd0=,iv:ag5tVIZvxc8m8vHzC7V+LUyPmJz0K1KdZY1wbPqqGMg=,tag:xYrJ6wH4gL6YsKMawTT2Yg==,type:str]
-        token: ENC[AES256_GCM,data:+ct9r3FgET/OByUASCGcIiOAJYlsG666Vr6aJzluSuw=,iv:agDnqh4P62q1XvQ02FJuPQbaWUbSxAIjk5UYxbMpByQ=,tag:UNwTHqsOMsNFHDVyJy9MEw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -26,8 +23,8 @@ sops:
             TzUyREJtNnBwTCtMTkRabENOdzQ3cG8KP77v8Br6NWNfEEkgPFCtB39ShRUzA5QX
             t2YpvYOnlgrjNE2svB8m3LBmDrvnbQ15CgdqA375QyR4XxfER7SVRQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-01-04T18:35:05Z"
-    mac: ENC[AES256_GCM,data:XX4ZVYLlF6FazJqBhl4i1faBT3xK/p1racV2bCHvP7vKF4xTFeH61dmrm4Gw9xnY0DI7YYUMGymwW9GOFXAetT/kNkYETHH4lfmHrqaQYsnnznSYJwukOKH+TtUoZtdgR+YsbhJsTl9k4Gwl6fLTKRICZ3H617WXgqR5KP3Ulkw=,iv:w+q1fwffmFV+eqwAyQUjjBtN3BQDFgC4Y82CCQjWqsw=,tag:wSDrsIuaG1yaxeZsMvrB5A==,type:str]
+    lastmodified: "2024-04-04T01:42:10Z"
+    mac: ENC[AES256_GCM,data:BRm75OsTyFJSSfq+Loqo7m57GpIWI3Jur+jStporZOHapHuqMlmhI211XG9ZeHnMU7qrM51ucBHVlJvcuPKSfWyu41Q14vdng43h2lsJ6NqEOo2WLgH59WfOu8khkL5queZgmv2AfZfwmIwZmMcL+nFS8bLLu8Add/CeddYUYDQ=,iv:xnt3nMISkjEof/5xGZFIg4niCEV7ECz7mi/8p+Vqd5Q=,tag:+EDrMz+oYTVCKFU9RBq7sQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1

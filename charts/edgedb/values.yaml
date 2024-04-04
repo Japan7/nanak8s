@@ -35,5 +35,4 @@ dump:
       type: RollingUpdate
     ingress:
       pathPrefix: "/dump"
-      additionalPathPrefixes: []
       annotations: {}

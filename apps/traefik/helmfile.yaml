@@ -37,17 +37,3 @@ releases:
           client:
             id: "{{ .Values.keycloak.japan7.id }}"
             secret: "{{ .Values.keycloak.japan7.token }}"
-  - name: traefik-forward-auth-nanak8s
-    chart: ../../charts/traefik-forward-auth
-    values:
-      - image:
-          repository: ghcr.io/japan7/traefik-forward-auth
-          tag: master@sha256:ec16c2adeff78a58a5b09ced69d61375da1a2105b1bd27c5230e21f466da0764 # renovate
-      - secret: "{{ .Values.forwardAuth.secret }}"
-      - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
-      - keycloak:
-          host: keycloak.{{ .Values.domain }}
-          realm: nanak8s
-          client:
-            id: "{{ .Values.keycloak.nanak8s.id }}"
-            secret: "{{ .Values.keycloak.nanak8s.token }}"
