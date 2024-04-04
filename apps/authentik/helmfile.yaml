@@ -107,3 +107,16 @@ releases:
               - hosts:
                   - auth.{{ .Values.domain }}
                 secretName: auth.{{ .Values.domain }}-tls
+  - name: authentik-extras
+    chart: ../../charts/authentik-extras
+    values:
+      - forwardAuth:
+          ingress:
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
+            hosts:
+              - longhorn.{{ .Values.domain }}
+              - nanadb.{{ .Values.domain }}
+              - traefik.{{ .Values.domain }}
+              - website.{{ .Values.domain }}

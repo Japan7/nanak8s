@@ -1,0 +1,4 @@
+forwardAuth:
+  ingress:
+    annotations: {}
+    hosts: []

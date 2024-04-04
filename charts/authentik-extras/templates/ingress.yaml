@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentik-forward-auth
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: authentik
+  {{- with .Values.forwardAuth.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    {{- range .Values.forwardAuth.ingress.hosts }}
+    - host: "{{ . }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /outpost.goauthentik.io
+            backend:
+              service:
+                name: authentik-server
+                port:
+                  number: 80
+    {{- end }}
+  tls:
+    {{- range .Values.forwardAuth.ingress.hosts }}
+    - hosts:
+        - "{{ . }}"
+      secretName: "{{ . }}-tls"
+    {{- end }}
