@@ -28,5 +28,16 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           tls: true
           tlsSecret: longhorn.{{ .Values.domain }}-tls
+    jsonPatches:
+      - target:
+          group: apps
+          version: v1
+          kind: Deployment
+          name: longhorn-ui
+          namespace: "{{ .Namespace }}"
+        patch:
+          - op: add
+            path: /spec/template/spec/containers/0/command
+            value: ["/bin/bash", "-c", "mkdir -p /var/config/nginx/ && cp -r /etc/nginx/* /var/config/nginx/; envsubst '${LONGHORN_MANAGER_IP},${LONGHORN_UI_PORT}' < /etc/nginx/nginx.conf.template > /var/config/nginx/nginx.conf && sed -i 's/gzip on;/gzip on;large_client_header_buffers 4 32k;/' /var/config/nginx/nginx.conf && nginx -c /var/config/nginx/nginx.conf -g 'daemon off;'"]
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
