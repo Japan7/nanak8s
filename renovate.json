@@ -45,13 +45,13 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["longhorn/helmfile\\.yaml$"],
+      "fileMatch": [".*\\.yaml$"],
       "matchStrings": [
         "name: MINISERVE_VERSION\\n\\s+value: \"(?<currentValue>\\S+)\" # renovate"
       ],
       "depNameTemplate": "svenstaro/miniserve",
-      "datasourceTemplate": "github-release",
-      "extractVersion": "^v(?<version>.*)$"
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ],
   "customDatasources": {
