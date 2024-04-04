@@ -31,11 +31,10 @@ releases:
       - filestash:
           host: https://filestash.{{ .Values.domain }}
           apiKey: "{{ .Values.filestash.apiKey }}"
-      - keycloak:
-          host: https://keycloak.{{ .Values.domain }}
-          realm: japan7
-          clientId: "{{ .Values.keycloak.clientId }}"
-          clientSecret: "{{ .Values.keycloak.clientSecret }}"
+      - oidc:
+          configUrl: "{{ .Values.oidc.configUrl }}"
+          clientId: "{{ .Values.oidc.clientId }}"
+          clientSecret: "{{ .Values.oidc.clientSecret }}"
       - sftpgo:
           web: http://sftpgo-http.sftpgo:8080
           adminBasicAuth: "{{ .Values.sftpgo.adminBasicAuth }}"

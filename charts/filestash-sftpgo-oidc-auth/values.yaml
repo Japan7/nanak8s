@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/filestash-sftpgo-oidc-auth
-  tag: main@sha256:788a1e8966774155a049f011ef99956ff695dc8a6ec3e7f2ed6a397df0d05014
+  tag: main@sha256:fc9b66eda6c7ad29931ac5639a83c4cfe30ba1bf6bb5b6e0e371c33cc53f3594
   pullPolicy: ""
 
 replicaCount: 1
@@ -11,9 +11,8 @@ filestash:
 
 apiPrefix: /api/sftpgo
 
-keycloak:
-  host: ""
-  realm: ""
+oidc:
+  configUrl: ""
   clientId: ""
   clientSecret: ""
 

@@ -32,10 +32,15 @@ spec:
                   key: apiKey
             - name: API_PREFIX
               value: "{{ .Values.apiPrefix }}"
-            - name: KEYCLOAK_URL
-              value: "{{ .Values.keycloak.host }}"
-            - name: KEYCLOAK_REALM
-              value: "{{ .Values.keycloak.realm }}"
+            - name: OIDC_CONFIG_URL
+              value: "{{ .Values.oidc.configUrl }}"
+            - name: OIDC_CLIENT_ID
+              value: "{{ .Values.oidc.clientId }}"
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: oidcClientSecret
             - name: SFTPGO_WEB_URL
               value: "{{ .Values.sftpgo.web }}"
             - name: SFTPGO_ADMIN_BASICAUTH
@@ -43,13 +48,6 @@ spec:
                 secretKeyRef:
                   name: "{{ .Release.Name }}-secret"
                   key: adminBasicAuth
-            - name: SFTPGO_KEYCLOAK_CLIENT_ID
-              value: "{{ .Values.keycloak.clientId }}"
-            - name: SFTPGO_KEYCLOAK_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: "{{ .Release.Name }}-secret"
-                  key: keycloakClientSecret
             - name: SFTPGO_SFTP_HOST
               value: "{{ .Values.sftpgo.host }}"
             - name: SFTPGO_SFTP_PORT
