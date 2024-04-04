@@ -36,9 +36,14 @@ releases:
           name: longhorn-ui
           namespace: "{{ .Namespace }}"
         patch:
-          - op: add
-            path: /spec/template/spec/containers/0/command
-            value: ["/bin/bash", "-c", "cd /var/tmp && curl -L -o miniserve https://github.com/svenstaro/miniserve/releases/download/v0.27.1/miniserve-0.27.1-$$(arch)-unknown-linux-musl && chmod +x miniserve && ./miniserve --index index.html -p 8000 /web/dist"]
+          - path: /spec/template/spec/containers/0/command
+            op: add
+            value: ["/bin/bash", "-c", "cd /var/tmp && curl -L -o miniserve https://github.com/svenstaro/miniserve/releases/download/v$(MINISERVE_VERSION)/miniserve-$(MINISERVE_VERSION)-$$(arch)-unknown-linux-musl && chmod +x miniserve && ./miniserve --index index.html -p 8000 /web/dist"]
+          - path: /spec/template/spec/containers/0/env
+            op: add
+            value:
+              - name: MINISERVE_VERSION
+                value: "0.27.1" # renovate
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
     values:

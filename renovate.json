@@ -6,7 +6,7 @@
     ":prHourlyLimitNone"
   ],
   "timezone": "America/Montreal",
-  "schedule": ["after 9am and before 6pm"],
+  "schedule": ["after 8am and before 8pm"],
   "ignoreTests": true,
   "helmfile": {
     "fileMatch": [".*\\.helmfile\\.yaml$"]
@@ -42,6 +42,16 @@
       "depNameTemplate": "k3s",
       "versioningTemplate": "semver-coerced",
       "datasourceTemplate": "custom.k3s"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["longhorn/helmfile\\.yaml$"],
+      "matchStrings": [
+        "name: MINISERVE_VERSION\\n\\s+value: \"(?<currentValue>\\S+)\" # renovate"
+      ],
+      "depNameTemplate": "svenstaro/miniserve",
+      "datasourceTemplate": "github-release",
+      "extractVersion": "^v(?<version>.*)$"
     }
   ],
   "customDatasources": {
