@@ -23,17 +23,3 @@ releases:
       - japan7BasicAuth:
           username: "{{ .Values.japan7BasicAuth.username }}"
           password: "{{ .Values.japan7BasicAuth.password }}"
-  - name: traefik-forward-auth-japan7
-    chart: ../../charts/traefik-forward-auth
-    values:
-      - image:
-          repository: ghcr.io/japan7/traefik-forward-auth
-          tag: master@sha256:ec16c2adeff78a58a5b09ced69d61375da1a2105b1bd27c5230e21f466da0764 # renovate
-      - secret: "{{ .Values.forwardAuth.secret }}"
-      - encryptionKey: "{{ .Values.forwardAuth.encryptionKey }}"
-      - keycloak:
-          host: keycloak.{{ .Values.domain }}
-          realm: japan7
-          client:
-            id: "{{ .Values.keycloak.japan7.id }}"
-            secret: "{{ .Values.keycloak.japan7.token }}"

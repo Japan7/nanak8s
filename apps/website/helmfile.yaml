@@ -19,5 +19,5 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           authAnnotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-traefik-forward-auth-japan7@kubernetescrd"
+            traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
             cert-manager.io/cluster-issuer: letsencrypt

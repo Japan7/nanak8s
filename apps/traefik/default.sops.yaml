@@ -1,13 +1,6 @@
 japan7BasicAuth:
     username: ENC[AES256_GCM,data:OF9r8veM,iv:pNSBigY3fyCmpGhtFY6O3qdgulA6anPCI2yoMtKL7yo=,tag:Ay7tF8k9vJLAoy+TpUJ3jg==,type:str]
     password: ENC[AES256_GCM,data:HqLfhv8jBg==,iv:NBZ2wayxG5E9Aee1DV6xzJshRXPIIThdJRFJKmkgYII=,tag:VShszrmcH6BHP7KeAHMDkg==,type:str]
-forwardAuth:
-    secret: ENC[AES256_GCM,data:FCccBMiXdlf9FTwHeCLciygUJtP+ViRXibVEYl54xOs=,iv:2MQZOnkJyYjcXhFisAzm6yhN1IzkftmO0v3pvZLFIl8=,tag:CIMB/iliySTyR6Yo+GmjjQ==,type:str]
-    encryptionKey: ENC[AES256_GCM,data:oEndhu6Au1bVP9hCSdX58c7tUQR8u372Mbyu0LibAGY=,iv:RhwFPAJMdf6LVIshpfc6GWzTpSapbhnsGgpGu7j+Ay0=,tag:jPKyIb+nGr0mppR3DiO2Xg==,type:str]
-keycloak:
-    japan7:
-        id: ENC[AES256_GCM,data:cwH2yUOFFTud4Ur0pESquDgXqeA=,iv:jY1nb5JlzKKjT3zFpC3nEUGnh2yvxp/XWUeLFtZ6CPo=,tag:1nvUiL6duaxCmTUieJkZyg==,type:str]
-        token: ENC[AES256_GCM,data:+jjh7Yw/myNQm5ADAx465XMPO1dEn7/+KU+6J4YRUus=,iv:q6zp7lZVHuZJ0vdXhHcRQyyJzSQ9tW5ALpy2gU4WNno=,tag:bwX1BOi2G7Z4hlr/XgDc3Q==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -23,8 +16,8 @@ sops:
             TzUyREJtNnBwTCtMTkRabENOdzQ3cG8KP77v8Br6NWNfEEkgPFCtB39ShRUzA5QX
             t2YpvYOnlgrjNE2svB8m3LBmDrvnbQ15CgdqA375QyR4XxfER7SVRQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-04-04T01:42:10Z"
-    mac: ENC[AES256_GCM,data:BRm75OsTyFJSSfq+Loqo7m57GpIWI3Jur+jStporZOHapHuqMlmhI211XG9ZeHnMU7qrM51ucBHVlJvcuPKSfWyu41Q14vdng43h2lsJ6NqEOo2WLgH59WfOu8khkL5queZgmv2AfZfwmIwZmMcL+nFS8bLLu8Add/CeddYUYDQ=,iv:xnt3nMISkjEof/5xGZFIg4niCEV7ECz7mi/8p+Vqd5Q=,tag:+EDrMz+oYTVCKFU9RBq7sQ==,type:str]
+    lastmodified: "2024-04-04T04:09:42Z"
+    mac: ENC[AES256_GCM,data:l/rdsIxxWwh336X6HdXmXD2f/Uc99OCI53tjoI+I22bWLbhpSxmJsrDricyziiYHuYFFFdCMPaVodmbrN8NOozzzspY/nCJU53PaSNue41RKe9G/8qQ48mQHkTD2WoDS2gAlU38IM4DTmsxrE7wwTpu1FlrTKULFXvRgbhUewg8=,iv:gOOXa/h11FBVcEnzaCfVjuFis1nowpJA8RB7FF3+9Do=,tag:M8cjEGwGRQqF3W81ZVCW1A==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1
