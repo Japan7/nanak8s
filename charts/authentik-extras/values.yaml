@@ -1,4 +1,4 @@
-forwardAuth:
+outpost:
   ingress:
     annotations: {}
     hosts: []

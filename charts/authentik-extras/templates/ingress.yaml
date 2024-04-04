@@ -6,13 +6,13 @@ metadata:
     {{- include "common.labels.standard" . | nindent 4 }}
     app.kubernetes.io/component: extras
     app.kubernetes.io/part-of: authentik
-  {{- with .Values.forwardAuth.ingress.annotations }}
+  {{- with .Values.outpost.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
   rules:
-    {{- range .Values.forwardAuth.ingress.hosts }}
+    {{- range .Values.outpost.ingress.hosts }}
     - host: "{{ . }}"
       http:
         paths:
@@ -25,7 +25,7 @@ spec:
                   number: 80
     {{- end }}
   tls:
-    {{- range .Values.forwardAuth.ingress.hosts }}
+    {{- range .Values.outpost.ingress.hosts }}
     - hosts:
         - "{{ . }}"
       secretName: "{{ . }}-tls"

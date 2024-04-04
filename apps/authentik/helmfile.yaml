@@ -110,7 +110,7 @@ releases:
   - name: authentik-extras
     chart: ../../charts/authentik-extras
     values:
-      - forwardAuth:
+      - outpost:
           ingress:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
