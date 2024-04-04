@@ -9,11 +9,6 @@ cnpg:
 nanadb:
     username: ENC[AES256_GCM,data:pZ/H3j96,iv:QMeqqkr+K0S2aEtUa8Cl/Kkxy34sgPJxnDGJQtTJNSY=,tag:G/77a146PKzkTO09Jc+rIA==,type:str]
     password: ENC[AES256_GCM,data:XD1Q6asFCO9BEmAw3JE=,iv:q0L+MU/1kFQdnKbEngUGVl9JlLjL5UoA8/NSQH6qzAE=,tag:rrnbB3krDuFXEBr2bYZlUw==,type:str]
-ldap:
-    domain: ENC[AES256_GCM,data:UcLEmYGnk1juZskt9fttTQ==,iv:pAWFMd/iKJE3biIy4ouXB5fAvxC0Ukaa4LQVG6FjK24=,tag:Gwkgi5GrI1p31kMytVi8Aw==,type:str]
-    admin:
-        dn: ENC[AES256_GCM,data:+OP6HUoSqMIJeSCtLSscAVXbz/sgPuL5HA==,iv:b3GgOAtkyxxlBuMysF/6DREzlq1ENNj6Tqso1H0OM6I=,tag:+Rr8yAp7me/8a7TRmig+BA==,type:str]
-        password: ENC[AES256_GCM,data:o2nF5w9GkaAYX0akbWM=,iv:auVrzJtVWGNButwJp7DPdTNH1GQuxNPmu89qRTaTOiE=,tag:GQFgSUBn5FE90n4VcyJ0/A==,type:str]
 smtp:
     host: ENC[AES256_GCM,data:h4XbCe9rWsG0Bq5auDWJq4Q=,iv:ybXzw91s9BKYJy9ZJ9waBE+M6yRMZTxhTmqJ3JzJgeg=,tag:P2BXFpVjc/nvHl5mDge8Jg==,type:str]
     username: ENC[AES256_GCM,data:VYJrHvFs,iv:/B7TvRnF/ChiTfU23dZVSQdjxMhSVZSwayCXpXQDD5U=,tag:xXb5hKc0hNWkjXt9zdCRGw==,type:str]
@@ -33,8 +28,8 @@ sops:
             azBpUTd0VlhxUGtma21YYmdCWGdIVWcKZwtx4ePA6UE85T84HrBwPRRu7Z0oFqew
             98HkEmcMG8LQhDwQ7uBzCA8FzMk8Rv/y4aJO/YBeeUO1H1WXiZMfwg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-02-03T18:42:46Z"
-    mac: ENC[AES256_GCM,data:buiyllip0E5B18xInjfMA4wuNV4s+y7bK/kAyZ0FbKjXjJ671tJGy9SmfW+P7RxUAz5UKnDXY5NUktuGJZrUdKLHiIYUHFJWkt9wMhdCzCajk914Jpuc3rzczLW9uRIh5/Q+Rrh13dZeDsi/nUXc8mt248iuDzQHMruvsUZR0XU=,iv:5pR67Ym5swwLqd+X81FvlB6c9D7TsDXb9GEAdoT7Y/g=,tag:nkP/eLL8O4A+LfKcyXA73g==,type:str]
+    lastmodified: "2024-04-04T15:39:07Z"
+    mac: ENC[AES256_GCM,data:DZ05byi0Fho4BgnwHVjaU8o6BXIk9qF2pG4WeYc4OIQ+RVTuVywB+K44Rrj6nCIGHqESSnA9TALY2OUCfsLSwDZbbsY7zf8I5//v6LYGVvJqjXB/GHtkOTxVfsWGMJ18V5k2qIKRb66n2POx8HIA3bABLBbQ5oqjoduQ0HafmU8=,iv:tOvo0eTZAkTKmBxJhn9tAEQNBe1STSDIt1nkeSJqWQw=,tag:+mFb/FFeq2ZJj+gYKs8Dwg==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.8.1
