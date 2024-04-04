@@ -1,0 +1,3 @@
+wsIngress:
+  host: ""
+  annotations: {}

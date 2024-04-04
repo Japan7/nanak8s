@@ -38,6 +38,12 @@ releases:
         patch:
           - op: add
             path: /spec/template/spec/containers/0/command
-            value: ["/bin/bash", "-c", "mkdir -p /var/config/nginx/ && cp -r /etc/nginx/* /var/config/nginx/; envsubst '${LONGHORN_MANAGER_IP},${LONGHORN_UI_PORT}' < /etc/nginx/nginx.conf.template > /var/config/nginx/nginx.conf && sed -i 's/gzip on;/gzip on;large_client_header_buffers 4 32k;/' /var/config/nginx/nginx.conf && nginx -c /var/config/nginx/nginx.conf -g 'daemon off;'"]
+            value: ["/bin/bash", "-c", "cd /var/tmp && curl -L -o miniserve https://github.com/svenstaro/miniserve/releases/download/v0.27.1/miniserve-0.27.1-$$(arch)-unknown-linux-musl && chmod +x miniserve && ./miniserve --index index.html -p 8000 /web/dist"]
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
+    wsIngress:
+      host: longhorn.{{ .Values.domain }}
+      annotations:
+        traefik.ingress.kubernetes.io/router.entrypoints: websecure
+        traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+        cert-manager.io/cluster-issuer: letsencrypt
