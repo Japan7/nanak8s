@@ -116,7 +116,7 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
-              - longhorn.{{ .Values.domain }}
-              - nanadb.{{ .Values.domain }}
-              - traefik.{{ .Values.domain }}
-              - website.{{ .Values.domain }}
+              - "longhorn.{{ .Values.domain }}"
+              - "nanadb.{{ .Values.domain }}"
+              - "traefik.{{ .Values.domain }}"
+              - "{{ .Values.domain }}"
