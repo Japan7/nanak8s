@@ -1,6 +1,6 @@
 pooler:
   cluster: ""
-  instances: 1
+  instances: 2
   poolMode: transaction
 
 outpost:
