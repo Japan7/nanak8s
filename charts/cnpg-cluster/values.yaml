@@ -26,3 +26,8 @@ backups:
     accessKey: ""
     secretKey: ""
   schedule: "0 0 15 * * *"
+
+pooler:
+  enabled: false
+  instances: 2
+  poolMode: transaction

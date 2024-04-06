@@ -21,6 +21,8 @@ releases:
       - backups:
           enabled: true
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
+      - pooler:
+          enabled: true
   - name: authentik-redis
     chart: bitnami/redis
     version: 19.0.2
@@ -109,8 +111,6 @@ releases:
   - name: authentik-extras
     chart: ../../charts/authentik-extras
     values:
-      - pooler:
-          cluster: authentik-cnpg-16
       - outpost:
           ingress:
             annotations:

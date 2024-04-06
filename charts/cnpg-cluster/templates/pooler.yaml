@@ -1,14 +1,13 @@
+{{- if .Values.pooler.enabled }}
 apiVersion: postgresql.cnpg.io/v1
 kind: Pooler
 metadata:
-  name: {{ .Values.pooler.cluster }}-pooler-rw
+  name: {{ .Release.Name }}-pooler-rw
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: extras
-    app.kubernetes.io/part-of: authentik
 spec:
   cluster:
-    name: {{ .Values.pooler.cluster }}
+    name: {{ .Release.Name }}
   instances: {{ .Values.pooler.instances }}
   type: rw
   pgbouncer:
@@ -22,10 +21,11 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - pooler
-            topologyKey: "kubernetes.io/hostname"
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - pooler
+                topologyKey: "kubernetes.io/hostname"
+{{- end }}
