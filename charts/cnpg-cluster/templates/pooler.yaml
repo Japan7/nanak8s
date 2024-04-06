@@ -27,5 +27,5 @@ spec:
                     operator: In
                     values:
                       - pooler
-                topologyKey: "kubernetes.io/hostname"
+              topologyKey: "kubernetes.io/hostname"
 {{- end }}
