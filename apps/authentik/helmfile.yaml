@@ -92,10 +92,10 @@ releases:
                           operator: In
                           values:
                             - authentik-cnpg-16
-                        - key: cnpg.io/instanceRole
+                        - key: cnpg.io/poolerName
                           operator: In
                           values:
-                            - primary
+                            - authentik-cnpg-16-pooler-rw
                     topologyKey: kubernetes.io/hostname
           ingress:
             enabled: true
