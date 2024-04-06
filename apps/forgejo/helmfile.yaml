@@ -179,7 +179,7 @@ releases:
             force_pull: true
   - name: renovate
     chart: renovate/renovate
-    version: 37.279.4
+    version: 37.280.0
     values:
       - cronjob:
           schedule: "@hourly"
