@@ -37,11 +37,10 @@ releases:
     values:
       - global:
           env:
+            - name: AUTHENTIK_POSTGRESQL__USE_PGBOUNCER
+              value: "true"
             - name: AUTHENTIK_POSTGRESQL__HOST
-              valueFrom:
-                secretKeyRef:
-                  name: authentik-cnpg-16-app
-                  key: host
+              value: authentik-cnpg-16-pooler-rw
             - name: AUTHENTIK_POSTGRESQL__PORT
               valueFrom:
                 secretKeyRef:
@@ -110,6 +109,8 @@ releases:
   - name: authentik-extras
     chart: ../../charts/authentik-extras
     values:
+      - pooler:
+          cluster: authentik-cnpg-16
       - outpost:
           ingress:
             annotations:
