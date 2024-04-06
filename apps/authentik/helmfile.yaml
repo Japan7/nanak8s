@@ -37,8 +37,6 @@ releases:
     values:
       - global:
           env:
-            - name: AUTHENTIK_POSTGRESQL__USE_PGBOUNCER
-              value: "true"
             - name: AUTHENTIK_POSTGRESQL__HOST
               valueFrom:
                 secretKeyRef:
