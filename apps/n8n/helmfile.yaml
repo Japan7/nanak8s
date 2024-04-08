@@ -12,7 +12,7 @@ repositories:
 releases:
   - name: n8n
     chart: 8gears/n8n
-    version: 0.23.0
+    version: 0.23.1
     values:
       - n8n:
           encryption_key: "{{ .Values.encryptionKey }}"
