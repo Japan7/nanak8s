@@ -68,4 +68,4 @@ releases:
               type: Recreate
             ingress:
               annotations:
-                traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+                traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd

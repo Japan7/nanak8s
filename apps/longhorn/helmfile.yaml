@@ -24,7 +24,7 @@ releases:
           host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd
             cert-manager.io/cluster-issuer: letsencrypt
           tls: true
           tlsSecret: longhorn.{{ .Values.domain }}-tls
@@ -51,5 +51,5 @@ releases:
           host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: authentik-authentik@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd
             cert-manager.io/cluster-issuer: letsencrypt

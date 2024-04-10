@@ -29,6 +29,7 @@ releases:
 
           # Apps
           - name: authentik
+          - name: nanaoidc
           - name: vaultwarden
           - name: waicolle
           - name: dakara

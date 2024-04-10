@@ -1,0 +1,42 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: bitnami
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
+releases:
+  - name: nanaoidc-redis
+    chart: bitnami/redis
+    version: 19.1.0
+    values:
+      - architecture: standalone
+      - auth:
+          enabled: false
+      - master:
+          persistence:
+            size: 1Gi
+  - name: nanaoidc
+    chart: ../../charts/nanaoidc
+    values:
+      - config: |
+          {{ .Values.config | nindent 10 }}
+      - ingress:
+          host: auth.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+      - forwardAuth:
+          ingress:
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              cert-manager.io/cluster-issuer: letsencrypt
+            hosts:
+              - "longhorn.{{ .Values.domain }}"
+              - "nanadb.{{ .Values.domain }}"
+              - "traefik.{{ .Values.domain }}"
+              - "{{ .Values.domain }}"

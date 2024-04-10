@@ -39,8 +39,8 @@ spec:
         entryPoints:
           - websecure
         middlewares:
-          - name: authentik
-            namespace: authentik
+          - name: nanaoidc
+            namespace: nanaoidc
         tls:
           secretName: {{ .Values.dashboard.ingress.host }}-tls
     deployment:

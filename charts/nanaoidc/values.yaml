@@ -1,0 +1,16 @@
+image:
+  repository: ghcr.io/japan7/nanaoidc
+  tag: main@sha256:9bd198133ecef6c72a61b908ddd467e343dac2a18c4dfef67234402c02a9abbd
+  pullPolicy: ""
+
+replicaCount: 1
+
+config: ""
+
+ingress:
+  host: ""
+  annotations: {}
+
+forwardAuth:
+  hosts: []
+  annotations: {}
