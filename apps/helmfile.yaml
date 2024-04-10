@@ -28,7 +28,6 @@ releases:
           - name: forgejo
 
           # Apps
-          - name: authentik
           - name: nanaoidc
           - name: vaultwarden
           - name: waicolle

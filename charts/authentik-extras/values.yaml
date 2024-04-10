@@ -1,4 +1,0 @@
-outpost:
-  ingress:
-    annotations: {}
-    hosts: []
