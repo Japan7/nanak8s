@@ -18,7 +18,7 @@ spec:
             path: /_oauth
             backend:
               service:
-                name: "{{ .Release.Name }}"
+                name: "{{ $.Release.Name }}"
                 port:
                   number: 3000
     {{- end }}
