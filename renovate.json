@@ -42,16 +42,6 @@
       "depNameTemplate": "k3s",
       "versioningTemplate": "semver-coerced",
       "datasourceTemplate": "custom.k3s"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [".*\\.yaml$"],
-      "matchStrings": [
-        "name: MINISERVE_VERSION\\n\\s+value: \"(?<currentValue>\\S+)\" # renovate"
-      ],
-      "depNameTemplate": "svenstaro/miniserve",
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ],
   "customDatasources": {
