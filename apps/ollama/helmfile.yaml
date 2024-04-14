@@ -12,6 +12,9 @@ releases:
     chart: ollama-helm/ollama
     version: 0.22.0
     values:
+      - ollama:
+          models:
+            - mistral
       - nodeSelector:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
