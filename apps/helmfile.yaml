@@ -39,6 +39,7 @@ releases:
           - name: website
           - name: emails
           - name: nanacount
+          - name: ollama
 
           # Data
           - name: sftpgo

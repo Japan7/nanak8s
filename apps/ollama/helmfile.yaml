@@ -1,0 +1,24 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: ollama-helm
+    url: https://otwld.github.io/ollama-helm
+
+releases:
+  - name: ollama
+    chart: ollama-helm/ollama
+    version: 0.22.0
+    values:
+      - ollama:
+          models:
+            - mistral
+      - persistentVolume:
+          storageClass: longhorn-local
+          size: 15Gi
+      - resources:
+          requests:
+            cpu: 4
+            memory: 8Gi
