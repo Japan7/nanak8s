@@ -15,9 +15,7 @@ releases:
       - ollama:
           models:
             - mistral
+      - nodeSelector:
+          kubernetes.io/hostname: gungnir
       - persistentVolume:
           enabled: false
-      - resources:
-          requests:
-            cpu: 4
-            memory: 8Gi
