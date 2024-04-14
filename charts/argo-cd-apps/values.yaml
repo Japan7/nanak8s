@@ -9,12 +9,10 @@ nanak8s: []
 #   namespace: ""
 #   subdir: ""
 #   environment: ""
-#   clientSideApply: false
 #   additionalSpec: {}
 
 extras: []
 # - name: ""
 #   namespace: ""
 #   source: {}
-#   clientSideApply: false
 #   additionalSpec: {}

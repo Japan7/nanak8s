@@ -6,7 +6,6 @@ metadata:
   labels:
     {{- include "common.labels.standard" $ | nindent 4 }}
   annotations:
-    argocd.argoproj.io/compare-options: ServerSideDiff={{ not .clientSideApply }}
     notifications.argoproj.io/subscribe.github: ""
     notifications.argoproj.io/subscribe.discord: ""
   finalizers:
@@ -32,7 +31,6 @@ spec:
       selfHeal: {{ $.Values.syncPolicy.automated.selfHeal }}
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply={{ not .clientSideApply }}
   {{- end }}
   {{- if .additionalSpec }}
   {{ .additionalSpec | toYaml | nindent 2 }}
