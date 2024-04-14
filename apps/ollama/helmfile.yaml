@@ -16,8 +16,7 @@ releases:
           models:
             - mistral
       - persistentVolume:
-          storageClass: longhorn-local
-          size: 15Gi
+          enabled: false
       - resources:
           requests:
             cpu: 4
