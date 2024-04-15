@@ -9,7 +9,7 @@ releases:
     values:
       - release: 16
       - storage:
-          size: 15Gi
+          size: 20Gi
       - enableSuperuserAccess: true
       - postgresql:
           enableAlterSystem: true
