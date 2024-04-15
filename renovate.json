@@ -15,6 +15,10 @@
     {
       "matchPackageNames": ["k3s"],
       "automerge": false
+    },
+    {
+      "matchPackageNames": ["kubernetes-dashboard"],
+      "allowedVersions": "<7.0.0"
     }
   ],
   "customManagers": [
