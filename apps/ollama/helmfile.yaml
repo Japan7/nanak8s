@@ -7,7 +7,7 @@ repositories:
   - name: ollama-helm
     url: https://otwld.github.io/ollama-helm
   - name: open-webui
-    url: git+https://github.com/open-webui/open-webui@kubernetes/helm?ref=v0.1.118
+    url: git+https://github.com/open-webui/open-webui@kubernetes/helm?ref=v0.1.118 # renovate
 
 releases:
   - name: ollama
