@@ -16,7 +16,7 @@ releases:
     values:
       - ollama:
           models:
-            - mistral
+            - "wizardlm2:7b"
       - nodeSelector:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
