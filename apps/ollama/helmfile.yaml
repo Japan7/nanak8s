@@ -45,7 +45,6 @@ releases:
         kind: PersistentVolumeClaim
         metadata:
           name: open-webui
-          namespace: "{{ .Namespace }}"
           labels:
             recurring-job.longhorn.io/source: enabled
             recurring-job-group.longhorn.io/default: enabled
