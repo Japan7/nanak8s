@@ -22,7 +22,7 @@ localSettings: ""
 tasks:
   enabled: true
   anilist:
-    schedule: "0 3 * * 1"
+    schedule: "0 3 * * 3"
     resources:
       requests:
         memory: 4Gi
