@@ -6,6 +6,8 @@ environments:
 repositories:
   - name: ollama-helm
     url: https://otwld.github.io/ollama-helm
+  - name: open-webui
+    url: git+https://github.com/open-webui/open-webui@kubernetes/helm?ref=v0.1.118
 
 releases:
   - name: ollama
@@ -19,3 +21,20 @@ releases:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
           enabled: false
+  - name: open-webui
+    chart: open-webui/open-webui
+    values:
+      - ollama:
+          externalHost: http://ollama:11434
+      - webui:
+          nodeSelector:
+            kubernetes.io/hostname: gungnir
+          ingress:
+            enabled: true
+            host: chat.{{ .Values.domain }}
+            annotations:
+              traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd
+              cert-manager.io/cluster-issuer: letsencrypt
+            tls: true
+            existingSecret: chat.{{ .Values.domain }}-tls
