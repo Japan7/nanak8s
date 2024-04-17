@@ -16,7 +16,8 @@ releases:
     values:
       - ollama:
           models:
-            - "wizardlm2:7b"
+            - wizardlm2
+            - nomic-embed-text
       - nodeSelector:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
