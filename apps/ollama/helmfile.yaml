@@ -16,7 +16,7 @@ releases:
     values:
       - ollama:
           models:
-            - wizardlm2
+            - llama3
             - nomic-embed-text
       - nodeSelector:
           kubernetes.io/hostname: gungnir
