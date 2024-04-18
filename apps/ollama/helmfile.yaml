@@ -21,6 +21,7 @@ releases:
       - nodeSelector:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
+          enabled: true
           storageClass: longhorn-local
     strategicMergePatches:
       - apiVersion: apps/v1
