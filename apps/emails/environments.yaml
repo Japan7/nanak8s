@@ -1,6 +1,6 @@
 environments:
   default:
     values:
-      - digest: "sha256:1b8669374202f30ecb34464249277f8090e25d4a845b738ae7123258a636552c"
+      - digest: "sha256:b9a0f24ae2e2008c77521cf53bdce9bb3df066f8ac6e944f506b4f7ef26aca76"
     secrets:
       - ../globals.sops.yaml
