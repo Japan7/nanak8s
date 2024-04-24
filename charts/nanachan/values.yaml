@@ -1,5 +1,5 @@
 image:
-  repository: ""
+  repository: ghcr.io/japan7/nanachan
   tag: latest
   pullPolicy: ""
   pullSecrets: []
@@ -8,8 +8,7 @@ replicaCount: 1
 
 localSettings: ""
 
-nodeSelector:
-  kubernetes.io/arch: arm64
+nodeSelector: {}
 
 affinity: {}
 

@@ -220,5 +220,4 @@ releases:
           namespaces:
             - dakara
             - emails
-            - nanachan
             - website

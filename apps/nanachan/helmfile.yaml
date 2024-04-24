@@ -37,10 +37,7 @@ releases:
     chart: ../../charts/nanachan
     values:
       - image:
-          repository: git.{{ .Values.domain }}/japan7/nanachan
           tag: "{{ .Values.tag }}"
-          pullSecrets:
-            - forgejo-regcred
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - kara:
