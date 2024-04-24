@@ -38,10 +38,7 @@ releases:
     chart: ../../charts/nanapi
     values:
       - image:
-          repository: git.{{ .Values.domain }}/japan7/nanapi
           tag: "{{ .Values.tag }}"
-          pullSecrets:
-            - forgejo-regcred
       - edgedb:
           service: nanadb.nanadb
           username: "{{ .Values.nanadb.username }}"

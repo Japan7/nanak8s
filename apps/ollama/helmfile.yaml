@@ -15,7 +15,6 @@ releases:
       - ollama:
           models:
             - llama3
-            - nomic-embed-text
       - nodeSelector:
           kubernetes.io/hostname: gungnir
       - persistentVolume:
