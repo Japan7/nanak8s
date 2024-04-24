@@ -16,6 +16,9 @@ releases:
       - release: 16
       - storage:
           size: 5Gi
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
       - backups:
           enabled: true
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
