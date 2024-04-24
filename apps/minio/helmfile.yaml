@@ -22,6 +22,7 @@ releases:
             value: https://minio.{{ .Values.domain }}
           - name: MINIO_BROWSER_REDIRECT_URL
             value: https://minio.{{ .Values.domain }}/console/
+      - resourcesPreset: none
       - persistence:
           size: 20Gi
       - podSecurityContext:
