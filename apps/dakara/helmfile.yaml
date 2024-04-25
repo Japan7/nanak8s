@@ -1,5 +1,8 @@
-bases:
-  - environments.yaml
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 releases:
   - name: dakara-server
@@ -49,10 +52,10 @@ releases:
     chart: ../../charts/mugen-import-api
     values:
       - image:
-          repository: git.{{ .Values.domain }}/japan7/mugen-import-api
-          tag: latest@{{ .Values.mugenImportApi.digest }}
+          repository: "{{ .Values.domain }}/japan7/mugen-import-api"
+          tag: latest
           pullSecrets:
-            - forgejo-regcred
+            - registry-regcred
       - updateStrategy:
           type: Recreate
       - mugen:
