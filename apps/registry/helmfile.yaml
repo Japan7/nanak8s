@@ -13,13 +13,17 @@ releases:
     chart: twuni/docker-registry
     version: 2.2.3
     values:
+      - updateStrategy:
+          type: Recreate
       - secrets:
           haSharedSecret: "{{ .Values.haSharedSecret }}"
           htpasswd: "{{ .Values.htpasswd }}"
       - garbageCollect:
           enabled: true
-      - updateStrategy:
-          type: Recreate
+      - configData:
+          storage:
+            cache:
+              blobdescriptor: disabled
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
