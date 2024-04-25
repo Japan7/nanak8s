@@ -6,10 +6,10 @@ releases:
     chart: ../../charts/emails
     values:
       - image:
-          repository: git.{{ .Values.domain }}/japan7/emails
+          repository: "{{ .Values.domain }}/japan7/emails"
           tag: latest@{{ .Values.digest }}
           pullSecrets:
-            - forgejo-regcred
+            - registry-regcred
       - ingress:
           host: emails.{{ .Values.domain }}
           annotations:
