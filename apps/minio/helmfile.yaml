@@ -22,19 +22,11 @@ releases:
             value: https://minio.{{ .Values.domain }}
           - name: MINIO_BROWSER_REDIRECT_URL
             value: https://minio.{{ .Values.domain }}/console/
-      - affinity:
-          nodeAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                preference:
-                  matchExpressions:
-                    - key: topology.kubernetes.io/region
-                      operator: In
-                      values:
-                        - eu-west
       - resourcesPreset: none
       - persistence:
           size: 20Gi
+      - podSecurityContext:
+          fsGroupChangePolicy: OnRootMismatch
       - ingress:
           enabled: true
           hostname: minio.{{ .Values.domain }}
