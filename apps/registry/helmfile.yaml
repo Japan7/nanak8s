@@ -1,0 +1,37 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: twuni
+    url: https://helm.twun.io
+
+releases:
+  - name: registry
+    chart: twuni/docker-registry
+    version: 2.2.3
+    values:
+      - secrets:
+          haSharedSecret: "{{ .Values.haSharedSecret }}"
+          htpasswd: "{{ .Values.htpasswd }}"
+      - garbageCollect:
+          enabled: true
+      - updateStrategy:
+          type: Recreate
+      - persistence:
+          enabled: true
+          deleteEnabled: true
+      - ingress:
+          enabled: true
+          className: null
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+          hosts:
+            - registry.{{ .Values.domain }}
+          tls:
+            - hosts:
+                - registry.{{ .Values.domain }}
+              secretName: registry.{{ .Values.domain }}-tls
