@@ -20,6 +20,16 @@ releases:
           enabled: true
       - updateStrategy:
           type: Recreate
+      - affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
       - persistence:
           enabled: true
           deleteEnabled: true
