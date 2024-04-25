@@ -24,7 +24,6 @@ releases:
           # Dev
           - name: argo-cd
             namespace: argocd
-          - name: forgejo
           - name: registry
 
           # Apps
