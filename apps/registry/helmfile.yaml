@@ -30,8 +30,9 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
           hosts:
-            - registry.{{ .Values.domain }}
+            - "{{ .Values.domain }}"
+          path: /v2/
           tls:
             - hosts:
-                - registry.{{ .Values.domain }}
-              secretName: registry.{{ .Values.domain }}-tls
+                - "{{ .Values.domain }}"
+              secretName: "{{ .Values.domain }}-tls"
