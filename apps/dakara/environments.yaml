@@ -2,7 +2,7 @@ environments:
   default:
     values:
       - mugenImportApi:
-          digest: "${{ steps.build-and-push.outputs.digest }}"
+          digest: "sha256:25150b6a10bb22ec8149ad031ac5b328c0636c7f4920f73ccd3b4b9c41fdf46e"
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
