@@ -19,7 +19,7 @@ releases:
           haSharedSecret: "{{ .Values.haSharedSecret }}"
           htpasswd: "{{ .Values.htpasswd }}"
       - garbageCollect:
-          enabled: true
+          enabled: false # FIXME: https://github.com/distribution/distribution/issues/3178
       - configData:
           storage:
             cache:
@@ -50,31 +50,31 @@ releases:
             - hosts:
                 - "{{ .Values.domain }}"
               secretName: "{{ .Values.domain }}-tls"
-    strategicMergePatches:
-      - apiVersion: batch/v1
-        kind: CronJob
-        metadata:
-          name: registry-docker-registry-garbage-collector
-          namespace: "{{ .Namespace }}"
-        spec:
-          jobTemplate:
-            spec:
-              template:
-                spec:
-                  affinity:
-                    podAffinity:
-                      requiredDuringSchedulingIgnoredDuringExecution:
-                        - labelSelector:
-                            matchExpressions:
-                              - key: app
-                                operator: In
-                                values:
-                                  - docker-registry
-                              - key: release
-                                operator: In
-                                values:
-                                  - registry
-                          topologyKey: kubernetes.io/hostname
+    # strategicMergePatches:
+    #   - apiVersion: batch/v1
+    #     kind: CronJob
+    #     metadata:
+    #       name: registry-docker-registry-garbage-collector
+    #       namespace: "{{ .Namespace }}"
+    #     spec:
+    #       jobTemplate:
+    #         spec:
+    #           template:
+    #             spec:
+    #               affinity:
+    #                 podAffinity:
+    #                   requiredDuringSchedulingIgnoredDuringExecution:
+    #                     - labelSelector:
+    #                         matchExpressions:
+    #                           - key: app
+    #                             operator: In
+    #                             values:
+    #                               - docker-registry
+    #                           - key: release
+    #                             operator: In
+    #                             values:
+    #                               - registry
+    #                       topologyKey: kubernetes.io/hostname
   - name: registry-extras
     chart: ../../charts/registry-extras
     values:
