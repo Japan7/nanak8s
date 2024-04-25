@@ -6,8 +6,6 @@ image:
 
 replicaCount: 1
 
-nodeSelector: {}
-
 affinity: {}
 
 edgedb:

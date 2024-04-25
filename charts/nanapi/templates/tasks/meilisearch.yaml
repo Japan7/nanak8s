@@ -25,10 +25,6 @@ spec:
             {{- range .Values.image.pullSecrets }}
             - name: {{ . }}
             {{- end }}
-          {{- with .Values.nodeSelector }}
-          nodeSelector:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
           volumes:
             - name: localsettings
               secret:

@@ -14,18 +14,14 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      imagePullSecrets:
-        {{- range .Values.image.pullSecrets }}
-        - name: {{ . }}
-        {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      imagePullSecrets:
+        {{- range .Values.image.pullSecrets }}
+        - name: {{ . }}
+        {{- end }}
       volumes:
         - name: localsettings
           secret:
