@@ -1,0 +1,16 @@
+# https://helm.sh/docs/howto/charts_tips_and_tricks/#creating-image-pull-secrets
+{{- range .Values.registryCredentials.namespaces }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ $.Values.registryCredentials.secretName }}
+  namespace: {{ . }}
+  labels:
+    {{- include "common.labels.standard" $ | nindent 4 }}
+    app.kubernetes.io/component: extras
+    app.kubernetes.io/part-of: registry
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: {{ template "imagePullSecret" $ }}
+---
+{{- end }}

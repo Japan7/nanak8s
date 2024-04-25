@@ -1,0 +1,7 @@
+registryCredentials:
+  registry: ""
+  username: ""
+  password: ""
+  email: ""
+  secretName: registry-regcred
+  namespaces: []

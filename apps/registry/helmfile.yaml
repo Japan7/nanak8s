@@ -46,3 +46,14 @@ releases:
             - hosts:
                 - "{{ .Values.domain }}"
               secretName: "{{ .Values.domain }}-tls"
+  - name: registry-extras
+    chart: ../../charts/registry-extras
+    values:
+      - registryCredentials:
+          registry: "{{ .Values.domain }}"
+          username: "{{ .Values.username }}"
+          password: "{{ .Values.password }}"
+          namespaces:
+            - dakara
+            - emails
+            - website
