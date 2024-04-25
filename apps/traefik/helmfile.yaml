@@ -10,8 +10,6 @@ releases:
     values:
       - traefik:
           extraPorts:
-            - name: forgejo-ssh
-              port: 8022
             - name: sftpgo
               port: 8222
             - name: syncplay

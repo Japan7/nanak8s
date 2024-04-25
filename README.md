@@ -59,7 +59,6 @@ received from the Internet.
 - 443/tcp (HTTPS)
 - 777/udp (HTTP/3)
 - 6443/tcp (K8s API)
-- 8022/tcp (Forgejo SSH)
 - 8222/tcp (SFTPGo)
 - 8999/tcp (Syncplay)
 
