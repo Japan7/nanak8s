@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/filestash-sftpgo-oidc-auth
-  tag: main@sha256:3fa806075476e78185301f65383ebf4a50be6a292d93e2b5530b8f2f92e2612d
+  tag: main@sha256:b038c55128a4cdfb474eb18203b1fae41eb15f82818e49aae500e990b3ba101f
   pullPolicy: ""
 
 replicaCount: 1
