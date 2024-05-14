@@ -5,7 +5,7 @@
     ":prConcurrentLimitNone",
     ":prHourlyLimitNone"
   ],
-  "timezone": "America/Montreal",
+  "timezone": "Europe/Paris",
   "schedule": ["after 8am and before 8pm"],
   "ignoreTests": true,
   "helmfile": {
