@@ -37,7 +37,6 @@ releases:
           - name: syncplay
           - name: website
           - name: emails
-          - name: nanacount
           - name: ollama
 
           # Data
