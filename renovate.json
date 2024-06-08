@@ -13,6 +13,11 @@
   },
   "packageRules": [
     {
+      "matchPackageNames": ["ollama"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true
+    },
+    {
       "matchPackageNames": ["k3s", "drakkan/sftpgo"],
       "automerge": false
     },
