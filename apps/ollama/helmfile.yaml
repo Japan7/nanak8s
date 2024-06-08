@@ -10,7 +10,7 @@ repositories:
 releases:
   - name: ollama
     chart: ollama-helm/ollama
-    version: 0.33.0
+    version: 0.34.0
     values:
       - ollama:
           models:
