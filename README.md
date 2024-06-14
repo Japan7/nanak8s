@@ -2,7 +2,7 @@
 
 ## Join the Japan7 cluster
 
-[Wireguard](https://www.wireguard.com/install/) support is required on the node to join the private cluster [innernet](https://github.com/tonarino/innernet).
+[Wireguard](https://www.wireguard.com/install/) support is required to join the private cluster [innernet](https://github.com/tonarino/innernet).
 
 ### Steps
 
@@ -27,7 +27,7 @@ kubelet-arg:
   - image-gc-low-threshold=0
 ```
 
-If running in server mode, also add the following keys:
+If running in server mode, also add the following values:
 
 ```yaml
 secrets-encryption: true
@@ -49,7 +49,7 @@ Longhorn (block storage) requires some system packages. Please check their [docu
 
 #### 4. [Optional] Set up your node as an entrypoint to the cluster
 
-Without more configuration, your node with only answer requests relayed by the
+Without more configuration, your node will only answer requests relayed by the
 other nodes in the cluster. You can set up your node to also answer requests
 received from the Internet.
 
@@ -65,7 +65,7 @@ received from the Internet.
 ##### Traefik passthrough
 
 K3s internal Traefik serves web apps on port 8443 (websecure). You may setup
-another Traefik outside the Kubernetes cluster with `docker-compose` to
+another Traefik outside the Kubernetes cluster with `docker compose` to
 passthrough matching incoming requests on ports 80 and 443.
 
 - `compose.yaml`
