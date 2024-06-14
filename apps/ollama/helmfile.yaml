@@ -16,7 +16,7 @@ releases:
           models:
             - llama3
       - nodeSelector:
-          kubernetes.io/hostname: gungnir
+          kubernetes.io/hostname: tsubasa
       - persistentVolume:
           enabled: true
           storageClass: longhorn-local
