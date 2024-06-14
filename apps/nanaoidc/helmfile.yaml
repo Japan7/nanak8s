@@ -36,7 +36,6 @@ releases:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
-              - "chat.{{ .Values.domain }}"
               - "longhorn.{{ .Values.domain }}"
               - "nanadb.{{ .Values.domain }}"
               - "traefik.{{ .Values.domain }}"
