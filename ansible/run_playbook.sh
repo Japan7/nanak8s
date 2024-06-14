@@ -23,7 +23,7 @@ usage() {
 
 if [ "$1" = "localhost" ]; then
     [ "$2" = reboot ] && die "You shouldn't run the reboot playbook on localhost"
-    args="--connection=local -i 127.0.0.1 -l 127.0.0.1"
+    args="--connection=local -i 127.0.0.1, -l 127.0.0.1"
 else
     args="-i $1,"
 fi
