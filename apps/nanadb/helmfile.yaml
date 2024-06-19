@@ -8,6 +8,7 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - release: 16
+      - instances: 5
       - storage:
           size: 20Gi
       - enableSuperuserAccess: true
