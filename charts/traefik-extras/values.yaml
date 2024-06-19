@@ -2,7 +2,7 @@ traefik:
   image:
     registry: docker.io
     repository: traefik
-    tag: v3.0.2
+    tag: v3.0.3
   extraPorts: []
   # - name:
   #   port:
