@@ -21,7 +21,7 @@ onlyoffice:
   enabled: false
   image:
     repository: onlyoffice/documentserver
-    tag: 8.0.1
+    tag: 8.1.0
     pullPolicy: ""
 
 ingress:
