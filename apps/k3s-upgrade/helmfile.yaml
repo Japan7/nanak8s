@@ -8,4 +8,4 @@ releases:
     chart: ../../charts/k3s-upgrade-plans
     values:
       - k3s:
-          version: v1.29.5+k3s1 # renovate: k3s
+          version: v1.29.6+k3s1 # renovate: k3s
