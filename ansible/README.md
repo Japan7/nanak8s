@@ -96,7 +96,7 @@ Garage only works with Gentoo and Alpine (for now).
 
 Innernet has to be set up for garage to work.
 
-You can set the GARAGE_DATA_DIR to the directory where you want the data to be
+You can set `GARAGE_DATA_DIR` to the directory where you want the data to be
 stored on the server.
 
 ```sh
