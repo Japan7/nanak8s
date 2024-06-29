@@ -65,6 +65,19 @@
     enabled: true
   when: ansible_os_family == "Alpine"
 
+- name: copy rshared hack (openrc)
+  copy:
+    src: make-rshared.start
+    dest: /etc/local.d/make-rshared.start
+    mode: 0755
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+- name: enable local service (openrc)
+  service:
+    name: local
+    enabled: true
+    state: started
+
 - name: create {{ iface }} service
   file:
     src: /etc/init.d/innernet
