@@ -90,3 +90,16 @@ before rebooting and `kubectl uncordon` when the node comes back up.
 See:
 https://github.com/Japan7/nanak8s#4-optional-set-up-your-node-as-an-entrypoint-to-the-cluster
 
+# Garage setup
+
+Garage only works with Gentoo and Alpine (for now).
+
+Innernet has to be set up for garage to work.
+
+You can set the GARAGE_DATA_DIR to the directory where you want the data to be
+stored on the server.
+
+```sh
+$ export GARAGE_DATA_DIR=/media/japan7/garage  # you should store this somewhere
+$ ./run_playbook.sh <hostname of your server> garage
+```
