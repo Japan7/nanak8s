@@ -1,0 +1,14 @@
+#!/sbin/openrc-run
+name="garage_japan7"
+description="Japan7 garage instance"
+
+command="/usr/bin/garage"
+command_args="-c {{ garage_config_path }} server"
+supervisor="supervise-daemon"
+output_logger="logger -et '${RC_SVCNAME}'"
+error_logger="logger -et '${RC_SVCNAME}' -p3"
+
+depend() {
+    need innernet.{{ iface }}
+}
+

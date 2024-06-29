@@ -1,0 +1,41 @@
+- name: load garage secrets
+  community.sops.load_vars:
+    file: garage.sops.yaml
+
+- name: install dependencies (Gentoo)
+  portage:
+    name:
+      - "net-fs/garage:0/{{ garage_version }}"
+    state: present
+  when: ansible_os_family == "Gentoo"
+
+- name: install dependencies (Alpine)
+  apk:
+    name:
+      # Alpine only keeps the latest version, so this will just stop updates
+      # when it hits the repo
+      - "garage=~{{ garage_version }}"
+    state: present
+  when: ansible_os_family == "Alpine"
+
+- name: generate garage config
+  template:
+    src: garage.toml
+    dest: "{{ garage_config_path }}"
+    mode: 0640
+  register: garage_config
+
+- name: generate garage openrc service
+  template:
+    src: garage.init
+    dest: /etc/init.d/garage_japan7
+    mode: 0755
+  when: ansible_facts['service_mgr'] == 'openrc'
+
+# TODO: systemd service
+
+- name: start garage service
+  service:
+    name: garage_japan7
+    enabled: true
+    state: started

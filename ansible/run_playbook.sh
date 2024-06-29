@@ -29,6 +29,8 @@ else
 fi
 
 [ -n "${NANAK8S_IFACE}" ] && args="$args -e iface=${NANAK8S_IFACE}"
+[ -n "${GARAGE_DATA_DIR}" ] && args="$args -e garage_data_dir=${GARAGE_DATA_DIR}"
+[ -n "${GARAGE_CONFIG_PATH}" ] && args="$args -e garage_config_path=${GARAGE_CONFIG_PATH}"
 if [ -n "${NANAK8S_NODE_TYPE}" ]; then
     [ "${NANAK8S_NODE_TYPE}" = agent ] || [ "${NANAK8S_NODE_TYPE}" = "server" ] && die "node type can only be set to agent or server: found NANAK8S_NODE_TYPE=${NANAK8S_NODE_TYPE}"
     args="$args -e node_type=${NANAK8S_NODE_TYPE}"

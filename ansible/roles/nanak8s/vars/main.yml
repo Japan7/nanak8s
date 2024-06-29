@@ -1,5 +1,2 @@
 # default type for the role
 node_type: server
-
-# default innernet interface name
-iface: japanet7

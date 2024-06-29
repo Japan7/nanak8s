@@ -1,0 +1,12 @@
+# garage node upgrades have to be done at the same time,
+# so we set the version explicitly
+# might only need the major version but we will see how it goes.
+garage_version: "1.0"
+
+# default directories
+# metadata_dir should probably be on a SSD
+garage_metadata_dir: "/var/lib/garage/japan7/metadata"
+# data_dir can be on an HDD
+garage_data_dir: "/var/lib/garage/japan7/data"
+
+garage_config_path: "/etc/garage.toml"
