@@ -10,7 +10,9 @@ rpc_public_addr = "{{ ansible_facts[iface].ipv4.address }}:3901"
 rpc_secret = "{{ garage_rpc_secret }}"
 
 bootstrap_peers = [
-    "0e6b9f79c4bd949fd06683f950aa5f06aa9c644580e929a84f69bece2075f2ab@10.100.0.6:3901",
+{% for garage_bootstrap_peer in garage_bootstrap_peers %}
+    "{{ garage_bootstrap_peer }}",
+{% endfor %}
 ]
 
 
