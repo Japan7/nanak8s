@@ -20,6 +20,8 @@ envfile="${maindir}/.env"
 if [ -e "${envfile}" ]; then
     einfo "sourcing ${envfile}"
     . "${envfile}"
+else
+    ewarn "${envfile} doesn't exist, not loading"
 fi
 
 usage() {
