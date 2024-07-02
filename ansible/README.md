@@ -2,6 +2,13 @@
 
 Ansible playbook to install [nanak8s](https://github.com/Japan7/nanak8s).
 
+# General variables
+
+A lot of variables are used throughout this playbook, they can be put in a
+`.env` file that will be loaded by `run_playbook.sh`.
+You can copy the `.env.example` file and change to the appropriate values for
+your set up.
+
 # Requirements
 
 Supported linux distributions on the node: Alpine, Arch, Debian, Gentoo, Rocky or Ubuntu

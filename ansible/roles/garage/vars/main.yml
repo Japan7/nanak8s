@@ -7,6 +7,7 @@ garage_version: "1.0"
 # metadata_dir should probably be on a SSD
 garage_metadata_dir: "/var/lib/garage/japan7/metadata"
 # data_dir can be on an HDD
-garage_data_dir: "/var/lib/garage/japan7/data"
+# not set by default to make sure that nobody is storing their files in an unexpected location
+#garage_data_dir: "/var/lib/garage/japan7/data"
 
 garage_config_path: "/etc/garage.toml"

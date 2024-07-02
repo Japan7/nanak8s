@@ -14,6 +14,14 @@ ewarn() {
 	echo -e " ${NOCOLOR-\e[1;33m*\e[0m }${*}" >&2
 }
 
+maindir="$(dirname "$0")"
+envfile="${maindir}/.env"
+
+if [ -e "${envfile}" ]; then
+    einfo "sourcing ${envfile}"
+    . "${envfile}"
+fi
+
 usage() {
     die "USAGE: $0 HOSTNAME PLAYBOOK_NAME"
 }
