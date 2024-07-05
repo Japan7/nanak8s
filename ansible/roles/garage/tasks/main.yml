@@ -15,6 +15,7 @@
       # Alpine only keeps the latest version, so this will just stop updates
       # when it hits the repo
       - "garage=~{{ garage_version }}"
+      - logger
     state: present
   when: ansible_os_family == "Alpine"
 
