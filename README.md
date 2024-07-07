@@ -17,6 +17,7 @@ Set the MTU to 1420 on the innernet interface to avoid any issue with QUIC hands
 Edit and put the following configuration in `/etc/rancher/k3s/config.yaml`:
 
 ```yaml
+server: https://<existing_server_node_innernet_ip>:6443
 token: <shared_secret>
 flannel-iface: <innernet_interface>
 kubelet-arg:
@@ -38,10 +39,10 @@ disable:
 Then run the one-liner to install K3s:
 
 ```sh
-curl -sfL https://get.k3s.io | K3S_URL=https://<existing_server_node_innernet_ip>:6443 sh -s - <node_type>
+curl -sfL https://get.k3s.io | sh -s - <node_type>
 ```
 
-`node_type` is `server` or `agent`.
+with `node_type` either `server` or `agent`.
 
 #### 3. Longhorn requirements
 
@@ -59,7 +60,6 @@ received from the Internet.
 - 443/tcp (HTTPS)
 - 777/udp (HTTP/3)
 - 6443/tcp (K8s API)
-- 8222/tcp (SFTPGo)
 - 8999/tcp (Syncplay)
 
 ##### Traefik passthrough

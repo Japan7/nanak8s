@@ -2,9 +2,6 @@ server:
     secretKey: ENC[AES256_GCM,data:FpA2IEEahTerQK/kuZqhe9NqfVDyiSdFM80trPHxrDl9KYSvjC/XYZ5h66YRLfPojovR5GSCWejzMMNpB5yuDw==,iv:i2PA/qPF+eIpUxhJn13Gm0PuL2zekyjVdR3pqr6XA2w=,tag:Sk/hAOU3tfD/53wHMhDHrw==,type:str]
     smtp:
         sender: ENC[AES256_GCM,data:ulTLZ+KpFgwOa7OLKdRQIWTaG3hzbZk9PWWZ9+6f/fPZxuA6VKI=,iv:KjeKI14dvFaIzwna88l3pmAr/WVekr3MIOTuErYs9m0=,tag:N03JLEktRtIzu53CqBpDqQ==,type:str]
-sftp:
-    username: ENC[AES256_GCM,data:nROfbr/OtcdDU3vYVmFJh5s=,iv:tgUIB6F9ka+SkNMRdz+9g0Exuj4YLLwKOO3xCxSAxSM=,tag:SGc013nvEe2aR4HbPVh7Kw==,type:str]
-    obscuredPassword: ENC[AES256_GCM,data:0oQSl2hpr19aH6mI1CoM1Rm56/mDlAqd3Eq5T32nEY661JrzYG2kgQ==,iv:Z6H1sqdHhJCJP9TBwm/oDRMV3DdUtDF53W5UMiYVrfg=,tag:CNmH5ZSlR2lZ00GC44+duw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -20,8 +17,8 @@ sops:
             NEhrdTJIK3dReitQYUEzWlk0UFBtR1UKHx12EukKj7xc2khO8F9mUCPg77QEY3tL
             XzkVR8R0ZA74RRRcO3uWyxOqmgJOqeaF8fMnOzsLsvwrb+SCEyvZvg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-01-07T10:23:54Z"
-    mac: ENC[AES256_GCM,data:5JBuwpf4lMalNRaIvGa9Sjk/zcXy6xzwcjYaNVF0Y1KafsM7RbrrthQnCSE2DBRqgikbKUB+3ydVWax1zQkd1WCvXOez3sQbZVmw2kt7vwb17VWORQPYDFWx6BZJgyZnNjxNT/VAWvfM+Cc4DiyEXYidtrj37TdCbagaiji7Cog=,iv:4ulTh4VxAdB4A8foUJpNsjkZLyH48I7T2mjtx1Fs2eA=,tag:cYsptsU65XIlhQF55jjjrQ==,type:str]
+    lastmodified: "2024-07-07T08:55:03Z"
+    mac: ENC[AES256_GCM,data:4aMMRD7j9VNffDRIEx25vEz5ypKg8P8Mdos/0Kic6yiS7BGRV3epMukiyXM0Pe1auaA0JmweGPBaSOa8bHRXkPuxjNaMeiDY5rz0EpAA+MINYyumo3GViF50WsrwByA/piZK3qzM1EWwlyG+PhsQPB934WUK6ACarGLMurma2dc=,iv:oCRodkTm4U5tVyXPzWt4v8sUE8ruNImiwB3YV+kK1uU=,tag:NvIPZm805AeHz32fEkiUDQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.8.1
+    version: 3.9.0

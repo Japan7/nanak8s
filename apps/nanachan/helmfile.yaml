@@ -40,13 +40,6 @@ releases:
           tag: "{{ .Values.tag }}"
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
-      - kara:
-          sftp:
-            host: sftpgo-sftp.sftpgo
-            port: 2022
-            username: "{{ .Values.sftp.username }}"
-            obscuredPassword: "{{ .Values.sftp.obscuredPassword }}"
-            path: kara/Japan7
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanachan.{{ .Values.domain }}

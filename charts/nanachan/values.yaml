@@ -10,21 +10,6 @@ localSettings: ""
 
 affinity: {}
 
-kara:
-  sftp:
-    host: ""
-    port: ""
-    username: ""
-    obscuredPassword: ""
-    path: ""
-  mountPath: /kara
-
-rclone:
-  image:
-    repository: rclone/rclone
-    tag: 1.67.0
-    pullPolicy: ""
-
 miniserve:
   image:
     repository: svenstaro/miniserve

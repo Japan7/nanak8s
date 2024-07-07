@@ -9,17 +9,17 @@ releases:
     values:
       - nanak8s:
           # System
-          - name: k3s-upgrade
-            namespace: system-upgrade
-          - name: traefik
-            namespace: "{{ .Values.traefik.namespace }}"
           - name: cert-manager
-          - name: longhorn
-            namespace: longhorn-system
           - name: cnpg
             namespace: cnpg-system
+          - name: k3s-upgrade
+            namespace: system-upgrade
           - name: kubernetes-dashboard
             namespace: kube-dashboard
+          - name: longhorn
+            namespace: longhorn-system
+          - name: traefik
+            namespace: "{{ .Values.traefik.namespace }}"
 
           # Dev
           - name: argo-cd
@@ -27,21 +27,18 @@ releases:
           - name: registry
 
           # Apps
-          - name: nanaoidc
-          - name: waicolle
           - name: dakara
+          - name: emails
           - name: filestash
           - name: n8n
-          - name: outline
-          - name: syncplay
-          - name: website
-          - name: emails
-          - name: ollama
-
-          # Data
-          - name: sftpgo
           - name: minio
           - name: nanadb
+          - name: nanaoidc
+          - name: ollama
+          - name: outline
+          - name: syncplay
+          - name: waicolle
+          - name: website
 
           # nanapi
           - name: nanapi-prod

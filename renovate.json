@@ -13,17 +13,17 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["ollama"],
-      "matchUpdateTypes": ["minor"],
-      "automerge": true
-    },
-    {
-      "matchPackageNames": ["k3s", "drakkan/sftpgo"],
+      "matchPackageNames": ["k3s"],
       "automerge": false
     },
     {
       "matchPackageNames": ["kubernetes-dashboard"],
       "allowedVersions": "<7.0.0"
+    },
+    {
+      "matchPackageNames": ["ollama"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true
     }
   ],
   "customManagers": [

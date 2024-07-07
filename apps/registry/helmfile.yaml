@@ -83,6 +83,5 @@ releases:
           username: "{{ .Values.username }}"
           password: "{{ .Values.password }}"
           namespaces:
-            - dakara
             - emails
             - website

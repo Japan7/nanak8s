@@ -10,8 +10,6 @@ releases:
     values:
       - traefik:
           extraPorts:
-            - name: sftpgo
-              port: 8222
             - name: syncplay
               port: 8999
       - replicaCount: 2

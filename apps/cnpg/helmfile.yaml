@@ -2,7 +2,6 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
-      - default.sops.yaml
 ---
 repositories:
   - name: cnpg

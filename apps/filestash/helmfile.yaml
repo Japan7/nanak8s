@@ -25,26 +25,3 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
-  - name: filestash-sftpgo-oidc-auth
-    chart: ../../charts/filestash-sftpgo-oidc-auth
-    values:
-      - filestash:
-          host: https://filestash.{{ .Values.domain }}
-          apiKey: "{{ .Values.filestash.apiKey }}"
-      - oidc:
-          configUrl: "{{ .Values.oidc.configUrl }}"
-          clientId: "{{ .Values.oidc.clientId }}"
-          clientSecret: "{{ .Values.oidc.clientSecret }}"
-      - sftpgo:
-          web: http://sftpgo-http.sftpgo:8080
-          adminBasicAuth: "{{ .Values.sftpgo.adminBasicAuth }}"
-          host: sftpgo-sftp.sftpgo
-          port: 2022
-          pubKey: "{{ .Values.sftpgo.pubKey }}"
-          privKey: "{{ .Values.sftpgo.privKey }}"
-      - ingress:
-          loginRedirect: true
-          host: filestash.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            cert-manager.io/cluster-issuer: letsencrypt

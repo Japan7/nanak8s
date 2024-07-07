@@ -28,8 +28,6 @@ spec:
             secretName: "{{ .Release.Name }}-localsettings"
         - name: html
           emptyDir: {}
-        - name: kara
-          emptyDir: {}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -40,10 +38,6 @@ spec:
               subPath: local_settings.py
             - name: html
               mountPath: /html
-            - name: kara
-              mountPath: "{{ .Values.kara.mountPath }}"
-              readOnly: true
-              mountPropagation: HostToContainer
         - name: http
           {{- with .Values.miniserve.image }}
           image: "{{ .repository }}:{{ .tag }}"
@@ -55,35 +49,3 @@ spec:
               mountPath: /html
           ports:
             - containerPort: 8080
-        - name: rclone
-          {{- with .Values.rclone.image }}
-          image: "{{ .repository }}:{{ .tag }}"
-          imagePullPolicy: "{{ .pullPolicy }}"
-          {{- end }}
-          env:
-            - name: SFTP_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-sftp
-                  key: username
-            - name: SFTP_OBSCURED_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-sftp
-                  key: password
-          args:
-            - mount
-            - :sftp,host={{ .Values.kara.sftp.host }},port={{ .Values.kara.sftp.port }},user=$(SFTP_USER),pass=$(SFTP_OBSCURED_PASSWORD):{{ .Values.kara.sftp.path }}
-            - /mnt
-            - --verbose
-            - --read-only
-            - --allow-non-empty
-            - --allow-other
-            - --vfs-cache-mode
-            - full
-          securityContext:
-            privileged: true
-          volumeMounts:
-            - name: kara
-              mountPath: /mnt
-              mountPropagation: Bidirectional

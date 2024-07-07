@@ -29,7 +29,6 @@ environments:
                   namespaceSelector: {}
     secrets:
       - ../globals.sops.yaml
-      - shared.sops.yaml
       - nana.sops.yaml
   hachi:
     values:
@@ -37,7 +36,6 @@ environments:
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
-      - shared.sops.yaml
       - hachi.sops.yaml
   snow:
     values:
@@ -45,7 +43,6 @@ environments:
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
-      - shared.sops.yaml
       - snow.sops.yaml
   staging:
     values: []
