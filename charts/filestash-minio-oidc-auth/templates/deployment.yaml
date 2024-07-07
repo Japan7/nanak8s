@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: FILESTASH_URL
+              value: "{{ .Values.filestash.host }}"
+            - name: FILESTASH_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: apiKey
+            - name: API_PREFIX
+              value: "{{ .Values.apiPrefix }}"
+            - name: OIDC_CONFIG_URL
+              value: "{{ .Values.oidc.configUrl }}"
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: oidcClientId
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-secret"
+                  key: oidcClientSecret
+            - name: MINIO_URL
+              value: "{{ .Values.minio.host }}"
+          ports:
+            - containerPort: 8000

@@ -25,3 +25,21 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
+  - name: filestash-minio-oidc-auth
+    chart: ../../charts/filestash-minio-oidc-auth
+    values:
+      - filestash:
+          host: https://filestash.{{ .Values.domain }}
+          apiKey: "{{ .Values.filestash.apiKey }}"
+      - oidc:
+          configUrl: "{{ .Values.oidc.configUrl }}"
+          clientId: "{{ .Values.oidc.clientId }}"
+          clientSecret: "{{ .Values.oidc.clientSecret }}"
+      - minio:
+          host: https://minio.{{ .Values.domain }}
+      - ingress:
+          loginRedirect: true
+          host: filestash.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
