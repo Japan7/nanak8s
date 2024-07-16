@@ -6,12 +6,12 @@ environments:
 ---
 repositories:
   - name: 8gears
-    url: 8gears.container-registry.com/library
+    url: 8gears.container-registry.com
     oci: true
 
 releases:
   - name: n8n
-    chart: 8gears/n8n
+    chart: 8gears/library/n8n
     version: 0.24.4
     values:
       - n8n:
