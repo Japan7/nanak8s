@@ -36,6 +36,7 @@ releases:
           - name: nanaoidc
           - name: ollama
           - name: outline
+          - name: producer
           - name: syncplay
           - name: waicolle
           - name: website

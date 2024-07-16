@@ -1,0 +1,19 @@
+image:
+  repository: ghcr.io/japan7/producer
+  tag: main@sha256:af4674f22da13e75a80e94225afcc41f4b51d2490dfe3bac5d0fbdaa750cb13e
+  pullPolicy: ""
+
+replicaCount: 1
+
+upload:
+  baseUrl: ""
+
+s3:
+  endpoint: ""
+  secure: true
+  keyId: ""
+  secret: ""
+
+ingress:
+  host: ""
+  annotations: {}

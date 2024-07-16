@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: PRODUCER_UPLOAD_BASE_URL
+              value: "{{ .Values.upload.baseUrl }}"
+            - name: PRODUCER_S3_ENDPOINT
+              value: "{{ .Values.s3.endpoint }}"
+            - name: PRODUCER_S3_SECURE
+              value: "{{ .Values.s3.secure }}"
+            - name: PRODUCER_S3_KEYID
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-s3"
+                  key: username
+            - name: PRODUCER_S3_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-s3"
+                  key: password
+          ports:
+            - containerPort: 8140
