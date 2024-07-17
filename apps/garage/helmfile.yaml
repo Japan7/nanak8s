@@ -3,6 +3,7 @@ environments:
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
+      - producer.sops.yaml
 ---
 releases:
   - name: producer
@@ -10,6 +11,7 @@ releases:
     values:
       - upload:
           baseUrl: https://producer.{{ .Values.domain }}
+          adminToken: {{ .Values.producer.token }}
       - s3:
           endpoint: garage-proxy:3900
           secure: false
