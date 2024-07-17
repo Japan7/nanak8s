@@ -35,6 +35,12 @@
 
 # TODO: systemd service
 
+- name: stop garage service on config update
+  service:
+    name: garage_japan7
+    state: stopped
+  when: garage_config is changed
+
 - name: start garage service
   service:
     name: garage_japan7
