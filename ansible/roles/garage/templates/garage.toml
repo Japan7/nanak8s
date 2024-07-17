@@ -25,3 +25,6 @@ bootstrap_peers = [
 [s3_api]
 s3_region = "garage"
 api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3900"
+
+[admin]
+api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3903"
