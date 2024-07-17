@@ -1,0 +1,31 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: producer
+    chart: ../../charts/producer
+    values:
+      - upload:
+          baseUrl: https://producer.{{ .Values.domain }}
+      - s3:
+          endpoint: garage-proxy
+          keyId: {{ .Values.s3.keyId }}
+          secret: {{ .Values.s3.secret }}
+      - ingress:
+          host: producer.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
+  - name: garage-extras
+    chart: ../../charts/garage-extras
+    values:
+      - garage:
+          addresses: {{ .Values.garage.addresses | toYaml | nindent 12 }}
+      - ingress:
+          host: garage.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt

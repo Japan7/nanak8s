@@ -1,0 +1,6 @@
+garage:
+  addresses: []
+
+ingress:
+  host: ""
+  annotations: {}

@@ -30,13 +30,13 @@ releases:
           - name: dakara
           - name: emails
           - name: filestash
+          - name: garage
           - name: n8n
           - name: minio
           - name: nanadb
           - name: nanaoidc
           - name: ollama
           - name: outline
-          - name: producer
           - name: syncplay
           - name: waicolle
           - name: website
