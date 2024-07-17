@@ -2,6 +2,7 @@ garage:
     addresses:
         - ENC[AES256_GCM,data:8toRtGZ8EFklQw==,iv:Za2lptOJ+sT8JX5+YqR6F30QYkxBYjNVlLMYTMV8X7M=,tag:Nw1F+Z8Ap/RRk2DveDLnqw==,type:str]
         - ENC[AES256_GCM,data:LzYK59OiY30PBg==,iv:GlyjaqiKd8AjaV11C1sf0p0UIyYsToqd22Ey2VC5CEQ=,tag:X3rOef3MtV3iiOn8Oz069Q==,type:str]
+        - ENC[AES256_GCM,data:Vn0RCLEPgfmMEn0=,iv:x9QLI1k9CVXRBBCXQA26r0V6BpvpxAPxOnNldJb98Wg=,tag:SWEwtZxLE+uQ2h38xH61VA==,type:str]
 s3:
     keyId: ENC[AES256_GCM,data:5mGd+OJBWFYeVVv9fw/987H8o9kurTHnQ2c=,iv:BrtAWQmGWaavlMi0Ij7vXH7NVI/zo/eHqlYOOfO8mYM=,tag:kN9Otn2D0HKN12Hwvzm1HA==,type:str]
     secret: ENC[AES256_GCM,data:e21F9GNaHXOxIsG1x5hDGUzh82iT/ScXEg/CyDTPapoRHd01Mc+aHNqVSl4hcGA54XvS7YVHjknvJGHUGlJKrQ==,iv:4lN06dkWVX1pvMlLNINbxJ/0sCTQGgucN0ev9nY29D8=,tag:zu7vqoSB5sc3u/4NotRAPA==,type:str]
@@ -20,8 +21,8 @@ sops:
             Q2hncXRyYVRacTllK1VuZnVjcjhMVG8KMj407nNk9xYzua7+xri/nADq11+s0ZYe
             ViCUeBGSA2aBD+kb1jLC7UYTwpYqYo04AdiSQQOu6NCdnY2EbNWjFQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-07-17T09:07:47Z"
-    mac: ENC[AES256_GCM,data:NzBIFR9oGgAHz7/Sqy1tzWzastzZYGi3KZr1Lr6ulEVOh5MHRjACTF46ObgwNjkQkD1B5MCT4HjonO8jVHJI3syHkWX+QUyBXVwxwmFuIalJKR7C6S+Syu77a0bsH5fqEOK2L6HggG4A9WVtEqvaXh8UGfe/e2kdob/EG8fZNYs=,iv:qOGAhukCktLB24OnGjgy1pDti/VW187lgHEQzQjCTys=,tag:nzlmuZQoD4SaGFJ6+XuNHg==,type:str]
+    lastmodified: "2024-07-17T09:12:08Z"
+    mac: ENC[AES256_GCM,data:6p6OoxYeDxS+82XTyFtMF6Av9biidbgtNvjOT+NnmW6/NvAXhzhSdk8lzayDhU2oYns8KNZd2mR8XsRcR2ndH8WkenkA2twrPesotv+pblEzOdALhLbr8y4YXLKiluaMj7DgBybTWuel6wBXiUgO3Eql2EGDdqS3eOS9yttN8Mw=,iv:lNKZZgmV+i8apQHVL9hCTZ1VTx63bOzhBakv8EDHgt0=,tag:9EPGPoWzcWsjknCaCx0MOQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.0
