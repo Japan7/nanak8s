@@ -12,3 +12,5 @@ ports:
     port: 3900
 endpoints:
   - addresses: {{ .Values.garage.addresses | toYaml | nindent 6 }}
+    conditions:
+      ready: true
