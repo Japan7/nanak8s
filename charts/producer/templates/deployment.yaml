@@ -22,7 +22,7 @@ spec:
             - name: PRODUCER_UPLOAD_BASE_URL
               value: "{{ .Values.upload.baseUrl }}"
             - name: PRODUCER_UPLOAD_ADMIN_TOKEN
-              value: "{{ .Values.upload.adminToken }}"
+              value: "{{ .Values.upload.adminToken }}"
             - name: PRODUCER_S3_ENDPOINT
               value: "{{ .Values.s3.endpoint }}"
             - name: PRODUCER_S3_SECURE
