@@ -11,7 +11,8 @@ releases:
       - upload:
           baseUrl: https://producer.{{ .Values.domain }}
       - s3:
-          endpoint: garage-proxy
+          endpoint: garage-proxy:3900
+          secure: false
           keyId: {{ .Values.s3.keyId }}
           secret: {{ .Values.s3.secret }}
       - ingress:
