@@ -31,7 +31,6 @@ releases:
           - name: emails
           - name: filestash
           - name: garage
-          - name: n8n
           - name: minio
           - name: nanadb
           - name: nanaoidc
