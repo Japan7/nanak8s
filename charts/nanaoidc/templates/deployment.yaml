@@ -25,6 +25,9 @@ spec:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: DEBUG
+              value: "oidc-provider:*"
           volumeMounts:
             - name: config
               mountPath: /app/nanaoidc.json
