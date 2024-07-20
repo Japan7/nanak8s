@@ -1,0 +1,29 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: karaberus
+    chart: ../../charts/karaberus
+    values:
+      - oidc:
+          issuer: https://auth.{{ .Values.domain }}
+          key: "{{ .Values.oidc.key }}"
+          idClaim: discord_id
+          clientId: "{{ .Values.oidc.clientId }}"
+      - s3:
+          endpoint: garage-proxy.garage:3900
+          keyId: "{{ .Values.s3.keyId }}"
+          secret: "{{ .Values.s3.secret }}"
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
+      - ingress:
+          host: karaberus.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt

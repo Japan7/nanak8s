@@ -11,7 +11,7 @@ upload:
 
 s3:
   endpoint: ""
-  secure: true
+  secure: false
   keyId: ""
   secret: ""
 
