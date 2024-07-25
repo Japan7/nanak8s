@@ -12,7 +12,7 @@ repositories:
 releases:
   - name: nanaoidc-redis
     chart: bitnami/redis
-    version: 19.6.3
+    version: 19.6.4
     values:
       - architecture: standalone
       - auth:
