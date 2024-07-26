@@ -8,11 +8,15 @@ releases:
   - name: karaberus
     chart: ../../charts/karaberus
     values:
+      - listen:
+          baseUrl: https://karaberus.{{ .Values.domain }}
       - oidc:
           issuer: https://auth.{{ .Values.domain }}
-          key: "{{ .Values.oidc.key }}"
-          idClaim: discord_id
           clientId: "{{ .Values.oidc.clientId }}"
+          clientSecret: "{{ .Values.oidc.clientSecret }}"
+          scopes: "openid profile email groups"
+          idClaim: discord_id
+          jwtSignKey: "{{ .Values.oidc.jwtSignKey }}"
       - s3:
           endpoint: garage-proxy.garage:3900
           keyId: "{{ .Values.s3.keyId }}"
