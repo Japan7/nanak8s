@@ -21,6 +21,9 @@ releases:
           endpoint: garage-proxy.garage:3900
           keyId: "{{ .Values.s3.keyId }}"
           secret: "{{ .Values.s3.secret }}"
+      - dakara:
+          baseUrl: dakara-server.dakara:22222
+          token: "{{ .Values.dakara.token }}"
       - persistence:
           labels:
             recurring-job.longhorn.io/source: enabled

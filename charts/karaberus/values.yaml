@@ -30,6 +30,10 @@ db:
   dsn: user=karaberus password=karaberus dbname=karaberus port=5123 sslmode=disable TimeZone=UTC
   file: /data/karaberus.db
 
+dakara:
+  baseUrl: ""
+  token: ""
+
 persistence:
   enabled: true
   accessMode: ReadWriteOnce

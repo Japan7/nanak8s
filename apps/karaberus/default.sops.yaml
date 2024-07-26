@@ -5,6 +5,8 @@ oidc:
 s3:
     keyId: ENC[AES256_GCM,data:9oYtOA0qd0Pb,iv:wYP+0SYkCdq7n6yR+1HNIMKmp8wpO0ApZiCPLkUqAGg=,tag:E5iRRx8JGtwcHm9kDMMXog==,type:str]
     secret: ENC[AES256_GCM,data:29GeAxy/FI1A,iv:UjoIOq5Q/bQMGTFQ4J6fguWt8RsbUUDbXGBhvHDXcbY=,tag:xhH04X087W75qFdthU7ocw==,type:str]
+dakara:
+    token: ENC[AES256_GCM,data:CNUaFE7oQCIp,iv:aslvjEpgcwmZucvmm+j5QezM/OMyd5k6f082r5tbM5M=,tag:O4w7ugmGWW1X635Pvkpf0A==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -20,8 +22,8 @@ sops:
             UXZLMStkNkhyTmNYVE1DRGZtRmwyTVkKGRzHUZjyOmC2CBOWtfr6QNk+jHOv1iHC
             y0ERcIl+qAF3O1dJB+uXl02MOdfVyRO8KgzBPbpEzzxdLGHBJYcXQQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-07-26T09:55:48Z"
-    mac: ENC[AES256_GCM,data:Znyapn4EVeq4RdjXSB2BcQPnBtXWwX3yvRz8CXAsf/8p2B+Tt73jR5pm/CXP3Uct74kZG1GbixU4z7T+1fK1pcKVQd23uJsTGTOHQPDvpz7uuTrMRUT/aw7peQzrXtD5KBBxiIv3DcV67FKNFF5WbNFZ8jkHu7FsbNGkg3y4f9w=,iv:ZpPDD7BmPqpBK4SccxLjlYgRoProXjvtPPmkP6LUlwA=,tag:RY0bOok2mwslr93Sg1XZWA==,type:str]
+    lastmodified: "2024-07-26T10:01:40Z"
+    mac: ENC[AES256_GCM,data:puOqXLAnKuaUpGU5a/ZMyTsFkZToQgCeJlzfL+1HGfy1DD5hzPm19kalFmB8J54N2mdQXhA0m6s5aTlgkxa99+v6zEH6PGjvNs/ARIlKFAr/qLAmouRDkkKMyTOQA4g9f/H75GwLpkyUITbLthZ5WPKzLcmifB7lStADw68sCHg=,iv:VsRdXEO9d30Ei4uAOZCm+hu7PNr15j8ULwscuEqY6uw=,tag:ujcdEMBLg9kuSBtYzYWkxg==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
     version: 3.9.0
