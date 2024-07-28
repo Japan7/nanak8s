@@ -1,8 +1,5 @@
-environments:
-  default:
-    secrets:
-      - ../globals.sops.yaml
-      - default.sops.yaml
+bases:
+  - environments.yaml
 ---
 releases:
   - name: producer
