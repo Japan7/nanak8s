@@ -14,6 +14,10 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         {{- if .Values.persistence.enabled }}
         - name: data
@@ -27,6 +31,14 @@ spec:
           envFrom:
             - secretRef:
                 name: "{{ .Release.Name }}-env"
+          env:
+            {{- if .Values.cnpg.secretName }}
+            - name: KARABERUS_DB_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.cnpg.secretName }}
+                  key: uri
+            {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data

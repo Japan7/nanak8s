@@ -5,6 +5,18 @@ environments:
       - default.sops.yaml
 ---
 releases:
+  - name: karaberus-cnpg-16
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 16
+      - storage:
+          size: 5Gi
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
+      - backups:
+          enabled: true
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: karaberus
     chart: ../../charts/karaberus
     values:
@@ -26,11 +38,28 @@ releases:
       - dakara:
           baseUrl: http://dakara-server.dakara:22222
           token: "{{ .Values.dakara.token }}"
+      - db:
+          driver: postgres
+      - cnpg:
+          secretName: karaberus-cnpg-16
       - persistence:
-          labels:
-            recurring-job.longhorn.io/source: enabled
-            recurring-job-group.longhorn.io/default: enabled
-            recurring-job.longhorn.io/longhorn-backup: enabled
+          enabled: false
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: cnpg.io/cluster
+                        operator: In
+                        values:
+                          - karaberus-cnpg-16
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
       - ingress:
           host: karaberus.{{ .Values.domain }}
           annotations:

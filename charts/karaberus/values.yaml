@@ -36,6 +36,9 @@ dakara:
   baseUrl: ""
   token: ""
 
+cnpg:
+  secretName: ""
+
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
