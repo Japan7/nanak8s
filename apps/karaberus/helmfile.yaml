@@ -41,7 +41,7 @@ releases:
       - db:
           driver: postgres
       - cnpg:
-          secretName: karaberus-cnpg-16
+          secretName: karaberus-cnpg-16-app
       - persistence:
           enabled: false
       - affinity:
