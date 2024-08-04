@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/karaberus
-  tag: master@sha256:69a801b8d7976146a5ed5dbb61c515c33c4532ca4b0efb6814caa237c2e749a3
+  tag: master@sha256:7ea6ce694e21e053e450b8f6bd0acfe26b94778988a9f66b5543d186bd9ae62a
   pullPolicy: ""
 
 replicaCount: 1
@@ -16,6 +16,8 @@ oidc:
   clientSecret: ""
   scopes: ""
   idClaim: ""
+  groupsClaim: ""
+  adminGroup: ""
   jwtSignKey: ""
 
 s3:
