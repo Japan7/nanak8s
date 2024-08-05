@@ -21,9 +21,6 @@ spec:
         http3:
           enabled: true
           advertisedPort: 777
-        transport:
-          respondingTimeouts:
-            readTimeout: 0
       {{ range .Values.traefik.extraPorts }}
       {{ .name }}:
         port: {{ .port }}
