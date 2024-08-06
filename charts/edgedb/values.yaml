@@ -17,6 +17,7 @@ user:
 ingress:
   host: ""
   annotations: {}
+  extraTraefikMiddlewares: []
 
 dump:
   enabled: false
@@ -36,3 +37,4 @@ dump:
     ingress:
       pathPrefix: "/dump"
       annotations: {}
+      extraTraefikMiddlewares: []

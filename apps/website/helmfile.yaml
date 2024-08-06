@@ -17,7 +17,7 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
-          authAnnotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd
-            cert-manager.io/cluster-issuer: letsencrypt
+          extraTraefikMiddlewares:
+            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+          extraAuthTraefikMiddlewares:
+            - "nanaoidc-nanaoidc@kubernetescrd"

@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-401@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-403-404@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-www@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-emails@kubernetescrd"
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Release.Namespace }}-{{ .Release.Name }}-401@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-403-404@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-www@kubernetescrd,{{ .Release.Namespace }}-{{ .Release.Name }}-emails@kubernetescrd{{ with .Values.ingress.extraTraefikMiddlewares }},{{ join "," . }}{{ end }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

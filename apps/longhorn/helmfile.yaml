@@ -24,7 +24,7 @@ releases:
           host: longhorn.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd
+            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd,{{ .Values.traefik.namespace }}-compress@kubernetescrd
             cert-manager.io/cluster-issuer: letsencrypt
           tls: true
           tlsSecret: longhorn.{{ .Values.domain }}-tls

@@ -10,9 +10,7 @@ metadata:
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-    {{- if ne .Values.ingress.pathPrefix "/" }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd"
-    {{- end }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ if ne .Values.ingress.pathPrefix "/" }}{{ .Release.Namespace }}-{{ .Release.Name }}-stripprefix@kubernetescrd,{{ end }}{{ join "," .Values.ingress.extraTraefikMiddlewares }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

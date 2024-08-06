@@ -16,6 +16,7 @@ releases:
           host: producer.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
   - name: garage-extras
     chart: ../../charts/garage-extras
@@ -26,4 +27,5 @@ releases:
           host: garage.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt

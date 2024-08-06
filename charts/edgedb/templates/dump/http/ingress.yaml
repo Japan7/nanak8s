@@ -8,12 +8,10 @@ metadata:
     app.kubernetes.io/component: dump.http
     app.kubernetes.io/part-of: {{ .Chart.Name }}
   annotations:
-    {{- with .Values.ingress.annotations }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
     {{- with .Values.dump.http.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ join "," .Values.dump.http.ingress.extraTraefikMiddlewares }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

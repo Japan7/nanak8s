@@ -29,11 +29,13 @@ releases:
           host: auth.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
       - forwardAuth:
           ingress:
             annotations:
               traefik.ingress.kubernetes.io/router.entrypoints: websecure
+              traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
               - "longhorn.{{ .Values.domain }}"

@@ -20,6 +20,7 @@ releases:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
   - name: dakara-client
     chart: ../../charts/dakara-client
@@ -44,4 +45,5 @@ releases:
           host: dakara.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt

@@ -36,6 +36,7 @@ resources:
     memory: 4Gi
 
 ingress:
-  annotations: {}
   host: ""
   pathPrefix: "/"
+  annotations: {}
+  extraTraefikMiddlewares: []

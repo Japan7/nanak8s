@@ -8,9 +8,7 @@ metadata:
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
-    {{- if .Values.onlyoffice.enabled }}
-    traefik.ingress.kubernetes.io/router.middlewares: "{{ .Release.Namespace }}-{{ .Release.Name }}-onlyoffice@kubernetescrd"
-    {{- end }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ if .Values.onlyoffice.enabled }}{{ .Release.Namespace }}-{{ .Release.Name }}-onlyoffice@kubernetescrd,{{ end }}{{ join "," .Values.ingress.extraTraefikMiddlewares }}
 spec:
   rules:
     - host: "{{ .Values.ingress.host }}"

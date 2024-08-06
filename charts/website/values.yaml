@@ -12,4 +12,5 @@ emails:
 ingress:
   host: ""
   annotations: {}
-  authAnnotations: {}
+  extraTraefikMiddlewares: []
+  extraAuthTraefikMiddlewares: []

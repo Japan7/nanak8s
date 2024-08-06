@@ -27,3 +27,4 @@ onlyoffice:
 ingress:
   host: ""
   annotations: {}
+  extraTraefikMiddlewares: []

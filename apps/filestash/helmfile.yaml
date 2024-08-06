@@ -25,6 +25,8 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
+          extraTraefikMiddlewares:
+            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
   - name: filestash-minio-oidc-auth
     chart: ../../charts/filestash-minio-oidc-auth
     values:
@@ -42,4 +44,5 @@ releases:
           host: filestash.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
