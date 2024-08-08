@@ -10,4 +10,4 @@ spec:
       - "tauri://localhost"
       - "https://tauri.localhost"
     accessControlAllowHeaders:
-      - "Authorization"
+      - "*"
