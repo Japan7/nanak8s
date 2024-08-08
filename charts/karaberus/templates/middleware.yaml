@@ -9,3 +9,5 @@ spec:
     accessControlAllowOriginList:
       - "tauri://localhost"
       - "https://tauri.localhost"
+    accessControlAllowHeaders:
+      - "Authorization"
