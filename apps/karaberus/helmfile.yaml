@@ -64,5 +64,6 @@ releases:
           host: karaberus.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
+          extraTraefikMiddlewares:
+            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
