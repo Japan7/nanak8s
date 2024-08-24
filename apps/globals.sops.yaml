@@ -3,7 +3,7 @@ traefik:
     namespace: ENC[AES256_GCM,data:cyxROs0sBM7lKCU=,iv:LSQjOIiugGMImZyZPrnjLdfkCGxq+8K8dB+RgPUooWU=,tag:6kpyFu5+9li9VdzPlUe6cw==,type:str]
 cnpg:
     s3:
-        endpoint: ENC[AES256_GCM,data:VCFcU+IPsPMnYueHvzZhBBejWHbKBhU=,iv:krdEbIOJk3Y87sLgQpdvdy02bxC8BiusAK+j5r3YC0w=,tag:gOkG+ifkelLnDgAU61UsMg==,type:str]
+        endpoint: ENC[AES256_GCM,data:P88x4jNGEmMIUdeJfOjGbP3LJ8OxSg==,iv:ciadu2hVTII0MWOVeZAx2yPnjTNzj/Gq8uSxrhEND58=,tag:VrIm9000LhlLLtvNuMPfXg==,type:str]
         accessKey: ENC[AES256_GCM,data:7/dILA==,iv:5oPUXWJzdFfaXWl6c/A7XWmdmu2YSiyJIrmHtpgwoY4=,tag:9UPvInVlKzl1vARnghdx4A==,type:str]
         secretKey: ENC[AES256_GCM,data:nF3DU9LkrvhAT1Ps9JbxBXxaDNIA8vOp0jxvMNe2bPDc2YimE7iLJg==,iv:StwUJ/srYraIUnzf1RlBAUUdUywGAMhbugJNuZVdjQ8=,tag:fqYPz3TM0S1Yk2rhJg2hfg==,type:str]
 nanadb:
@@ -28,8 +28,8 @@ sops:
             azBpUTd0VlhxUGtma21YYmdCWGdIVWcKZwtx4ePA6UE85T84HrBwPRRu7Z0oFqew
             98HkEmcMG8LQhDwQ7uBzCA8FzMk8Rv/y4aJO/YBeeUO1H1WXiZMfwg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-04-04T15:39:07Z"
-    mac: ENC[AES256_GCM,data:DZ05byi0Fho4BgnwHVjaU8o6BXIk9qF2pG4WeYc4OIQ+RVTuVywB+K44Rrj6nCIGHqESSnA9TALY2OUCfsLSwDZbbsY7zf8I5//v6LYGVvJqjXB/GHtkOTxVfsWGMJ18V5k2qIKRb66n2POx8HIA3bABLBbQ5oqjoduQ0HafmU8=,iv:tOvo0eTZAkTKmBxJhn9tAEQNBe1STSDIt1nkeSJqWQw=,tag:+mFb/FFeq2ZJj+gYKs8Dwg==,type:str]
+    lastmodified: "2024-08-24T12:10:57Z"
+    mac: ENC[AES256_GCM,data:+DJa7riTIRNyuxzI8aa3VtisWYgVbu3GN9ZJgBrZyag5pBSq7/EBSffLdWSV162WmQykk4LkX7R2Ker3niCzCiQOoLErHCwMZ4onAESo/QvZ5e9+H1fnR6/YGNRXPD0FdK/OWslb1RZb5HQr92v85H1PTlBcADvNaVKPm65gH74=,iv:ECjDaMyfgrgEHuYwLgVAMA4Jh54TWtMtY/drcjLwEp0=,tag:SuiearU9zQe4nBvC76N6sQ==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.8.1
+    version: 3.9.0
