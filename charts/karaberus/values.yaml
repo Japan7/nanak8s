@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/karaberus
-  tag: master@sha256:c76b64c4cf5ec865c6da7326480524afe6bf9fc1cf72b0820b1221edb00144fc
+  tag: master@sha256:a942ed4296cee57338834c9b4500e807051557a5d43e482cf2b38ba0d461bb2b
   pullPolicy: ""
 
 replicaCount: 1
