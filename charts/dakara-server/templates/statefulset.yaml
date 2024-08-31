@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
   labels:
@@ -9,15 +9,12 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -28,10 +25,7 @@ spec:
             - name: HOST_URL
               value: "https://{{ .Values.ingress.host }}"
             - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.cnpg.secretName }}
-                  key: uri
+              value: "sqlite:////db/db.sqlite3"
             - name: LOG_FILE_PATH
               value: "/dev/stdout"
             - name: LOG_FILE_MAX_SIZE
@@ -70,7 +64,27 @@ spec:
             - sh
             - -xc
             - |
+              touch /db/db.sqlite3 && \
+              ln -sf /db/db.sqlite3 dakara_server/db.sqlite3 && \
               dakara_server/manage.py migrate && \
               dakara_server/manage.py runserver 0.0.0.0:22222
+          volumeMounts:
+            - name: database
+              mountPath: /db
           ports:
             - containerPort: 22222
+  volumeClaimTemplates:
+    {{- with .Values.persistence }}
+    - metadata:
+        name: database
+        {{- with .labels }}
+        labels:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+          - {{ .accessMode }}
+        resources:
+          requests:
+            storage: {{ .size }}
+    {{- end }}

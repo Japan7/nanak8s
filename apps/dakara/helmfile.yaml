@@ -2,18 +2,6 @@ bases:
   - environments.yaml
 ---
 releases:
-  - name: dakara-cnpg-16
-    chart: ../../charts/cnpg-cluster
-    values:
-      - release: 16
-      - storage:
-          size: 5Gi
-      - postgresql:
-          parameters:
-            max_slot_wal_keep_size: "2GB"
-      - backups:
-          enabled: true
-          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
@@ -25,22 +13,11 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - dakara-cnpg-16
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:
