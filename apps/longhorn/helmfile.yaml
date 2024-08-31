@@ -2,6 +2,7 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 repositories:
   - name: longhorn
@@ -30,3 +31,5 @@ releases:
           tlsSecret: longhorn.{{ .Values.domain }}-tls
   - name: longhorn-extras
     chart: ../../charts/longhorn-extras
+    values:
+      - s3: {{ toYaml .Values.s3 | nindent 10 }}
