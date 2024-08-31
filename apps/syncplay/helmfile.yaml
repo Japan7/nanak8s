@@ -21,10 +21,8 @@ releases:
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"
-      - persistence:
-          labels:
-            recurring-job.longhorn.io/source: enabled
-            recurring-job-group.longhorn.io/default: enabled
-            recurring-job.longhorn.io/longhorn-backup: enabled
+          rooms:
+            - japan7
+            - loli7
       - ingress:
           host: syncplay.{{ .Values.domain }}
