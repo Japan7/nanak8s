@@ -6,7 +6,7 @@ releases:
     chart: ../../charts/website
     values:
       - image:
-          repository: "{{ .Values.registry }}/japan7/website"
+          repository: "{{ .Values.registry.host }}/japan7/website"
           tag: latest@{{ .Values.digest }}
           pullSecrets:
             - registry-regcred
