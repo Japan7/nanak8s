@@ -17,6 +17,8 @@ releases:
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
+      - cnpg:
+          secretName: dakara-cnpg-16-app
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
