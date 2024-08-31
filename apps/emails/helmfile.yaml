@@ -6,7 +6,7 @@ releases:
     chart: ../../charts/emails
     values:
       - image:
-          repository: "{{ .Values.domain }}/japan7/emails"
+          repository: "{{ .Values.registry.host }}/japan7/emails"
           tag: latest@{{ .Values.digest }}
           pullSecrets:
             - registry-regcred
@@ -16,3 +16,9 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
+  - name: registry-regcred
+    chart: ../../charts/registry-regcred
+    values:
+      - host: "{{ .Values.registry.host }}"
+      - username: "{{ .Values.registry.username }}"
+      - password: "{{ .Values.registry.password }}"

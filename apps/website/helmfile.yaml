@@ -6,7 +6,7 @@ releases:
     chart: ../../charts/website
     values:
       - image:
-          repository: "{{ .Values.domain }}/japan7/website"
+          repository: "{{ .Values.registry }}/japan7/website"
           tag: latest@{{ .Values.digest }}
           pullSecrets:
             - registry-regcred
@@ -21,3 +21,9 @@ releases:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
           extraAuthTraefikMiddlewares:
             - "nanaoidc-nanaoidc@kubernetescrd"
+  - name: registry-regcred
+    chart: ../../charts/registry-regcred
+    values:
+      - host: "{{ .Values.registry.host }}"
+      - username: "{{ .Values.registry.username }}"
+      - password: "{{ .Values.registry.password }}"
