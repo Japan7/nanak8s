@@ -5,7 +5,12 @@ image:
 
 replicaCount: 1
 
+affinity: {}
+
 secretKey: ""
+
+cnpg:
+  secretName: ""
 
 smtp:
   enabled: true
@@ -15,11 +20,6 @@ smtp:
   ssl: "True"
   user: ""
   password: ""
-
-persistence:
-  accessMode: ReadWriteOnce
-  size: 1Gi
-  labels: {}
 
 ingress:
   host: ""
