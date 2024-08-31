@@ -18,6 +18,9 @@ releases:
             max_locks_per_transaction: "1024"
             max_pred_locks_per_transaction: "1024"
             max_slot_wal_keep_size: "10GB"
+      - backups:
+          enabled: true
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -59,20 +62,3 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           extraTraefikMiddlewares:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-      - dump:
-          enabled: true
-          persistence:
-            labels:
-              recurring-job.longhorn.io/source: enabled
-              recurring-job-group.longhorn.io/default: enabled
-              recurring-job.longhorn.io/longhorn-backup: enabled
-          http:
-            updateStrategy:
-              type: Recreate
-            ingress:
-              annotations:
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
-                cert-manager.io/cluster-issuer: letsencrypt
-              extraTraefikMiddlewares:
-                - "nanaoidc-nanaoidc@kubernetescrd"
-                - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
