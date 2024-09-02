@@ -19,6 +19,7 @@ releases:
           kubernetes.io/hostname: tsubasa
       - persistentVolume:
           enabled: true
+          size: 10Gi
           storageClass: longhorn-local
     strategicMergePatches:
       - apiVersion: apps/v1
