@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: "{{ .Release.Name }}"
   labels:
@@ -9,6 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- include "common.labels.matchLabels" . | nindent 6 }}
+  serviceName: "{{ .Release.Name }}-headless"
   template:
     metadata:
       labels:
