@@ -10,7 +10,11 @@ affinity: {}
 syncplay:
   password: ""
   salt: ""
-  rooms: []
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
 
 ingress:
   host: ""
