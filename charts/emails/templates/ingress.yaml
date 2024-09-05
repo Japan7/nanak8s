@@ -19,16 +19,6 @@ spec:
               service:
                 name: "{{ .Release.Name }}"
                 port:
-                  number: 8000
-    - host: "{{ .Values.ingress.host }}"
-      http:
-        paths:
-          - pathType: Prefix
-            path: /maizzle
-            backend:
-              service:
-                name: "{{ .Release.Name }}"
-                port:
                   number: 3000
   tls:
     - hosts:
