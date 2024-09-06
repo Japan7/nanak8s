@@ -10,7 +10,7 @@ upload:
   adminToken: ""
 
 s3:
-  endpoint: ""
+  endpoints: []
   secure: false
   keyId: ""
   secret: ""

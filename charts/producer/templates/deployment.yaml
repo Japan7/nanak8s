@@ -24,7 +24,7 @@ spec:
             - name: PRODUCER_UPLOAD_ADMIN_TOKEN
               value: "{{ .Values.upload.adminToken }}"
             - name: PRODUCER_S3_ENDPOINT
-              value: "{{ .Values.s3.endpoint }}"
+              value: "{{ .Values.s3.endpoints | join " " }}"
             - name: PRODUCER_S3_SECURE
               value: "{{ .Values.s3.secure }}"
             - name: PRODUCER_S3_KEYID
