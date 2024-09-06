@@ -9,7 +9,10 @@ releases:
           baseUrl: https://producer.{{ .Values.domain }}
           adminToken: "{{ .Values.producer.token }}"
       - s3:
-          endpoints: {{ .Values.garage.addresses | toYaml | nindent 12 }}
+          endpoints:
+            # {{ range .Values.garage.addresses }}
+            - "{{ . }}:3900"
+            # {{ end }}
           keyId: "{{ .Values.producer.keyId }}"
           secret: "{{ .Values.producer.secret }}"
       - ingress:
