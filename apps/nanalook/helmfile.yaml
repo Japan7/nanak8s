@@ -1,0 +1,22 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: nanalook
+    chart: ../../charts/nanalook
+    values:
+      - nanapi:
+          url: http://nanapi-prod.nanapi:8000
+          clientUsername: "{{ .Values.nanapi.clientUsername }}"
+          clientPassword: "{{ .Values.nanapi.clientPassword }}"
+          customClientId: "{{ .Values.nanapi.customClientId }}"
+          customClientUsername: "{{ .Values.nanapi.customClientUsername }}"
+      - ingress:
+          host: nanalook.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: nanaoidc-nanaoidc@kubernetescrd,{{ .Values.traefik.namespace }}-compress@kubernetescrd
+            cert-manager.io/cluster-issuer: letsencrypt

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+    spec:
+      containers:
+        - name: "{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            - name: NUXT_NANAPI_URL
+              value: "{{ .Values.nanapi.url }}"
+            - name: NUXT_NANAPI_CLIENT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-nanapi"
+                  key: username
+            - name: NUXT_NANAPI_CLIENT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Release.Name }}-nanapi"
+                  key: password
+            - name: NUXT_NANAPI_CUSTOM_CLIENT_ID
+              value: "{{ .Values.nanapi.customClientId }}"
+            - name: NUXT_NANAPI_CUSTOM_CLIENT_USERNAME
+              value: "{{ .Values.nanapi.customClientUsername }}"
+          ports:
+            - containerPort: 3000

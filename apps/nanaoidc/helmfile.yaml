@@ -39,6 +39,6 @@ releases:
               cert-manager.io/cluster-issuer: letsencrypt
             hosts:
               - "longhorn.{{ .Values.domain }}"
-              - "nanadb.{{ .Values.domain }}"
+              - "nanalook.{{ .Values.domain }}"
               - "traefik.{{ .Values.domain }}"
               - "{{ .Values.domain }}"
