@@ -26,8 +26,6 @@ spec:
         - name: localsettings
           secret:
             secretName: "{{ .Release.Name }}-localsettings"
-        - name: html
-          emptyDir: {}
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -36,5 +34,3 @@ spec:
             - name: localsettings
               mountPath: /app/nanachan/local_settings.py
               subPath: local_settings.py
-            - name: html
-              mountPath: /html
