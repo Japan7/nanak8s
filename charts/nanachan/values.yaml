@@ -9,14 +9,3 @@ replicaCount: 1
 localSettings: ""
 
 affinity: {}
-
-miniserve:
-  image:
-    repository: svenstaro/miniserve
-    tag: 0.27.0
-    pullPolicy: ""
-
-ingress:
-  host: ""
-  pathPrefix: "/"
-  annotations: {}

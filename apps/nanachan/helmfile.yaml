@@ -41,10 +41,3 @@ releases:
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
-      - ingress:
-          host: nanachan.{{ .Values.domain }}
-          pathPrefix: "/{{ .Environment.Name }}"
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-            cert-manager.io/cluster-issuer: letsencrypt

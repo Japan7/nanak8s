@@ -38,14 +38,3 @@ spec:
               subPath: local_settings.py
             - name: html
               mountPath: /html
-        - name: http
-          {{- with .Values.miniserve.image }}
-          image: "{{ .repository }}:{{ .tag }}"
-          imagePullPolicy: "{{ .pullPolicy }}"
-          {{- end }}
-          args: ["--route-prefix", {{ .Values.ingress.pathPrefix }}, "/html"]
-          volumeMounts:
-            - name: html
-              mountPath: /html
-          ports:
-            - containerPort: 8080
