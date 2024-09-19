@@ -18,23 +18,3 @@ ingress:
   host: ""
   annotations: {}
   extraTraefikMiddlewares: []
-
-dump:
-  enabled: false
-  schedule: "0 9 * * *"
-  persistence:
-    accessMode: ReadWriteOnce
-    size: 15Gi
-    labels: {}
-  http:
-    image:
-      repository: svenstaro/miniserve
-      tag: 0.28.0
-      pullPolicy: ""
-    replicaCount: 1
-    updateStrategy:
-      type: RollingUpdate
-    ingress:
-      pathPrefix: "/dump"
-      annotations: {}
-      extraTraefikMiddlewares: []
