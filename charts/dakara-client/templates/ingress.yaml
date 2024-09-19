@@ -19,7 +19,7 @@ spec:
               service:
                 name: "{{ .Release.Name }}"
                 port:
-                  number: 8080
+                  number: 3000
   tls:
     - hosts:
         - "{{ .Values.ingress.host }}"
