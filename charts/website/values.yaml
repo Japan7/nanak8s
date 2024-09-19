@@ -6,6 +6,8 @@ image:
 
 replicaCount: 1
 
+affinity: {}
+
 emails:
   host: ""
 
