@@ -20,14 +20,14 @@ spec:
               service:
                 name: "{{ .Release.Name }}"
                 port:
-                  number: 8080
+                  number: 3000
           - pathType: Prefix
             path: /links
             backend:
               service:
                 name: "{{ .Release.Name }}"
                 port:
-                  number: 8080
+                  number: 3000
   tls:
     - hosts:
         - "{{ .Values.ingress.host }}"
