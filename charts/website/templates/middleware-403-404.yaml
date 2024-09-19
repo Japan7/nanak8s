@@ -11,4 +11,4 @@ spec:
     query: /errors/404/index.html
     service:
       name: "{{ .Release.Name }}"
-      port: 3000
+      port: 8080
