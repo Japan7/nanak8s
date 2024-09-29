@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/odrling/syncplay
-  tag: master@sha256:dd320d7652d08d653a8071fdd5cef83f8b08c97de229af086247e8b5a474f8a3
+  tag: master@sha256:82be24ef13a992bd3224dc18e076274dd956cc5a10387f4341d3acb5b8216aad
   pullPolicy: ""
 
 replicaCount: 1
