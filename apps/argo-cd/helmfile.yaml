@@ -14,7 +14,7 @@ repositories:
 releases:
   - name: argo-cd
     chart: argo/argo-cd
-    version: 7.6.6
+    version: 7.6.7
     values:
       - server:
           ingress:
