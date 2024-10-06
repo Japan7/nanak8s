@@ -1,0 +1,31 @@
+{{- if .Values.dump.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}-dump-http"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: dump.http
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+  annotations:
+    {{- with .Values.dump.http.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+    traefik.ingress.kubernetes.io/router.middlewares: {{ join "," .Values.dump.http.ingress.extraTraefikMiddlewares }}
+spec:
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "{{ .Values.dump.http.ingress.pathPrefix }}"
+            backend:
+              service:
+                name: "{{ .Release.Name }}-dump-http"
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - "{{ .Values.ingress.host }}"
+      secretName: "{{ .Values.ingress.host }}-tls"
+{{- end }}
