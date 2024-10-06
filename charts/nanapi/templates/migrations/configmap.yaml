@@ -13,6 +13,9 @@ data:
   migrate.sh: |
     #!/bin/sh -xe
 
+    apt update
+    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl
+
     curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -s -- -y
     . ~/.config/edgedb/env
 
