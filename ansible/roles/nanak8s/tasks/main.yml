@@ -77,6 +77,7 @@
     name: local
     enabled: true
     state: started
+  when: ansible_facts['service_mgr'] == 'openrc'
 
 - name: create {{ iface }} service
   file:
