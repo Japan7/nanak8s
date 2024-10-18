@@ -24,6 +24,9 @@ spec:
       selfHeal: {{ $.Values.syncPolicy.automated.selfHeal }}
     syncOptions:
       - CreateNamespace=true
+      {{- if .serverSideApply }}
+      - ServerSideApply=true
+      {{- end }}
   {{- end }}
   {{- if .additionalSpec }}
   {{ .additionalSpec | toYaml | nindent 2 }}

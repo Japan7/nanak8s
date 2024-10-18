@@ -12,6 +12,7 @@ releases:
           - name: cert-manager
           - name: cnpg
             namespace: cnpg-system
+            serverSideApply: true
           - name: k3s-upgrade
             namespace: system-upgrade
           - name: kubernetes-dashboard
