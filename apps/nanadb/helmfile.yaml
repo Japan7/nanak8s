@@ -61,11 +61,6 @@ releases:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
       - dump:
           enabled: true
-          persistence:
-            labels:
-              recurring-job.longhorn.io/source: enabled
-              recurring-job-group.longhorn.io/default: enabled
-              recurring-job.longhorn.io/longhorn-backup: enabled
           http:
             updateStrategy:
               type: Recreate
