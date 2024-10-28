@@ -10,8 +10,9 @@ releases:
           adminToken: "{{ .Values.producer.token }}"
       - s3:
           endpoints:
-            - "ichie.butaishoujo.moe"
-          secure: true
+            # {{ range .Values.garage.addresses }}
+            - "{{ . }}:3900"
+            # {{ end }}
           keyId: "{{ .Values.producer.keyId }}"
           secret: "{{ .Values.producer.secret }}"
       - affinity:
