@@ -14,7 +14,8 @@ spec:
       {{ .Values.traefik.image | toYaml | nindent 6 }}
     ports:
       web:
-        expose: false
+        expose:
+          default: false
         exposedPort: 8000
       websecure:
         exposedPort: 8443
@@ -24,7 +25,8 @@ spec:
       {{ range .Values.traefik.extraPorts }}
       {{ .name }}:
         port: {{ .port }}
-        expose: true
+        expose:
+          default: true
         exposedPort: {{ .port }}
       {{ end }}
     additionalArguments:
