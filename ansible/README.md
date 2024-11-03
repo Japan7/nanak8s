@@ -73,7 +73,7 @@ These variables can be set with [direnv](https://github.com/direnv/direnv) or
 similar shell tools for ease of use.
 
 ```sh
-$ NANAK8S_NODE_TYPE=agent NANAK8S_IFACE=nanak8s ./run_playbook.sh <hostname of your server> main
+$ NANAK8S_NODE_TYPE=agent NANAK8S_IFACE=japanet7 ./run_playbook.sh <hostname of your server> main
 ```
 
 if you are running the playbook directly from the server:
