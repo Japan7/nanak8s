@@ -107,13 +107,6 @@
     enabled: true
     state: started
 
-- name: k3s openrc conf
-  copy:
-    src: conf.d/k3s
-    dest: /etc/conf.d/k3s
-    owner: root
-  when: ansible_facts['service_mgr'] == 'openrc'
-
 - name: create /etc/rancher/k3s
   file:
     path: /etc/rancher/k3s
