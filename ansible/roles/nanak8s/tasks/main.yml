@@ -141,6 +141,7 @@
     port: 6443
     delay: 10
     timeout: 150
+  when: node_type == 'server'
 
 - name: uncordon node
   shell: "while ! kubectl uncordon {{ inventory_hostname }}; do sleep 10; done"
