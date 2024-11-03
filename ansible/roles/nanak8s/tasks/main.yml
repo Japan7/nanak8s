@@ -84,6 +84,7 @@
     src: /etc/init.d/innernet
     dest: /etc/init.d/innernet.{{ iface }}
     state: link
+    force: true # if dest exists and is a file
   when: ansible_facts['service_mgr'] == 'openrc'
 
 - name: enable innernet.{{ iface }} (openrc)
