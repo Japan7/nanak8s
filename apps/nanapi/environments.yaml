@@ -33,7 +33,7 @@ environments:
       - prod.sops.yaml
   staging:
     values:
-      - tag: sha-5950f6f
+      - tag: sha-9fe01fc
       - tasks: false
       - affinity: {}
     secrets:
