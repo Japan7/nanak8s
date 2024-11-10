@@ -24,7 +24,7 @@ oidc:
   jwtSignKey: ""
 
 s3:
-  endpoint: ""
+  endpoints: []
   keyId: ""
   secret: ""
   secure: false

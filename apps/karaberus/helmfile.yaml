@@ -1,5 +1,7 @@
 environments:
   default:
+    values:
+      - ../garage/addresses.yaml
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
@@ -32,7 +34,10 @@ releases:
           adminGroup: discord-superadmin
           jwtSignKey: "{{ .Values.oidc.jwtSignKey }}"
       - s3:
-          endpoint: garage-proxy.garage:3900
+          endpoints:
+            # {{ range .Values.garage.addresses }}
+            - "{{ . }}:3900"
+            # {{ end }}
           keyId: "{{ .Values.s3.keyId }}"
           secret: "{{ .Values.s3.secret }}"
       - dakara:

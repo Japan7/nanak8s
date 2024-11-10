@@ -1,12 +1,7 @@
 environments:
   default:
     values:
-      - garage:
-          addresses:
-            - 10.100.0.2
-            - 10.100.0.4
-            - 10.100.0.10
-            - 10.100.0.11
+      - addresses.yaml
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
