@@ -32,8 +32,7 @@ releases:
           adminGroup: discord-superadmin
           jwtSignKey: "{{ .Values.oidc.jwtSignKey }}"
       - s3:
-          endpoint: ichie.butaishoujo.moe
-          secure: true
+          endpoint: garage-proxy.garage:3900
           keyId: "{{ .Values.s3.keyId }}"
           secret: "{{ .Values.s3.secret }}"
       - dakara:
