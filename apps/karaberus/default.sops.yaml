@@ -7,6 +7,10 @@ s3:
     secret: ENC[AES256_GCM,data:lHKWJ5BDKoJuvftvfuRVUX3PdMofzEt+wSgc0P8KFlxaTOkBWSeTUgzB4lV7/i6zYI8wWzf1YH+dHYl7nokzTQ==,iv:K8dV8LKjPh34lyYBl+f6ge+KBRwkJhQsz68r8LIr6jc=,tag:DL0tJJwCT8QedaJl2xeEqA==,type:str]
 dakara:
     token: ENC[AES256_GCM,data:hWIlzN3bSk1FkzbdkmsU+AoEdOFWNCjRA8G0l77wNHwEBecpHI/PGA==,iv:QoNpmLIGAb7FyPo7HaygEdjmwJ0lPTiJTtrNZrT/t6Q=,tag:fDW8JHHgy+qFDoRUbS3M1g==,type:str]
+mugen:
+    basic:
+        username: ENC[AES256_GCM,data:nWyu7Gk=,iv:XFZMCa9J02l55jm3iE/yq9xPvmHRBY7iWAnm9dGTBZg=,tag:V+vzlhh+lqpM2oW2EDXyKA==,type:str]
+        password: ENC[AES256_GCM,data:Om3MvVGf,iv:BVyzdVOLmLXgf33F1Z5Q12+dRdI3rSVMA1NsbruOfeQ=,tag:aThtn2610s7h5/kPKGFOGw==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -22,8 +26,8 @@ sops:
             UXZLMStkNkhyTmNYVE1DRGZtRmwyTVkKGRzHUZjyOmC2CBOWtfr6QNk+jHOv1iHC
             y0ERcIl+qAF3O1dJB+uXl02MOdfVyRO8KgzBPbpEzzxdLGHBJYcXQQ==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-08-04T19:28:07Z"
-    mac: ENC[AES256_GCM,data:C8hyDC5hYNo6DEUNLFGuwpJVA3qvMkxvHf84Jl9OwsINu/VQbqLwpuKmM26BKHp1Qw1DNMcbuVBUuJY4pOT7Tlpy8WeBTn/RVz+p1h/7gcgACRY7oeRU+opc+52yb7F31m7YHT9EBFViz+j/YmcSiDPe0KRmTJHuq8ck/4sEhJ8=,iv:Xwm9+C7+y8/JcSzubptSaPNMBb7zORWoLEUR4KV+6OU=,tag:LAFjyCW0TLCnzEbTdlt3BQ==,type:str]
+    lastmodified: "2024-11-17T23:00:07Z"
+    mac: ENC[AES256_GCM,data:2KoEUYsyKfUsC69VBl7p9CfroP75/RpBl+TGTGKepyAIkvW3MPPhS2x785DrmcTfoMRJ60eBASM4v5uDbVkhApwAf5mnNDIENM8xOmWvoN0ZRJtKN4STuH6xep6hgYdgzHz7eDMpnOboOnxHXAaiesVAd97ot1yTVMVwo8qpwaI=,iv:HUqi6NFfvqZcanKu6XJqj+HABjNs2U7PfWmb5C7TURk=,tag:o99Nd8lX1wlAhco7w3Wo2Q==,type:str]
     pgp: []
     unencrypted_suffix: _unencrypted
-    version: 3.9.0
+    version: 3.9.1

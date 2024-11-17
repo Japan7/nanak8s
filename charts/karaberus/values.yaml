@@ -53,3 +53,8 @@ ingress:
   host: ""
   annotations: {}
   extraTraefikMiddlewares: []
+
+mugen:
+  basic:
+    username: ""
+    password: ""
