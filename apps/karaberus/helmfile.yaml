@@ -66,21 +66,21 @@ releases:
                       operator: In
                       values:
                         - eu-west
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 25
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - karaberus-cnpg-16
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
+          # podAffinity:
+          #   preferredDuringSchedulingIgnoredDuringExecution:
+          #     - weight: 25
+          #       podAffinityTerm:
+          #         labelSelector:
+          #           matchExpressions:
+          #             - key: cnpg.io/cluster
+          #               operator: In
+          #               values:
+          #                 - karaberus-cnpg-16
+          #             - key: cnpg.io/instanceRole
+          #               operator: In
+          #               values:
+          #                 - primary
+          #         topologyKey: kubernetes.io/hostname
       - ingress:
           host: karaberus.{{ .Values.domain }}
           annotations:
