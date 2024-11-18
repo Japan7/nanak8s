@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/nanalook
-  tag: main@sha256:01202fe82066f43cba61c3583ae48775b37cd623451e86232c63d0675a730194
+  tag: main@sha256:fc34778f63cc81164b1dc52cc8f85db832cd817dca38565f9c31a6c107025ea4
   pullPolicy: ""
 
 replicaCount: 1
