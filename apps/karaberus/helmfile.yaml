@@ -53,6 +53,13 @@ releases:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
               - weight: 100
+                preference:
+                  matchExpressions:
+                    - key: network/slow-upload
+                      operator: NotIn
+                      values:
+                        - true
+              - weight: 75
                 podAffinityTerm:
                   labelSelector:
                     matchExpressions:
@@ -65,6 +72,13 @@ releases:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
+              - weight: 50
+                preference:
+                  matchExpressions:
+                    - key: topology.kubernetes.io/region
+                      operator: In
+                      values:
+                        - eu-west
       - ingress:
           host: karaberus.{{ .Values.domain }}
           annotations:
