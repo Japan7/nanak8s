@@ -24,7 +24,7 @@ releases:
                     - key: network/slow-upload
                       operator: NotIn
                       values:
-                        - true
+                        - "true"
               - weight: 50
                 preference:
                   matchExpressions:

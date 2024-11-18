@@ -58,7 +58,7 @@ releases:
                     - key: network/slow-upload
                       operator: NotIn
                       values:
-                        - true
+                        - "true"
               - weight: 75
                 podAffinityTerm:
                   labelSelector:
