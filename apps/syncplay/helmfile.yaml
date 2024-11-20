@@ -14,13 +14,6 @@ releases:
               - weight: 100
                 preference:
                   matchExpressions:
-                    - key: network/slow-upload
-                      operator: NotIn
-                      values:
-                        - "true"
-              - weight: 50
-                preference:
-                  matchExpressions:
                     - key: topology.kubernetes.io/region
                       operator: In
                       values:
