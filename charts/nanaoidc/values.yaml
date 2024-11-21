@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/nanaoidc
-  tag: main@sha256:dee1737e30ffad02faabcdc82d37b0b9c7fd2c85650e232fa91736113f90ffcd
+  tag: main@sha256:1fbd91ec39bd140f4fb0dfabc788923d599728b06604d3ee08591162b8e7fe14
   pullPolicy: ""
 
 replicaCount: 1
