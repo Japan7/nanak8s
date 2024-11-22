@@ -58,3 +58,7 @@ mugen:
   basic:
     username: ""
     password: ""
+  gitlab:
+    client_id: ""
+    client_secret: ""
+    project_id: ""
