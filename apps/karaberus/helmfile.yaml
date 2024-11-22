@@ -49,6 +49,7 @@ releases:
           secretName: karaberus-cnpg-16-app
       - persistence:
           enabled: false
+      - mugen: {{ toYaml .Values.mugen | nindent 10 }}
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
