@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
+      annotations:
+        checksum/localsettings: {{ include (print $.Template.BasePath "/secret-localsettings.yaml") . | sha256sum }}
     spec:
       {{- with .Values.affinity }}
       affinity:

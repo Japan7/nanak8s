@@ -19,6 +19,8 @@ spec:
         {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: api
         app.kubernetes.io/part-of: {{ .Chart.Name }}
+      annotations:
+        checksum/localsettings: {{ include (print $.Template.BasePath "/secret-localsettings.yaml") . | sha256sum }}
     spec:
       {{- with .Values.affinity }}
       affinity:

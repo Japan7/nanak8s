@@ -17,6 +17,8 @@ spec:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
+      annotations:
+        checksum/env: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
       {{- with .Values.affinity }}
       affinity:

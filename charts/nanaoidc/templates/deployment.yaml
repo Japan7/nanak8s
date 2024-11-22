@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
       volumes:
         - name: config
