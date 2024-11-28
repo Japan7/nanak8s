@@ -50,6 +50,7 @@ releases:
       - persistence:
           enabled: false
       - mugen: {{ toYaml .Values.mugen | nindent 10 }}
+      - webhooks: {{ toYaml .Values.webhooks | nindent 10 }}
       - affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:

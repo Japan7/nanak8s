@@ -62,3 +62,7 @@ mugen:
     client_id: ""
     client_secret: ""
     project_id: ""
+
+webhooks: []
+# - type: ""
+#   url: ""
