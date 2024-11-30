@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 2024.10.10
+      - tag: 2024.11.30
       - tasks: true
       - affinity:
           podAffinity:
