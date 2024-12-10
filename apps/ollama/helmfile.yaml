@@ -14,7 +14,8 @@ releases:
     values:
       - ollama:
           models:
-            - llama3.2
+            pull:
+              - llama3.2
       - nodeSelector:
           kubernetes.io/hostname: tsubasa
       - persistentVolume:
