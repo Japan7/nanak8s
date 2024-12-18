@@ -17,34 +17,12 @@ data:
   trigger.sync-operation-change: |
     - when: app.status.operationState.phase in ['Running']
       oncePer: app.status.operationState.operation.sync.revision
-      send: [github-commit-status, discord-webhook]
+      send: [discord-webhook]
     - when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
       oncePer: app.status.operationState.operation.sync.revision
-      send: [github-commit-status, discord-webhook]
+      send: [discord-webhook]
     - when: app.status.operationState.phase in ['Error', 'Failed']
-      send: [github-commit-status, discord-webhook]
-
-  service.webhook.github: |
-    url: https://api.github.com
-    headers:
-      - name: Authorization
-        value: token $github-token
-
-  template.github-commit-status: |
-    webhook:
-      github:
-        method: POST
-        path: /repos/{{`{{call .repo.FullNameByRepoURL .app.spec.source.repoURL}}`}}/statuses/{{`{{.app.status.operationState.operation.sync.revision}}`}}
-        body: |
-          {
-            {{`{{if eq .app.status.operationState.phase "Running"}}`}} "state": "pending"{{`{{end}}`}}
-            {{`{{if eq .app.status.operationState.phase "Succeeded"}}`}} "state": "success"{{`{{end}}`}}
-            {{`{{if eq .app.status.operationState.phase "Error"}}`}} "state": "error"{{`{{end}}`}}
-            {{`{{if eq .app.status.operationState.phase "Failed"}}`}} "state": "error"{{`{{end}}`}},
-            "description": "Argo CD",
-            "target_url": "{{`{{.context.argocdUrl}}`}}/applications/{{`{{.app.metadata.name}}`}}",
-            "context": "continuous-delivery/{{`{{.app.metadata.name}}`}}"
-          }
+      send: [discord-webhook]
 
   service.webhook.discord: |
     url: $discord-webhook
