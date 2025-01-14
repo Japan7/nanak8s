@@ -22,11 +22,3 @@ releases:
           enabled: true
           size: 10Gi
           storageClass: longhorn-local
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: ollama
-        spec:
-          strategy:
-            type: Recreate
