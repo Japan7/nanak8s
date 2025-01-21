@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/producer
-  tag: main@sha256:e3909dca0fde72730da318b98fd1f67868c51dbddd90867c0c8a0ea8096f72ef
+  tag: main@sha256:42f528620ec3086f643275c7e51fc9ef1ed003247e036b1525dbf98030fce7eb
   pullPolicy: ""
 
 replicaCount: 1
