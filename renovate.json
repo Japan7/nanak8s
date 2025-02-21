@@ -17,7 +17,7 @@
       "automerge": false
     },
     {
-      "matchPackageNames": ["longhorn"],
+      "matchPackageNames": ["edgedb/edgedb", "longhorn"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     },
