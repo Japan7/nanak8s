@@ -1,0 +1,22 @@
+{{- if .Values.dump.enabled }}
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "{{ .Release.Name }}-dump"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: dump
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+data:
+  dump.sh: |
+    #!/bin/sh -xe
+
+    apk add curl
+    curl --proto '=https' --tlsv1.2 -sSf https://www.geldata.com/sh | sh -s -- -y
+    . ~/.config/gel/env
+
+    cd /dump/
+    DUMP_DIR=$(date +%Y-%m-%d_%H-%M-%S)
+    gel dump --all --format=dir $DUMP_DIR
+    ls | grep -v $DUMP_DIR | xargs rm -rf
+{{- end }}

@@ -17,7 +17,7 @@
       "automerge": false
     },
     {
-      "matchPackageNames": ["edgedb/edgedb", "longhorn"],
+      "matchPackageNames": ["edgedb/edgedb", "geldata/gel", "longhorn"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     },
