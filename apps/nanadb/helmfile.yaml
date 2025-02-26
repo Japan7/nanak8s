@@ -83,3 +83,15 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           extraTraefikMiddlewares:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+      - dump:
+          enabled: true
+          http:
+            updateStrategy:
+              type: Recreate
+            ingress:
+              annotations:
+                traefik.ingress.kubernetes.io/router.entrypoints: websecure
+                cert-manager.io/cluster-issuer: letsencrypt
+              extraTraefikMiddlewares:
+                - "nanaoidc-nanaoidc@kubernetescrd"
+                - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
