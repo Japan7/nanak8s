@@ -52,7 +52,7 @@ releases:
                       operator: In
                       values:
                         - eu-west
-  - name: nanadb-next
+  - name: nanadb
     chart: ../../charts/gel
     values:
       - cnpg:
@@ -83,46 +83,3 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           extraTraefikMiddlewares:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-  - name: nanadb
-    chart: ../../charts/edgedb
-    values:
-      - cnpg:
-          superuserSecretName: nanadb-cnpg-16-superuser
-      - user:
-          username: "{{ .Values.nanadb.username }}"
-          password: "{{ .Values.nanadb.password }}"
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - nanadb-cnpg-16
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
-      - ingress:
-          host: nanadb.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            cert-manager.io/cluster-issuer: letsencrypt
-          extraTraefikMiddlewares:
-            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-      - dump:
-          enabled: true
-          http:
-            updateStrategy:
-              type: Recreate
-            ingress:
-              annotations:
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
-                cert-manager.io/cluster-issuer: letsencrypt
-              extraTraefikMiddlewares:
-                - "nanaoidc-nanaoidc@kubernetescrd"
-                - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
