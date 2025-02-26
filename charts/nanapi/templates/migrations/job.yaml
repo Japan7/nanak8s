@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           command: ["/migrations/migrate.sh"]
           env:
-            {{- include "edgedb.env" . | nindent 12 }}
+            {{- include "gel.env" . | nindent 12 }}
           volumeMounts:
             - name: migrations
               mountPath: /migrations

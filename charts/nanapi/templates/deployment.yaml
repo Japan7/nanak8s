@@ -39,7 +39,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           env:
-            {{- include "edgedb.env" . | nindent 12 }}
+            {{- include "gel.env" . | nindent 12 }}
           volumeMounts:
             - name: localsettings
               mountPath: /app/nanapi/local_settings.py

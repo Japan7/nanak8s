@@ -16,11 +16,11 @@ data:
     apt update
     DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl
 
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.edgedb.com | sh -s -- -y
+    curl --proto '=https' --tlsv1.2 -sSf https://www.geldata.com/sh | sh -s -- -y
     . ~/.config/edgedb/env
 
-    FS_MIGRATION=$(edgedb migration log --from-fs | tail -n 1)
-    DB_MIGRATION=$(edgedb migration log --from-db | tail -n 1)
+    FS_MIGRATION=$(gel migration log --from-fs | tail -n 1)
+    DB_MIGRATION=$(gel migration log --from-db | tail -n 1)
     if [ "$FS_MIGRATION" != "$DB_MIGRATION" ]; then
-        edgedb migrate
+        gel migrate
     fi

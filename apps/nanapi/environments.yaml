@@ -13,7 +13,7 @@ environments:
                       - key: app.kubernetes.io/name
                         operator: In
                         values:
-                          - edgedb
+                          - gel
                       - key: app.kubernetes.io/instance
                         operator: In
                         values:
@@ -25,7 +25,7 @@ environments:
                       - key: app.kubernetes.io/part-of
                         operator: In
                         values:
-                          - edgedb
+                          - gel
                   topologyKey: kubernetes.io/hostname
                   namespaceSelector: {}
     secrets:

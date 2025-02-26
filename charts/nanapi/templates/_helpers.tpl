@@ -31,20 +31,20 @@ app.kubernetes.io/name: {{ include "common.names.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
-{{- define "edgedb.env" -}}
-- name: EDGEDB_SERVER_USER
+{{- define "gel.env" -}}
+- name: GEL_SERVER_USER
   valueFrom:
     secretKeyRef:
-      name: {{ .Release.Name }}-edgedb
+      name: {{ .Release.Name }}-gel
       key: username
-- name: EDGEDB_SERVER_PASSWORD
+- name: GEL_SERVER_PASSWORD
   valueFrom:
     secretKeyRef:
-      name: {{ .Release.Name }}-edgedb
+      name: {{ .Release.Name }}-gel
       key: password
-- name: EDGEDB_DSN
-  value: edgedb://$(EDGEDB_SERVER_USER):$(EDGEDB_SERVER_PASSWORD)@{{ .Values.edgedb.service }}/{{ .Values.edgedb.database }}
-- name: EDGEDB_CLIENT_SECURITY
+- name: GEL_DSN
+  value: gel://$(GEL_SERVER_USER):$(GEL_SERVER_PASSWORD)@{{ .Values.gel.service }}/{{ .Values.gel.database }}
+- name: GEL_CLIENT_SECURITY
   value: insecure_dev_mode
 {{- end -}}
 
