@@ -13,7 +13,7 @@ data:
 
     apk add curl
     curl --proto '=https' --tlsv1.2 -sSf https://www.geldata.com/sh | sh -s -- -y
-    . ~/.config/gel/env
+    . ~/.config/edgedb/env
 
     cd /dump/
     DUMP_DIR=$(date +%Y-%m-%d_%H-%M-%S)
