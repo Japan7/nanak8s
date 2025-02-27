@@ -13,11 +13,11 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["k3s", "bitnami/redis"],
+      "matchPackageNames": ["k3s"],
       "automerge": false
     },
     {
-      "matchPackageNames": ["geldata/gel", "longhorn"],
+      "matchPackageNames": ["geldata/gel", "longhorn", "redis"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     },
