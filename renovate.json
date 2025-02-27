@@ -13,7 +13,7 @@
   },
   "packageRules": [
     {
-      "matchPackageNames": ["k3s", "redis"],
+      "matchPackageNames": ["k3s", "bitnami/redis"],
       "automerge": false
     },
     {
