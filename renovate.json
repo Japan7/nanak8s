@@ -17,7 +17,7 @@
       "automerge": false
     },
     {
-      "matchPackageNames": ["geldata/gel", "longhorn", "redis"],
+      "matchPackageNames": ["geldata/gel", "longhorn", "bitnami/redis"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     },
