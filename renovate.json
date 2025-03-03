@@ -17,7 +17,7 @@
       "automerge": false
     },
     {
-      "matchDepNames": ["geldata/gel", "longhorn", "redis"],
+      "matchDepNames": ["geldata/gel", "longhorn"],
       "matchUpdateTypes": ["minor"],
       "automerge": false
     },
