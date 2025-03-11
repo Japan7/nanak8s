@@ -13,11 +13,7 @@ data:
   migrate.sh: |
     #!/bin/sh -xe
 
-    apt update
-    DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends curl
-
-    curl --proto '=https' --tlsv1.2 -sSf https://www.geldata.com/sh | sh -s -- -y
-    . ~/.config/edgedb/env
+    alias gel='uv run gel'
 
     FS_MIGRATION=$(gel migration log --from-fs | tail -n 1)
     DB_MIGRATION=$(gel migration log --from-db | tail -n 1)
