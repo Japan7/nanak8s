@@ -9,6 +9,6 @@ metadata:
 spec:
   name: longhorn-backup
   task: backup
-  retain: 7
+  retain: 30
   concurrency: 3
   cron: "30 3 * * *"
