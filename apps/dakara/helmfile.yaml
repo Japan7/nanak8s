@@ -11,11 +11,6 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
-      - persistence:
-          labels:
-            recurring-job.longhorn.io/source: enabled
-            recurring-job-group.longhorn.io/default: enabled
-            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:
