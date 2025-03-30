@@ -28,12 +28,6 @@ spec:
         - name: env
           secret:
             secretName: {{ .Release.Name }}-env
-        - name: data
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-data
-      securityContext:
-        fsGroup: 1001
-        fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -49,7 +43,5 @@ spec:
             - name: env
               mountPath: /env
               subPath: env
-            - name: data
-              mountPath: /var/lib/outline/data
           ports:
             - containerPort: 3000

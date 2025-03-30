@@ -15,11 +15,6 @@ cnpg:
 
 env: ""
 
-persistence:
-  accessMode: ReadWriteOnce
-  size: 1Gi
-  labels: {}
-
 ingress:
   host: ""
   annotations: {}
