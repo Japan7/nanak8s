@@ -15,6 +15,6 @@ releases:
       - ollama:
           models:
             pull:
-              - llama3.2
+              - gemma3
       - nodeSelector:
           kubernetes.io/hostname: tsubasa
