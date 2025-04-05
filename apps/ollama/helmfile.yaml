@@ -12,9 +12,11 @@ releases:
     chart: ollama-helm/ollama
     version: 1.13.0
     values:
+      - updateStrategy:
+          type: RollingUpdate
+      - nodeSelector:
+          kubernetes.io/hostname: tsubasa
       - ollama:
           models:
             pull:
               - gemma3:12b
-      - nodeSelector:
-          kubernetes.io/hostname: tsubasa
