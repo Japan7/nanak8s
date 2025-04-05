@@ -19,4 +19,4 @@ releases:
       - ollama:
           models:
             pull:
-              - gemma3:12b
+              - gemma3
