@@ -19,6 +19,6 @@ data:
     gel dump --all --format=dir $DUMP_DIR
 
     apk add minio-client
-    mc alias set minio $S3_HOSTNAME $S3_ACCESS_KEY $S3_SECRET_KEY
-    mc mirror --overwrite --remove $DUMP_DIR minio/$S3_BUCKET
+    mcli alias set minio $S3_HOSTNAME $S3_ACCESS_KEY $S3_SECRET_KEY
+    mcli mirror --overwrite --remove $DUMP_DIR minio/$S3_BUCKET
 {{- end }}
