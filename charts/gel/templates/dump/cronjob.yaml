@@ -23,7 +23,7 @@ spec:
           restartPolicy: Never
           {{- with .Values.dump.affinity }}
           affinity:
-            {{- toYaml . | nindent 8 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           volumes:
             - name: scripts
