@@ -21,5 +21,9 @@ releases:
       - syncplay:
           password: "{{ .Values.password }}"
           salt: "{{ .Values.salt }}"
+          rooms:
+            - japan7
+            - loli7
+            - aikatsu7
       - ingress:
           host: syncplay.{{ .Values.domain }}

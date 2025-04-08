@@ -28,6 +28,9 @@ spec:
                 path: fullchain.pem
               - key: tls.key
                 path: privkey.pem
+        - name: config
+          configMap:
+            name: {{ .Release.Name }}-config
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -46,28 +49,12 @@ spec:
           args:
             - --tls
             - /certs
-            - --rooms-db-file
-            - /rooms/rooms.db
+            - --permanent-rooms-file
+            - /config/rooms.txt
           volumeMounts:
             - name: certs
               mountPath: /certs
-              readOnly: true
-            - name: rooms
-              mountPath: /rooms
+            - name: config
+              mountPath: /config
           ports:
             - containerPort: 8999
-  volumeClaimTemplates:
-    {{- with .Values.persistence }}
-    - metadata:
-        name: rooms
-        {{- with .labels }}
-        labels:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
-      spec:
-        accessModes:
-          - {{ .accessMode }}
-        resources:
-          requests:
-            storage: {{ .size }}
-    {{- end }}
