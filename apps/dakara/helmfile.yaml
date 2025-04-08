@@ -1,11 +1,44 @@
-bases:
-  - environments.yaml
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 releases:
+  - name: dakara-cnpg-17
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 17
+      - storage:
+          size: 5Gi
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
+      - backups:
+          enabled: false
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
       - secretKey: "{{ .Values.server.secretKey }}"
+      - cnpg:
+          secretName: dakara-cnpg-17-app
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: cnpg.io/cluster
+                        operator: In
+                        values:
+                          - dakara-cnpg-17
+                      - key: cnpg.io/instanceRole
+                        operator: In
+                        values:
+                          - primary
+                  topologyKey: kubernetes.io/hostname
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
           host: "{{ .Values.smtp.host }}"
