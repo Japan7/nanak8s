@@ -1,8 +1,4 @@
 traefik:
-  image:
-    registry: docker.io
-    repository: traefik
-    tag: v3.0.4
   extraPorts: []
   # - name:
   #   port:

@@ -10,8 +10,6 @@ metadata:
     link.argocd.argoproj.io/external-link: "http://{{ .Values.dashboard.ingress.host }}"
 spec:
   valuesContent: |-
-    image:
-      {{ .Values.traefik.image | toYaml | nindent 6 }}
     ports:
       web:
         expose:
@@ -38,9 +36,12 @@ spec:
       - --entryPoints.websecure.transport.respondingTimeouts.readTimeout=0
     ingressRoute:
       dashboard:
+        enabled: true
         matchRule: Host(`{{ .Values.dashboard.ingress.host }}`)
         entryPoints:
-          - websecure
+          {{ range .Values.dashboard.ingress.entryPoints }}
+          - {{ . }}
+          {{ end }}
         middlewares:
           - name: nanaoidc
             namespace: nanaoidc
