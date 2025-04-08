@@ -5,12 +5,9 @@ image:
 
 replicaCount: 1
 
-secretKey: ""
-
-cnpg:
-  secretName: ""
-
 affinity: {}
+
+secretKey: ""
 
 smtp:
   enabled: true
