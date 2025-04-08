@@ -49,6 +49,8 @@ spec:
           args:
             - --tls
             - /certs
+            - --rooms-db-file
+            - /tmp/rooms.db
             - --permanent-rooms-file
             - /config/rooms.txt
           volumeMounts:
