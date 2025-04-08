@@ -21,40 +21,22 @@ spec:
             app.kubernetes.io/part-of: {{ .Chart.Name }}
         spec:
           restartPolicy: Never
+          {{- with .Values.dump.affinity }}
           affinity:
-            podAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - {{ include "common.names.name" . }}
-                      - key: app.kubernetes.io/instance
-                        operator: In
-                        values:
-                          - {{ .Release.Name }}
-                      - key: app.kubernetes.io/component
-                        operator: In
-                        values:
-                          - dump.http
-                      - key: app.kubernetes.io/part-of
-                        operator: In
-                        values:
-                          - {{ .Chart.Name }}
-                  topologyKey: kubernetes.io/hostname
+            {{- toYaml . | nindent 8 }}
+          {{- end }}
           volumes:
             - name: scripts
               configMap:
                 name: {{ .Release.Name }}-dump
                 defaultMode: 0500
-            - name: dump
-              persistentVolumeClaim:
-                claimName: {{ .Release.Name }}-dump
           containers:
             - name: dump
               image: alpine:latest
               command: ["/scripts/dump.sh"]
+              envFrom:
+                - secretRef:
+                    name: "{{ .Release.Name }}-dump-s3"
               env:
                 {{- include "gel.auth" . | nindent 16 }}
                 - name: GEL_DSN
@@ -64,6 +46,4 @@ spec:
               volumeMounts:
                 - name: scripts
                   mountPath: /scripts
-                - name: dump
-                  mountPath: /dump
 {{- end }}

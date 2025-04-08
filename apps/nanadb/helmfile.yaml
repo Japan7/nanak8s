@@ -2,6 +2,7 @@ environments:
   default:
     secrets:
       - ../globals.sops.yaml
+      - default.sops.yaml
 ---
 releases:
   - name: nanadb-cnpg-17
@@ -61,30 +62,21 @@ releases:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
       - dump:
           enabled: true
-          http:
-            updateStrategy:
-              type: Recreate
-            affinity:
-              nodeAffinity:
-                preferredDuringSchedulingIgnoredDuringExecution:
-                  - weight: 100
-                    preference:
-                      matchExpressions:
-                        - key: network/slow-upload
-                          operator: NotIn
-                          values:
-                            - "true"
-                  - weight: 50
-                    preference:
-                      matchExpressions:
-                        - key: topology.kubernetes.io/region
-                          operator: In
-                          values:
-                            - eu-west
-            ingress:
-              annotations:
-                traefik.ingress.kubernetes.io/router.entrypoints: websecure
-                cert-manager.io/cluster-issuer: letsencrypt
-              extraTraefikMiddlewares:
-                - "nanaoidc-nanaoidc@kubernetescrd"
-                - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: network/slow-upload
+                        operator: NotIn
+                        values:
+                          - "true"
+                - weight: 50
+                  preference:
+                    matchExpressions:
+                      - key: topology.kubernetes.io/region
+                        operator: In
+                        values:
+                          - eu-west
+          s3: {{ .Values.s3  | toYaml | nindent 12 }}
