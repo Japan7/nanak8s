@@ -22,10 +22,6 @@
       "automerge": false
     },
     {
-      "matchDepNames": ["docker.io/traefik"],
-      "allowedVersions": "<3.1.0"
-    },
-    {
       "matchDepNames": ["kubernetes-dashboard"],
       "allowedVersions": "<7.0.0"
     }
