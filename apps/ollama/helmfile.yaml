@@ -14,15 +14,8 @@ releases:
     values:
       - updateStrategy:
           type: RollingUpdate
-      - affinity:
-          nodeAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions:
-                    - key: feature/ollama
-                      operator: In
-                      values:
-                        - "true"
+      - nodeSelector:
+          feature/ollama: "true"
       - ollama:
           models:
             pull:
