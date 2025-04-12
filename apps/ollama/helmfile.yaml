@@ -22,7 +22,7 @@ releases:
                     - key: feature/ollama
                       operator: In
                       values:
-                        - true
+                        - "true"
       - ollama:
           models:
             pull:
