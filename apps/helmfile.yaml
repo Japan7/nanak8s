@@ -34,7 +34,6 @@ releases:
           - name: nanadb
           - name: nanalook
           - name: nanaoidc
-          - name: ollama
           - name: outline
           - name: syncplay
           - name: waicolle
