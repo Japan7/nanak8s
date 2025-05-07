@@ -6,30 +6,45 @@
     ":prHourlyLimitNone"
   ],
   "timezone": "Europe/Paris",
-  "schedule": ["after 8am and before 8pm"],
+  "schedule": [
+    "after 8am and before 8pm"
+  ],
   "ignoreTests": true,
   "helmfile": {
-    "fileMatch": [".*\\.helmfile\\.yaml$"]
+    "managerFilePatterns": [
+      "/.*\\.helmfile\\.yaml$/"
+    ]
   },
   "packageRules": [
     {
-      "matchDepNames": ["k3s"],
+      "matchDepNames": [
+        "k3s"
+      ],
       "automerge": false
     },
     {
-      "matchDepNames": ["geldata/gel", "longhorn"],
-      "matchUpdateTypes": ["minor"],
+      "matchDepNames": [
+        "geldata/gel",
+        "longhorn"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
       "automerge": false
     },
     {
-      "matchDepNames": ["kubernetes-dashboard"],
+      "matchDepNames": [
+        "kubernetes-dashboard"
+      ],
       "allowedVersions": "<7.0.0"
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": [".*\\.yaml$"],
+      "managerFilePatterns": [
+        "/.*\\.yaml$/"
+      ],
       "matchStrings": [
         "image:\\s+repository: \"?(?<depName>[^\\s]+)\"?\\s+tag: \"?(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate",
         "image: \"?(?<depName>[^:]*):(?<currentValue>[^\\s@\"]*)(@(?<currentDigest>sha256:[0-9a-f]*))?\"?\\s+# renovate"
@@ -38,7 +53,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [".*\\.yaml$"],
+      "managerFilePatterns": [
+        "/.*\\.yaml$/"
+      ],
       "matchStrings": [
         "repoURL: \"?https://github\\.com/(?<depName>\\S+)\\.git\"?\\n\\s+targetRevision: \"?(?<currentValue>\\S+)\"?\\s+# renovate",
         "url: git\\+https://github\\.com/(?<depName>\\S+)@\\S+?ref=(?<currentValue>\\S+)\\s+# renovate"
@@ -47,8 +64,12 @@
     },
     {
       "customType": "regex",
-      "fileMatch": [".*\\.yaml$"],
-      "matchStrings": [": \"?(?<currentValue>\\S+)\"?\\s+# renovate: k3s"],
+      "managerFilePatterns": [
+        "/.*\\.yaml$/"
+      ],
+      "matchStrings": [
+        ": \"?(?<currentValue>\\S+)\"?\\s+# renovate: k3s"
+      ],
       "depNameTemplate": "k3s",
       "versioningTemplate": "semver-coerced",
       "datasourceTemplate": "custom.k3s"
