@@ -32,7 +32,7 @@ environments:
       - nana.sops.yaml
   hachi:
     values:
-      - tag: sha-57efd8e
+      - tag: sha-e2637a0
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
