@@ -1,0 +1,46 @@
+{{- if .Values.tasks.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: "{{ .Release.Name }}-tasks-ai"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: tasks
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+spec:
+  schedule: "{{ .Values.tasks.ai.schedule }}"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            {{- include "common.labels.standard" . | nindent 12 }}
+            app.kubernetes.io/component: tasks
+            app.kubernetes.io/part-of: {{ .Chart.Name }}
+        spec:
+          restartPolicy: Never
+          imagePullSecrets:
+            {{- range .Values.image.pullSecrets }}
+            - name: {{ . }}
+            {{- end }}
+          volumes:
+            - name: localsettings
+              secret:
+                secretName: {{ .Release.Name }}-localsettings
+          affinity:
+            {{- include "tasks.affinity" . | nindent 12 }}
+          containers:
+            - name: task
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+              command: ["uv"]
+              args: ["run", "-m", "nanapi.tasks.ai"]
+              env:
+                {{- include "gel.env" . | nindent 16 }}
+              volumeMounts:
+                - name: localsettings
+                  mountPath: /app/nanapi/local_settings.py
+                  subPath: local_settings.py
+{{- end }}
