@@ -11,7 +11,7 @@ releases:
       - imageName: ghcr.io/japan7/cnpg-postgresql-gel
       - release: 17@sha256:faca5601bde96c7babe2e3847052d3a33d09046fbaef590cd9170f317dc69920  # renovate
       - storage:
-          size: 20Gi
+          size: 30Gi
       - enableSuperuserAccess: true
       - postgresql:
           enableAlterSystem: true
