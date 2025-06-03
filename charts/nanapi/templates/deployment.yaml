@@ -46,5 +46,15 @@ spec:
               subPath: local_settings.py
           ports:
             - containerPort: 8000
+              name: api
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          startupProbe:
+            httpGet:
+              path: /health
+              port: api
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: api
+            failureThreshold: 1
