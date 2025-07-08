@@ -9,7 +9,7 @@ repositories:
 releases:
   - name: nanachan-{{ .Environment.Name }}-redis
     chart: bitnami/redis
-    version: 21.2.6
+    version: 21.2.7
     values:
       - architecture: standalone
       - auth:
