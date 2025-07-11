@@ -1,6 +1,6 @@
 image:
   repository: outlinewiki/outline
-  tag: 0.85.0
+  tag: 0.85.1
   pullPolicy: ""
 
 replicaCount: 1
