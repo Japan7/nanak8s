@@ -22,6 +22,10 @@
       "automerge": false
     },
     {
+      "matchDepNames": ["cloudnative-pg"],
+      "separateMultipleMinor": true
+    },
+    {
       "matchDepNames": ["kubernetes-dashboard"],
       "allowedVersions": "<7.0.0"
     }
