@@ -10,7 +10,7 @@ repositories:
 releases:
   - name: longhorn
     chart: longhorn/longhorn
-    version: 1.9.2
+    version: 1.10.0
     values:
       - csi:
           attacherReplicaCount: 2
