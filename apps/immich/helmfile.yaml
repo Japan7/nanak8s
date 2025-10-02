@@ -1,0 +1,79 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+---
+repositories:
+  - name: secustor
+    url: https://secustor.dev/helm-charts
+  - name: bitnami
+    url: registry-1.docker.io/bitnamicharts
+    oci: true
+
+releases:
+  - name: immich-cnpg-17
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 17
+      - storage:
+          size: 5Gi
+      - enableSuperuserAccess: true
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
+      - backups:
+          enabled: true
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
+  - name: immich-redis
+    chart: bitnami/redis
+    version: 22.0.7
+    values:
+      - architecture: standalone
+      - auth:
+          enabled: false
+      - master:
+          persistence:
+            enabled: false
+  - name: immich
+    chart: secustor/immich
+    version: 1.0.0
+    values:
+      - common:
+          config:
+            vectorExtension: pgvector
+          postgres:
+            host: immich-cnpg-18-rw
+            existingSecret:
+              enabled: true
+              secretName: immich-cnpg-18-superuser
+              usernameKey: username
+              passwordKey: password
+          redis:
+            host: immich-redis-master
+      - server:
+          env:
+            - name: DB_DATABASE_NAME
+              value: app
+          pvcVolumes:
+            - name: upload
+              path: /usr/src/app/upload
+              size: 10Gi
+              accessMode:
+                - ReadWriteOnce
+      - machineLearning:
+          enabled: true
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
+          hosts:
+            - host: photos.{{ .Values.domain }}
+              paths:
+                - pathType: Prefix
+                  path: /
+          tls:
+            - hosts:
+                - photos.{{ .Values.domain }}
+              secretName: photos.{{ .Values.domain }}-tls

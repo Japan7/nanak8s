@@ -30,6 +30,7 @@ releases:
           - name: dakara
           - name: emails
           - name: garage
+          - name: immich
           - name: karaberus
           - name: nanadb
           - name: nanalook
