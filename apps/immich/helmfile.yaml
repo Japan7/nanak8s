@@ -27,12 +27,9 @@ releases:
     chart: valkey/valkey
     version: 0.7.2
     values:
-      - architecture: standalone
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            enabled: false
+      - dataStorage:
+          enabled: true
+          requestedSize: 1Gi
   - name: immich
     chart: secustor/immich
     version: 1.0.0
