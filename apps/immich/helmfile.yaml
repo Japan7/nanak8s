@@ -57,7 +57,7 @@ releases:
             - name: upload
               path: /usr/src/app/upload
               size: 10Gi
-              accessMode:
+              accessModes:
                 - ReadWriteOnce
       - machineLearning:
           enabled: true
