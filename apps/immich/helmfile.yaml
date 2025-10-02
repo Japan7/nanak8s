@@ -48,7 +48,7 @@ releases:
               usernameKey: username
               passwordKey: password
           redis:
-            host: immich-valkey-master
+            host: immich-valkey
       - server:
           env:
             - name: DB_DATABASE_NAME
