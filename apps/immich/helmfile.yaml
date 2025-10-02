@@ -41,10 +41,10 @@ releases:
           config:
             vectorExtension: pgvector
           postgres:
-            host: immich-cnpg-18-rw
+            host: immich-cnpg-17-rw
             existingSecret:
               enabled: true
-              secretName: immich-cnpg-18-superuser
+              secretName: immich-cnpg-17-superuser
               usernameKey: username
               passwordKey: password
           redis:
