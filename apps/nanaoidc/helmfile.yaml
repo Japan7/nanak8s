@@ -8,6 +8,8 @@ repositories:
   - name: bitnami
     url: registry-1.docker.io/bitnamicharts
     oci: true
+  - name: valkey
+    url: https://valkey.io/valkey-helm
 
 releases:
   - name: nanaoidc-redis
@@ -20,6 +22,13 @@ releases:
       - master:
           persistence:
             size: 1Gi
+  - name: nanaoidc-valkey
+    chart: valkey/valkey
+    version: 0.7.2
+    values:
+      - dataStorage:
+          enabled: true
+          requestedSize: 1Gi
   - name: nanaoidc
     chart: ../../charts/nanaoidc
     values:

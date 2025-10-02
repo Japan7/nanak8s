@@ -5,6 +5,8 @@ repositories:
   - name: bitnami
     url: registry-1.docker.io/bitnamicharts
     oci: true
+  - name: valkey
+    url: https://valkey.io/valkey-helm
 
 releases:
   - name: nanachan-{{ .Environment.Name }}-redis
@@ -33,6 +35,29 @@ releases:
                           values:
                             - nanachan-{{ .Environment.Name }}
                     topologyKey: kubernetes.io/hostname
+  - name: nanachan-{{ .Environment.Name }}-valkey
+    chart: valkey/valkey
+    version: 0.7.2
+    values:
+      - dataStorage:
+          enabled: true
+          requestedSize: 1Gi
+      - affinity:
+          podAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - nanachan
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - nanachan-{{ .Environment.Name }}
+                  topologyKey: kubernetes.io/hostname
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:
