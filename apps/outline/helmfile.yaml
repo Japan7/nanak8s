@@ -5,9 +5,8 @@ environments:
       - default.sops.yaml
 ---
 repositories:
-  - name: bitnami
-    url: registry-1.docker.io/bitnamicharts
-    oci: true
+  - name: valkey
+    url: https://valkey.io/valkey-helm
 
 releases:
   - name: outline-cnpg-16
@@ -22,16 +21,9 @@ releases:
       - backups:
           enabled: true
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
-  - name: outline-redis
-    chart: bitnami/redis
-    version: 22.0.7
-    values:
-      - architecture: standalone
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            enabled: false
+  - name: outline-valkey
+    chart: valkey/valkey
+    version: 0.7.2
   - name: outline
     chart: ../../charts/outline
     values:
