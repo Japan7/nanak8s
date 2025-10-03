@@ -64,11 +64,11 @@ releases:
                 - weight: 100
                   preference:
                     matchExpressions:
-                    - key: kubernetes.io/hostname
-                      operator: In
-                      values:
-                      - roromiya
-                      - tsubasa
+                      - key: kubernetes.io/hostname
+                        operator: In
+                        values:
+                          - roromiya
+                          - tsubasa
       - ingress:
           enabled: true
           annotations:
@@ -84,3 +84,11 @@ releases:
             - hosts:
                 - photos.{{ .Values.domain }}
               secretName: photos.{{ .Values.domain }}-tls
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: immich-server
+        spec:
+          strategy:
+            type: Recreate
