@@ -8,7 +8,7 @@ repositories:
 releases:
   - name: nanachan-{{ .Environment.Name }}-valkey
     chart: valkey/valkey
-    version: 0.7.2
+    version: 0.7.4
     values:
       - dataStorage:
           enabled: true
