@@ -58,6 +58,17 @@ releases:
                 - ReadWriteOnce
       - machineLearning:
           enabled: true
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: In
+                      values:
+                      - roromiya
+                      - tsubasa
       - ingress:
           enabled: true
           annotations:
