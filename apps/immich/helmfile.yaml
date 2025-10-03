@@ -53,7 +53,7 @@ releases:
           pvcVolumes:
             - name: upload
               path: /usr/src/app/upload
-              size: 30Gi
+              size: 40Gi
               accessModes:
                 - ReadWriteOnce
       - machineLearning:
