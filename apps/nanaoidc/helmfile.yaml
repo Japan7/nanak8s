@@ -5,23 +5,10 @@ environments:
       - default.sops.yaml
 ---
 repositories:
-  - name: bitnami
-    url: registry-1.docker.io/bitnamicharts
-    oci: true
   - name: valkey
     url: https://valkey.io/valkey-helm
 
 releases:
-  - name: nanaoidc-redis
-    chart: bitnami/redis
-    version: 22.0.7
-    values:
-      - architecture: standalone
-      - auth:
-          enabled: false
-      - master:
-          persistence:
-            size: 1Gi
   - name: nanaoidc-valkey
     chart: valkey/valkey
     version: 0.7.2
