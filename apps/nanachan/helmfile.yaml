@@ -58,6 +58,14 @@ releases:
                         values:
                           - nanachan-{{ .Environment.Name }}
                   topologyKey: kubernetes.io/hostname
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanachan-{{ .Environment.Name }}-valkey
+        spec:
+          strategy:
+            type: Recreate
   - name: nanachan-{{ .Environment.Name }}
     chart: ../../charts/nanachan
     values:

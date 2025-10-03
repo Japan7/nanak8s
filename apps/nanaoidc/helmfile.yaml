@@ -29,6 +29,14 @@ releases:
       - dataStorage:
           enabled: true
           requestedSize: 1Gi
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: nanaoidc-valkey
+        spec:
+          strategy:
+            type: Recreate
   - name: nanaoidc
     chart: ../../charts/nanaoidc
     values:

@@ -30,6 +30,14 @@ releases:
       - dataStorage:
           enabled: true
           requestedSize: 1Gi
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: immich-valkey
+        spec:
+          strategy:
+            type: Recreate
   - name: immich
     chart: secustor/immich
     version: 1.0.0
