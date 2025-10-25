@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/dakara-client-web
-  tag: master@sha256:f1ab84d07f2e8ca140665b7541e9c92ae5a42723ee809f202ca5798eb98e2b70
+  tag: master@sha256:01dea489f80e7eed09f8f9f46292af94d54333cd3b5d52c734ced5349d23e9e2
   pullPolicy: ""
 
 replicaCount: 1
