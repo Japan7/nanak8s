@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/dakara-server
-  tag: master@sha256:1a4d39286051f6d1d81f44f6cb0712e1d1ea38e78f8c46305e378dcdb0e3c541
+  tag: master@sha256:3f58d1ec194ec23d6f3664889175deb5984dd50c8a19561257ca98ffa90afdff
   pullPolicy: ""
 
 replicaCount: 1
