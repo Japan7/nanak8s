@@ -16,7 +16,7 @@ repositories:
 releases:
   - name: argo-cd-valkey
     chart: valkey/valkey
-    version: 0.7.6
+    version: 0.7.7
   - name: argo-cd
     chart: argo/argo-cd
     version: 9.0.5
