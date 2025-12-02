@@ -2,8 +2,9 @@
 metadata_dir = "{{ garage_metadata_dir }}"
 data_dir = "{{ garage_data_dir }}"
 {% if ansible_os_family == "Alpine" %}
-# alpine's community package is built without sqlite support
-# lmdb is slightly less safe (it's mmap-ed after all)
+# alpine's community package was built without sqlite support in 1.x
+# lmdb is slightly less safe (it's mmap-ed after all) but we don’t want someone
+# to break their setup by changing it mindlessly
 db_engine = "lmdb"
 {% else %}
 db_engine = "sqlite"
