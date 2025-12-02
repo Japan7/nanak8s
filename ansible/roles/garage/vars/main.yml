@@ -1,7 +1,6 @@
-# garage node upgrades have to be done at the same time,
+# garage major upgrades have to be done at the same time,
 # so we set the version explicitly
-# might only need the major version but we will see how it goes.
-garage_version: "1.0"
+garage_version: "2"
 
 # default directories
 # metadata_dir should probably be on a SSD

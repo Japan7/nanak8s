@@ -5,7 +5,7 @@
 - name: install dependencies (Gentoo)
   portage:
     name:
-      - "net-fs/garage:0/{{ garage_version }}"
+      - "=net-fs/garage-{{ garage_version }}*"
     state: present
   when: ansible_os_family == "Gentoo"
 
@@ -14,7 +14,7 @@
     name:
       # Alpine only keeps the latest version, so this will just stop updates
       # when it hits the repo
-      - "garage=~{{ garage_version }}"
+      - "garage~{{ garage_version }}"
       - logger
     state: present
   when: ansible_os_family == "Alpine"
