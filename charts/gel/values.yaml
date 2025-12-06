@@ -1,6 +1,6 @@
 image:
   repository: geldata/gel
-  tag: "6.11"
+  tag: "7.1"
   pullPolicy: ""
 
 replicaCount: 1
