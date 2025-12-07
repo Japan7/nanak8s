@@ -30,30 +30,6 @@ releases:
                       operator: In
                       values:
                         - eu-west
-  - name: nanadb-cnpg-18
-    chart: ../../charts/cnpg-cluster
-    values:
-      - release: 18
-      - storage:
-          size: 40Gi
-      - enableSuperuserAccess: true
-      - postgresql:
-          enableAlterSystem: true
-          parameters:
-            max_connections: "500"
-            max_locks_per_transaction: "1024"
-            max_pred_locks_per_transaction: "1024"
-            max_slot_wal_keep_size: "20GB"
-      - affinity:
-          nodeAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                preference:
-                  matchExpressions:
-                    - key: topology.kubernetes.io/region
-                      operator: In
-                      values:
-                        - eu-west
   - name: nanadb
     chart: ../../charts/gel
     values:
