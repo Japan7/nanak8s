@@ -1,0 +1,24 @@
+{{- if .Values.backups.enabled }}
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: "{{ .Release.Name }}"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  configuration:
+    destinationPath: s3://{{ .Values.backups.s3.bucket }}
+    endpointURL: {{ .Values.backups.s3.endpoint }}
+    s3Credentials:
+      accessKeyId:
+        name: "{{ .Release.Name }}-s3"
+        key: username
+      secretAccessKey:
+        name: "{{ .Release.Name }}-s3"
+        key: password
+    wal:
+      compression: bzip2
+    data:
+      compression: bzip2
+  retentionPolicy: "7d"
+{{- end }}

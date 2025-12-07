@@ -11,3 +11,6 @@ releases:
   - name: cnpg
     chart: cnpg/cloudnative-pg
     version: 0.26.1
+  - name: plugin-barman-cloud
+    chart: cnpg/plugin-barman-cloud
+    version: 0.3.1
