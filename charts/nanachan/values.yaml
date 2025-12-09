@@ -9,3 +9,5 @@ replicaCount: 1
 localSettings: ""
 
 affinity: {}
+
+extraContainers: []

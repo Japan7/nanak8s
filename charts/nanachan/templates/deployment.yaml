@@ -36,3 +36,6 @@ spec:
             - name: localsettings
               mountPath: /app/nanachan/local_settings.py
               subPath: local_settings.py
+        {{- with .Values.extraContainers }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
