@@ -49,6 +49,6 @@ releases:
           - name: mcp-run-python
             image: ghcr.io/japan7/mcp-run-python:main@sha256:b68eddd8f2733a16f898bdab99f5afa7f77ee2f0b8c247143746e392967da023 # renovate
           - name: playwright-mcp
-            image: mcr.microsoft.com/playwright/mcp:v0.0.50 # renovate
+            image: mcr.microsoft.com/playwright/mcp:v0.0.51 # renovate
             command: ["node"]
             args: ["cli.js", "--headless", "--browser", "chromium", "--no-sandbox", "--port", "8931"]
