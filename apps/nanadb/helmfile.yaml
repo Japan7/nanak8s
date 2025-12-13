@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/cnpg-cluster
     values:
       - imageName: ghcr.io/japan7/cnpg-postgresql-gel
-      - release: 17@sha256:5ddc5a7e97aa7011f968ebae804bdc7eee7dcdc2976e25002755098466965d95  # renovate
+      - release: 17@sha256:c7041ce16a59f1f3bb80eca2c65adb0e2ed9fdae0fa77afa1b83a44af4130f54  # renovate
       - storage:
           size: 40Gi
       - enableSuperuserAccess: true
