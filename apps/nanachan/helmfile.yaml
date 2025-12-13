@@ -47,7 +47,7 @@ releases:
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - extraContainers:
           - name: mcp-run-python
-            image: ghcr.io/japan7/mcp-run-python:main@sha256:50342135834c48f5b39294bd520e873f773a843592a5dc9b6ea22c80eb470f9b # renovate
+            image: ghcr.io/japan7/mcp-run-python:v0.0.22 # renovate
           - name: playwright-mcp
             image: mcr.microsoft.com/playwright/mcp:v0.0.51 # renovate
             command: ["node"]
