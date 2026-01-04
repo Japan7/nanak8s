@@ -32,6 +32,7 @@ releases:
           - name: garage
           - name: karaberus
           - name: nanadb
+          - name: nanacount
           - name: nanalook
           - name: nanaoidc
           - name: outline
