@@ -33,7 +33,7 @@ spec:
             - name: DATABASE_URL
               value: file:/data/nanacount.db
           command: ["/bin/sh"]
-          args: ["-xc", "npx prisma@5 migrate deploy && node server/index.mjs"]
+          args: ["-xc", "npx prisma@7 migrate deploy --url $DATABASE_URL && node server/index.mjs"]
           volumeMounts:
             - name: data
               mountPath: /data
