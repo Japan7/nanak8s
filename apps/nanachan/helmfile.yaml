@@ -48,3 +48,7 @@ releases:
       - extraContainers:
           - name: mcp-run-python
             image: ghcr.io/japan7/mcp-run-python:v0.0.22 # renovate
+          - name: mcp-server-airbnb
+            image: ghcr.io/sparfenyuk/mcp-proxy:latest
+            command: ["/bin/sh"]
+            args: ["-xc", "apk add --no-cache npm && mcp-proxy --port 8080 npx @openbnb/mcp-server-airbnb@latest -- --ignore-robots-txt"]
