@@ -23,7 +23,7 @@ releases:
           s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
   - name: outline-valkey
     chart: valkey/valkey
-    version: 0.9.2
+    version: 0.9.3
   - name: outline
     chart: ../../charts/outline
     values:
