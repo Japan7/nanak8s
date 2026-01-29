@@ -5,7 +5,7 @@ environments:
 ---
 repositories:
   - name: kubernetes-dashboard
-    url: https://kubernetes.github.io/dashboard/
+    url: https://kubernetes-retired.github.io/dashboard/
 
 releases:
   - name: kubernetes-dashboard
