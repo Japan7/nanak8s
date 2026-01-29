@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/japan7/waicolle-web
-  tag: main@sha256:de8bdf5c738a61072676b447d51188aaefda028a9585616f32eb6e8ea6d20ef9
+  tag: main@sha256:94846f276ffb3f8810441afb6389421b936a6b2e2bfbca3ee186f4669db9f55a
   pullPolicy: ""
 
 replicaCount: 1
