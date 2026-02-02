@@ -1,7 +1,7 @@
 environments:
   nana:
     values:
-      - tag: 2026.01.31
+      - tag: 2026.02.02
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
