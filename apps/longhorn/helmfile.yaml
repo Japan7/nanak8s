@@ -12,6 +12,8 @@ releases:
     chart: longhorn/longhorn
     version: 1.13.0
     values:
+      - preUpgradeChecker:
+          upgradeVersionCheck: false
       - csi:
           attacherReplicaCount: 2
           provisionerReplicaCount: 2
