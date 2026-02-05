@@ -16,6 +16,8 @@ releases:
           longhorn:
             manager:
               tag: v1.11.0-hotfix-1
+      - preUpgradeChecker:
+          upgradeVersionCheck: false
       - csi:
           attacherReplicaCount: 2
           provisionerReplicaCount: 2
