@@ -12,6 +12,10 @@ releases:
     chart: longhorn/longhorn
     version: 1.11.0
     values:
+      - image:
+          longhorn:
+            manager:
+              tag: v1.11.0-hotfix-1
       - csi:
           attacherReplicaCount: 2
           provisionerReplicaCount: 2
