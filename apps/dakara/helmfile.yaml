@@ -8,9 +8,6 @@ releases:
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
-      - image:
-          repository: ghcr.io/japan7/dakara-server
-          tag: update-deps@sha256:c998d486eacb2dcafdd4985f94e02e0043128790d50e7325b8fa6f9cf86614b2 # renovate
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
