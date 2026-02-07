@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: {{ .Chart.Name }}
 data:
   dump.sh: |
-    #!/bin/sh -xeo pipefail
+    #!/bin/sh -xe
 
     apk add curl
     curl --proto '=https' --tlsv1.2 -sSf https://www.geldata.com/sh | sh -s -- -y
