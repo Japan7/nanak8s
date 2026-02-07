@@ -30,12 +30,6 @@ spec:
               value: "https://{{ .Values.ingress.host }}"
             - name: DATABASE_URL
               value: "sqlite:////db/db.sqlite3"
-            - name: LOG_FILE_PATH
-              value: "/dev/stdout"
-            - name: LOG_FILE_MAX_SIZE
-              value: "8388608"
-            - name: LOG_FILE_BACKUP_COUNT
-              value: "0"
             - name: ALLOWED_HOSTS
               value: "*"
             - name: STATIC_ROOT
