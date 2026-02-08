@@ -10,7 +10,7 @@ releases:
     values:
       - image:
           repository: ghcr.io/japan7/dakara-server
-          tag: update-deps@sha256:af5bed5aa2be7172b061582d396781eceb759a0e0a9ed1554a1a5abd05449154 # renovate
+          tag: update-deps@sha256:faae0f4df406770005e5d413092b0d1452108b5f0c8de9bdabc3bf0e62d39ecd # renovate
       - secretKey: "{{ .Values.server.secretKey }}"
       - smtp:
           sender: "{{ .Values.server.smtp.sender }}"
