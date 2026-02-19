@@ -73,5 +73,5 @@ releases:
             namespace: system-upgrade
             source:
               repoURL: https://github.com/rancher/system-upgrade-controller.git
-              targetRevision: v0.18.0 # renovate
+              targetRevision: v0.19.0 # renovate
               path: .
