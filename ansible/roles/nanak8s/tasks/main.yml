@@ -21,6 +21,7 @@
 - name: install dependencies (Alpine)
   apk:
     name:
+      - curl
       - open-iscsi
       - fuse
       - nfs-utils
