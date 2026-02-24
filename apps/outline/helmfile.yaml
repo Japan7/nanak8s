@@ -30,6 +30,8 @@ releases:
       - image:
           repository: ghcr.io/japan7/outline
           tag: oidc-groups@sha256:abd60152051a539ea6380d91c60f6714be46e68fd20bfa046e12bc0222688d49 # renovate
+      - updateStrategy:
+          type: Recreate
       - cnpg:
           secretName: outline-cnpg-16-app
       - env: |
@@ -50,6 +52,11 @@ releases:
                         values:
                           - primary
                   topologyKey: kubernetes.io/hostname
+      - persistence:
+          labels:
+            recurring-job.longhorn.io/source: enabled
+            recurring-job-group.longhorn.io/default: enabled
+            recurring-job.longhorn.io/longhorn-backup: enabled
       - ingress:
           host: docs.{{ .Values.domain }}
           annotations:
