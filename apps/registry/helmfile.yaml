@@ -1,0 +1,15 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: registry
+    chart: ../../charts/registry
+    values:
+      - auth:
+          htpasswd: "{{ .Values.auth.htpasswd }}"
+      - s3: {{ toYaml .Values.s3 | nindent 10 }}
+      - ingress:
+          host: registry.{{ .Values.domain }}

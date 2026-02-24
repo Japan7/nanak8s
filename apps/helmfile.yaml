@@ -37,6 +37,7 @@ releases:
           - name: nanalook
           - name: nanaoidc
           - name: outline
+          - name: registry
           - name: syncplay
           - name: waicolle
           - name: website

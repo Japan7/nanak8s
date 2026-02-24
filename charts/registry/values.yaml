@@ -1,0 +1,24 @@
+image:
+  repository: registry
+  tag: 3.0.0
+  pullPolicy: ""
+
+replicaCount: 1
+
+updateStrategy:
+  type: RollingUpdate
+
+affinity: {}
+
+auth:
+  htpasswd: ""
+
+s3:
+  regionEndpoint: ""
+  bucket: ""
+  accessKey: ""
+  secretKey: ""
+
+ingress:
+  host: ""
+  annotations: {}
