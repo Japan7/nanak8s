@@ -25,6 +25,7 @@ releases:
           # Dev
           - name: argo-cd
             namespace: argocd
+            serverSideApply: true
 
           # Apps
           - name: dakara
