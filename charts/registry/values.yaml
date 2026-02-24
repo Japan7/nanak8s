@@ -15,6 +15,7 @@ auth:
 
 s3:
   regionEndpoint: ""
+  region: ""
   bucket: ""
   accessKey: ""
   secretKey: ""
