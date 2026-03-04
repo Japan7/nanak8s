@@ -1,6 +1,6 @@
 
-metadata_dir = "{{ garage_metadata_dir }}"
-data_dir = "{{ garage_data_dir }}"
+metadata_dir = "{{ garage_metadata_dir }}"
+data_dir = "{{ garage_data_dir }}"
 {% if ansible_os_family == "Alpine" %}
 # alpine's community package was built without sqlite support in 1.x
 # lmdb is slightly less safe (it's mmap-ed after all) but we don’t want someone
@@ -12,20 +12,20 @@ db_engine = "sqlite"
 
 replication_factor = 3
 
-rpc_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3901"
-rpc_public_addr = "{{ ansible_facts[iface].ipv4.address }}:3901"
+rpc_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3901"
+rpc_public_addr = "{{ ansible_facts[iface].ipv4.address }}:3901"
 rpc_secret = "{{ garage_rpc_secret }}"
 
 bootstrap_peers = [
 {% for garage_bootstrap_peer in garage_bootstrap_peers %}
-    "{{ garage_bootstrap_peer }}",
+    "{{ garage_bootstrap_peer }}",
 {% endfor %}
 ]
 
 
 [s3_api]
 s3_region = "garage"
-api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3900"
+api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3900"
 
 [admin]
-api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3903"
+api_bind_addr = "{{ ansible_facts[iface].ipv4.address }}:3903"

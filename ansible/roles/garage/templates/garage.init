@@ -3,10 +3,9 @@ name="garage_japan7"
 description="Japan7 garage instance"
 
 command="/usr/bin/garage"
-command_args="-c {{ garage_config_path }} server"
+command_args="-c {{ garage_config_path }} server"
 supervisor="supervise-daemon"
 
 depend() {
-    need innernet.{{ iface }}
+    need innernet.{{ iface }}
 }
-
