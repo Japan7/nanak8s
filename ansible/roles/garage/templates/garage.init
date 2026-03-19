@@ -2,10 +2,18 @@
 name="garage_japan7"
 description="Japan7 garage instance"
 
+: ${log_level="info"}
+
 command="/usr/bin/garage"
 command_args="-c {{ garage_config_path }} server"
 supervisor="supervise-daemon"
 
 depend() {
     need innernet.{{ iface }}
+}
+
+start_pre() {
+    export RUST_LOG=${RUST_LOG:-"netapp=$log_level,garage=$log_level"}
+
+    export GARAGE_LOG_TO_SYSLOG=1
 }
