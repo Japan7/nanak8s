@@ -1,5 +1,5 @@
 garage:
-  addresses: []
+  hosts: []
 
 ingress:
   host: ""

@@ -1,7 +1,7 @@
 environments:
   default:
     values:
-      - ../garage/addresses.yaml
+      - ../garage/hosts.yaml
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
@@ -35,7 +35,7 @@ releases:
           jwtSignKey: "{{ .Values.oidc.jwtSignKey }}"
       - s3:
           endpoints:
-            # {{ range .Values.garage.addresses }}
+            # {{ range .Values.garage.hosts }}
             - "{{ . }}:3900"
             # {{ end }}
           keyId: "{{ .Values.s3.keyId }}"

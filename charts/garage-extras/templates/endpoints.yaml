@@ -5,8 +5,8 @@ metadata:
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
 subsets:
-  - addresses:
-      {{- range .Values.garage.addresses }}
+  - hosts:
+      {{- range .Values.garage.hosts }}
       - ip: {{ . }}
       {{- end }}
     ports:

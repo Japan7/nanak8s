@@ -1,7 +1,7 @@
 environments:
   default:
     values:
-      - addresses.yaml
+      - hosts.yaml
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml

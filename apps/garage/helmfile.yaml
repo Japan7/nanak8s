@@ -10,7 +10,7 @@ releases:
           adminToken: "{{ .Values.producer.token }}"
       - s3:
           endpoints:
-            # {{ range .Values.garage.addresses }}
+            # {{ range .Values.garage.hosts }}
             - "{{ . }}:3900"
             # {{ end }}
           keyId: "{{ .Values.producer.keyId }}"
@@ -42,7 +42,7 @@ releases:
     chart: ../../charts/garage-extras
     values:
       - garage:
-          addresses: {{ .Values.garage.addresses | toYaml | nindent 12 }}
+          hosts: {{ .Values.garage.hosts | toYaml | nindent 12 }}
       - ingress:
           host: garage.{{ .Values.domain }}
           annotations:
