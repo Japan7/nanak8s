@@ -14,7 +14,7 @@ releases:
           hostname: "{{ .Values.s3.hostname }}"
           accessKey: "{{ .Values.s3.accessKey }}"
           secretKey: "{{ .Values.s3.secretKey }}"
-          modelDir: tmpdir/finetuned_qwen3.5_4b_gguf
+          modelDir: tmpdir/Qwen3.5-4B-finetune-gguf
       - llama:
           modelPath: Qwen3.5-4B-finetune-gguf/Qwen3.5-4B.Q4_K_M.gguf
           mmprojPath: Qwen3.5-4B-finetune-gguf/Qwen3.5-4B.BF16-mmproj.gguf
