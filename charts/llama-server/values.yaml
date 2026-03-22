@@ -1,0 +1,22 @@
+image:
+  repository: ghcr.io/ggml-org/llama.cpp
+  tag: server-b8390
+  pullPolicy: ""
+
+replicaCount: 1
+
+updateStrategy:
+  type: RollingUpdate
+
+nodeSelector: {}
+
+s3:
+  hostname: ""
+  accessKey: ""
+  secretKey: ""
+  modelDir: ""
+
+llama:
+  modelPath: ""
+  mmprojPath: ""
+  serverArgs: ""

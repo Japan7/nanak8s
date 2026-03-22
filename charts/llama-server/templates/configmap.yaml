@@ -1,0 +1,14 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: "{{ .Release.Name }}-scripts"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+data:
+  entrypoint.sh: |
+    #!/bin/sh -xe
+    curl -o /usr/local/bin/mc https://dl.min.io/client/mc/release/linux-$(dpkg --print-architecture)/mc
+    chmod +x /usr/local/bin/mc
+    mc alias set remote $S3_HOSTNAME $S3_ACCESS_KEY $S3_SECRET_KEY
+    mc cp -r remote/$S3_MODEL_DIR .
+    ./llama-server --host 0.0.0.0 --model $MODEL_PATH --mmproj $MMPROJ_PATH {{ .Values.llama.serverArgs }}

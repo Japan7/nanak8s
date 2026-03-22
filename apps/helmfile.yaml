@@ -32,6 +32,7 @@ releases:
           - name: emails
           - name: garage
           - name: karaberus
+          - name: llm
           - name: nanadb
           - name: nanacount
           - name: nanalook
