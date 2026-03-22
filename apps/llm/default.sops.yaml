@@ -1,5 +1,6 @@
 s3:
     hostname: ENC[AES256_GCM,data:VI8N0uN9F7ADDeHiJ3lne2Z1j/vDop8SHXuLP1c1hw==,iv:g6I4Ukppo/fL16A5Tew+UXLSNSs5yFLDfsxnfmdBXs8=,tag:Vlu9ZmyG4sNfF23TYryS4w==,type:str]
+    region: ENC[AES256_GCM,data:HuXgOC2S,iv:AznDXauMKTlEinVSucUshqk1wq2VDNaHJZEte16ahjw=,tag:GukFdBdwmkfplau0rKXu0A==,type:str]
     accessKey: ENC[AES256_GCM,data:wxzHd/3dcoAroAtw1jgIXbZtgG8CSuSz5xA=,iv:YFmaoRAzFmJNkdsihvJ8mWMR9m0o4k60MHDvyOZKW8I=,tag:wBIKwSvlFwn2oca0mAEjTA==,type:str]
     secretKey: ENC[AES256_GCM,data:5c5xQ8xwg8Xs7zQOfimd6p9YpGzlJFuwqsSiGLJS53jHcI5t1w5JWyyZp/dH3P/qpX1AIOlLtBgWGMtObHaNYw==,iv:53ffM4umlXulj7ws5tdueW3wvHzEH9V4U8r+wWjZWA4=,tag:szMX1tdiR3VMs8c4iQ3FOQ==,type:str]
 sops:
@@ -13,7 +14,7 @@ sops:
             WWMyUUZSYnlGRUdDeXRrS1hlT1RybUEK7rXB66pcDSBcTiSEyflsccM3ThoXN5CL
             c+8ZbBxaa9giL78mUzom7DnY84NFyCDM5c3g9Cv56R/H7oYNDeGokg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-03-17T11:09:06Z"
-    mac: ENC[AES256_GCM,data:XP4E9htX2ihDMKmBsx48DimDA8Ny2as5jgfEwhicLnd5M+g9LfADY3k1dDu33BOW9hvdJLbpuS5k07D+1iBFZ/SGIrc5hVO5dbRdB8zLCbLt0G2/x1fH1lQj3dBa239oEVq9zrp7RYYBBk7h2dX6joS+9fjO7Rc3T2YTqCHq1Kw=,iv:UAkJgUpHHuFO0BuJE7N1bxdEGQKSl2sPNffk0mFhEUI=,tag:DZajY9FNsPUsozqwz4/0Sg==,type:str]
+    lastmodified: "2026-03-22T19:23:42Z"
+    mac: ENC[AES256_GCM,data:BXlzf6QfTWm/8sYwJ2CZoQ808mxgHA+9yufPJjXVIH9dk2FtV7CicgChWCw2EWhygXcH/lkcl8hSL9cVQ0KavCNDcPrHWbGgVRI2rEXTuINjgL+SNtbDEiT11X0/0ut1RsrdH/hBtLZIxOV7GLlWnLAsP9VnovYyyWSC2fLWZ3M=,iv:uBJwb4O3XKhtqyan4S4TrzLIUku7GpOhr/et7kRLvIg=,tag:DmMCDKjIDxpW9GrazcVAIg==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.12.1
+    version: 3.12.2

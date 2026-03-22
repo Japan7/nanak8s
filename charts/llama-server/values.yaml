@@ -12,6 +12,7 @@ nodeSelector: {}
 
 s3:
   hostname: ""
+  region: ""
   accessKey: ""
   secretKey: ""
   modelDir: ""

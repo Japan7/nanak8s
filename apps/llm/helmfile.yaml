@@ -12,6 +12,7 @@ releases:
           feature/llm: "true"
       - s3:
           hostname: "{{ .Values.s3.hostname }}"
+          region: "{{ .Values.s3.region }}"
           accessKey: "{{ .Values.s3.accessKey }}"
           secretKey: "{{ .Values.s3.secretKey }}"
           modelDir: tmpdir/Qwen3.5-4B-finetune-gguf
