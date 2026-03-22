@@ -7,6 +7,6 @@ metadata:
 data:
   entrypoint.sh: |
     #!/bin/sh -xe
-    curl https://rclone.org/install.sh | bash
+    apt update && apt install -y rclone
     rclone copy --s3-provider Other --s3-endpoint $S3_HOSTNAME --s3-access-key-id $S3_ACCESS_KEY --s3-secret-access-key $S3_SECRET_KEY :s3:$S3_MODEL_DIR . -P
     ./llama-server --host 0.0.0.0 --model $MODEL_PATH --mmproj $MMPROJ_PATH {{ .Values.llama.serverArgs }}
