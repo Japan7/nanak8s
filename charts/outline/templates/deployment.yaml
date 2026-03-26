@@ -44,7 +44,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.cnpg.secretName }}
                   key: uri
-          command: ["sh", "-xc", "set -a && . /env && npx sequelize db:migrate --env=production-ssl-disabled && node build/server/index.js"]
+          command: ["sh", "-xc", "set -a && . /env && node build/server/index.js"]
           volumeMounts:
             - name: env
               mountPath: /env
