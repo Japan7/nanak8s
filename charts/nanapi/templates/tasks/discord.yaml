@@ -41,11 +41,11 @@ spec:
                 - -m
                 - nanapi.tasks.discord
                 - --client-id
-                - {{ .Values.tasks.discord.clientId }}
+                - "{{ .Values.tasks.discord.clientId }}"
                 - --guild-id
-                - {{ .Values.tasks.discord.guildId }}
+                - "{{ .Values.tasks.discord.guildId }}"
                 - --nanachan-user-id
-                - {{ .Values.tasks.discord.nanachanUserId }}
+                - "{{ .Values.tasks.discord.nanachanUserId }}"
               env:
                 {{- include "gel.env" . | nindent 16 }}
               volumeMounts:
