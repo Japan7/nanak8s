@@ -32,6 +32,11 @@ tasks:
     schedule: "@hourly"
   ai:
     schedule: "0 4 * * *"
+  discord:
+    schedule: "0 5 * * *"
+    clientId: ""
+    guildId: ""
+    nanachanUserId: ""
 
 resources:
   requests:

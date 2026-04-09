@@ -47,7 +47,11 @@ releases:
       - localSettings: |
           {{ .Values.localSettings | nindent 10 }}
       - tasks:
-          enabled: {{ .Values.tasks }}
+          enabled: {{ .Values.tasks.enabled }}
+          discord:
+            clientId: "{{ .Values.tasks.discord.clientId }}"
+            guildId: "{{ .Values.tasks.discord.guildId }}"
+            nanachanUserId: "{{ .Values.tasks.discord.nanachanUserId }}"
       - affinity: {{ toYaml .Values.affinity | nindent 10 }}
       - ingress:
           host: nanapi.{{ .Values.domain }}

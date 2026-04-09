@@ -2,7 +2,8 @@ environments:
   prod:
     values:
       - tag: 2026.03.09
-      - tasks: true
+      - tasks:
+          enabled: true
       - affinity:
           podAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -34,7 +35,8 @@ environments:
   staging:
     values:
       - tag: sha-90663d5
-      - tasks: false
+      - tasks:
+          enabled: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
@@ -42,7 +44,8 @@ environments:
   dev:
     values:
       - tag: break-reference-cycles@sha256:40169a1f499a5504c4187a63ae2c32925cc424d4b5a2070d20ca07daaa0954fd
-      - tasks: false
+      - tasks:
+          enabled: false
       - affinity: {}
     secrets:
       - ../globals.sops.yaml
