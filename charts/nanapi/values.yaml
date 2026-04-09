@@ -30,13 +30,13 @@ tasks:
         memory: 2Gi
   meilisearch:
     schedule: "@hourly"
-  ai:
-    schedule: "0 4 * * *"
   discord:
-    schedule: "0 5 * * *"
+    schedule: "0 3 * * *"
     clientId: ""
     guildId: ""
     nanachanUserId: ""
+  ai:
+    schedule: "0 5 * * *"
 
 resources:
   requests:
