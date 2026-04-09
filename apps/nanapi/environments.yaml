@@ -1,7 +1,7 @@
 environments:
   prod:
     values:
-      - tag: 2026.04.09
+      - tag: 2026.04.09-1
       - tasks:
           enabled: true
       - affinity:
