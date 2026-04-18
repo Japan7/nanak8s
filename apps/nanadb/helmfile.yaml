@@ -29,59 +29,6 @@ releases:
                       operator: In
                       values:
                         - eu-west
-  - name: nanadb-new
-    chart: ../../charts/gel
-    values:
-      - image:
-          tag: "7.1"
-      - cnpg:
-          superuserSecretName: nanadb-cnpg-18-superuser
-      - user:
-          username: "{{ .Values.nanadb.username }}"
-          password: "{{ .Values.nanadb.password }}"
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: cnpg.io/cluster
-                        operator: In
-                        values:
-                          - nanadb-cnpg-18
-                      - key: cnpg.io/instanceRole
-                        operator: In
-                        values:
-                          - primary
-                  topologyKey: kubernetes.io/hostname
-      # - ingress:
-      #     host: nanadb.{{ .Values.domain }}
-      #     annotations:
-      #       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-      #       cert-manager.io/cluster-issuer: letsencrypt
-      #     extraTraefikMiddlewares:
-      #       - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-      - dump:
-          enabled: true
-          affinity:
-            nodeAffinity:
-              preferredDuringSchedulingIgnoredDuringExecution:
-                - weight: 100
-                  preference:
-                    matchExpressions:
-                      - key: network/slow-upload
-                        operator: NotIn
-                        values:
-                          - "true"
-                - weight: 50
-                  preference:
-                    matchExpressions:
-                      - key: topology.kubernetes.io/region
-                        operator: In
-                        values:
-                          - eu-west
-          s3: {{ .Values.s3  | toYaml | nindent 12 }}
   - name: nanadb-cnpg-17
     chart: ../../charts/cnpg-cluster
     values:
@@ -111,7 +58,7 @@ releases:
     chart: ../../charts/gel
     values:
       - cnpg:
-          superuserSecretName: nanadb-cnpg-17-superuser
+          superuserSecretName: nanadb-cnpg-18-superuser
       - user:
           username: "{{ .Values.nanadb.username }}"
           password: "{{ .Values.nanadb.password }}"
@@ -125,7 +72,7 @@ releases:
                       - key: cnpg.io/cluster
                         operator: In
                         values:
-                          - nanadb-cnpg-17
+                          - nanadb-cnpg-18
                       - key: cnpg.io/instanceRole
                         operator: In
                         values:
