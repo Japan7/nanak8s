@@ -57,6 +57,8 @@ releases:
   - name: nanadb
     chart: ../../charts/gel
     values:
+      - image:
+          tag: "7.1"
       - cnpg:
           superuserSecretName: nanadb-cnpg-18-superuser
       - user:
