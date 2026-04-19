@@ -8,7 +8,6 @@ releases:
   - name: nanadb-cnpg-17
     chart: ../../charts/cnpg-cluster
     values:
-      - imageName: ghcr.io/japan7/cnpg-postgresql-gel
       - release: 17
       - storage:
           size: 40Gi
