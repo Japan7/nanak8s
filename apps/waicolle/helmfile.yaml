@@ -22,6 +22,8 @@ releases:
   - name: waiventure
     chart: ../../charts/waiventure
     values:
+      - updateStrategy:
+          type: Recreate
       - config: |
           {{ .Values.waiventure.config | nindent 10 }}
       - ingress:
