@@ -19,6 +19,9 @@ releases:
       - deploymentStrategy:
           type: Recreate
       - adminPassword: {{ .Values.grafana.adminPassword }}
+      - grafana.ini:
+          server:
+            root_url: https://grafana.{{ .Values.domain }}
       - datasources:
           datasources.yaml:
             apiVersion: 1
