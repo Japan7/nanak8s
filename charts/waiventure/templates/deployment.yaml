@@ -18,6 +18,9 @@ spec:
         - name: config
           secret:
             secretName: {{ .Release.Name }}-config
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -26,5 +29,7 @@ spec:
             - name: config
               mountPath: /app/nanapi_client_config.json
               subPath: config.json
+            - name: data
+              mountPath: /db
           ports:
             - containerPort: 4210

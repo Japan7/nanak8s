@@ -7,6 +7,11 @@ replicaCount: 1
 
 config: ""
 
+persistence:
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  labels: {}
+
 ingress:
   host: ""
   annotations: {}
