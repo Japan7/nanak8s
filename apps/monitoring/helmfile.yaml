@@ -16,15 +16,18 @@ releases:
     values:
       - deploymentStrategy:
           type: Recreate
-      - adminPassword: {{ .Values.grafana.adminPassword }}
+      - adminPassword: { { .Values.grafana.adminPassword } }
       - datasources:
-          - name: Loki
-            type: loki
-            access: proxy
-            url: http://loki:3100
-            jsonData:
-              timeout: 60
-              maxLines: 1000
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Loki
+                type: loki
+                access: proxy
+                url: http://loki:3100
+                jsonData:
+                  timeout: 60
+                  maxLines: 1000
       - persistence:
           enabled: true
       - ingress:
