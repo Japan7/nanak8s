@@ -127,6 +127,7 @@ releases:
     values:
       - alloy:
           configMap:
+            # https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/#pod-logs
             content: |-
               logging {
                 level = "info"
