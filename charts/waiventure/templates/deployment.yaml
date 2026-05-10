@@ -36,6 +36,6 @@ spec:
               mountPath: /app/config.json
               subPath: config.json
             - name: data
-              mountPath: /db
+              mountPath: /app/db
           ports:
             - containerPort: 4210
