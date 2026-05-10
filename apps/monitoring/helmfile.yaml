@@ -1,5 +1,8 @@
 environments:
   default:
+    values:
+      - loki:
+          replicas: 2
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
@@ -58,7 +61,7 @@ releases:
       - loki:
           auth_enabled: false
           commonConfig:
-            replication_factor: 2
+            replication_factor: {{ .Values.loki.replicas }}
           schemaConfig:
             configs:
               - from: "2024-04-01"
@@ -92,7 +95,7 @@ releases:
             retention_period: 30d
       - deploymentMode: Monolithic
       - singleBinary:
-          replicas: 2
+          replicas: {{ .Values.loki.replicas }}
           resources:
             limits:
               cpu: 3
