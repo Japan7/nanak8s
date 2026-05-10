@@ -82,7 +82,7 @@ releases:
               ruler: loki-ruler
             s3: {{ .Values.loki.s3 | toYaml | nindent 14 }}
           compactor:
-            working_directory: /data/retention
+            working_directory: /var/loki/data/retention
             compaction_interval: 10m
             retention_enabled: true
             retention_delete_delay: 2h
