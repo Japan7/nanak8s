@@ -127,7 +127,7 @@ releases:
           replicas: 0
       - bloomGateway:
           replicas: 0
-      - lokiCanary:
+      - test:
           enabled: false
   - name: alloy
     chart: grafana/alloy
