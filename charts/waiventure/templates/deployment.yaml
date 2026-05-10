@@ -14,9 +14,17 @@ spec:
       labels:
         {{- include "common.labels.standard" . | nindent 8 }}
     spec:
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ .Release.Name }}-config
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          volumeMounts:
+            - name: config
+              mountPath: /app/nanapi_client_config.json
+              subPath: config.json
           ports:
             - containerPort: 4210

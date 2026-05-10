@@ -10,9 +10,9 @@ releases:
     values:
       - nanapi:
           url: http://nanapi-prod.nanapi:8000
-          username: "{{ .Values.nanapi.username }}"
-          password: "{{ .Values.nanapi.password }}"
-      - defaultClientId: "{{ .Values.defaultClientId }}"
+          username: "{{ .Values.waicolle.nanapi.username }}"
+          password: "{{ .Values.waicolle.nanapi.password }}"
+      - defaultClientId: "{{ .Values.waicolle.defaultClientId }}"
       - ingress:
           host: waicolle.{{ .Values.domain }}
           annotations:
@@ -22,6 +22,8 @@ releases:
   - name: waiventure
     chart: ../../charts/waiventure
     values:
+      - config: |
+          {{ .Values.waiventure.config | nindent 10 }}
       - ingress:
           host: waiventure.{{ .Values.domain }}
           annotations:
