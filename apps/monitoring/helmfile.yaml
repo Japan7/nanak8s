@@ -81,6 +81,13 @@ releases:
               chunks: loki-chunks
               ruler: loki-ruler
             s3: {{ .Values.loki.s3 | toYaml | nindent 14 }}
+          compactor:
+            working_directory: /data/retention
+            compaction_interval: 10m
+            retention_enabled: true
+            retention_delete_delay: 2h
+            retention_delete_worker_count: 150
+            delete_request_store: gcs
       - deploymentMode: Monolithic
       - singleBinary:
           replicas: 1
@@ -127,6 +134,8 @@ releases:
           replicas: 0
       - bloomGateway:
           replicas: 0
+      - gateway:
+          enabled: false
       - test:
           enabled: false
       - lokiCanary:
