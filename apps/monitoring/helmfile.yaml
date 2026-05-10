@@ -129,6 +129,8 @@ releases:
           replicas: 0
       - test:
           enabled: false
+      - lokiCanary:
+          enabled: false
   - name: alloy
     chart: grafana/alloy
     version: 1.8.1
