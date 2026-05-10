@@ -1,0 +1,10 @@
+image:
+  repository: ghcr.io/tama-github/wvtr
+  tag: sha-0413284
+  pullPolicy: ""
+
+replicaCount: 1
+
+ingress:
+  host: ""
+  annotations: {}
