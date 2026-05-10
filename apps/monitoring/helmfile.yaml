@@ -16,7 +16,7 @@ releases:
     values:
       - deploymentStrategy:
           type: Recreate
-      - adminPassword: { { .Values.grafana.adminPassword } }
+      - adminPassword: {{ .Values.grafana.adminPassword }}
       - datasources:
           datasources.yaml:
             apiVersion: 1
