@@ -136,6 +136,8 @@ releases:
           replicas: 0
       - gateway:
           enabled: false
+      - resultsCache:
+          enabled: false
       - test:
           enabled: false
       - lokiCanary:
