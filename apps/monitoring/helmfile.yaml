@@ -5,6 +5,8 @@ environments:
       - default.sops.yaml
 ---
 repositories:
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
   - name: grafana-community
     url: ghcr.io/grafana-community/helm-charts
     oci: true
@@ -119,3 +121,19 @@ releases:
           replicas: 0
       - bloomGateway:
           replicas: 0
+  - name: alloy
+    chart: grafana/alloy
+    version: 1.8.1
+    values:
+      - alloy:
+          configMap:
+            content: |-
+              logging {
+                level = "info"
+                format = "logfmt"
+              }
+              loki.write "default" {
+                endpoint {
+                  url = "http://loki:3100/loki/api/v1/push"
+                }
+              }
