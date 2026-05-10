@@ -22,6 +22,8 @@ releases:
       - grafana.ini:
           server:
             root_url: https://grafana.{{ .Values.domain }}
+          auth:
+            disable_login_form: true
       - datasources:
           datasources.yaml:
             apiVersion: 1
