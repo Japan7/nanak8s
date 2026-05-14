@@ -25,6 +25,7 @@ backups:
     bucket: cnpg
     accessKey: ""
     secretKey: ""
+    region: ""
   schedule: "0 0 15 * * *"
 
 pooler:

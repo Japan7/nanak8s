@@ -16,6 +16,9 @@ spec:
       secretAccessKey:
         name: "{{ .Release.Name }}-s3"
         key: password
+      region:
+        name: "{{ .Release.Name }}-s3"
+        key: region
     wal:
       compression: bzip2
     data:
