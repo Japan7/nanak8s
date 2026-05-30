@@ -19,7 +19,7 @@ releases:
     version: 0.9.4
   - name: argo-cd
     chart: argo/argo-cd
-    version: 9.5.15
+    version: 9.5.16
     values:
       - redis:
           enabled: false
