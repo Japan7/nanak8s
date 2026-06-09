@@ -55,7 +55,7 @@ releases:
                 - grafana.{{ .Values.domain }}
   - name: loki
     chart: grafana-community/loki
-    version: 17.1.7
+    version: 17.2.0
     values:
       # https://github.com/grafana-community/helm-charts/blob/ccc85c03fb101eb787352015f615cba2568fc0e0/charts/loki/monolithic-values.yaml
       - loki:
