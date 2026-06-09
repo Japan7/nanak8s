@@ -1,0 +1,22 @@
+image:
+  repository: ghcr.io/llukas22/jellyswarrm
+  tag: 0.2.1
+  pullPolicy: ""
+
+replicaCount: 1
+
+updateStrategy:
+  type: RollingUpdate
+
+admin:
+  username: admin
+  password: ""
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 10Gi
+  labels: {}
+
+ingress:
+  host: ""
+  annotations: {}

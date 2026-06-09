@@ -32,6 +32,7 @@ releases:
           - name: dakara
           - name: emails
           - name: garage
+          - name: jellyfin
           - name: karaberus
           # - name: llm
           - name: nanadb

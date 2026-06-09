@@ -1,0 +1,19 @@
+jellyswarrm:
+    admin:
+        username: ENC[AES256_GCM,data:LTpLcv4=,iv:6SI5/QRLtqVKjv0ZyOt00PNXTIvFdquxRN/wqFrTCag=,tag:zlNiXVygbmtjZ0FtNqyXmQ==,type:str]
+        password: ENC[AES256_GCM,data:eZFUWz1ibH6fMljDtSUUy1Dxdhg=,iv:wEQob8Os5Jp2PZenYn1utUSMZWPrCW+uTCDAdeziw80=,tag:wv1R0Qq0YtKgtZ5b4RvJrg==,type:str]
+sops:
+    age:
+        - enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBwQnRBZEcvbjlZc0JTcVRa
+            Q01KdTVGeEpYRmhkbzUveGE3ZU1hb01lRlZzCnRpZTJLdEcyWXU5dG1raXRoTk9i
+            ckJSWlNCY0tZMHpGcmViQXpBRVVRNjgKLS0tIFgySTRkL3RlQ3BFMHVwbnZOTzFu
+            RDlHWHRyaUZIc2Q3UGJNUE1QeVRSMzAKiSIX6LjQBUAShTCOCvtRuygqIu3ytVec
+            amssxeJny23JKfTFeWYztQesFvsiedTi6KVvK4AaDj1yqTKajdTI8g==
+            -----END AGE ENCRYPTED FILE-----
+          recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+    lastmodified: "2026-06-09T17:25:58Z"
+    mac: ENC[AES256_GCM,data:FqrE4lQQ+KdGR/0lwkaI2VHoTaEjZvfBuqljGYxv9bGh66mGWkfJrc8XhJRcSqjOKu3PEyAnh/WZAQ+KCl00xlKE8i4550uoW09vvd9AeQuURs8nZMD85XPvp6HBnYjus+qQt5e/11nViJ3T7RhAdzZdqD1v971BZh0Qdgogqyk=,iv:RRjabYVPTgEU4SD1LWi1d65FU6ASz0+dHXBo6Vsr7NE=,tag:MVteqxahgyLYzcWtl9O+cg==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.13.1

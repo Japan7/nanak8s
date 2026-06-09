@@ -1,0 +1,20 @@
+environments:
+  default:
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+releases:
+  - name: jellyswarrm
+    chart: ../../charts/jellyswarrm
+    values:
+      - updateStrategy:
+          type: Recreate
+      - admin:
+          username: "{{ .Values.jellyswarrm.admin.username }}"
+          password: "{{ .Values.jellyswarrm.admin.password }}"
+      - ingress:
+          host: jellyfin.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            cert-manager.io/cluster-issuer: letsencrypt
