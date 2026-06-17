@@ -10,7 +10,7 @@ releases:
     values:
       - image:
           repository: ghcr.io/llukas22/jellyswarrm
-          tag: main@sha256:95d887bc33037667f60937a6b31a38c2f17bc5504ea39bb745c829f47cd8f667 # renovate
+          tag: main@sha256:a40fc8e6b6c16bf68e204e335819e270aa17655562003c4f4a18fb5da4018880 # renovate
       - updateStrategy:
           type: Recreate
       - admin:
