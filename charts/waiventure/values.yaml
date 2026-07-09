@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/tama-github/wvtr
-  tag: master@sha256:bd375612a4a876f322ff0bea367ff07247fac3861e43a42703ac025ddaea6715
+  tag: master@sha256:70df599af5a938769b572891c83ee9ff7a9df0b5e1295da6f5f4ac3ee6acc4ff
   pullPolicy: ""
 
 replicaCount: 1
