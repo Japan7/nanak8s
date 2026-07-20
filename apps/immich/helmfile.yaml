@@ -1,0 +1,114 @@
+environments:
+  default:
+    values:
+      - s3:
+          serveMode: proxy
+    secrets:
+      - ../globals.sops.yaml
+      - default.sops.yaml
+---
+repositories:
+  - name: secustor
+    url: https://secustor.dev/helm-charts
+  - name: valkey
+    url: https://valkey.io/valkey-helm
+
+releases:
+  - name: immich-cnpg-18
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 18
+      - storage:
+          size: 5Gi
+      - enableSuperuserAccess: true
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
+      - backups:
+          enabled: true
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
+  - name: immich-valkey
+    chart: valkey/valkey
+    version: 0.10.0
+    values:
+      - dataStorage:
+          enabled: true
+          requestedSize: 1Gi
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: immich-valkey
+        spec:
+          strategy:
+            type: Recreate
+  - name: immich
+    chart: secustor/immich
+    version: 2.0.2
+    values:
+      - common:
+          postgres:
+            host: immich-cnpg-17-rw
+            existingSecret:
+              enabled: true
+              secretName: immich-cnpg-17-superuser
+              usernameKey: username
+              passwordKey: password
+          redis:
+            host: immich-valkey
+      - server:
+          image:
+            repository: ghcr.io/open-noodle/gallery-server
+            tag: v5.1.1 # renovate
+          env:
+            - name: DB_DATABASE_NAME
+              value: app
+            - name: IMMICH_STORAGE_BACKEND
+              value: s3
+            - name: IMMICH_S3_BUCKET
+              value: {{ .Values.s3.bucket }}
+            - name: IMMICH_S3_REGION
+              value: {{ .Values.s3.region }}
+            - name: IMMICH_S3_ENDPOINT
+              value: {{ .Values.s3.endpoint }}
+            - name: IMMICH_S3_ACCESS_KEY_ID
+              value: {{ .Values.s3.accessKey }}
+            - name: IMMICH_S3_SECRET_ACCESS_KEY
+              value: {{ .Values.s3.secretKey }}
+            - name: IMMICH_S3_SERVE_MODE
+              value: {{ .Values.s3.serveMode }}
+      - machineLearning:
+          enabled: true
+          image:
+            repository: ghcr.io/open-noodle/gallery-ml
+            tag: v5.1.1 # renovate
+          env:
+            - name: IMMICH_STORAGE_BACKEND
+              value: s3
+            - name: IMMICH_S3_BUCKET
+              value: {{ .Values.s3.bucket }}
+            - name: IMMICH_S3_REGION
+              value: {{ .Values.s3.region }}
+            - name: IMMICH_S3_ENDPOINT
+              value: {{ .Values.s3.endpoint }}
+            - name: IMMICH_S3_ACCESS_KEY_ID
+              value: {{ .Values.s3.accessKey }}
+            - name: IMMICH_S3_SECRET_ACCESS_KEY
+              value: {{ .Values.s3.secretKey }}
+            - name: IMMICH_S3_SERVE_MODE
+              value: {{ .Values.s3.serveMode }}
+      - ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
+          hosts:
+            - host: photos.{{ .Values.domain }}
+              paths:
+                - pathType: Prefix
+                  path: /
+          tls:
+            - hosts:
+                - photos.{{ .Values.domain }}
+              secretName: photos.{{ .Values.domain }}-tls
