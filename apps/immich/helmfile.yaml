@@ -48,10 +48,10 @@ releases:
     values:
       - common:
           postgres:
-            host: immich-cnpg-17-rw
+            host: immich-cnpg-18-rw
             existingSecret:
               enabled: true
-              secretName: immich-cnpg-17-superuser
+              secretName: immich-cnpg-18-superuser
               usernameKey: username
               passwordKey: password
           redis:
@@ -77,6 +77,22 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: cnpg.io/cluster
+                          operator: In
+                          values:
+                            - immich-cnpg-18
+                        - key: cnpg.io/instanceRole
+                          operator: In
+                          values:
+                            - primary
+                    topologyKey: kubernetes.io/hostname
       - machineLearning:
           enabled: true
           image:
@@ -97,6 +113,22 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: cnpg.io/cluster
+                          operator: In
+                          values:
+                            - immich-cnpg-18
+                        - key: cnpg.io/instanceRole
+                          operator: In
+                          values:
+                            - primary
+                    topologyKey: kubernetes.io/hostname
       - ingress:
           enabled: true
           annotations:
