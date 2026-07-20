@@ -2,7 +2,7 @@ environments:
   default:
     values:
       - s3:
-          serveMode: redirect
+          serveMode: proxy
     secrets:
       - ../globals.sops.yaml
       - default.sops.yaml
