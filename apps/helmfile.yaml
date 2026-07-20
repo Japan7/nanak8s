@@ -36,7 +36,7 @@ releases:
           - name: karaberus
           # - name: llm
           - name: nanadb
-          - name: nanacount
+          # - name: nanacount
           - name: nanalook
           - name: nanaoidc
           - name: outline
