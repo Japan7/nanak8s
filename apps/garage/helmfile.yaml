@@ -48,8 +48,6 @@ releases:
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             cert-manager.io/cluster-issuer: letsencrypt
-          extraTraefikMiddlewares:
-            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
           corsPolicy:
             accessControlAllowOriginList:
               - "https://photos.{{ .Values.domain }}"
