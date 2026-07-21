@@ -46,6 +46,7 @@ spec:
         middlewares:
           - name: nanaoidc
             namespace: nanaoidc
+          - name: compress
         tls:
           secretName: {{ .Values.dashboard.ingress.host }}-tls
     deployment:
