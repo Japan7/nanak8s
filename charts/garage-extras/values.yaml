@@ -4,3 +4,5 @@ garage:
 ingress:
   host: ""
   annotations: {}
+  extraTraefikMiddlewares: []
+  corsPolicy: {}

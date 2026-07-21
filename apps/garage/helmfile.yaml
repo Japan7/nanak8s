@@ -47,5 +47,21 @@ releases:
           host: garage.{{ .Values.domain }}
           annotations:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
+          extraTraefikMiddlewares:
+            - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+          corsPolicy:
+            accessControlAllowOriginList:
+              - "https://photos.{{ .Values.domain }}"
+            accessControlAllowMethods:
+              - "GET"
+              - "HEAD"
+            accessControlAllowHeaders:
+              - "*"
+            accessControlExposeHeaders:
+              - "Accept-Ranges"
+              - "Content-Length"
+              - "Content-Range"
+              - "Content-Type"
+              - "ETag"
+            accessControlMaxAge: 3600
