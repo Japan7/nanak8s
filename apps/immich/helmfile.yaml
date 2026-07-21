@@ -77,6 +77,12 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
+          pvcVolumes:
+            - name: data
+              path: /data
+              size: 10Gi
+              accessModes:
+                - ReadWriteOnce
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
@@ -144,3 +150,11 @@ releases:
             - hosts:
                 - photos.{{ .Values.domain }}
               secretName: photos.{{ .Values.domain }}-tls
+    strategicMergePatches:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: immich-server
+        spec:
+          strategy:
+            type: Recreate
