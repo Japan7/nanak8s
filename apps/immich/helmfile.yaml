@@ -77,6 +77,9 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
+            # workaround for https://git.deuxfleurs.fr/Deuxfleurs/garage/issues/1228
+            - name: AWS_RESPONSE_CHECKSUM_VALIDATION
+              value: WHEN_REQUIRED
           pvcVolumes:
             - name: data
               path: /data
