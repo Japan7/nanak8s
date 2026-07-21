@@ -77,8 +77,6 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
-            - name: IMMICH_IGNORE_MOUNT_CHECK_ERRORS
-              value: "true"
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
@@ -115,8 +113,6 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
-            - name: IMMICH_IGNORE_MOUNT_CHECK_ERRORS
-              value: "true"
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
