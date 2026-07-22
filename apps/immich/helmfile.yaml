@@ -86,6 +86,9 @@ releases:
               size: 10Gi
               accessModes:
                 - ReadWriteOnce
+          resources:
+            limits:
+              cpu: 2
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
@@ -122,6 +125,9 @@ releases:
               value: {{ .Values.s3.secretKey }}
             - name: IMMICH_S3_SERVE_MODE
               value: {{ .Values.s3.serveMode }}
+          resources:
+            limits:
+              cpu: 2
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
