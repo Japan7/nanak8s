@@ -88,7 +88,7 @@ releases:
                 - ReadWriteOnce
           resources:
             limits:
-              cpu: 2
+              cpu: 4
           affinity:
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
@@ -127,22 +127,22 @@ releases:
               value: {{ .Values.s3.serveMode }}
           resources:
             limits:
-              cpu: 2
+              cpu: 4
           affinity:
-            podAffinity:
+            podAntiAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
                 - weight: 100
                   podAffinityTerm:
                     labelSelector:
                       matchExpressions:
-                        - key: cnpg.io/cluster
+                        - key: app.kubernetes.io/name
                           operator: In
                           values:
-                            - immich-cnpg-18
-                        - key: cnpg.io/instanceRole
+                            - immich
+                        - key: app.kubernetes.io/component
                           operator: In
                           values:
-                            - primary
+                            - server
                     topologyKey: kubernetes.io/hostname
       - ingress:
           enabled: true
