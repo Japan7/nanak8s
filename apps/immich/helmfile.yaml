@@ -90,6 +90,22 @@ releases:
             limits:
               cpu: 4
           affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: network/slow-upload
+                        operator: NotIn
+                        values:
+                          - "true"
+                - weight: 50
+                  preference:
+                    matchExpressions:
+                      - key: topology.kubernetes.io/region
+                        operator: In
+                        values:
+                          - eu-west
             podAffinity:
               preferredDuringSchedulingIgnoredDuringExecution:
                 - weight: 100
