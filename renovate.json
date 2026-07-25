@@ -28,6 +28,14 @@
     {
       "matchDepNames": ["kubernetes-dashboard"],
       "allowedVersions": "<7.0.0"
+    },
+    {
+      "groupName": "Noodle Gallery",
+      "groupSlug": "noodle-gallery",
+      "matchDepNames": [
+        "ghcr.io/open-noodle/gallery-server",
+        "ghcr.io/open-noodle/gallery-ml"
+      ]
     }
   ],
   "customManagers": [
