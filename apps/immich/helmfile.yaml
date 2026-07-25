@@ -125,7 +125,7 @@ releases:
           enabled: true
           image:
             repository: ghcr.io/open-noodle/gallery-ml
-            tag: v5.2.0 # renovate
+            tag: v5.2.1 # renovate
           env:
             - name: IMMICH_STORAGE_BACKEND
               value: s3
