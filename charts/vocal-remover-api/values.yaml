@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/nextfire/vocal-remover-api
-  tag: main@sha256:2afb19763c41cb7721c785c6e213747e852737561f7ab124abaae91c98ce43c6
+  tag: main@sha256:1ceb2946371561f014e0e8785b1f67f6853497e9fe4e136d60a1e838c7cdb4c0
   pullPolicy: ""
 
 replicaCount: 1
