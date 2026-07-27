@@ -1,0 +1,13 @@
+image:
+  repository: ghcr.io/NextFire/vocal-remover-api
+  tag: main@sha256:05e74b64245e8743f6be176e2a718765af0ecf686cb054b9e66098e47c8baa5a
+  pullPolicy: ""
+
+replicaCount: 1
+
+affinity: {}
+
+ingress:
+  enabled: false
+  host: ""
+  annotations: {}

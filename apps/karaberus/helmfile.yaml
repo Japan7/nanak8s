@@ -90,3 +90,5 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           extraTraefikMiddlewares:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+  - name: vocal-remover-api
+    chart: ../../charts/vocal-remover-api
