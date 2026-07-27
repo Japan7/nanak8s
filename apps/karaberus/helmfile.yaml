@@ -93,6 +93,8 @@ releases:
   - name: vocal-remover-api
     chart: ../../charts/vocal-remover-api
     values:
+      - nodeSelector:
+          feature/ml: "true"
       - ingress:
           enabled: true
           host: vocal-remover.{{ .Values.domain }}

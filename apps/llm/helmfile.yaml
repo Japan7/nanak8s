@@ -9,7 +9,7 @@ releases:
     chart: ../../charts/llama-server
     values:
       - nodeSelector:
-          feature/llm: "true"
+          feature/ml: "true"
       - s3:
           hostname: "{{ .Values.s3.hostname }}"
           region: "{{ .Values.s3.region }}"
