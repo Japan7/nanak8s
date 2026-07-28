@@ -8,9 +8,6 @@ releases:
   - name: jellyswarrm
     chart: ../../charts/jellyswarrm
     values:
-      - image:
-          repository: ghcr.io/llukas22/jellyswarrm
-          tag: main@sha256:464da56e5c5d74d80ea369476c95f70820f94266793eb590423e9688c5aeab81 # renovate
       - updateStrategy:
           type: Recreate
       - admin:
