@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/llukas22/jellyswarrm
-  tag: 0.2.1
+  tag: 0.3.0
   pullPolicy: ""
 
 replicaCount: 1
