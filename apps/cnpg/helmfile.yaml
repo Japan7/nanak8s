@@ -13,4 +13,4 @@ releases:
     version: 0.29.0
   - name: plugin-barman-cloud
     chart: cnpg/plugin-barman-cloud
-    version: 0.7.0
+    version: 0.7.1
