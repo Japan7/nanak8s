@@ -17,7 +17,7 @@ repositories:
 releases:
   - name: grafana
     chart: grafana-community/grafana
-    version: 12.10.2
+    version: 12.10.3
     values:
       - deploymentStrategy:
           type: Recreate
