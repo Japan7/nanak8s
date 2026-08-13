@@ -90,15 +90,15 @@ releases:
             cert-manager.io/cluster-issuer: letsencrypt
           extraTraefikMiddlewares:
             - "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-  - name: vocal-remover-api
-    chart: ../../charts/vocal-remover-api
-    values:
-      - nodeSelector:
-          feature/ml: "true"
-      - ingress:
-          enabled: true
-          host: vocal-remover.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-japan7-basic-auth@kubernetescrd" #,{{ .Values.traefik.namespace }}-compress@kubernetescrd
-            cert-manager.io/cluster-issuer: letsencrypt
+  # - name: vocal-remover-api
+  #   chart: ../../charts/vocal-remover-api
+  #   values:
+  #     - nodeSelector:
+  #         feature/ml: "true"
+  #     - ingress:
+  #         enabled: true
+  #         host: vocal-remover.{{ .Values.domain }}
+  #         annotations:
+  #           traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  #           traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-japan7-basic-auth@kubernetescrd" #,{{ .Values.traefik.namespace }}-compress@kubernetescrd
+  #           cert-manager.io/cluster-issuer: letsencrypt
