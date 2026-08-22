@@ -119,16 +119,9 @@
     dest: /etc/rancher/k3s/config.yaml
 
 - name: install k3s
-  shell: curl -sfL https://get.k3s.io | sh -
+  shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC={{ node_type }} sh -
   args:
     creates: /usr/local/bin/k3s
-  when: node_type == 'server'
-
-- name: install k3s-agent
-  shell: curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="agent" sh -
-  args:
-    creates: /usr/local/bin/k3s
-  when: node_type == 'agent'
 
 - name: start k3s
   service:
