@@ -43,7 +43,8 @@ Common environment variables of the Dakara server services
 - name: DAKARA_REDIS_URL
   value: {{ required "redis.host is required" .Values.redis.host | quote }}
 - name: DAKARA_ALLOWED_HOSTS
-  value: {{ .Values.allowedHosts | default .Values.ingress.host | default "*" | quote }}
+  # the healthcheck scripts curl localhost, so it must be allowed too
+  value: {{ list "localhost" (.Values.allowedHosts | default .Values.ingress.host | default "*") | join "," | quote }}
 - name: DAKARA_HOST_URL
   value: {{ .Values.hostUrl | default (printf "https://%s" .Values.ingress.host) | quote }}
 - name: DAKARA_SECRET_KEY
