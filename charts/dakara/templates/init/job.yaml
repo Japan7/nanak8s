@@ -29,6 +29,7 @@ spec:
         - name: init
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          workingDir: /app/dakara_server
           env:
             {{- include "dakara.env" . | nindent 12 }}
             {{- if .Values.superuser.password }}
