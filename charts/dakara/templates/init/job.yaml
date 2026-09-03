@@ -25,6 +25,8 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       restartPolicy: Never
+      volumes:
+        {{- include "dakara.pylibsVolume" . | nindent 8 }}
       containers:
         - name: init
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -32,6 +34,7 @@ spec:
           workingDir: /app/dakara_server
           env:
             {{- include "dakara.env" . | nindent 12 }}
+            {{- include "dakara.pylibsEnv" . | nindent 12 }}
             {{- if .Values.superuser.password }}
             {{- include "dakara.superuserEnv" . | nindent 12 }}
             {{- end }}
@@ -46,3 +49,8 @@ spec:
               # create superuser if it does not exist yet
               ./manage.py shell -c "import os; from django.contrib.auth.models import User; User.objects.filter(username=os.environ['DAKARA_SUPERUSER_USERNAME']).exists() or User.objects.create_superuser(os.environ['DAKARA_SUPERUSER_USERNAME'], os.environ['DAKARA_SUPERUSER_EMAIL'], os.environ['DAKARA_SUPERUSER_PASSWORD'])"
               {{- end }}
+          volumeMounts:
+            - name: pylibs
+              mountPath: /pylibs
+      initContainers:
+        {{- include "dakara.pylibsInitContainer" . | nindent 8 }}

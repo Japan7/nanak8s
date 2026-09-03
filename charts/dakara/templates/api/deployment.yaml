@@ -27,6 +27,8 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        {{- include "dakara.pylibsVolume" . | nindent 8 }}
       containers:
         - name: api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -34,6 +36,7 @@ spec:
           workingDir: /app/dakara_server
           env:
             {{- include "dakara.env" . | nindent 12 }}
+            {{- include "dakara.pylibsEnv" . | nindent 12 }}
           command: ["gunicorn"]
           args:
             - -b
@@ -46,3 +49,8 @@ spec:
               command: ["check_health_api.sh"]
             periodSeconds: 300
             failureThreshold: 1
+          volumeMounts:
+            - name: pylibs
+              mountPath: /pylibs
+      initContainers:
+        {{- include "dakara.pylibsInitContainer" . | nindent 8 }}

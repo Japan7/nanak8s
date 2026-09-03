@@ -44,3 +44,8 @@ smtp:
 ingress:
   host: ""
   annotations: {}
+
+psycopg:
+  enabled: true
+  # pip requirement spec for psycopg
+  requirement: "psycopg[binary]>=3.2,<4.0"
