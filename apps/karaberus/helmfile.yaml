@@ -41,7 +41,7 @@ releases:
           keyId: "{{ .Values.s3.keyId }}"
           secret: "{{ .Values.s3.secret }}"
       - dakara:
-          baseUrl: http://dakara-api.dakara:80
+          baseUrl: https://dakara.{{ .Values.domain }}
           token: "{{ .Values.dakara.token }}"
       - db:
           driver: postgres
