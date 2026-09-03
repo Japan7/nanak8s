@@ -52,6 +52,10 @@ Common environment variables of the Dakara server services
   value: {{ .Values.timeZone | default "UTC" | quote }}
 - name: DAKARA_LOG_TO_CONSOLE
   value: "True"
+# the logfile handler is still configured by Django even when unused,
+# point it to a writable path since there is no persistent /data
+- name: DAKARA_LOG_FILE_PATH
+  value: "/tmp/dakara_server.log"
 {{- if .Values.smtp.enabled }}
 - name: DAKARA_EMAIL_ENABLED
   value: "True"
