@@ -4,7 +4,48 @@ environments:
       - ../globals.sops.yaml
       - default.sops.yaml
 ---
+repositories:
+  - name: valkey
+    url: https://valkey.io/valkey-helm
+
 releases:
+  - name: dakara-cnpg-18
+    chart: ../../charts/cnpg-cluster
+    values:
+      - release: 18
+      - storage:
+          size: 5Gi
+      - postgresql:
+          parameters:
+            max_slot_wal_keep_size: "2GB"
+      - backups:
+          enabled: true
+          s3: {{ toYaml .Values.cnpg.s3 | nindent 12 }}
+  - name: dakara-valkey
+    chart: valkey/valkey
+    version: 0.11.0
+  - name: dakara
+    chart: ../../charts/dakara
+    values:
+      - cnpg:
+          secretName: dakara-cnpg-18-app
+      - redis:
+          host: redis://dakara-valkey:6379
+      - secretKey: "{{ .Values.server.secretKey }}"
+      - superuser:
+          username: "{{ .Values.server.superuser.username }}"
+          email: "{{ .Values.server.superuser.email }}"
+          password: "{{ .Values.server.superuser.password }}"
+      - smtp:
+          enabled: true
+          sender: "{{ .Values.server.smtp.sender }}"
+          url: "smtps://{{ .Values.smtp.username }}:{{ .Values.smtp.password }}@{{ .Values.smtp.host }}:465"
+      - ingress:
+          host: dakara.{{ .Values.domain }}
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: websecure
+            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
+            cert-manager.io/cluster-issuer: letsencrypt
   - name: dakara-server
     chart: ../../charts/dakara-server
     values:
@@ -17,12 +58,6 @@ releases:
           host: "{{ .Values.smtp.host }}"
           user: "{{ .Values.smtp.username }}"
           password: "{{ .Values.smtp.password }}"
-      - ingress:
-          host: dakara.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-            cert-manager.io/cluster-issuer: letsencrypt
   - name: dakara-client
     chart: ../../charts/dakara-client
     values:
@@ -42,9 +77,3 @@ releases:
                         values:
                           - dakara-server
                   topologyKey: kubernetes.io/hostname
-      - ingress:
-          host: dakara.{{ .Values.domain }}
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: websecure
-            traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
-            cert-manager.io/cluster-issuer: letsencrypt

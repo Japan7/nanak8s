@@ -1,0 +1,69 @@
+# web server (nginx, main entrygate)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-web"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: web
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: web
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/web/configmap.yaml") . | sha256sum }}
+        checksum/env: {{ include (print $.Template.BasePath "/secret-smtp.yaml") . | sha256sum }}
+    spec:
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: nginx-server
+          configMap:
+            name: {{ .Release.Name }}-nginx-server
+      initContainers:
+        # collect static files before running nginx
+        - name: collectstatic
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            {{- include "dakara.env" . | nindent 12 }}
+          command: ["sh", "-xc", "/app/dakara_server/manage.py collectstatic --noinput"]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      containers:
+        - name: web
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            {{- include "dakara.env" . | nindent 12 }}
+          command:
+            - sh
+            - -xc
+            - |
+              cp /app/deployment/config/nginx_main.conf.sample /data/config/ && \
+              touch /data/config/nginx_server.conf && \
+              cat /nginx-server/nginx_server.conf > /data/config/nginx_server.conf && \
+              /usr/sbin/nginx
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: nginx-server
+              mountPath: /nginx-server
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            exec:
+              command: ["check_health_web.sh"]
+            periodSeconds: 300
+            failureThreshold: 1

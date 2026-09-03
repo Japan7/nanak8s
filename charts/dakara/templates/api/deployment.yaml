@@ -1,0 +1,43 @@
+# api server (gunicorn)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-api"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "common.labels.matchLabels" . | nindent 6 }}
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.standard" . | nindent 8 }}
+        app.kubernetes.io/component: api
+      annotations:
+        checksum/env: {{ include (print $.Template.BasePath "/secret-smtp.yaml") . | sha256sum }}
+    spec:
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            {{- include "dakara.env" . | nindent 12 }}
+          command: ["gunicorn"]
+          args:
+            - -b
+            - :80
+            - dakara_server.wsgi:application
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            exec:
+              command: ["check_health_api.sh"]
+            periodSeconds: 300
+            failureThreshold: 1

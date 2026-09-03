@@ -2,14 +2,13 @@ server:
     secretKey: ENC[AES256_GCM,data:FpA2IEEahTerQK/kuZqhe9NqfVDyiSdFM80trPHxrDl9KYSvjC/XYZ5h66YRLfPojovR5GSCWejzMMNpB5yuDw==,iv:i2PA/qPF+eIpUxhJn13Gm0PuL2zekyjVdR3pqr6XA2w=,tag:Sk/hAOU3tfD/53wHMhDHrw==,type:str]
     smtp:
         sender: ENC[AES256_GCM,data:ulTLZ+KpFgwOa7OLKdRQIWTaG3hzbZk9PWWZ9+6f/fPZxuA6VKI=,iv:KjeKI14dvFaIzwna88l3pmAr/WVekr3MIOTuErYs9m0=,tag:N03JLEktRtIzu53CqBpDqQ==,type:str]
+    superuser:
+        username: ENC[AES256_GCM,data:fxSCmkg=,iv:IeXFZ/1kBrInJqSTwYnKgc3oYl1Y9IqG3fBkGKepaVg=,tag:ygQQrXtnglJYG1RWh3fLGA==,type:str]
+        email: ENC[AES256_GCM,data:UB6CGg4GgivwBW/gZQPICjt/XWFY6l5pYxYFLkc=,iv:r7QE2EwvomxHJTvYIrwxpC1SaGBW4rLu0MX8s9GKa0Q=,tag:44r5GJtxa4if6uKwApI9yA==,type:str]
+        password: ENC[AES256_GCM,data:pTle9wbAKUIMFSmFC0X+NwBGZmA=,iv:C4tWmiK3nO0t0g8hB0AAipK+z/VDedbP2TJPcn5RXHM=,tag:AmuAlwFq0JeqJVgkQGP1Yg==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
-        - recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
-          enc: |
+        - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
             YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3NWZ5ejkxVTNKcDRhK1Vp
             ejNaSTNLVW1KYUh3cFA0QWwxY09jcmIydVJNCnQveW9nRGNMTGRhdTdGQ0xsZVdi
@@ -17,8 +16,8 @@ sops:
             NEhrdTJIK3dReitQYUEzWlk0UFBtR1UKHx12EukKj7xc2khO8F9mUCPg77QEY3tL
             XzkVR8R0ZA74RRRcO3uWyxOqmgJOqeaF8fMnOzsLsvwrb+SCEyvZvg==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-07-07T08:55:03Z"
-    mac: ENC[AES256_GCM,data:4aMMRD7j9VNffDRIEx25vEz5ypKg8P8Mdos/0Kic6yiS7BGRV3epMukiyXM0Pe1auaA0JmweGPBaSOa8bHRXkPuxjNaMeiDY5rz0EpAA+MINYyumo3GViF50WsrwByA/piZK3qzM1EWwlyG+PhsQPB934WUK6ACarGLMurma2dc=,iv:oCRodkTm4U5tVyXPzWt4v8sUE8ruNImiwB3YV+kK1uU=,tag:NvIPZm805AeHz32fEkiUDQ==,type:str]
-    pgp: []
+          recipient: age1numn0q9v7m966g58f3hc0cq6923z9t848davvrz9ut2mqqydcqgqhg20fr
+    lastmodified: "2026-09-03T20:07:08Z"
+    mac: ENC[AES256_GCM,data:iqWvf0cgR6gguhKDiZw8ZiXQ9iANwCMTiyBbJHqJ+p9kGVZuUgBS0iZW0nhHguLtamLarqPrrtcw1Qq858Akazj33zC9iuyHla+rsuBwyGwpXRxECXPea/BTwxK8fBAb1NI7T0qLAEfclQQghI2exBAUX4R/tA/67fB9LEyJtdE=,iv:1YsCO9P5oTjnQbZCJvXRrS+CzPrEOifzjcSwMmxqBBQ=,tag:te5sqwlZI+jUAj//zuqn8A==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.9.0
+    version: 3.13.3

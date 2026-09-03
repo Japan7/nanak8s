@@ -1,4 +1,3 @@
-{{- if .Values.ingress.host }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -15,21 +14,13 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /api
+            path: /
             backend:
               service:
-                name: "{{ .Release.Name }}"
+                name: "{{ .Release.Name }}-web"
                 port:
-                  number: 22222
-          - pathType: Prefix
-            path: /ws
-            backend:
-              service:
-                name: "{{ .Release.Name }}"
-                port:
-                  number: 22222
+                  number: 80
   tls:
     - hosts:
         - "{{ .Values.ingress.host }}"
       secretName: "{{ .Values.ingress.host }}-tls"
-{{- end }}

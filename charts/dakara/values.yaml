@@ -1,0 +1,44 @@
+image:
+  repository: dakaraproject/dakaraserver
+  tag: 1.10.0
+  pullPolicy: ""
+
+replicaCount: 1
+
+affinity: {}
+
+# CloudNativePG cluster secret, must contain a `uri` key
+# (database is hardcoded to postgres)
+cnpg:
+  secretName: ""
+
+# External redis URL
+redis:
+  host: ""
+
+secretKey: ""
+
+# Comma separated list of allowed hosts, defaults to the ingress host
+allowedHosts: ""
+
+# Public URL of the instance, defaults to https://<ingress.host>
+hostUrl: ""
+
+# Admin account, only created if password is set
+superuser:
+  username: ""
+  email: ""
+  password: ""
+
+timeZone: UTC
+
+smtp:
+  enabled: false
+  sender: ""
+  # URL of the SMTP server, may contain credentials
+  # https://github.com/migonzalvar/dj-email-url#supported-backends
+  url: ""
+
+ingress:
+  host: ""
+  annotations: {}

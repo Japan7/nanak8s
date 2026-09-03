@@ -1,0 +1,43 @@
+# init job: apply migrations and create the superuser once
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-init"
+  labels:
+    {{- include "common.labels.standard" . | nindent 4 }}
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 6
+  template:
+    metadata:
+      labels:
+        {{- include "common.labels.matchLabels" . | nindent 8 }}
+        app.kubernetes.io/component: init
+    spec:
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      restartPolicy: Never
+      containers:
+        - name: init
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          env:
+            {{- include "dakara.env" . | nindent 12 }}
+            {{- if .Values.superuser.password }}
+            {{- include "dakara.superuserEnv" . | nindent 12 }}
+            {{- end }}
+          command: ["sh", "-xc"]
+          args:
+            - |
+              # wait for database
+              ./manage.py wait_db_ready
+              # apply migrations
+              ./manage.py migrate
+              {{- if .Values.superuser.password }}
+              # create superuser if it does not exist yet
+              ./manage.py shell -c "import os; from django.contrib.auth.models import User; User.objects.filter(username=os.environ['DAKARA_SUPERUSER_USERNAME']).exists() or User.objects.create_superuser(os.environ['DAKARA_SUPERUSER_USERNAME'], os.environ['DAKARA_SUPERUSER_EMAIL'], os.environ['DAKARA_SUPERUSER_PASSWORD'])"
+              {{- end }}
