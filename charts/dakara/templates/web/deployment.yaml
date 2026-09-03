@@ -62,6 +62,7 @@ spec:
             - sh
             - -xc
             - |
+              mkdir -p /data/config && \
               cp /app/deployment/config/nginx_main.conf.sample /data/config/ && \
               touch /data/config/nginx_server.conf && \
               cat /nginx-server/nginx_server.conf > /data/config/nginx_server.conf && \
