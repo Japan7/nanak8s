@@ -27,6 +27,8 @@ releases:
   - name: dakara
     chart: ../../charts/dakara
     values:
+      - nodeSelector:
+          kubernetes.io/arch: amd64
       - cnpg:
           secretName: dakara-cnpg-18-app
       - redis:
