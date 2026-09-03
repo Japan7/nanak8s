@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: "{{ .Release.Name }}-nginx-server"
+  name: "{{ .Release.Name }}-nginx-config"
   labels:
     {{- include "common.labels.standard" . | nindent 4 }}
 data:
+  nginx_main.conf: |
+    worker_processes 4;
   nginx_server.conf: |
     server {
         listen 80;

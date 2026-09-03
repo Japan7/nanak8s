@@ -30,11 +30,9 @@ spec:
       {{- end }}
       volumes:
         {{- include "dakara.pylibsVolume" . | nindent 8 }}
-        - name: data
-          emptyDir: {}
-        - name: nginx-server
+        - name: nginx-config
           configMap:
-            name: {{ .Release.Name }}-nginx-server
+            name: {{ .Release.Name }}-nginx-config
       initContainers:
         {{- include "dakara.pylibsInitContainer" . | nindent 8 }}
         # collect static files before running nginx
@@ -45,35 +43,16 @@ spec:
           env:
             {{- include "dakara.env" . | nindent 12 }}
             {{- include "dakara.pylibsEnv" . | nindent 12 }}
-          command: ["sh", "-xc", "/app/dakara_server/manage.py collectstatic --noinput"]
-          volumeMounts:
-            - name: data
-              mountPath: /data
-            - name: pylibs
-              mountPath: /pylibs
+          command: ["/app/dakara_server/manage.py", "collectstatic", "--noinput"]
       containers:
         - name: web
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          env:
-            {{- include "dakara.env" . | nindent 12 }}
-            {{- include "dakara.pylibsEnv" . | nindent 12 }}
-          command:
-            - sh
-            - -xc
-            - |
-              mkdir -p /data/config && \
-              cp /app/deployment/config/nginx_main.conf.sample /data/config/ && \
-              touch /data/config/nginx_server.conf && \
-              cat /nginx-server/nginx_server.conf > /data/config/nginx_server.conf && \
-              /usr/sbin/nginx
+          command: ["/usr/sbin/nginx"]
           volumeMounts:
-            - name: data
-              mountPath: /data
-            - name: nginx-server
-              mountPath: /nginx-server
-            - name: pylibs
-              mountPath: /pylibs
+            - name: nginx-config
+              mountPath: /data/config
+              readOnly: true
           ports:
             - containerPort: 80
           readinessProbe:
