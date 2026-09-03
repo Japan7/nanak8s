@@ -41,7 +41,7 @@ releases:
       - smtp:
           enabled: true
           sender: "{{ .Values.server.smtp.sender }}"
-          url: "smtps://{{ .Values.smtp.username }}:{{ .Values.smtp.password }}@{{ .Values.smtp.host }}:465"
+          url: "submission://{{ .Values.smtp.username }}:{{ .Values.smtp.password }}@{{ .Values.smtp.host }}"
       - ingress:
           host: dakara.{{ .Values.domain }}
           annotations:
