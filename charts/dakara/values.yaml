@@ -9,6 +9,10 @@ affinity: {}
 
 nodeSelector: {}
 
+django:
+  affinity: {}
+  nodeSelector: {}
+
 # CloudNativePG cluster secret, must contain a `uri` key
 # (database is hardcoded to postgres)
 cnpg:

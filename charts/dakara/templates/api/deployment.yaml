@@ -19,14 +19,8 @@ spec:
       annotations:
         checksum/env: {{ include (print $.Template.BasePath "/secret-smtp.yaml") . | sha256sum }}
     spec:
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- include "dakara.djangoAffinity" . | nindent 6 }}
+      {{- include "dakara.djangoNodeSelector" . | nindent 6 }}
       volumes:
         {{- include "dakara.pylibsVolume" . | nindent 8 }}
       containers:

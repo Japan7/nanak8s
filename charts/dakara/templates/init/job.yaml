@@ -16,14 +16,8 @@ spec:
         {{- include "common.labels.matchLabels" . | nindent 8 }}
         app.kubernetes.io/component: init
     spec:
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- include "dakara.djangoAffinity" . | nindent 6 }}
+      {{- include "dakara.djangoNodeSelector" . | nindent 6 }}
       restartPolicy: Never
       volumes:
         {{- include "dakara.pylibsVolume" . | nindent 8 }}

@@ -29,6 +29,23 @@ releases:
     values:
       - nodeSelector:
           kubernetes.io/arch: amd64
+      - django:
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: cnpg.io/cluster
+                          operator: In
+                          values:
+                            - dakara-cnpg-18
+                        - key: cnpg.io/instanceRole
+                          operator: In
+                          values:
+                            - primary
+                    topologyKey: kubernetes.io/hostname
       - cnpg:
           secretName: dakara-cnpg-18-app
       - redis:

@@ -32,6 +32,31 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
+Affinity for Django pods (api, websocket, scheduler, init):
+base affinity deep-merged with django.affinity. The web pod uses plain .Values.affinity.
+*/}}
+{{- define "dakara.djangoAffinity" -}}
+{{- $merged := mustDeepCopy .Values.affinity -}}
+{{- $merged = mergeOverwrite $merged .Values.django.affinity -}}
+{{- with $merged -}}
+affinity:
+  {{- toYaml . | nindent 2 }}
+{{- end -}}
+{{- end -}}
+
+{{/*
+NodeSelector for Django pods: base merged with django.nodeSelector.
+*/}}
+{{- define "dakara.djangoNodeSelector" -}}
+{{- $merged := mustDeepCopy .Values.nodeSelector -}}
+{{- $merged = mergeOverwrite $merged .Values.django.nodeSelector -}}
+{{- with $merged -}}
+nodeSelector:
+  {{- toYaml . | nindent 2 }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Common environment variables of the Dakara server services
 */}}
 {{- define "dakara.env" -}}
