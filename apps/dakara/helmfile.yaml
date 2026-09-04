@@ -34,6 +34,7 @@ releases:
       - redis:
           host: redis://dakara-valkey:6379
       - secretKey: "{{ .Values.server.secretKey }}"
+      - allowedHosts: "dakara-api.dakara,dakara.{{ .Values.domain }}"
       - superuser:
           username: "{{ .Values.server.superuser.username }}"
           email: "{{ .Values.server.superuser.email }}"
