@@ -49,34 +49,3 @@ releases:
             traefik.ingress.kubernetes.io/router.entrypoints: websecure
             traefik.ingress.kubernetes.io/router.middlewares: "{{ .Values.traefik.namespace }}-compress@kubernetescrd"
             cert-manager.io/cluster-issuer: letsencrypt
-  - name: dakara-server
-    chart: ../../charts/dakara-server
-    values:
-      - image:
-          repository: ghcr.io/japan7/dakara-server
-          tag: update-deps@sha256:a88e15ca545f0f7af4aa5cbb66b444f48c4543ea101359a85221e3339120b8ff # renovate
-      - secretKey: "{{ .Values.server.secretKey }}"
-      - smtp:
-          sender: "{{ .Values.server.smtp.sender }}"
-          host: "{{ .Values.smtp.host }}"
-          user: "{{ .Values.smtp.username }}"
-          password: "{{ .Values.smtp.password }}"
-  - name: dakara-client
-    chart: ../../charts/dakara-client
-    values:
-      - affinity:
-          podAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-              - weight: 100
-                podAffinityTerm:
-                  labelSelector:
-                    matchExpressions:
-                      - key: app.kubernetes.io/name
-                        operator: In
-                        values:
-                          - dakara-server
-                      - key: app.kubernetes.io/instance
-                        operator: In
-                        values:
-                          - dakara-server
-                  topologyKey: kubernetes.io/hostname
