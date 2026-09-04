@@ -21,8 +21,6 @@ spec:
     spec:
       {{- include "dakara.djangoAffinity" . | nindent 6 }}
       {{- include "dakara.djangoNodeSelector" . | nindent 6 }}
-      volumes:
-        {{- include "dakara.pylibsVolume" . | nindent 8 }}
       containers:
         - name: scheduler
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -30,11 +28,5 @@ spec:
           workingDir: /app/dakara_server
           env:
             {{- include "dakara.env" . | nindent 12 }}
-            {{- include "dakara.pylibsEnv" . | nindent 12 }}
           command: ["/app/dakara_server/manage.py"]
           args: ["runapscheduler"]
-          volumeMounts:
-            - name: pylibs
-              mountPath: /pylibs
-      initContainers:
-        {{- include "dakara.pylibsInitContainer" . | nindent 8 }}

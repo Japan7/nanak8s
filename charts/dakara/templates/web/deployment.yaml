@@ -29,12 +29,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        {{- include "dakara.pylibsVolume" . | nindent 8 }}
         - name: nginx-config
           configMap:
             name: {{ .Release.Name }}-nginx-config
       initContainers:
-        {{- include "dakara.pylibsInitContainer" . | nindent 8 }}
         # collect static files before running nginx
         - name: collectstatic
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -42,11 +40,7 @@ spec:
           workingDir: /app/dakara_server
           env:
             {{- include "dakara.env" . | nindent 12 }}
-            {{- include "dakara.pylibsEnv" . | nindent 12 }}
           command: ["/app/dakara_server/manage.py", "collectstatic", "--noinput"]
-          volumeMounts:
-            - name: pylibs
-              mountPath: /pylibs
       containers:
         - name: web
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
