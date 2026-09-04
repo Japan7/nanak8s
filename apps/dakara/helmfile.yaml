@@ -30,8 +30,6 @@ releases:
       - image:
           repository: ghcr.io/japan7/dakara-server
           tag: 1.10.0 # renovate
-      - nodeSelector:
-          kubernetes.io/arch: amd64
       - django:
           affinity:
             podAffinity:
