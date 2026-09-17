@@ -32,7 +32,7 @@ spec:
                 defaultMode: 0500
           containers:
             - name: dump
-              image: alpine:latest
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
               command: ["/scripts/dump.sh"]
               envFrom:
                 - secretRef:
