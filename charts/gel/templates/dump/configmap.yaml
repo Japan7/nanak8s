@@ -14,8 +14,7 @@ data:
     DUMP_DIR=/dump/
     gel dump --all --format=dir $DUMP_DIR
 
-    curl -fsSL -o /usr/local/bin/mcli https://dl.min.io/client/mc/release/linux-$(uname -m)/mcli
-    chmod +x /usr/local/bin/mcli
-    mcli alias set minio $S3_HOSTNAME $S3_ACCESS_KEY $S3_SECRET_KEY
-    mcli mirror --overwrite --remove $DUMP_DIR minio/$S3_BUCKET
+    curl -fsSL https://rclone.org/install.sh | sh
+    RCLONE_REMOTE=":s3,endpoint=https://$S3_HOSTNAME,access_key_id=$S3_ACCESS_KEY,secret_access_key=$S3_SECRET_KEY:$S3_BUCKET"
+    rclone sync "$DUMP_DIR" "$RCLONE_REMOTE"
 {{- end }}
