@@ -14,7 +14,6 @@ data:
     DUMP_DIR=/dump/
     gel dump --all --format=dir $DUMP_DIR
 
-    curl -fsSL https://rclone.org/install.sh | bash
-    RCLONE_REMOTE=":s3,endpoint=https://$S3_HOSTNAME,access_key_id=$S3_ACCESS_KEY,secret_access_key=$S3_SECRET_KEY:$S3_BUCKET"
-    rclone sync "$DUMP_DIR" "$RCLONE_REMOTE"
+    apt update && apt install -y rclone
+    rclone sync --s3-provider Other --s3-endpoint $S3_HOSTNAME --s3-region $S3_REGION --s3-access-key-id $S3_ACCESS_KEY --s3-secret-access-key $S3_SECRET_KEY $DUMP_DIR :s3:$S3_BUCKET -P
 {{- end }}

@@ -25,6 +25,7 @@ dump:
   affinity: {}
   s3:
     hostname: ""
+    region: ""
     accessKey: ""
     secretKey: ""
     bucket: ""
