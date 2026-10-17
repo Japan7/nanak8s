@@ -44,7 +44,7 @@ releases:
             type: Recreate
   - name: immich
     chart: secustor/immich
-    version: 2.0.9
+    version: 2.0.10
     values:
       - common:
           postgres:
