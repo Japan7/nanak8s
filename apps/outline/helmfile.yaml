@@ -29,7 +29,7 @@ releases:
     values:
       - image:
           repository: ghcr.io/japan7/outline
-          tag: oidc-groups@sha256:c7d79bdfc118fdbc1178f1d3b98d36b69aade54ba852430e7832f290ece1f023 # renovate
+          tag: oidc-groups@sha256:3de378578ac4f1708d610f1e119f31ba0f84ee80dc37067859e594812afd0f1a # renovate
       - updateStrategy:
           type: Recreate
       - cnpg:
