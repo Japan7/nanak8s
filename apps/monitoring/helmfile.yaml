@@ -147,7 +147,7 @@ releases:
           enabled: false
   - name: alloy
     chart: grafana/alloy
-    version: 1.15.0
+    version: 1.16.0
     values:
       - alloy:
           configMap:
