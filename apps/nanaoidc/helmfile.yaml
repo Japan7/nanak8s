@@ -11,19 +11,11 @@ repositories:
 releases:
   - name: nanaoidc-valkey
     chart: valkey/valkey
-    version: 0.12.1
+    version: 1.0.0
     values:
-      - dataStorage:
+      - persistence:
           enabled: true
-          requestedSize: 1Gi
-    strategicMergePatches:
-      - apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: nanaoidc-valkey
-        spec:
-          strategy:
-            type: Recreate
+          size: 1Gi
   - name: nanaoidc
     chart: ../../charts/nanaoidc
     values:
