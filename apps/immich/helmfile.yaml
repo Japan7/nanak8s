@@ -51,7 +51,7 @@ releases:
       - server:
           image:
             repository: ghcr.io/open-noodle/gallery-server
-            tag: v5.10.0 # renovate
+            tag: v5.11.1 # renovate
           env:
             - name: DB_DATABASE_NAME
               value: app
@@ -117,7 +117,7 @@ releases:
           enabled: true
           image:
             repository: ghcr.io/open-noodle/gallery-ml
-            tag: v5.10.0 # renovate
+            tag: v5.11.1 # renovate
           env:
             - name: IMMICH_STORAGE_BACKEND
               value: s3
