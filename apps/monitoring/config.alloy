@@ -26,6 +26,13 @@ discovery.kubernetes "pod" {
 discovery.relabel "pod_logs" {
   targets = discovery.kubernetes.pod.targets
 
+  // Label creation - "node" field from "__meta_kubernetes_pod_node_name"
+  rule {
+    source_labels = ["__meta_kubernetes_pod_node_name"]
+    action = "replace"
+    target_label = "node"
+  }
+
   // Label creation - "namespace" field from "__meta_kubernetes_namespace"
   rule {
     source_labels = ["__meta_kubernetes_namespace"]
