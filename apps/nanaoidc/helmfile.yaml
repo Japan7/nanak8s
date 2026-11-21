@@ -19,8 +19,6 @@ releases:
   - name: nanaoidc
     chart: ../../charts/nanaoidc
     values:
-      - image:
-          tag: main@sha256:d057558e0ff1781c93b3b6d85b05b2ce1beb1e0d49d1d73b747fc3aec319526b
       - config: |
           {{ .Values.config | nindent 10 }}
       - ingress:
